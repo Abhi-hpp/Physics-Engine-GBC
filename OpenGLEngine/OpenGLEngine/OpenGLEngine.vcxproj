@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{BF971B9A-9ACC-4B50-8E62-4CC32E780AA5}</ProjectGuid>
+    <RootNamespace>OpenGLEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(SolutionDir)\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc141-mtd.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="AeroControlSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="AeroSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="AssetLoader.cpp" />
+    <ClCompile Include="CableComponentSystem.cpp" />
+    <ClCompile Include="CameraLookSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="DynamicDirectionalLightSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DynamicPointLightSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DynamicSpotLightSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FixedSpringForceGeneratorSystem.cpp" />
+    <ClCompile Include="FlightSimulatorSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FollowCameraSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ForceAccumulatorSystem.cpp" />
+    <ClCompile Include="ForceAndTorqueAccumulatorSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FPSControlSystem.cpp" />
+    <ClCompile Include="glad.c" />
+    <ClCompile Include="GravityForceGeneratorSystem.cpp" />
+    <ClCompile Include="InfiniteSpawnSystem.cpp" />
+    <ClCompile Include="InfiniteSpawnTargetSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="InputEventSystem.cpp" />
+    <ClCompile Include="LifeTimeSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Mix\Component.cpp" />
+    <ClCompile Include="Mix\Entity.cpp" />
+    <ClCompile Include="Mix\Event.cpp" />
+    <ClCompile Include="Mix\System.cpp" />
+    <ClCompile Include="Mix\World.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="PairedSpringForceGeneratorSystem.cpp" />
+    <ClCompile Include="ParticleContactResolutionSystem.cpp" />
+    <ClCompile Include="ParticleSpawnerSystem.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="RenderingSystem.cpp" />
+    <ClCompile Include="RenderingSystemV2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="RigidBodySystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RotateSystem.cpp" />
+    <ClCompile Include="SetAerodynamicTensorSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SphereContactGeneratorSystem.cpp" />
+    <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="UpdateTransformMatricesSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AeroComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroControlComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroControlSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroMinMaxComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AssetLoader.h" />
+    <ClInclude Include="CableComponent.h" />
+    <ClInclude Include="CableComponentSystem.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraLookComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CameraLookSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="DirectionalLightComponent.h" />
+    <ClInclude Include="DynamicDirectionalLightSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DynamicPointLightComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DynamicPointLightSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DynamicSpotLightComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DynamicSpotLightSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ECSConfig.h" />
+    <ClInclude Include="FixedSpringComponent.h" />
+    <ClInclude Include="FixedSpringForceGeneratorSystem.h" />
+    <ClInclude Include="FlighSimulatorComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FlightSimulatorSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FollowCameraSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ForceAccumulatorSystem.h" />
+    <ClInclude Include="ForceAndTorqueAccumulatorSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FPSControlComponent.h" />
+    <ClInclude Include="FPSControlSystem.h" />
+    <ClInclude Include="FollowCameraComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GravityForceGeneratorSystem.h" />
+    <ClInclude Include="InfiniteSpawnComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="InfiniteSpawnSystem.h" />
+    <ClInclude Include="InfiniteSpawnTargetComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="InfiniteSpawnTargetSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="InputEventSystem.h" />
+    <ClInclude Include="LifeTimeComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="LifeTimeSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshComponent.h" />
+    <ClInclude Include="Mix\Component.h" />
+    <ClInclude Include="Mix\Config.h" />
+    <ClInclude Include="Mix\Entity.h" />
+    <ClInclude Include="Mix\Event.h" />
+    <ClInclude Include="Mix\Pool.h" />
+    <ClInclude Include="Mix\System.h" />
+    <ClInclude Include="Mix\World.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="MouseMoveEvent.h" />
+    <ClInclude Include="OldMain.h" />
+    <ClInclude Include="PairedSpringComponent.h" />
+    <ClInclude Include="PairedSpringForceGeneratorSystem.h" />
+    <ClInclude Include="ParticleComponent.h" />
+    <ClInclude Include="ParticleContactComponent.h" />
+    <ClInclude Include="ParticleContactResolutionSystem.h" />
+    <ClInclude Include="ParticleSpawnerComponent.h" />
+    <ClInclude Include="ParticleSpawnerSystem.h" />
+    <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="RenderingSystem.h" />
+    <ClInclude Include="RenderingSystemV2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RenderUtil.h" />
+    <ClInclude Include="RigidBodyComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RigidBodySystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RotateComponent.h" />
+    <ClInclude Include="RotateSystem.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="SetAerodynamicTensorSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Shadinclude.hpp" />
+    <ClInclude Include="SpawnTargetEvent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SphereComponent.h" />
+    <ClInclude Include="SphereContactGeneratorSystem.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="TransformComponentV2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="UpdateTransformMatricesSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="WorldData.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\FragmentConstant.fs" />
+    <None Include="Shaders\fragmentDefault.fs" />
+    <None Include="Shaders\Lamp.fs" />
+    <None Include="Shaders\Lamp.vs" />
+    <None Include="Shaders\Lighting_Maps.fs" />
+    <None Include="Shaders\Lighting_Maps.vs" />
+    <None Include="Shaders\SimpleVertex.vs" />
+    <None Include="Shaders\vertexDefault.vs" />
+    <None Include="text.fs" />
+    <None Include="text.vs" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

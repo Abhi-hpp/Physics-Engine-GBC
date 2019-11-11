@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{f5f91895-769b-4e5d-ba26-2e5ae9b27d4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{4908f04b-fde2-4c3c-aee0-85a0d4fe4985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ECSCore">
+      <UniqueIdentifier>{3e028a8c-baa4-4fc3-bd18-fe7b14239d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{db276a7f-edce-43c9-ae12-65e1b140881e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ComponentsCore">
+      <UniqueIdentifier>{db2edee8-1859-4e65-b307-c403f18f9748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mix">
+      <UniqueIdentifier>{f8a9d179-76b0-4e0e-a76c-a1a25c3113a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{e52077c3-76ae-4886-a342-fbe29e147594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCS">
+      <UniqueIdentifier>{f1bb8739-5560-4299-ba72-675bd37e40e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles">
+      <UniqueIdentifier>{95539126-9b92-4bc9-a37c-8c78d512b869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{09a9940b-c17f-43c0-becf-d8da8efa3d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCS\FlightSim">
+      <UniqueIdentifier>{1a9d715c-69e4-4d0c-b881-159070a97fa6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\Component.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\Entity.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\Event.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\System.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\World.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingSystem.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderUtil.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>ECSCore</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSpawnerSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityForceGeneratorSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceAccumulatorSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="FixedSpringForceGeneratorSystem.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="PairedSpringForceGeneratorSystem.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="InputEventSystem.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSControlSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetLoader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicDirectionalLightSystem.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicPointLightSystem.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicSpotLightSystem.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereContactGeneratorSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="CableComponentSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBodySystem.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="UpdateTransformMatricesSystem.cpp">
+      <Filter>ComponentsCore</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceAndTorqueAccumulatorSystem.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingSystemV2.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroControlSystem.cpp">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroSystem.cpp">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClCompile>
+    <ClCompile Include="FlightSimulatorSystem.cpp">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClCompile>
+    <ClCompile Include="SetAerodynamicTensorSystem.cpp">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowCameraSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraLookSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="InfiniteSpawnSystem.cpp">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClCompile>
+    <ClCompile Include="InfiniteSpawnTargetSystem.cpp">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeTimeSystem.cpp">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stb_image.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OldMain.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ECSConfig.h">
+      <Filter>ECSCore</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshComponent.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>ComponentsCore</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldData.h">
+      <Filter>ECSCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Component.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Config.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Entity.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Event.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Pool.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\System.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\World.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingSystem.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderUtil.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadinclude.hpp">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>ECSCore</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSpawnerComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSpawnerSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceGeneratorSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAccumulatorSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringComponent.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringForceGeneratorSystem.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringComponent.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringForceGeneratorSystem.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactComponent.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="InputEventSystem.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseMoveEvent.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSControlComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSControlSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetLoader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLightComponent.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicDirectionalLightSystem.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicPointLightComponent.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicPointLightSystem.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicSpotLightComponent.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicSpotLightSystem.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereContactGeneratorSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="CableComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="CableComponentSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodyComponent.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodySystem.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponentV2.h">
+      <Filter>ComponentsCore</Filter>
+    </ClInclude>
+    <ClInclude Include="UpdateTransformMatricesSystem.h">
+      <Filter>ComponentsCore</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorSystem.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingSystemV2.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroComponent.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroControlComponent.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroControlSystem.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroMinMaxComponent.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroSystem.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="FlighSimulatorComponent.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="FlightSimulatorSystem.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="SetAerodynamicTensorSystem.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowCameraComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowCameraSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraLookComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraLookSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="InfiniteSpawnTargetComponent.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="InfiniteSpawnComponent.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="InfiniteSpawnSystem.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="InfiniteSpawnTargetSystem.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="SpawnTargetEvent.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeTimeComponent.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeTimeSystem.h">
+      <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Lighting_Maps.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lighting_Maps.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lamp.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lamp.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\vertexDefault.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\fragmentDefault.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\FragmentConstant.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\SimpleVertex.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="text.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="text.fs">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
