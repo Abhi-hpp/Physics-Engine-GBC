@@ -331,7 +331,6 @@
     <ClInclude Include="Mix\World.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseMoveEvent.h" />
-    <ClInclude Include="OldMain.h" />
     <ClInclude Include="PairedSpringComponent.h" />
     <ClInclude Include="PairedSpringForceGeneratorSystem.h" />
     <ClInclude Include="ParticleComponent.h" />

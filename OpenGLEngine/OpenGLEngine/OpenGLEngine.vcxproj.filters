@@ -120,9 +120,6 @@
     <ClCompile Include="AssetLoader.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
@@ -186,6 +183,9 @@
     <ClCompile Include="LifeTimeSystem.cpp">
       <Filter>TestCS\FlightSim</Filter>
     </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -193,9 +193,6 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OldMain.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="ECSConfig.h">
       <Filter>ECSCore</Filter>
@@ -314,9 +311,6 @@
     <ClInclude Include="AssetLoader.h">
       <Filter>Rendering</Filter>
     </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="DirectionalLightComponent.h">
       <Filter>Rendering</Filter>
     </ClInclude>
@@ -427,6 +421,9 @@
     </ClInclude>
     <ClInclude Include="LifeTimeSystem.h">
       <Filter>TestCS\FlightSim</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
