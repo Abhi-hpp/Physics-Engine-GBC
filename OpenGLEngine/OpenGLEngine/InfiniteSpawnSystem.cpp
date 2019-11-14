@@ -29,8 +29,6 @@ namespace Reality
 				}
 				getWorld().data.renderUtil->DrawCube(transform.GetPosition() + spawn.height * 0.5f * Vector3(0, 1, 0), Vector3(50.0f, spawn.height, 50.0f));
 			}
-		}
-
-		
+		}	
 	}
 }

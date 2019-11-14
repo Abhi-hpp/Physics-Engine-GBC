@@ -465,16 +465,6 @@ void MakeFlight(ECSWorld& world)
 		Mat3(0, 0, 0, 0, 0, 0, 0, 0.0015f, 0));
 	RW2.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(0.0f, 0, -200.0f));
 
-	////Left Wing
-	//p = { GLFW_KEY_S, GLFW_KEY_A };
-	//n = { GLFW_KEY_W, GLFW_KEY_D };
-	//auto LW2 = world.createEntity();
-	//LW2.addComponent<AeroControlComponent>(p, n);
-	//LW2.addComponent<AeroMinMaxComponent>(Mat3(0, 0, 0, 0, 0, 0, 0, -0.005f, 0),
-	//	Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-	//	Mat3(0, 0, 0, 0, 0, 0, 0, 0.005f, 0));
-	//LW2.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(-100.0f, 0, 50.0f));
-
 	for (int i = -40; i <= 40; i++)
 	{
 		auto buildingR = world.createEntity();

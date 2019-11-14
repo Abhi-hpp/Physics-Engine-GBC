@@ -36,17 +36,13 @@ namespace Reality
 				e.addComponent<LifeTimeComponent>(7.0f);
 				timer = 0;
 			}
-
-			//if (timer > 5)
-			//{
-			//	auto& rigidbody = e.getComponent<RigidBodyComponent>();
-			//	auto& transform = e.getComponent<TransformComponentV2>();
-			//	auto& flight = e.getComponent<FlighSimulatorComponent>();
-
-			//	//rigidbody.AddTorque(Vector3(RANDOM_FLOAT(-1, 1), RANDOM_FLOAT(-1, 1), RANDOM_FLOAT(-1, 1)) * 10.0f);
-			//	rigidbody.AddForce(transform.Forward() * flight.propulsion);
-			//	timer = 0;
-			//}
 		}
+		float width = getWorld().data.renderUtil->window->width;
+		float height = getWorld().data.renderUtil->window->height;
+
+		getWorld().data.renderUtil->RenderText("W , S - Pitch Controls", width / 2 - 100.0f, 60.0f, 0.4f, Color::Orange);
+		getWorld().data.renderUtil->RenderText("A , D - Yaw   Controls", width / 2 - 100.0f, 35.0f, 0.4f, Color::Orange);
+		getWorld().data.renderUtil->RenderText("Q , E - Roll   Controls", width / 2 - 100.0f, 10.0f, 0.4f, Color::Orange);
+
 	}
 }
