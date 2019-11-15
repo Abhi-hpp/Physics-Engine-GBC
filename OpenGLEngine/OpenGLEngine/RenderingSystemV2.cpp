@@ -10,7 +10,6 @@ namespace Reality
 
 	void RenderingSystemV2::Update(float deltaTime)
 	{
-		getWorld().data.renderUtil->UpdateViewMatrix();
 		for (auto e : getEntities())
 		{
 			auto& transform = e.getComponent<TransformComponentV2>();

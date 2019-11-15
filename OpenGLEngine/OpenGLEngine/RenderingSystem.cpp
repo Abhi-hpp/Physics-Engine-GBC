@@ -28,7 +28,6 @@ namespace Reality
 			const auto transform = e.getComponent<TransformComponent>();
 			auto &mesh = e.getComponent<ModelComponent>();
 
-			getWorld().data.renderUtil->UpdateViewMatrix();
 			if (getWorld().data.assetLoader->ModelsLoaded())
 			{
 				getWorld().data.assetLoader->SetLight(getWorld().data.renderUtil->camera.Position);

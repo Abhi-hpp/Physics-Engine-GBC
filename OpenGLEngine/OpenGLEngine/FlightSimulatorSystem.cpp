@@ -37,12 +37,16 @@ namespace Reality
 				timer = 0;
 			}
 		}
-		float width = getWorld().data.renderUtil->window->width;
-		float height = getWorld().data.renderUtil->window->height;
 
-		getWorld().data.renderUtil->RenderText("W , S - Pitch Controls", width / 2 - 100.0f, 60.0f, 0.4f, Color::Orange);
-		getWorld().data.renderUtil->RenderText("A , D - Yaw   Controls", width / 2 - 100.0f, 35.0f, 0.4f, Color::Orange);
-		getWorld().data.renderUtil->RenderText("Q , E - Roll   Controls", width / 2 - 100.0f, 10.0f, 0.4f, Color::Orange);
+		if (getEntities().size() > 0)
+		{
+			float width = getWorld().data.renderUtil->window->width;
+			float height = getWorld().data.renderUtil->window->height;
+
+			getWorld().data.renderUtil->RenderText("W , S - Pitch Controls", width / 2 - 100.0f, 60.0f, 0.4f, Color::Orange);
+			getWorld().data.renderUtil->RenderText("A , D - Yaw   Controls", width / 2 - 100.0f, 35.0f, 0.4f, Color::Orange);
+			getWorld().data.renderUtil->RenderText("Q , E - Roll   Controls", width / 2 - 100.0f, 10.0f, 0.4f, Color::Orange);
+		}
 
 	}
 }

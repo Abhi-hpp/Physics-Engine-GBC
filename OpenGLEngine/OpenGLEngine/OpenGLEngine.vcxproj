@@ -81,7 +81,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc141-mtd.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc141-mtd.lib;freetype.lib;reactphysics3d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -130,12 +130,24 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="AssetLoader.cpp" />
+    <ClCompile Include="BoxColliderSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="CableComponentSystem.cpp" />
     <ClCompile Include="CameraLookSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="ContactGenerationSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ContactResolutionSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DynamicDirectionalLightSystem.cpp">
       <SubType>
       </SubType>
@@ -184,6 +196,10 @@
     <ClCompile Include="Mix\System.cpp" />
     <ClCompile Include="Mix\World.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="MoveInBoundsSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PairedSpringForceGeneratorSystem.cpp" />
     <ClCompile Include="ParticleContactResolutionSystem.cpp" />
     <ClCompile Include="ParticleSpawnerSystem.cpp" />
@@ -208,6 +224,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SphereColliderSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="SphereContactGeneratorSystem.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="UpdateTransformMatricesSystem.cpp">
@@ -238,6 +258,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="AssetLoader.h" />
+    <ClInclude Include="BoxColliderComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BoxColliderSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CableComponent.h" />
     <ClInclude Include="CableComponentSystem.h" />
     <ClInclude Include="Camera.h" />
@@ -250,6 +278,22 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="Color.h" />
+    <ClInclude Include="ContactEvent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ContactGenerationSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ContactInfoReciever.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ContactResolutionSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DirectionalLightComponent.h" />
     <ClInclude Include="DynamicDirectionalLightSystem.h">
       <SubType>
@@ -331,6 +375,14 @@
     <ClInclude Include="Mix\World.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseMoveEvent.h" />
+    <ClInclude Include="MoveInBoundsComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="MoveInBoundsSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PairedSpringComponent.h" />
     <ClInclude Include="PairedSpringForceGeneratorSystem.h" />
     <ClInclude Include="ParticleComponent.h" />
@@ -346,6 +398,10 @@
     </ClInclude>
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="RigidBodyComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RigidBodyData.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -371,6 +427,14 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Shadinclude.hpp" />
     <ClInclude Include="SpawnTargetEvent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SphereColliderComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SphereColliderSystem.h">
       <SubType>
       </SubType>
     </ClInclude>

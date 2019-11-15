@@ -236,8 +236,8 @@ namespace Reality
 		std::vector<float> VNT;
 		float radius = 1;
 		float PI = 3.14f;
-		int sectorCount = 18;
-		int stackCount = 6;
+		int sectorCount = 40;
+		int stackCount = 16;
 
 		float x, y, z, xy;                              // vertex position
 		float nx, ny, nz, lengthInv = 1.0f / radius;    // vertex normal
@@ -531,6 +531,25 @@ namespace Reality
 		renderDeltaTime += glfwGetTime() - time;
 	}
 
+	void RenderUtil::DrawCube(const glm::vec3 & position, const glm::vec3 & scale, const glm::quat& orientation, const Color & color)
+	{
+		float time = glfwGetTime();
+		glBindVertexArray(cubeVAO);
+		primitiveShader.use();
+
+		SetModelTransform(position, scale, orientation);
+
+		primitiveShader.setVec3("col", glm::vec3(color.r, color.g, color.b));
+
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+		verts += 36;
+		triangles += 12;
+		drawCalls++;
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		renderDeltaTime += glfwGetTime() - time;
+	}
+
 	void RenderUtil::DrawSphere(const glm::vec3& position, float radius, const Color& color)
 	{
 		glBindVertexArray(sphereVAO);
@@ -633,6 +652,14 @@ namespace Reality
 		glm::mat4 scaleMat = glm::scale(glm::mat4(1.0f), scale);
 		glm::mat4 translateMat = glm::translate(glm::mat4(1.0f), position);
 		glm::mat4 rotationMat =  glm::toMat4(glm::quat(rotationInRads));
+		SetModelTransform(translateMat * rotationMat * scaleMat);
+	}
+
+	void RenderUtil::SetModelTransform(const glm::vec3& position, const glm::vec3& scale, const glm::quat& orientation)
+	{
+		glm::mat4 scaleMat = glm::scale(glm::mat4(1.0f), scale);
+		glm::mat4 translateMat = glm::translate(glm::mat4(1.0f), position);
+		glm::mat4 rotationMat = glm::toMat4(orientation);
 		SetModelTransform(translateMat * rotationMat * scaleMat);
 	}
 

@@ -46,6 +46,9 @@
     <Filter Include="TestCS\FlightSim">
       <UniqueIdentifier>{1a9d715c-69e4-4d0c-b881-159070a97fa6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Rigidbody">
+      <UniqueIdentifier>{3f5a8043-c367-47f5-bbe1-005323d21b00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -93,15 +96,6 @@
     <ClCompile Include="ForceAccumulatorSystem.cpp">
       <Filter>Physics\Particles</Filter>
     </ClCompile>
-    <ClCompile Include="FixedSpringForceGeneratorSystem.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="PairedSpringForceGeneratorSystem.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleContactResolutionSystem.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
     <ClCompile Include="InputEventSystem.cpp">
       <Filter>Input</Filter>
     </ClCompile>
@@ -141,17 +135,11 @@
     <ClCompile Include="RodSystem.cpp">
       <Filter>TestCS</Filter>
     </ClCompile>
-    <ClCompile Include="RigidBodySystem.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
     <ClCompile Include="Color.cpp">
       <Filter>Rendering</Filter>
     </ClCompile>
     <ClCompile Include="UpdateTransformMatricesSystem.cpp">
       <Filter>ComponentsCore</Filter>
-    </ClCompile>
-    <ClCompile Include="ForceAndTorqueAccumulatorSystem.cpp">
-      <Filter>Physics</Filter>
     </ClCompile>
     <ClCompile Include="RenderingSystemV2.cpp">
       <Filter>Rendering</Filter>
@@ -185,6 +173,36 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="ContactGenerationSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="ContactResolutionSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="FixedSpringForceGeneratorSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceAndTorqueAccumulatorSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidBodySystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereColliderSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="PairedSpringForceGeneratorSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxColliderSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveInBoundsSystem.cpp">
+      <Filter>TestCS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,24 +293,6 @@
     <ClInclude Include="ForceAccumulatorSystem.h">
       <Filter>Physics\Particles</Filter>
     </ClInclude>
-    <ClInclude Include="FixedSpringComponent.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="FixedSpringForceGeneratorSystem.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PairedSpringComponent.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="PairedSpringForceGeneratorSystem.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleContactComponent.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleContactResolutionSystem.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
     <ClInclude Include="InputEventSystem.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -347,20 +347,11 @@
     <ClInclude Include="RodSystem.h">
       <Filter>TestCS</Filter>
     </ClInclude>
-    <ClInclude Include="RigidBodyComponent.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="RigidBodySystem.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
     <ClInclude Include="TransformComponentV2.h">
       <Filter>ComponentsCore</Filter>
     </ClInclude>
     <ClInclude Include="UpdateTransformMatricesSystem.h">
       <Filter>ComponentsCore</Filter>
-    </ClInclude>
-    <ClInclude Include="ForceAndTorqueAccumulatorSystem.h">
-      <Filter>Physics</Filter>
     </ClInclude>
     <ClInclude Include="RenderingSystemV2.h">
       <Filter>Rendering</Filter>
@@ -424,6 +415,66 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactEvent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactGenerationSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactInfoReciever.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactResolutionSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringForceGeneratorSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereColliderSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodyComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodyData.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodySystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereColliderComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringForceGeneratorSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxColliderComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxColliderSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveInBoundsComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveInBoundsSystem.h">
+      <Filter>TestCS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

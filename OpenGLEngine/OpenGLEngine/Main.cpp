@@ -16,6 +16,11 @@
 #include "RodSystem.h"
 #include "ForceAndTorqueAccumulatorSystem.h"
 #include "RigidBodySystem.h"
+#include "ContactGenerationSystem.h"
+#include "ContactResolutionSystem.h"
+#include "SphereColliderSystem.h"
+#include "BoxColliderSystem.h"
+#include "MoveInBoundsSystem.h"
 #include "FPSControlSystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
@@ -31,7 +36,7 @@
 #include "LifeTimeSystem.h"
 #include <string>
 #include <stdlib.h>     
-#include <time.h>       
+#include <time.h>      
 
 #define DEBUG_LOG_LEVEL 3
 
@@ -45,6 +50,7 @@ void MakeABunchaSpheres(ECSWorld& world);
 void MakeACable(ECSWorld& world);
 void MakeCablesAndRods(ECSWorld& world);
 void MakeFlight(ECSWorld& world);
+void TestContacts(ECSWorld& world);
 void SetupLights(ECSWorld& world);
 
 int main()
@@ -74,7 +80,8 @@ int main()
 	//MakeABunchaSprings(world);
 	//MakeACable(world);
 	//akeCablesAndRods(world);
-	MakeFlight(world);
+	//MakeFlight(world);
+	TestContacts(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<UpdateTransformMatricesSystem>();
@@ -93,7 +100,6 @@ int main()
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
-	world.getSystemManager().addSystem<RigidBodySystem>();
 	world.getSystemManager().addSystem<FlightSimulatorSystem>();
 	world.getSystemManager().addSystem<FPSControlSystem>();
 	world.getSystemManager().addSystem<FollowCameraSystem>();
@@ -104,9 +110,19 @@ int main()
 	world.getSystemManager().addSystem<SetAerodynamicTensorSystem>();
 	world.getSystemManager().addSystem<AeroSystem>();
 	world.getSystemManager().addSystem<LifeTimeSystem>();
+	world.getSystemManager().addSystem<MoveInBoundsSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
+
+	// Physics
+	rp3d::CollisionWorld rp3dWorld;
+	world.getSystemManager().addSystem<RigidBodySystem>(rp3dWorld);
+	world.getSystemManager().addSystem<ContactGenerationSystem>(rp3dWorld);
+	world.getSystemManager().addSystem<ContactResolutionSystem>(rp3dWorld);
+	world.getSystemManager().addSystem<SphereColliderSystem>(rp3dWorld);
+	world.getSystemManager().addSystem<BoxColliderSystem>(rp3dWorld);
+
 
 	float time = glfwGetTime();
 	float stepTime = glfwGetTime();
@@ -143,6 +159,8 @@ int main()
 			LoadModels(world);
 			modelsLoadStarted = true;
 		}
+		// Update View
+		world.data.renderUtil->UpdateViewMatrix();
 		// Process Input
 		world.getSystemManager().getSystem<InputEventSystem>().Update(deltaTime);
 
@@ -150,6 +168,7 @@ int main()
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<ParticleSpawnerSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<MoveInBoundsSystem>().Update(deltaTime);
 
 		//Flight Sim
 		world.getSystemManager().getSystem<FlightSimulatorSystem>().Update(deltaTime);
@@ -167,6 +186,7 @@ int main()
 		//float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
 		float fixedDeltaTime = 1 / 60.0f;
 		world.getSystemManager().getSystem<AeroSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<AeroSystem>().Update(fixedDeltaTime);
 		// Force Generators
 		world.getSystemManager().getSystem<GravityForceGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<FixedSpringForceGeneratorSystem>().Update(fixedDeltaTime);
@@ -175,13 +195,17 @@ int main()
 		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ForceAndTorqueAccumulatorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<RigidBodySystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<SphereColliderSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BoxColliderSystem>().Update(fixedDeltaTime);
 
 		// Physics Solvers
-
 		world.getSystemManager().getSystem<SphereContactGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<CableComponentSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ParticleContactResolutionSystem>().Update(fixedDeltaTime);
+
+		world.getSystemManager().getSystem<ContactGenerationSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<ContactResolutionSystem>().Update(fixedDeltaTime);
 
 		// Rendering Update
 		world.getSystemManager().getSystem<DynamicDirectionalLightSystem>().Update(deltaTime);
@@ -246,9 +270,9 @@ void LoadShaders(ECSWorld& world)
 void LoadModels(ECSWorld& world)
 {
 	world.data.assetLoader->StartModelLoading({
-		/*ModelData("Resources/Models/snowy-mountain-terrain/SnowyMountainMesh.obj"),
-		ModelData("Resources/Models/Sponza-master/sponza.obj"),
-		ModelData("Resources/Models/nanosuit/nanosuit.obj"),*/
+		//ModelData("Resources/Models/snowy-mountain-terrain/SnowyMountainMesh.obj"),
+		//ModelData("Resources/Models/Sponza-master/sponza.obj"),
+		//ModelData("Resources/Models/nanosuit/nanosuit.obj"),*/
 		ModelData("Resources/Models/supermarine-spitfire/spitfire.fbx",
 			{{"spitfire_d.png"}})
 		});
@@ -474,6 +498,29 @@ void MakeFlight(ECSWorld& world)
 		auto buildingL = world.createEntity();
 		buildingL.addComponent<TransformComponentV2>(Vector3(-100.0f, 0.0f, 50.0f * i));
 		buildingL.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(100.0f, 500.0f));
+	}
+}
+
+void TestContacts(ECSWorld& world)
+{
+	for (int i = 0; i < 30; i++)
+	{
+		auto e = world.createEntity();
+		e.addComponent<TransformComponentV2>(Vector3(RANDOM_FLOAT(-200.0f, 200.0f), RANDOM_FLOAT(-200.0f, 200.0f), RANDOM_FLOAT(-200.0f, 200.0f)),
+			Vector3(1, 1, 1),
+			Vector3(RANDOM_FLOAT(-180.0f, 180.0f), RANDOM_FLOAT(-180.0f, 180.0f), RANDOM_FLOAT(-180.0f, 180.0f)));
+		e.addComponent<RigidBodyComponent>();
+		e.addComponent<MoveInBoundsComponent>(Vector3(RANDOM_FLOAT(-10.0f, 10.0f), RANDOM_FLOAT(-10.0f, 10.0f), RANDOM_FLOAT(-10.0f, 10.0f)),
+			Vector3(100, 100, 100));
+		auto col = world.createEntity();
+		if ((RANDOM_FLOAT(0.0f, 1.0f) >= 0.5f))
+		{
+			col.addComponent<SphereColliderComponent>(e, RANDOM_FLOAT(10.0f, 50.0f));
+		}
+		else
+		{
+			col.addComponent<BoxColliderComponent>(e, Vector3(RANDOM_FLOAT(30.0f, 70.0f), RANDOM_FLOAT(30.0f, 70.0f), RANDOM_FLOAT(30.0f, 70.0f)));
+		}
 	}
 }
 

@@ -83,6 +83,10 @@ std::shared_ptr<Pool<T>> EventManager::accommodateEvent()
 template <typename T>
 std::vector<T> EventManager::getEvents()
 {
+	if (eventPools.find(std::type_index(typeid(T))) == eventPools.end())
+	{
+		return std::vector<T>();
+	}
     return std::static_pointer_cast<Pool<T>>(eventPools[std::type_index(typeid(T))])->getData();
 }
 
