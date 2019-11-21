@@ -21,7 +21,7 @@ namespace Reality
 		{
 			auto &boxCollider = e.getComponent<BoxColliderComponent>();
 
-			if (boxCollider.body.hasComponent<RigidBodyComponent>())
+			if (boxCollider.body.isAlive() && boxCollider.body.hasComponent<RigidBodyComponent>())
 			{
 				auto &body = boxCollider.body.getComponent<RigidBodyComponent>();
 
@@ -45,7 +45,7 @@ namespace Reality
 					rp3dShapesTemp.push_back(proxyShape);
 					boxCollider.rp3dId = id;
 				}
-				else
+				else if (boxCollider.body.isAlive())
 				{
 					rp3d::ProxyShape * shape = rp3dShapes[boxCollider.rp3dId];
 					shape->setLocalToBodyTransform(rp3dtransform);
@@ -53,19 +53,37 @@ namespace Reality
 					rp3dShapesTemp.push_back(shape);
 					boxCollider.rp3dId = id;
 				}
+				id++;
+
+				if (boxCollider.body.hasComponent<TransformComponentV2>())
+				{
+					auto& bodyTransform = boxCollider.body.getComponent<TransformComponentV2>();
+					getWorld().data.renderUtil->DrawCube(bodyTransform.GetUnScaledTransformationMatrix() * Vector4(boxCollider.offset, 1.0f), boxCollider.size, bodyTransform.GetOrientation() * boxCollider.orientation);
+				}
 			}
-			id++;
-			auto& bodyTransform = boxCollider.body.getComponent<TransformComponentV2>();
-			getWorld().data.renderUtil->DrawCube(bodyTransform.GetUnScaledTransformationMatrix() * Vector4(boxCollider.offset, 1.0f), boxCollider.size, bodyTransform.GetOrientation() * boxCollider.orientation);
+			else
+			{
+				// No need to kill it, the death of RB already killed it
+				aliveIds[boxCollider.rp3dId] = 1;
+				e.kill();
+			}
+			
 		}
 
 		for (int i = 0; i < aliveIds.size(); i++)
 		{
 			if (aliveIds[i] == 0)
 			{
-				auto shape = rp3dShapes[i]->getCollisionShapePublic();
-				rp3dShapes[i]->getBody()->removeCollisionShape(rp3dShapes[i]);
-				delete shape;
+				if (rp3dShapes[i])
+				{
+					auto shape = rp3dShapes[i]->getCollisionShapePublic();
+
+					if (rp3dShapes[i]->getBody() && rp3dShapes[i]->getBody()->getProxyShapesList())
+					{
+						rp3dShapes[i]->getBody()->removeCollisionShape(rp3dShapes[i]);
+					}
+					delete shape;
+				}
 			}
 		}
 

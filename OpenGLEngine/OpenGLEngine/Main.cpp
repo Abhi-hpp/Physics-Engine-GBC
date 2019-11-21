@@ -140,6 +140,7 @@ int main()
 	{
 		float current = glfwGetTime();
 		deltaTime = current - time;
+		deltaTime = 1 / 60.0f;
 		time = glfwGetTime();
 
 		world.update();
@@ -511,7 +512,7 @@ void TestContacts(ECSWorld& world)
 			Vector3(RANDOM_FLOAT(-180.0f, 180.0f), RANDOM_FLOAT(-180.0f, 180.0f), RANDOM_FLOAT(-180.0f, 180.0f)));
 		e.addComponent<RigidBodyComponent>();
 		e.addComponent<MoveInBoundsComponent>(Vector3(RANDOM_FLOAT(-10.0f, 10.0f), RANDOM_FLOAT(-10.0f, 10.0f), RANDOM_FLOAT(-10.0f, 10.0f)),
-			Vector3(100, 100, 100));
+			Vector3(200, 200, 200));
 		auto col = world.createEntity();
 		if ((RANDOM_FLOAT(0.0f, 1.0f) >= 0.5f))
 		{
@@ -522,6 +523,15 @@ void TestContacts(ECSWorld& world)
 			col.addComponent<BoxColliderComponent>(e, Vector3(RANDOM_FLOAT(30.0f, 70.0f), RANDOM_FLOAT(30.0f, 70.0f), RANDOM_FLOAT(30.0f, 70.0f)));
 		}
 	}
+	/*for (int i = 0; i < 2; i++)
+	{
+		auto e = world.createEntity();
+		e.addComponent<TransformComponentV2>(Vector3(50 * ( i % 2 == 0 ? -1 : 1), 0, 0));
+		e.addComponent<RigidBodyComponent>();
+		e.addComponent<MoveInBoundsComponent>(Vector3(10 * (i % 2 == 0 ? 1 : -1), 0, 0), Vector3(100, 100, 100));
+		auto col = world.createEntity();
+		col.addComponent<SphereColliderComponent>(e, 30);
+	}*/
 }
 
 void SetupLights(ECSWorld& world)

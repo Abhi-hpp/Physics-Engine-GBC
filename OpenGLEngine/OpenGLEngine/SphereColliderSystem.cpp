@@ -21,7 +21,7 @@ namespace Reality
 		{
 			auto &sphereCollider = e.getComponent<SphereColliderComponent>();
 
-			if (sphereCollider.body.hasComponent<RigidBodyComponent>())
+			if (sphereCollider.body.isAlive() && sphereCollider.body.hasComponent<RigidBodyComponent>())
 			{
 				auto &body = sphereCollider.body.getComponent<RigidBodyComponent>();
 
@@ -40,13 +40,13 @@ namespace Reality
 					rp3d::decimal radius = rp3d::decimal(sphereCollider.radius);
 					rp3d::SphereShape* shape = new rp3d::SphereShape(radius);
 					// Add the collision shape to the rigid body
-					
+
 					rp3d::ProxyShape * proxyShape = rp3dBody->addCollisionShape(shape, rp3dtransform);
 					proxyShape->setUserData(&sphereCollider);
 					rp3dShapesTemp.push_back(proxyShape);
 					sphereCollider.rp3dId = id;
 				}
-				else
+				else if (sphereCollider.body.isAlive())
 				{
 					rp3d::ProxyShape * shape = rp3dShapes[sphereCollider.rp3dId];
 					shape->setLocalToBodyTransform(rp3dtransform);
@@ -54,18 +54,35 @@ namespace Reality
 					rp3dShapesTemp.push_back(shape);
 					sphereCollider.rp3dId = id;
 				}
+				id++;
+
+				if (sphereCollider.body.hasComponent<TransformComponentV2>())
+				{
+					getWorld().data.renderUtil->DrawSphere(sphereCollider.body.getComponent<TransformComponentV2>().GetUnScaledTransformationMatrix() * Vector4(sphereCollider.offset, 1.0f), sphereCollider.radius);
+				}
 			}
-			id++;
-			getWorld().data.renderUtil->DrawSphere(sphereCollider.body.getComponent<TransformComponentV2>().GetUnScaledTransformationMatrix() * Vector4(sphereCollider.offset, 1.0f), sphereCollider.radius);
+			else
+			{
+				// No need to kill it, the death of RB already killed it
+				aliveIds[sphereCollider.rp3dId] = 1;
+				e.kill();
+			}
 		}
 
 		for (int i = 0; i < aliveIds.size(); i++)
 		{
 			if (aliveIds[i] == 0)
 			{
-				auto shape = rp3dShapes[i]->getCollisionShapePublic();
-				rp3dShapes[i]->getBody()->removeCollisionShape(rp3dShapes[i]);
-				delete shape;
+				if (rp3dShapes[i])
+				{
+					auto shape = rp3dShapes[i]->getCollisionShapePublic();
+
+					if (rp3dShapes[i]->getBody() && rp3dShapes[i]->getBody()->getProxyShapesList())
+					{
+						rp3dShapes[i]->getBody()->removeCollisionShape(rp3dShapes[i]);
+					}
+					delete shape;
+				}
 			}
 		}
 
