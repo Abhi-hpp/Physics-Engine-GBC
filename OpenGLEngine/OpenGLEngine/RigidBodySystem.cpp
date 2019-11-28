@@ -60,6 +60,7 @@ namespace Reality
 			
 			transform.SetPosition(transform.GetPosition() + rigidbody.velocity * deltaTime);
 			glm::quat angularVelocityQuat = glm::quat(0, rigidbody.angularVelocity.x, rigidbody.angularVelocity.y, rigidbody.angularVelocity.z);
+			getWorld().data.renderUtil->DrawLine(transform.GetPosition(), transform.GetPosition() + rigidbody.angularVelocity, Color::Blue);
 			transform.SetOrientation(glm::normalize(transform.GetOrientation() + 0.5f * angularVelocityQuat * transform.GetOrientation() * deltaTime));
 		}
 

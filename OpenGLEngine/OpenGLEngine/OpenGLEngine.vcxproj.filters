@@ -204,6 +204,9 @@
     <ClCompile Include="MoveInBoundsSystem.cpp">
       <Filter>TestCS</Filter>
     </ClCompile>
+    <ClCompile Include="RigidbodyGravityForceGeneratorSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -475,6 +478,9 @@
     </ClInclude>
     <ClInclude Include="MoveInBoundsSystem.h">
       <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidbodyGravityForceGeneratorSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

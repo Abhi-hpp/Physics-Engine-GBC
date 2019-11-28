@@ -11,5 +11,8 @@ namespace Reality
 		ContactResolutionSystem(rp3d::CollisionWorld& _rp3dWorld);
 		void Update(float deltaTime);
 		rp3d::CollisionWorld& rp3dWorld;
+	private:
+		void ResolveVelocity(ContactEvent& contact);
+		void CalculateContactBasis(Vector3 contactNormal, Mat3& transformationMat, Vector3& y, Vector3& z);
 	};	
 }

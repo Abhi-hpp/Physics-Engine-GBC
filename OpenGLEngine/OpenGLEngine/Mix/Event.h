@@ -73,7 +73,7 @@ template <typename T>
 std::shared_ptr<Pool<T>> EventManager::accommodateEvent()
 {
     if (eventPools.find(std::type_index(typeid(T))) == eventPools.end()) {
-        std::shared_ptr<Pool<T>> pool(new Pool<T>());
+        std::shared_ptr<Pool<T>> pool(new Pool<T>(0));
         eventPools.insert(std::make_pair(std::type_index(typeid(T)), pool));
     }
 

@@ -43,6 +43,9 @@ namespace Reality
 					rp3d::ProxyShape * proxyShape = rp3dBody->addCollisionShape(shape, rp3dtransform);
 					proxyShape->setUserData(&boxCollider);
 					rp3dShapesTemp.push_back(proxyShape);
+					body.inertiaTensor[0][0] += (1.0f / 12.0f) * (pow(2 * boxCollider.size.y, 2) + pow(2 * boxCollider.size.z, 2)) / body.inverseMass;
+					body.inertiaTensor[1][1] += (1.0f / 12.0f) * (pow(2 * boxCollider.size.z, 2) + pow(2 * boxCollider.size.x, 2)) / body.inverseMass;
+					body.inertiaTensor[2][2] += (1.0f / 12.0f) * (pow(2 * boxCollider.size.x, 2) + pow(2 * boxCollider.size.y, 2)) / body.inverseMass;
 					boxCollider.rp3dId = id;
 				}
 				else if (boxCollider.body.isAlive())

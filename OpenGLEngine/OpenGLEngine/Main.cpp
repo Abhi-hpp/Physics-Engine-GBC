@@ -16,6 +16,7 @@
 #include "RodSystem.h"
 #include "ForceAndTorqueAccumulatorSystem.h"
 #include "RigidBodySystem.h"
+#include "RigidbodyGravityForceGeneratorSystem.h"
 #include "ContactGenerationSystem.h"
 #include "ContactResolutionSystem.h"
 #include "SphereColliderSystem.h"
@@ -51,6 +52,7 @@ void MakeACable(ECSWorld& world);
 void MakeCablesAndRods(ECSWorld& world);
 void MakeFlight(ECSWorld& world);
 void TestContacts(ECSWorld& world);
+void TestCollision(ECSWorld& world);
 void SetupLights(ECSWorld& world);
 
 int main()
@@ -81,7 +83,8 @@ int main()
 	//MakeACable(world);
 	//akeCablesAndRods(world);
 	//MakeFlight(world);
-	TestContacts(world);
+	//TestContacts(world);
+	TestCollision(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<UpdateTransformMatricesSystem>();
@@ -115,13 +118,14 @@ int main()
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
 
-	// Physics
+	// Rigidbody Physics
 	rp3d::CollisionWorld rp3dWorld;
 	world.getSystemManager().addSystem<RigidBodySystem>(rp3dWorld);
 	world.getSystemManager().addSystem<ContactGenerationSystem>(rp3dWorld);
 	world.getSystemManager().addSystem<ContactResolutionSystem>(rp3dWorld);
 	world.getSystemManager().addSystem<SphereColliderSystem>(rp3dWorld);
 	world.getSystemManager().addSystem<BoxColliderSystem>(rp3dWorld);
+	world.getSystemManager().addSystem<RigidbodyGravityForceGeneratorSystem>();
 
 
 	float time = glfwGetTime();
@@ -184,21 +188,22 @@ int main()
 		// Update Transform
 		world.getSystemManager().getSystem<UpdateTransformMatricesSystem>().Update(deltaTime);
 		// Physics
-		//float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
-		float fixedDeltaTime = 1 / 60.0f;
+		float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
+		//float fixedDeltaTime = 1 / 60.0f;
 		world.getSystemManager().getSystem<AeroSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<AeroSystem>().Update(fixedDeltaTime);
-		// Force Generators
+		// Particle Force Generators
 		world.getSystemManager().getSystem<GravityForceGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<FixedSpringForceGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedSpringForceGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
+		// Rigiidbody Force Generators and collisions
+		world.getSystemManager().getSystem<RigidbodyGravityForceGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ForceAndTorqueAccumulatorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<RigidBodySystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<SphereColliderSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<BoxColliderSystem>().Update(fixedDeltaTime);
-
 		// Physics Solvers
 		world.getSystemManager().getSystem<SphereContactGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<CableComponentSystem>().Update(fixedDeltaTime);
@@ -532,6 +537,40 @@ void TestContacts(ECSWorld& world)
 		auto col = world.createEntity();
 		col.addComponent<SphereColliderComponent>(e, 30);
 	}*/
+}
+
+void TestCollision(ECSWorld& world)
+{
+	// Floor 1
+	auto floor1 = world.createEntity();
+	floor1.addComponent<TransformComponentV2>(Vector3(0, 0, 0), Vector3(1, 1, 1), Vector3(0, 0, 0));
+	floor1.addComponent<RigidBodyComponent>(100.0f, 0.4f, 0.3f, Vector3(0, 0, 0), Vector3(0, 0, 0), 0);
+	auto floorCol1 = world.createEntity();
+	floorCol1.addComponent<BoxColliderComponent>(floor1, Vector3(100, 10, 100));
+
+	// Floor 2
+	auto floor2 = world.createEntity();
+	floor2.addComponent<TransformComponentV2>(Vector3(80, -50, 0), Vector3(1, 1, 1), Vector3(0, 0, 30));
+	floor2.addComponent<RigidBodyComponent>(10000.0f, 0.0f, 0.0f, Vector3(0, 0, 0), Vector3(0, 0, 0), 0);
+	auto floorCol2 = world.createEntity();
+	floorCol2.addComponent<BoxColliderComponent>(floor2, Vector3(300, 10, 300));
+
+	//// Object 1
+	//auto object1 = world.createEntity();
+	//object1.addComponent<TransformComponentV2>(Vector3(-30, 50, 0));
+	//object1.addComponent<RigidBodyComponent>();
+	//auto objectCol1 = world.createEntity();
+	//objectCol1.addComponent<SphereColliderComponent>(object1, 10);
+
+	// Object 2
+	for (int i = 0; i < 10; i++)
+	{
+		auto object2 = world.createEntity();
+		object2.addComponent<TransformComponentV2>(Vector3(RANDOM_FLOAT(-50.0f, 50.0f), 50, RANDOM_FLOAT(-50.0f, 50.0f)), Vector3(1, 1, 1), Vector3(RANDOM_FLOAT(0, 180), RANDOM_FLOAT(0, 180), RANDOM_FLOAT(0, 180)));
+		object2.addComponent<RigidBodyComponent>(10.0f, 0.1f, 0.1f, Vector3(0, 0, 0), Vector3(0, 0, 0), 1);
+		auto objectCol2 = world.createEntity();
+		objectCol2.addComponent<BoxColliderComponent>(object2, Vector3(10, 10, 10));
+	}
 }
 
 void SetupLights(ECSWorld& world)

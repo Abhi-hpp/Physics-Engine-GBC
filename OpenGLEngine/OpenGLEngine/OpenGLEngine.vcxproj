@@ -210,6 +210,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="RigidbodyGravityForceGeneratorSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RigidBodySystem.cpp">
       <SubType>
       </SubType>
@@ -402,6 +406,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="RigidBodyData.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RigidbodyGravityForceGeneratorSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
