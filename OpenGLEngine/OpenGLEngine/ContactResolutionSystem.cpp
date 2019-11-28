@@ -15,9 +15,114 @@ namespace Reality
 		auto contactEvents = getWorld().getEventManager().getEvents<ContactEvent>();
 		for (auto& contact : contactEvents)
 		{
+			ResolvePenetration(contact);
 			ResolveVelocity(contact);
 		}
 		getWorld().data.renderUtil->RenderText("Num Contacts = " + to_string(contactEvents.size()), 1920 * 0.5f - 100, 1080 * 0.5f, 0.5f, Color::Red);
+	}
+	void ContactResolutionSystem::ResolvePenetration(ContactEvent & contact)
+	{
+		// Get Rigidbodies involved
+		auto& rbA = contact.entityA.getComponent<RigidBodyComponent>();
+		auto& rbB = contact.entityB.getComponent<RigidBodyComponent>();
+		auto& transformA = contact.entityA.getComponent<TransformComponentV2>();
+		auto& transformB = contact.entityB.getComponent<TransformComponentV2>();
+
+		// Calculate contact point as avg
+		Vector3 contactPoint = (contact.worldPoint1 + contact.worldPoint2) * 0.5f;
+
+		// Relative Positions
+		Vector3 relativePositionA = contact.worldPoint1 - transformA.GetPosition();
+		Vector3 relativePositionB = contact.worldPoint2 - transformB.GetPosition();
+		contact.normal *= -1;
+		// World Inertia Tensors
+		Mat3 worldInvInertiaTensorA = rbA.worldInverseInertiaTensor(transformA.GetRotationMatrix());
+		Mat3 worldInvInertiaTensorB = rbB.worldInverseInertiaTensor(transformB.GetRotationMatrix());
+
+		float totalInertia = 0;
+
+		Vector3 angularInertiaWorldA = glm::cross(relativePositionA, contact.normal);
+		angularInertiaWorldA = worldInvInertiaTensorA * angularInertiaWorldA;
+		angularInertiaWorldA = glm::cross(angularInertiaWorldA, relativePositionA);
+
+		float angularInertiaA = glm::dot(angularInertiaWorldA, contact.normal);
+		float linearInertiaA = rbA.inverseMass;
+		totalInertia += angularInertiaA + linearInertiaA;
+
+		Vector3 angularInertiaWorldB = glm::cross(relativePositionB, contact.normal);
+		angularInertiaWorldB = worldInvInertiaTensorB * angularInertiaWorldB;
+		angularInertiaWorldB = glm::cross(angularInertiaWorldB, relativePositionB);
+
+		float angularInertiaB = glm::dot(angularInertiaWorldB, contact.normal);
+		float linearInertiaB = rbB.inverseMass;
+		totalInertia += angularInertiaB + linearInertiaB;
+
+		// Total Moves
+		float inverseInertia = 1 / totalInertia; 
+		float linearMoveA = contact.penetrationDepth * linearInertiaA * inverseInertia; 
+		float linearMoveB = -contact.penetrationDepth * linearInertiaB * inverseInertia;
+		float angularMoveA = contact.penetrationDepth * angularInertiaA * inverseInertia;
+		float angularMoveB = -contact.penetrationDepth * angularInertiaB * inverseInertia;
+
+		float limitA = angularLimitConstant * glm::length(relativePositionA);
+		if (abs(angularMoveA) > limitA)
+		{
+			float totalMoveA = linearMoveA + angularMoveA;
+			// Set the new angular move, with the same sign as before. 
+			if (angularMoveA >= 0) 
+			{ 
+				angularMoveA = limitA; 
+			} else 
+			{ 
+				angularMoveA = -limitA; 
+			}
+			// Make the linear move take the extra slack. 
+			linearMoveA = totalMoveA - angularMoveA;
+		}
+
+		float limitB = angularLimitConstant * glm::length(relativePositionB);
+		if (abs(angularMoveB) > limitB)
+		{
+			float totalMoveB = linearMoveB + angularMoveB;
+			// Set the new angular move, with the same sign as before. 
+			if (angularMoveB >= 0)
+			{
+				angularMoveB = limitB;
+			}
+			else
+			{
+				angularMoveB = -limitB;
+			}
+			// Make the linear move take the extra slack. 
+			linearMoveB = totalMoveB - angularMoveB;
+		}
+
+		// Update Linear Moves
+		transformA.SetPosition(transformA.GetPosition() + contact.normal * linearMoveA);
+		transformB.SetPosition(transformB.GetPosition() + contact.normal * linearMoveB);
+
+		// Update Rotational Moves
+		// A
+		Vector3 impulsiveTorqueA = glm::cross(relativePositionA,  contact.normal); 
+		Vector3 impulsePerMoveA = worldInvInertiaTensorA * impulsiveTorqueA;
+
+		Vector3 rotationPerMoveA = impulsePerMoveA * (1 / angularInertiaA);
+		Vector3 rotationA = rotationPerMoveA * angularMoveA;
+
+		glm::quat rotationQuatA = glm::quat(0, rotationA.x, rotationA.y, rotationA.z);
+		transformA.SetOrientation(glm::normalize(transformA.GetOrientation() + 0.5f * rotationQuatA * transformA.GetOrientation()));
+
+		// B
+		Vector3 impulsiveTorqueB = glm::cross(relativePositionB, contact.normal);
+		Vector3 impulsePerMoveB = worldInvInertiaTensorB * impulsiveTorqueB;
+
+		Vector3 rotationPerMoveB = impulsePerMoveB * (1 / angularInertiaB);
+		Vector3 rotationB = rotationPerMoveB * angularMoveB;
+
+		glm::quat rotationQuatB = glm::quat(0, rotationB.x, rotationB.y, rotationB.z);
+		transformB.SetOrientation(glm::normalize(transformB.GetOrientation() + 0.5f * rotationQuatB * transformB.GetOrientation()));
+		contact.normal *= -1;
+
 	}
 	void ContactResolutionSystem::ResolveVelocity(ContactEvent & contact)
 	{
@@ -40,8 +145,8 @@ namespace Reality
 		getWorld().data.renderUtil->DrawLine(contactPoint, contactPoint + 5.0f * contactZ, Color::Blue);
 
 		// Relative Positions
-		Vector3 relativePositionA = contactPoint - transformA.GetPosition();
-		Vector3 relativePositionB = contactPoint - transformB.GetPosition();
+		Vector3 relativePositionA = contact.worldPoint1 - transformA.GetPosition();
+		Vector3 relativePositionB = contact.worldPoint2 - transformB.GetPosition();
 
 		// World Inertia Tensors
 		Mat3 worldInvInertiaTensorA = rbA.worldInverseInertiaTensor(transformA.GetRotationMatrix());
@@ -56,7 +161,6 @@ namespace Reality
 		float deltaVel = glm::dot(deltaVelWorldA, contact.normal);
 		deltaVel += rbA.inverseMass;
 
-		//deltaVel = -deltaVel;
 		// Body B
 		Vector3 torquePerUnitImpulseB = glm::cross(relativePositionB, contact.normal);
 		Vector3 rotationPerUnitImpulseB = worldInvInertiaTensorB * torquePerUnitImpulseB;
@@ -80,22 +184,21 @@ namespace Reality
 			return;
 		}
 		// Delta Velocity and impulse
-		float desiredDeltaVelocityLocal = -closingVelocityLocal.x * (1 + contact.restitution);
+		float desiredDeltaVelocityLocal = -closingVelocityLocal.x * (1 + 0.4f);
 		Vector3 impulseContact = Vector3(desiredDeltaVelocityLocal / deltaVel, 0, 0);
-		//impulseContact = Vector3(10, 0, 0);
 		Vector3 impulseA = contactLocalToWorld * impulseContact;
 		Vector3 impulseB = -impulseA;
 
 		// Calculate Velocity Change
 		// A
 		Vector3 velocityChangeA = impulseA * rbA.inverseMass;
-		Vector3 rotationalTorqueA = glm::cross(impulseA, relativePositionA);
+		Vector3 rotationalTorqueA = glm::cross(relativePositionA, impulseA);
 		Vector3 angularVelocityChangeA = worldInvInertiaTensorA * rotationalTorqueA;
 		rbA.velocity += velocityChangeA;
 		rbA.angularVelocity += angularVelocityChangeA;
 		// B
 		Vector3 velocityChangeB = impulseB * rbB.inverseMass;
-		Vector3 rotationalTorqueB = glm::cross(impulseB, relativePositionB);
+		Vector3 rotationalTorqueB = glm::cross(relativePositionB, impulseB);
 		Vector3 angularVelocityChangeB = worldInvInertiaTensorB * rotationalTorqueB;
 		rbB.velocity += velocityChangeB;
 		rbB.angularVelocity += angularVelocityChangeB;
@@ -107,10 +210,10 @@ namespace Reality
 	}
 	void ContactResolutionSystem::CalculateContactBasis(Vector3 contactNormal, Mat3 & transformationMat, Vector3 & y, Vector3 & z)
 	{
-		Vector3 possibleYAxis = Vector3(0, 1, 0);
+		Vector3 possibleYAxis = Vector3(0, 1.0f, 0);
 		if (glm::length(glm::cross(possibleYAxis, contactNormal)) <= 0.01f)
 		{
-			possibleYAxis = Vector3(0, 0, 1);
+			possibleYAxis = Vector3(0, 0, 1.0f);
 		}
 		z = glm::normalize(glm::cross(contactNormal, possibleYAxis));
 		y = glm::normalize(glm::cross(z, contactNormal));

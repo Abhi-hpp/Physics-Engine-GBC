@@ -28,6 +28,7 @@ namespace Reality
 					rp3d::Vector3 pos2 = point->getLocalPointOnShape2();
 					// Get the world - space contact normal
 					rp3d::Vector3 normal = point->getNormal();
+					normal.normalize();
 					// Get the penetration
 					rp3d::decimal penetration = point->getPenetrationDepth();
 					// Get Body 1

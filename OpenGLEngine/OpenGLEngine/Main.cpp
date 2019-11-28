@@ -543,17 +543,17 @@ void TestCollision(ECSWorld& world)
 {
 	// Floor 1
 	auto floor1 = world.createEntity();
-	floor1.addComponent<TransformComponentV2>(Vector3(0, 0, 0), Vector3(1, 1, 1), Vector3(0, 0, 0));
-	floor1.addComponent<RigidBodyComponent>(100.0f, 0.4f, 0.3f, Vector3(0, 0, 0), Vector3(0, 0, 0), 0);
+	floor1.addComponent<TransformComponentV2>(Vector3(0, -50, 0), Vector3(1, 1, 1), Vector3(0, 0, 0));
+	floor1.addComponent<RigidBodyComponent>(100000.0f, 0.4f, 0.3f, Vector3(0, 0, 0), Vector3(0, 0, 0), 0);
 	auto floorCol1 = world.createEntity();
-	floorCol1.addComponent<BoxColliderComponent>(floor1, Vector3(100, 10, 100));
+	floorCol1.addComponent<BoxColliderComponent>(floor1, Vector3(1000, 10, 1000));
 
 	// Floor 2
-	auto floor2 = world.createEntity();
+	/*auto floor2 = world.createEntity();
 	floor2.addComponent<TransformComponentV2>(Vector3(80, -50, 0), Vector3(1, 1, 1), Vector3(0, 0, 30));
 	floor2.addComponent<RigidBodyComponent>(10000.0f, 0.0f, 0.0f, Vector3(0, 0, 0), Vector3(0, 0, 0), 0);
 	auto floorCol2 = world.createEntity();
-	floorCol2.addComponent<BoxColliderComponent>(floor2, Vector3(300, 10, 300));
+	floorCol2.addComponent<BoxColliderComponent>(floor2, Vector3(300, 10, 300));*/
 
 	//// Object 1
 	//auto object1 = world.createEntity();
@@ -563,11 +563,11 @@ void TestCollision(ECSWorld& world)
 	//objectCol1.addComponent<SphereColliderComponent>(object1, 10);
 
 	// Object 2
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 40; i++)
 	{
 		auto object2 = world.createEntity();
 		object2.addComponent<TransformComponentV2>(Vector3(RANDOM_FLOAT(-50.0f, 50.0f), 50, RANDOM_FLOAT(-50.0f, 50.0f)), Vector3(1, 1, 1), Vector3(RANDOM_FLOAT(0, 180), RANDOM_FLOAT(0, 180), RANDOM_FLOAT(0, 180)));
-		object2.addComponent<RigidBodyComponent>(10.0f, 0.1f, 0.1f, Vector3(0, 0, 0), Vector3(0, 0, 0), 1);
+		object2.addComponent<RigidBodyComponent>(10.0f, 0.1f, 0.1f, Vector3(0, 0, 0), Vector3(0, 0, 0), 5);
 		auto objectCol2 = world.createEntity();
 		objectCol2.addComponent<BoxColliderComponent>(object2, Vector3(10, 10, 10));
 	}
