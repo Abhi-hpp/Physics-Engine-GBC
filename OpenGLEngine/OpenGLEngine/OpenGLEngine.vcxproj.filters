@@ -114,9 +114,6 @@
     <ClCompile Include="FPSControlSystem.cpp">
       <Filter>TestCS</Filter>
     </ClCompile>
-    <ClCompile Include="RotateSystem.cpp">
-      <Filter>TestCS</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -219,12 +216,6 @@
       <Filter>TestCS</Filter>
     </ClInclude>
     <ClInclude Include="FPSControlSystem.h">
-      <Filter>TestCS</Filter>
-    </ClInclude>
-    <ClInclude Include="RotateComponent.h">
-      <Filter>TestCS</Filter>
-    </ClInclude>
-    <ClInclude Include="RotateSystem.h">
       <Filter>TestCS</Filter>
     </ClInclude>
   </ItemGroup>

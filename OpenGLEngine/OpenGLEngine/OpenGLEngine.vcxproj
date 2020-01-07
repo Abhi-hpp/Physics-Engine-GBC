@@ -149,7 +149,6 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="RenderUtil.cpp" />
-    <ClCompile Include="RotateSystem.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Window.cpp" />
@@ -197,8 +196,6 @@
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Material.h" />
-    <ClInclude Include="RotateComponent.h" />
-    <ClInclude Include="RotateSystem.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Shadinclude.hpp" />
     <ClInclude Include="stb_image.h" />

@@ -2,7 +2,6 @@
 #include "RenderingSystem.h"
 #include "InputEventSystem.h"
 #include "FPSControlSystem.h"
-#include "RotateSystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
 #include "DynamicSpotLightSystem.h"
@@ -42,7 +41,6 @@ int main()
 	world.getSystemManager().addSystem<RenderingSystem>();
 	world.getSystemManager().addSystem<InputEventSystem>();
 	world.getSystemManager().addSystem<FPSControlSystem>();
-	world.getSystemManager().addSystem<RotateSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
@@ -90,7 +88,6 @@ int main()
 
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -174,18 +171,6 @@ void MakeABunchaObjects(ECSWorld& world)
 	wall.addComponent<TransformComponent>(Vector3(0, -3.0f, 0.0f), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 270, 0));
 	// Add mesh
 	wall.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
-
-	auto e = world.createEntity();
-	e.addComponent<TransformComponent>(Vector3(4, 10.0f, 48), Vector3(0.10f, 0.1f, 0.1f), Vector3(-90, 180, 0));
-	// Add mesh
-	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
-	e.addComponent<RotateComponent>(0, 40, 0);
-
-	e = world.createEntity();
-	e.addComponent<TransformComponent>(Vector3(4, 10.0f, -62), Vector3(0.1f, 0.1f, 0.1f), Vector3(-90, 0, 0));
-	// Add mesh
-	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
-	e.addComponent<RotateComponent>(0, 40, 0);
 }
 
 void SetupLights(ECSWorld& world)
@@ -244,7 +229,6 @@ void SetupLights(ECSWorld& world)
 			pl1 = world.createEntity();
 			pl1.addComponent<TransformComponent>(Vector3((i % 2 == 0 ? 8 : -1), 85, 49.5f - 37 * j), Vector3(1, 1, 1), Vector3(180, 0, 0));
 			pl1.addComponent<DynamicSpotLightComponent>(10.0f, 100, Color(0, 0, 0), cols[3 - j], cols[3 - j], 5);
-			pl1.addComponent<RotateComponent>((i % 2 == 0 ? 1 : -1) * 100,100,100);
 		}
 	}
 }
