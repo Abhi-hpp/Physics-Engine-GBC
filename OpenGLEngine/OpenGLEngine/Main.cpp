@@ -1,12 +1,9 @@
 //#define STB_IMAGE_IMPLEMENTATION
 #include "RenderingSystem.h"
 #include "InputEventSystem.h"
+#include "FPSControlSystem.h"
 #include "RotateSystem.h"
 #include "ParticleSystem.h"
-#include "ParticleSpawnerSystem.h"
-#include "GravityForceGeneratorSystem.h"
-#include "ForceAccumulatorSystem.h"
-#include "FPSControlSystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
 #include "DynamicSpotLightSystem.h"
@@ -20,8 +17,8 @@ using namespace Reality;
 
 void LoadShaders(ECSWorld& world);
 void LoadModels(ECSWorld& world);
-void MakeABunchaObjects(ECSWorld& world);
 void SetupLights(ECSWorld& world);
+void MakeABunchaObjects(ECSWorld& world);
 
 int main()
 {
@@ -45,12 +42,9 @@ int main()
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
 	world.getSystemManager().addSystem<InputEventSystem>();
+	world.getSystemManager().addSystem<FPSControlSystem>();
 	world.getSystemManager().addSystem<RotateSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
-	world.getSystemManager().addSystem<ParticleSpawnerSystem>();
-	world.getSystemManager().addSystem<GravityForceGeneratorSystem>();
-	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
-	world.getSystemManager().addSystem<FPSControlSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
@@ -99,17 +93,14 @@ int main()
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<ParticleSpawnerSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<ParticleSystem>().Update(deltaTime);
+
+		// Update Transform
 
 		// Physics
 		float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
 		//float fixedDeltaTime = 1 / 60.0f;
 
-		// Particle Force Generators
-		world.getSystemManager().getSystem<GravityForceGeneratorSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
-		
 		// Rendering Update
 		world.getSystemManager().getSystem<DynamicDirectionalLightSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<DynamicPointLightSystem>().Update(deltaTime);
@@ -174,7 +165,7 @@ void LoadModels(ECSWorld& world)
 	world.data.assetLoader->StartModelLoading({
 		//ModelData("Resources/Models/snowy-mountain-terrain/SnowyMountainMesh.obj"),
 		ModelData("Resources/Models/Sponza-master/sponza.obj"),
-		//ModelData("Resources/Models/nanosuit/nanosuit.obj"),*/
+		ModelData("Resources/Models/nanosuit/nanosuit.obj"),
 		ModelData("Resources/Models/supermarine-spitfire/spitfire.fbx",
 			{{"spitfire_d.png"}})
 		});
@@ -182,36 +173,29 @@ void LoadModels(ECSWorld& world)
 
 void MakeABunchaObjects(ECSWorld& world)
 {
-
-	auto wall = world.createEntity();
-	wall.addComponent<TransformComponent>(Vector3(0, -3.0f, 0.0f), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 270, 0));
+	auto castle = world.createEntity();
+	castle.addComponent<TransformComponent>(Vector3(0, -3.0f, 0.0f), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 270, 0));
 	// Add mesh
-	wall.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
+	//castle.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
 
-	auto e = world.createEntity();
-	e.addComponent<TransformComponent>(Vector3(4, 10.0f, 48), Vector3(0.10f, 0.1f, 0.1f), Vector3(-90, 180, 0));
+	auto flight = world.createEntity();
+	flight.addComponent<TransformComponent>(Vector3(0, 30, -50), Vector3(0.1f, 0.1f, 0.1f), Vector3(270, 0, 0));
 	// Add mesh
-	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
-	e.addComponent<RotateComponent>(0, 40, 0);
-
-	e = world.createEntity();
-	e.addComponent<TransformComponent>(Vector3(4, 10.0f, -62), Vector3(0.1f, 0.1f, 0.1f), Vector3(-90, 0, 0));
-	// Add mesh
-	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
-	e.addComponent<RotateComponent>(0, 40, 0);
+	flight.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
+	flight.addComponent<RotateComponent>(Vector3(0, 90, 0));
+	flight.addComponent<ParticleComponent>(Vector3(0, 30, 0));
 }
 
 void SetupLights(ECSWorld& world)
 {
 	auto l = world.createEntity();
 	l.addComponent<TransformComponent>(Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(90, 0, 0));
-	l.addComponent<DynamicDirectionalLightComponent>(Color(0.0, 0.0, 0.0), Color(0.0, 0.1, 0.1), Color(0.0, 0.1, 0.1));
+	l.addComponent<DynamicDirectionalLightComponent>(Color(0.0, 0.1, 0.1), Color(0.0, 0.1, 0.1), Color(0.0, 0.1, 0.1));
 
 	// Lanterns
 	auto pl1 = world.createEntity();
 	pl1.addComponent<TransformComponent>(Vector3(22, 14, 48.5f));
 	pl1.addComponent<DynamicPointLightComponent>(100.0f, Color(0.1, 0, 0), Color(1.0f, 0.0f, 0.0f), Color(1.0f, 0.0f, 0.0f));
-	pl1.addComponent<ParticleComponent>();
 	auto hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(23, 15, 48.0f));
 	hook = world.createEntity();
@@ -222,7 +206,6 @@ void SetupLights(ECSWorld& world)
 	auto pl2 = world.createEntity();
 	pl2.addComponent<TransformComponent>(Vector3(-14.5f, 14, 49.0f));
 	pl2.addComponent<DynamicPointLightComponent>(100.0f, Color(0, 0, 0.1f), Color(0.0f, 0.0f, 1.0f), Color(0.0f, 0.0f, 1.0f));
-	pl2.addComponent<ParticleComponent>();
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f + 1, 14 - 1, 49.0f - 1));
 	hook = world.createEntity();
@@ -233,7 +216,6 @@ void SetupLights(ECSWorld& world)
 	auto pl3 = world.createEntity();
 	pl3.addComponent<TransformComponent>(Vector3(22, 14, -62.0f));
 	pl3.addComponent<DynamicPointLightComponent>(100.0f, Color(0, 0.1f, 0), Color(0.0f, 1.0f, 0.0f), Color(0.0f, 1.0f, 0.0f));
-	pl3.addComponent<ParticleComponent>();
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(22 - 1, 14 - 1, -62.0f));
 	hook = world.createEntity();
@@ -244,7 +226,6 @@ void SetupLights(ECSWorld& world)
 	auto pl4 = world.createEntity();
 	pl4.addComponent<TransformComponent>(Vector3(-14.5f, 14, -61.5f));
 	pl4.addComponent<DynamicPointLightComponent>(100.0f, Color(0.1, 0.05, 0), Color(1.0f, 0.55f, 0.0f), Color(1.0f, 0.55f, 0.0f));
-	pl4.addComponent<ParticleComponent>();
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f - 1, 14, -61.5f -1));
 	hook = world.createEntity();
@@ -261,7 +242,6 @@ void SetupLights(ECSWorld& world)
 			pl1 = world.createEntity();
 			pl1.addComponent<TransformComponent>(Vector3((i % 2 == 0 ? 8 : -1), 85, 49.5f - 37 * j), Vector3(1, 1, 1), Vector3(180, 0, 0));
 			pl1.addComponent<DynamicSpotLightComponent>(10.0f, 100, Color(0, 0, 0), cols[3 - j], cols[3 - j], 5);
-			pl1.addComponent<RotateComponent>((i % 2 == 0 ? 1 : -1) * 100,100,100);
 		}
 	}
 }
