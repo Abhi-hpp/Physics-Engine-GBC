@@ -15,7 +15,7 @@ namespace Reality
 			auto& transform = e.getComponent<TransformComponent>();
 			auto& particle = e.getComponent<ParticleComponent>();
 
-			particle.velocity += Vector3(0, -9.8f, 0) * deltaTime;
+			particle.velocity += particle.acceleration * deltaTime;
 			transform.position += particle.velocity * deltaTime;
 		}
 	}

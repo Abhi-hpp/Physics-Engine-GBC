@@ -46,6 +46,12 @@
     <Filter Include="Physics\Rigidbody">
       <UniqueIdentifier>{3f5a8043-c367-47f5-bbe1-005323d21b00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators">
+      <UniqueIdentifier>{3b57134f-d90e-46bd-8888-c0777df6a173}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCS\FireWorksDemo">
+      <UniqueIdentifier>{2a1ab3ed-c9b4-469a-8efb-a6ad96814ca1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -119,6 +125,15 @@
     </ClCompile>
     <ClCompile Include="ParticleSystem.cpp">
       <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceAccumulatorSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityForceSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="FireworksSystem.cpp">
+      <Filter>TestCS\FireWorksDemo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +250,24 @@
     </ClInclude>
     <ClInclude Include="ParticleSystem.h">
       <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAccumulatorComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAccumulatorSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceComponent.h">
+      <Filter>Physics\Particles\ForceGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceSystem.h">
+      <Filter>Physics\Particles\ForceGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="FireworksComponent.h">
+      <Filter>TestCS\FireWorksDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="FireworksSystem.h">
+      <Filter>TestCS\FireWorksDemo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

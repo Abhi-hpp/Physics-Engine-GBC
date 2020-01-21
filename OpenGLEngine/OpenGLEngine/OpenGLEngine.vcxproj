@@ -135,8 +135,20 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FireworksSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ForceAccumulatorSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="FPSControlSystem.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="GravityForceSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="InputEventSystem.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Material.cpp" />
@@ -187,8 +199,32 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ECSConfig.h" />
+    <ClInclude Include="FireworksComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FireworksSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ForceAccumulatorComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ForceAccumulatorSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="FPSControlComponent.h" />
     <ClInclude Include="FPSControlSystem.h" />
+    <ClInclude Include="GravityForceComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="GravityForceSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="InputEventSystem.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshComponent.h" />

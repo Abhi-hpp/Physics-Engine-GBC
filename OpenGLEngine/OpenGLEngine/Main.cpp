@@ -3,6 +3,9 @@
 #include "InputEventSystem.h"
 #include "FPSControlSystem.h"
 #include "RotateSystem.h"
+#include "FireworksSystem.h"
+#include "GravityForceSystem.h"
+#include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
@@ -11,14 +14,13 @@
 #include <stdlib.h>     
 #include <time.h>      
 
-#define DEBUG_LOG_LEVEL 3
-
 using namespace Reality;
 
 void LoadShaders(ECSWorld& world);
 void LoadModels(ECSWorld& world);
 void SetupLights(ECSWorld& world);
 void MakeABunchaObjects(ECSWorld& world);
+void MakeFireworks(ECSWorld& world);
 
 int main()
 {
@@ -28,7 +30,7 @@ int main()
 	world.data.InitRendering();
 	//LoadAssets(world);
 	
-	world.data.renderUtil->camera.Position = Vector3(0, 15.0f, 100.0f);
+	world.data.renderUtil->camera.Position = Vector3(0, 40.0f, 50.0f);
 	world.data.renderUtil->SetFOV(60);
 	// Create entities
 
@@ -37,13 +39,17 @@ int main()
 	e.addComponent<FPSControlComponent>();
 
 	SetupLights(world);
-	MakeABunchaObjects(world);
+	//MakeABunchaObjects(world);
+	MakeFireworks(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
 	world.getSystemManager().addSystem<InputEventSystem>();
 	world.getSystemManager().addSystem<FPSControlSystem>();
 	world.getSystemManager().addSystem<RotateSystem>();
+	world.getSystemManager().addSystem<FireworksSystem>();
+	world.getSystemManager().addSystem<GravityForceSystem>();
+	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
@@ -93,13 +99,21 @@ int main()
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<ParticleSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<FireworksSystem>().Update(deltaTime);
 
 		// Update Transform
 
 		// Physics
-		float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
-		//float fixedDeltaTime = 1 / 60.0f;
+		//float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
+		float fixedDeltaTime = 1 / 60.0f;
+		// Force Generator
+		world.getSystemManager().getSystem<GravityForceSystem>().Update(fixedDeltaTime);
+
+		// Force Accumulator
+		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
+
+		// Integrator
+		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
 
 		// Rendering Update
 		world.getSystemManager().getSystem<DynamicDirectionalLightSystem>().Update(deltaTime);
@@ -176,14 +190,31 @@ void MakeABunchaObjects(ECSWorld& world)
 	auto castle = world.createEntity();
 	castle.addComponent<TransformComponent>(Vector3(0, -3.0f, 0.0f), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 270, 0));
 	// Add mesh
-	//castle.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
+	castle.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
 
-	auto flight = world.createEntity();
-	flight.addComponent<TransformComponent>(Vector3(0, 30, -50), Vector3(0.1f, 0.1f, 0.1f), Vector3(270, 0, 0));
-	// Add mesh
-	flight.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
-	flight.addComponent<RotateComponent>(Vector3(0, 90, 0));
-	flight.addComponent<ParticleComponent>(Vector3(0, 30, 0));
+	//auto flight = world.createEntity();
+	//flight.addComponent<TransformComponent>(Vector3(0, 30, -50), Vector3(0.1f, 0.1f, 0.1f), Vector3(270, 0, 0));
+	//// Add mesh
+	//flight.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
+	//flight.addComponent<RotateComponent>(Vector3(0, 90, 0));
+	//flight.addComponent<ParticleComponent>(Vector3(0, 30, 0));
+	//flight.addComponent<ForceAccumulatorComponent>();
+	//flight.addComponent<GravityForceComponent>();
+
+}
+
+void MakeFireworks(ECSWorld & world)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		auto fireworks = world.createEntity();
+		fireworks.addComponent<TransformComponent>(Vector3(-100 + 100 * i, 30 + RANDOM_FLOAT(-10, 10), -50));
+		fireworks.addComponent<ParticleComponent>(Vector3(0, 100, 0));
+		fireworks.addComponent<ForceAccumulatorComponent>();
+		fireworks.addComponent<GravityForceComponent>();
+		fireworks.addComponent<FireworksComponent>(6, 3, 3 + RANDOM_FLOAT(-1, 1));
+	}
+	
 }
 
 void SetupLights(ECSWorld& world)
