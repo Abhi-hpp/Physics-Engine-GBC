@@ -8,6 +8,7 @@
 #include "DragForceSystem.h"
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
+#include "BungeeChordSystem.h"
 #include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
 #include "DynamicDirectionalLightSystem.h"
@@ -26,6 +27,8 @@ void MakeABunchaObjects(ECSWorld& world);
 void MakeFireworks(ECSWorld& world);
 void Make3Particles(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
+void MakeBungeeChord(ECSWorld& world);
+
 
 int main()
 {
@@ -35,7 +38,7 @@ int main()
 	world.data.InitRendering();
 	//LoadAssets(world);
 	
-	world.data.renderUtil->camera.Position = Vector3(0, 40.0f, 50.0f);
+	world.data.renderUtil->camera.Position = Vector3(0, 0.0f, 30.0f);
 	world.data.renderUtil->SetFOV(60);
 	// Create entities
 
@@ -48,6 +51,7 @@ int main()
 	//MakeFireworks(world);
 	//Make3Particles(world);
 	MakeABunchaSprings(world);
+	MakeBungeeChord(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -59,6 +63,7 @@ int main()
 	world.getSystemManager().addSystem<DragForceSystem>();
 	world.getSystemManager().addSystem<FixedSpringSystem>();
 	world.getSystemManager().addSystem<PairedSpringSystem>();
+	world.getSystemManager().addSystem<BungeeChordSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
@@ -121,6 +126,7 @@ int main()
 		world.getSystemManager().getSystem<DragForceSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<FixedSpringSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BungeeChordSystem>().Update(fixedDeltaTime);
 
 		// Force Accumulator
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
@@ -260,28 +266,40 @@ void Make3Particles(ECSWorld & world)
 void MakeABunchaSprings(ECSWorld & world)
 {
 	auto particle1 = world.createEntity();
-	particle1.addComponent<TransformComponent>(Vector3(0, 20, -50));
+	particle1.addComponent<TransformComponent>(Vector3(0, -5, 0));
 	particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
 	particle1.addComponent<ForceAccumulatorComponent>();
 	particle1.addComponent<GravityForceComponent>();
 
-	auto particle2= world.createEntity();
+	/*auto particle2= world.createEntity();
 	particle2.addComponent<TransformComponent>(Vector3(-10, 0, -50));
 	particle2.addComponent<ParticleComponent>(Vector3(0, 0, 0));
 	particle2.addComponent<ForceAccumulatorComponent>();
 	particle2.addComponent<GravityForceComponent>();
+*/
+	auto spring1 = world.createEntity();
+	spring1.addComponent<TransformComponent>(Vector3(0, 0, 0));
+	spring1.addComponent<FixedSpringComponent>(10.0f, 20.0f, particle1);
+
+	//auto spring2 = world.createEntity();
+	//spring2.addComponent<TransformComponent>(Vector3(-10, 60, -50));
+	//spring2.addComponent<FixedSpringComponent>(20.0f, 15.0f, particle1);
+
+	//auto pairedSpring = world.createEntity();
+	//pairedSpring.addComponent<PairedSpringComponent>(20.0f, 20.0f, particle1, particle2);
+}
+
+void MakeBungeeChord(ECSWorld& world)
+{
+	auto particle1 = world.createEntity();
+	particle1.addComponent<TransformComponent>(Vector3(10, -5, 0));
+	particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle1.addComponent<ForceAccumulatorComponent>();
+	particle1.addComponent<GravityForceComponent>();
 
 	auto spring1 = world.createEntity();
-	spring1.addComponent<TransformComponent>(Vector3(10, 60, -50));
-	spring1.addComponent<FixedSpringComponent>(20.0f, 20.0f, particle1);
-
-	auto spring2 = world.createEntity();
-	spring2.addComponent<TransformComponent>(Vector3(-10, 60, -50));
-	spring2.addComponent<FixedSpringComponent>(20.0f, 15.0f, particle1);
-
-	auto pairedSpring = world.createEntity();
-	pairedSpring.addComponent<PairedSpringComponent>(20.0f, 20.0f, particle1, particle2);
-
+	spring1.addComponent<TransformComponent>(Vector3(10, 0, 0));
+	spring1.addComponent<BungeeChordComponent>(10.0f, 20.0f, particle1);
 }
 
 void SetupLights(ECSWorld& world)

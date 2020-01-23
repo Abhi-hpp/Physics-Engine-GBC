@@ -64,6 +64,9 @@
     <Filter Include="Physics\Particles\PairedSpring">
       <UniqueIdentifier>{26df7371-0611-42cd-b6e5-2556995c23d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\BungeeChord">
+      <UniqueIdentifier>{3203914a-4ca3-4db1-9805-4fb113387656}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -155,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="PairedSpringSystem.cpp">
       <Filter>Physics\Particles\PairedSpring</Filter>
+    </ClCompile>
+    <ClCompile Include="BungeeChordSystem.cpp">
+      <Filter>Physics\Particles\BungeeChord</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +313,12 @@
     </ClInclude>
     <ClInclude Include="PairedSpringSystem.h">
       <Filter>Physics\Particles\PairedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeChordComponent.h">
+      <Filter>Physics\Particles\BungeeChord</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeChordSystem.h">
+      <Filter>Physics\Particles\BungeeChord</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
