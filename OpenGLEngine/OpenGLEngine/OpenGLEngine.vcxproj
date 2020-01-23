@@ -123,6 +123,10 @@
   <ItemGroup>
     <ClCompile Include="AssetLoader.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="DragForceSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DynamicDirectionalLightSystem.cpp">
       <SubType>
       </SubType>
@@ -136,6 +140,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="FireworksSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FixedSpringSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -159,6 +167,10 @@
     <ClCompile Include="Mix\System.cpp" />
     <ClCompile Include="Mix\World.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="PairedSpringSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ParticleSystem.cpp">
       <SubType>
       </SubType>
@@ -178,6 +190,14 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLightComponent.h" />
+    <ClInclude Include="DragForceComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DragForceSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DynamicDirectionalLightSystem.h">
       <SubType>
       </SubType>
@@ -204,6 +224,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="FireworksSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FixedSpringComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FixedSpringSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -237,6 +265,14 @@
     <ClInclude Include="Mix\World.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseMoveEvent.h" />
+    <ClInclude Include="PairedSpringComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PairedSpringSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ParticleComponent.h">
       <SubType>
       </SubType>

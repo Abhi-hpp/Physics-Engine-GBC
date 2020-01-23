@@ -52,6 +52,18 @@
     <Filter Include="TestCS\FireWorksDemo">
       <UniqueIdentifier>{2a1ab3ed-c9b4-469a-8efb-a6ad96814ca1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Drag">
+      <UniqueIdentifier>{a47e3b81-90db-42eb-a5f1-e5a072f9b973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Gravity">
+      <UniqueIdentifier>{05f83a53-3654-4ae0-99f7-3b5b0131942b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\FixedSpring">
+      <UniqueIdentifier>{4c54bdb5-bf1a-46eb-97aa-4ad2f029416e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\PairedSpring">
+      <UniqueIdentifier>{26df7371-0611-42cd-b6e5-2556995c23d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -129,11 +141,20 @@
     <ClCompile Include="ForceAccumulatorSystem.cpp">
       <Filter>Physics\Particles</Filter>
     </ClCompile>
-    <ClCompile Include="GravityForceSystem.cpp">
-      <Filter>Physics\Particles\ForceGenerators</Filter>
-    </ClCompile>
     <ClCompile Include="FireworksSystem.cpp">
       <Filter>TestCS\FireWorksDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityForceSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
+    </ClCompile>
+    <ClCompile Include="DragForceSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
+    </ClCompile>
+    <ClCompile Include="FixedSpringSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
+    </ClCompile>
+    <ClCompile Include="PairedSpringSystem.cpp">
+      <Filter>Physics\Particles\PairedSpring</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,17 +278,35 @@
     <ClInclude Include="ForceAccumulatorSystem.h">
       <Filter>Physics\Particles</Filter>
     </ClInclude>
-    <ClInclude Include="GravityForceComponent.h">
-      <Filter>Physics\Particles\ForceGenerators</Filter>
-    </ClInclude>
-    <ClInclude Include="GravityForceSystem.h">
-      <Filter>Physics\Particles\ForceGenerators</Filter>
-    </ClInclude>
     <ClInclude Include="FireworksComponent.h">
       <Filter>TestCS\FireWorksDemo</Filter>
     </ClInclude>
     <ClInclude Include="FireworksSystem.h">
       <Filter>TestCS\FireWorksDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
+    </ClInclude>
+    <ClInclude Include="DragForceComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="DragForceSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringComponent.h">
+      <Filter>Physics\Particles\PairedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringSystem.h">
+      <Filter>Physics\Particles\PairedSpring</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
