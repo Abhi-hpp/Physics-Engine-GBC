@@ -67,6 +67,9 @@
     <Filter Include="Physics\Particles\BungeeChord">
       <UniqueIdentifier>{3203914a-4ca3-4db1-9805-4fb113387656}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\PariedBungeeChord">
+      <UniqueIdentifier>{6c44b191-1178-4519-ae8a-a23a1f64b2f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -161,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="BungeeChordSystem.cpp">
       <Filter>Physics\Particles\BungeeChord</Filter>
+    </ClCompile>
+    <ClCompile Include="PairedBungeeChordSystem.cpp">
+      <Filter>Physics\Particles\PariedBungeeChord</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +325,12 @@
     </ClInclude>
     <ClInclude Include="BungeeChordSystem.h">
       <Filter>Physics\Particles\BungeeChord</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedBungeeChordComponent.h">
+      <Filter>Physics\Particles\PariedBungeeChord</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedBungeeChordSystem.h">
+      <Filter>Physics\Particles\PariedBungeeChord</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

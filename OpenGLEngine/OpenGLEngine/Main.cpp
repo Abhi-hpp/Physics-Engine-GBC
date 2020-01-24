@@ -9,6 +9,7 @@
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
 #include "BungeeChordSystem.h"
+#include "PairedBungeeChordSystem.h"
 #include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
 #include "DynamicDirectionalLightSystem.h"
@@ -27,8 +28,18 @@ void MakeABunchaObjects(ECSWorld& world);
 void MakeFireworks(ECSWorld& world);
 void Make3Particles(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
-void MakeBungeeChord(ECSWorld& world);
 
+/////////////////////For assignment Bungee chord///////////////////////////////
+void MakeBungeeChord(ECSWorld& world);
+void InputBungeeChord(ECSWorld& world);
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+bool bPressSpace = false;
+ECSEntity lastConnectedParticle = ECSEntity();
 
 int main()
 {
@@ -50,8 +61,11 @@ int main()
 	//MakeABunchaObjects(world);
 	//MakeFireworks(world);
 	//Make3Particles(world);
+
+	/////////////////////For assignment Bungee chord///////////////////////////////
 	MakeABunchaSprings(world);
 	MakeBungeeChord(world);
+	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -64,6 +78,7 @@ int main()
 	world.getSystemManager().addSystem<FixedSpringSystem>();
 	world.getSystemManager().addSystem<PairedSpringSystem>();
 	world.getSystemManager().addSystem<BungeeChordSystem>();
+	world.getSystemManager().addSystem<PairedBungeeChordSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
@@ -80,6 +95,9 @@ int main()
 	LoadShaders(world);
 	bool shadersLoaded = false;
 	bool modelsLoadStarted = false;
+
+	
+
 	// game loop
 	// -----------
 	while (!glfwWindowShouldClose(world.data.renderUtil->window->glfwWindow))
@@ -111,6 +129,11 @@ int main()
 		// Process Input
 		world.getSystemManager().getSystem<InputEventSystem>().Update(deltaTime);
 
+		/////////////////////For assignment Bungee chord///////////////////////////////
+		InputBungeeChord(world);
+		/////////////////////////////////////////////////////////////////////////////////////////////
+		
+
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
@@ -127,6 +150,7 @@ int main()
 		world.getSystemManager().getSystem<FixedSpringSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<BungeeChordSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<PairedBungeeChordSystem>().Update(fixedDeltaTime);
 
 		// Force Accumulator
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
@@ -297,9 +321,20 @@ void MakeBungeeChord(ECSWorld& world)
 	particle1.addComponent<ForceAccumulatorComponent>();
 	particle1.addComponent<GravityForceComponent>();
 
+	auto particle2 = world.createEntity();
+	particle2.addComponent<TransformComponent>(Vector3(15, -15, 0));
+	particle2.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle2.addComponent<ForceAccumulatorComponent>();
+	particle2.addComponent<GravityForceComponent>();
+
 	auto spring1 = world.createEntity();
 	spring1.addComponent<TransformComponent>(Vector3(10, 0, 0));
 	spring1.addComponent<BungeeChordComponent>(10.0f, 20.0f, particle1);
+
+	auto pariedSpring = world.createEntity();
+	pariedSpring.addComponent<PariedBungeeChordComponent>(10.0f, 20.0f, particle1, particle2);
+
+	lastConnectedParticle = particle2;
 }
 
 void SetupLights(ECSWorld& world)
@@ -359,5 +394,31 @@ void SetupLights(ECSWorld& world)
 			pl1.addComponent<TransformComponent>(Vector3((i % 2 == 0 ? 8 : -1), 85, 49.5f - 37 * j), Vector3(1, 1, 1), Vector3(180, 0, 0));
 			pl1.addComponent<DynamicSpotLightComponent>(10.0f, 100, Color(0, 0, 0), cols[3 - j], cols[3 - j], 5);
 		}
+	}
+}
+
+void InputBungeeChord(ECSWorld& world)
+{
+	GLFWwindow* window = world.data.renderUtil->window->glfwWindow;
+	if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) && bPressSpace == false)
+	{
+		bPressSpace = true;
+
+		Camera& camera = world.data.renderUtil->camera;
+
+		auto particle = world.createEntity();
+		particle.addComponent<TransformComponent>(camera.Position + camera.Front);
+		particle.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+		particle.addComponent<ForceAccumulatorComponent>();
+		particle.addComponent<GravityForceComponent>();
+
+		auto pairedSpring = world.createEntity();
+		pairedSpring.addComponent<PariedBungeeChordComponent>(10.0f, 20.0f, lastConnectedParticle, particle);
+
+		lastConnectedParticle = particle;
+	}
+	else if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) && bPressSpace == true)
+	{
+		bPressSpace = false;
 	}
 }
