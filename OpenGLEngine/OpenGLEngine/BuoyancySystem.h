@@ -12,7 +12,7 @@ namespace Reality
 		void Update(float deltaTime);
 
 		float waterHeight = 0.f;
-		float liquidDensity = 1000.f;
+		float liquidDensity = 1.f;
 	};
 }
 

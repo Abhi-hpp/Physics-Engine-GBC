@@ -123,6 +123,7 @@
   <ItemGroup>
     <ClCompile Include="AssetLoader.cpp" />
     <ClCompile Include="BungeeChordSystem.cpp" />
+    <ClCompile Include="BuoyancySystem.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DragForceSystem.cpp">
       <SubType>
@@ -192,6 +193,7 @@
     <ClInclude Include="BungeeChordComponent.h" />
     <ClInclude Include="BungeeChordSystem.h" />
     <ClInclude Include="BuoyancyComponent.h" />
+    <ClInclude Include="BuoyancySystem.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLightComponent.h" />

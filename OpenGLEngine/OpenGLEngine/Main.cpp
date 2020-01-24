@@ -10,6 +10,7 @@
 #include "PairedSpringSystem.h"
 #include "BungeeChordSystem.h"
 #include "PairedBungeeChordSystem.h"
+#include "BuoyancySystem.h"
 #include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
 #include "DynamicDirectionalLightSystem.h"
@@ -34,7 +35,10 @@ void MakeBungeeChord(ECSWorld& world);
 void InputBungeeChord(ECSWorld& world);
 /////////////////////////////////////////////////////////////////////////////////////////////
 
-
+/////////////////////For assignment Buoyancy///////////////////////////////
+void MakeBuoyancy(ECSWorld& world);
+void InputBuoyancy(ECSWorld& world);
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -63,8 +67,13 @@ int main()
 	//Make3Particles(world);
 
 	/////////////////////For assignment Bungee chord///////////////////////////////
-	MakeABunchaSprings(world);
-	MakeBungeeChord(world);
+	//MakeABunchaSprings(world);
+	//MakeBungeeChord(world);
+	/////////////////////////////////////////////////////////////////////////////////////////////
+
+	/////////////////////For assignment Buoyancy///////////////////////////////
+	MakeBuoyancy(world);
+	InputBuoyancy(world);
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Create Systems
@@ -79,6 +88,7 @@ int main()
 	world.getSystemManager().addSystem<PairedSpringSystem>();
 	world.getSystemManager().addSystem<BungeeChordSystem>();
 	world.getSystemManager().addSystem<PairedBungeeChordSystem>();
+	world.getSystemManager().addSystem<BuoyancySystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
@@ -131,7 +141,11 @@ int main()
 
 
 		/////////////////////For assignment Bungee chord///////////////////////////////
-		InputBungeeChord(world);
+		//InputBungeeChord(world);
+		/////////////////////////////////////////////////////////////////////////////////////////////
+
+		/////////////////////For assignment Buoyancy///////////////////////////////
+		InputBuoyancy(world);
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		
 
@@ -152,6 +166,7 @@ int main()
 		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<BungeeChordSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedBungeeChordSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BuoyancySystem>().Update(fixedDeltaTime);
 
 		// Force Accumulator
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
@@ -338,6 +353,17 @@ void MakeBungeeChord(ECSWorld& world)
 	lastConnectedParticle = particle2;
 }
 
+void MakeBuoyancy(ECSWorld& world)
+{
+	auto particle1 = world.createEntity();
+	particle1.addComponent<TransformComponent>(Vector3(0, 20, 0));
+	particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle1.addComponent<ForceAccumulatorComponent>();
+	particle1.addComponent<GravityForceComponent>();
+	particle1.addComponent<BuoyancyComponent>(5.f, 2.f);
+}
+
+
 void SetupLights(ECSWorld& world)
 {
 	auto l = world.createEntity();
@@ -422,4 +448,9 @@ void InputBungeeChord(ECSWorld& world)
 	{
 		bPressSpace = false;
 	}
+}
+
+void InputBuoyancy(ECSWorld& world)
+{
+
 }

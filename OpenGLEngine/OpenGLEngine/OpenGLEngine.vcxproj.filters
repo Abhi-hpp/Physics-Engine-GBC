@@ -171,6 +171,9 @@
     <ClCompile Include="PairedBungeeChordSystem.cpp">
       <Filter>Physics\Particles\PariedBungeeChord</Filter>
     </ClCompile>
+    <ClCompile Include="BuoyancySystem.cpp">
+      <Filter>Physics\Particles\Buoyancy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -336,6 +339,9 @@
       <Filter>Physics\Particles\PariedBungeeChord</Filter>
     </ClInclude>
     <ClInclude Include="BuoyancyComponent.h">
+      <Filter>Physics\Particles\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancySystem.h">
       <Filter>Physics\Particles\Buoyancy</Filter>
     </ClInclude>
   </ItemGroup>
