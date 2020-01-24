@@ -70,6 +70,9 @@
     <Filter Include="Physics\Particles\PariedBungeeChord">
       <UniqueIdentifier>{6c44b191-1178-4519-ae8a-a23a1f64b2f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\Buoyancy">
+      <UniqueIdentifier>{3cb93172-c818-4ffc-afa5-8ad183c1b98d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -331,6 +334,9 @@
     </ClInclude>
     <ClInclude Include="PairedBungeeChordSystem.h">
       <Filter>Physics\Particles\PariedBungeeChord</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancyComponent.h">
+      <Filter>Physics\Particles\Buoyancy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

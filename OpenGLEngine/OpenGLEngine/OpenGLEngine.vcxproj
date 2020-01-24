@@ -191,6 +191,7 @@
     <ClInclude Include="AssetLoader.h" />
     <ClInclude Include="BungeeChordComponent.h" />
     <ClInclude Include="BungeeChordSystem.h" />
+    <ClInclude Include="BuoyancyComponent.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLightComponent.h" />
