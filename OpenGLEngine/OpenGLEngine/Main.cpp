@@ -11,6 +11,7 @@
 #include "BungeeChordSystem.h"
 #include "PairedBungeeChordSystem.h"
 #include "BuoyancySystem.h"
+#include "NBodySystem.h"
 #include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
 #include "DynamicDirectionalLightSystem.h"
@@ -40,6 +41,9 @@ void MakeBuoyancy(ECSWorld& world);
 void InputBuoyancy(ECSWorld& world);
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////For assignment NBody///////////////////////////////
+void MakeNBody(ECSWorld& world);
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 
 bool bPressSpace = false;
@@ -72,8 +76,11 @@ int main()
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	/////////////////////For assignment Buoyancy///////////////////////////////
-	MakeBuoyancy(world);
-	InputBuoyancy(world);
+	//MakeBuoyancy(world);
+	/////////////////////////////////////////////////////////////////////////////////////////////
+
+	/////////////////////For assignment NBody///////////////////////////////
+	MakeNBody(world);
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Create Systems
@@ -89,6 +96,7 @@ int main()
 	world.getSystemManager().addSystem<BungeeChordSystem>();
 	world.getSystemManager().addSystem<PairedBungeeChordSystem>();
 	world.getSystemManager().addSystem<BuoyancySystem>();
+	world.getSystemManager().addSystem<NBodySystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
@@ -167,6 +175,7 @@ int main()
 		world.getSystemManager().getSystem<BungeeChordSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedBungeeChordSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<BuoyancySystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<NBodySystem>().Update(fixedDeltaTime);
 
 		// Force Accumulator
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
@@ -361,6 +370,26 @@ void MakeBuoyancy(ECSWorld& world)
 	particle1.addComponent<ForceAccumulatorComponent>();
 	particle1.addComponent<GravityForceComponent>();
 	particle1.addComponent<BuoyancyComponent>(5.f, 2.f);
+}
+
+void MakeNBody(ECSWorld& world)
+{
+	for (int i = 0; i < 30; ++i)
+	{
+		auto particle1 = world.createEntity();
+		particle1.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-10, 10)));
+		particle1.addComponent<ParticleComponent>(Vector3(RANDOM_FLOAT(-1, 1), RANDOM_FLOAT(-1, 1), RANDOM_FLOAT(-1, 1)));
+		particle1.addComponent<ForceAccumulatorComponent>();
+		particle1.addComponent<NBodyComponent>(RANDOM_FLOAT(1, 4));
+	}
+
+	
+
+	//auto particle2 = world.createEntity();
+	//particle2.addComponent<TransformComponent>(Vector3(-5, 0, 0));
+	//particle2.addComponent<ParticleComponent>(Vector3(1, -1, 0));
+	//particle2.addComponent<ForceAccumulatorComponent>();
+	//particle2.addComponent<NBodyComponent>(1.f);
 }
 
 

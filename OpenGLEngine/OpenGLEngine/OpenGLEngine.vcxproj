@@ -169,6 +169,10 @@
     <ClCompile Include="Mix\System.cpp" />
     <ClCompile Include="Mix\World.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="NBodySystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PairedBungeeChordSystem.cpp" />
     <ClCompile Include="PairedSpringSystem.cpp">
       <SubType>
@@ -272,6 +276,14 @@
     <ClInclude Include="Mix\World.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseMoveEvent.h" />
+    <ClInclude Include="NBodyComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="NBodySystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PairedBungeeChordComponent.h" />
     <ClInclude Include="PairedBungeeChordSystem.h" />
     <ClInclude Include="PairedSpringComponent.h">

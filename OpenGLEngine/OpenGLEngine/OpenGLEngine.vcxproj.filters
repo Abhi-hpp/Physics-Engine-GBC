@@ -73,6 +73,9 @@
     <Filter Include="Physics\Particles\Buoyancy">
       <UniqueIdentifier>{3cb93172-c818-4ffc-afa5-8ad183c1b98d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\NBody">
+      <UniqueIdentifier>{c7190f66-ed2e-46e3-a0e0-d5b78c881977}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -173,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="BuoyancySystem.cpp">
       <Filter>Physics\Particles\Buoyancy</Filter>
+    </ClCompile>
+    <ClCompile Include="NBodySystem.cpp">
+      <Filter>Physics\Particles\NBody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -343,6 +349,12 @@
     </ClInclude>
     <ClInclude Include="BuoyancySystem.h">
       <Filter>Physics\Particles\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodyComponent.h">
+      <Filter>Physics\Particles\NBody</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodySystem.h">
+      <Filter>Physics\Particles\NBody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
