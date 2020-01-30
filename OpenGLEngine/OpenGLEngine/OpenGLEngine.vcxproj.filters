@@ -64,6 +64,9 @@
     <Filter Include="Physics\Particles\PairedSpring">
       <UniqueIdentifier>{26df7371-0611-42cd-b6e5-2556995c23d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Bungee">
+      <UniqueIdentifier>{6d04afd7-85e9-44fd-9e89-bdab0e343dc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -155,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="PairedSpringSystem.cpp">
       <Filter>Physics\Particles\PairedSpring</Filter>
+    </ClCompile>
+    <ClCompile Include="BungeeSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +313,12 @@
     </ClInclude>
     <ClInclude Include="PairedSpringSystem.h">
       <Filter>Physics\Particles\PairedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

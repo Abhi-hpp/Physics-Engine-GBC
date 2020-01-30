@@ -22,10 +22,13 @@ namespace Reality
 				auto& forceAcc = spring.connectedEntity.getComponent<ForceAccumulatorComponent>();
 				auto& transform = spring.connectedEntity.getComponent<TransformComponent>();
 
+				//Calculate the vector of the spring
 				Vector3 relativePosition = transform.position - springTransform.position;
+
 				float length = glm::length(relativePosition);
 				if (length > 0)
 				{
+					//Calculate magnitude of the force
 					float deltaL = length - spring.restLength;
 					Vector3 force = -glm::normalize(relativePosition);
 					force *= spring.springConstant * deltaL;
@@ -36,6 +39,7 @@ namespace Reality
 
 					Color col = Color(r, g, 0, 1);
 
+					//Calculate the final force and apply it.
 					float deltaLength = length / 10.0f;
 					Vector3 direction = -glm::normalize(relativePosition);
 					for (int i = 0; i < 10; i++)
