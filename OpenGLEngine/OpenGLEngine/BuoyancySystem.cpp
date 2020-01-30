@@ -13,6 +13,13 @@ namespace Reality
 	{
 		for (auto e : getEntities())
 		{
+			int i = 0;
+			++i;
+
+			//Draw water surface
+			getWorld().data.renderUtil->DrawLine(Vector3(-500, 0, -5), Vector3(500, 0, 5));
+
+
 			auto& entityTransform = e.getComponent<TransformComponent>();
 			auto& entityBuoyancy = e.getComponent<BuoyancyComponent>();
 			auto& entityForceAcc = e.getComponent<ForceAccumulatorComponent>();
@@ -21,32 +28,30 @@ namespace Reality
 
 			//Draw cube
 			getWorld().data.renderUtil->DrawCube(
-				entityTransform.position,
+				entityTransform.position/* - Vector3(0, 1, 0) * entityBuoyancy.maxDepth * 0.5f*/,
 				Vector3(entityBuoyancy.maxDepth * 2.f, entityBuoyancy.maxDepth * 2.f, entityBuoyancy.maxDepth * 2.f),
 				Vector3(0, 0, 0));
 
-			//Draw water surface
-			getWorld().data.renderUtil->DrawLine(Vector3(-50, 0, -5), Vector3(50, 0, 5));
+			Vector3 force = Vector3(0.f, 0.f, 0.f);
 
 			//check if entity is out of water
 			if (depth >= waterHeight + entityBuoyancy.maxDepth)
 			{
-				return;
+				force.y = 0.f;
 			}
 
-			Vector3 force = Vector3(0.f, 0.f, 0.f);
-
-			////check if entity is at maximum depth
-			if (depth <= waterHeight - entityBuoyancy.maxDepth)
+			//check if entity is at maximum depth
+			else if (depth <= waterHeight - entityBuoyancy.maxDepth)
 			{
 				force.y = liquidDensity * entityBuoyancy.volume;
-				entityForceAcc.AddForce(force);
-				return;
 			}
 
 			//otherwise entity is partly submerged
-			force.y = liquidDensity * entityBuoyancy.volume * (entityBuoyancy.maxDepth - depth - waterHeight) / 2 * entityBuoyancy.maxDepth;
-			//force.y = (entityBuoyancy.maxDepth - depth - waterHeight) / 2 * entityBuoyancy.maxDepth;
+			else
+			{
+				force.y = (liquidDensity * entityBuoyancy.volume * (entityBuoyancy.maxDepth - depth - waterHeight)) / (2 * entityBuoyancy.maxDepth);
+			}
+
 			entityForceAcc.AddForce(force);
 		}
 	}

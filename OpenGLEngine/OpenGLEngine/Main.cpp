@@ -47,6 +47,8 @@ void MakeNBody(ECSWorld& world);
 
 
 bool bPressSpace = false;
+bool bPressUp = false;
+bool bPressDown = false;
 ECSEntity lastConnectedParticle = ECSEntity();
 
 int main()
@@ -71,8 +73,8 @@ int main()
 	//Make3Particles(world);
 
 	/////////////////////For assignment Bungee chord///////////////////////////////
-	//MakeABunchaSprings(world);
-	//MakeBungeeChord(world);
+	MakeABunchaSprings(world);
+	MakeBungeeChord(world);
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	/////////////////////For assignment Buoyancy///////////////////////////////
@@ -80,7 +82,7 @@ int main()
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	/////////////////////For assignment NBody///////////////////////////////
-	MakeNBody(world);
+	//MakeNBody(world);
 	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	// Create Systems
@@ -149,11 +151,11 @@ int main()
 
 
 		/////////////////////For assignment Bungee chord///////////////////////////////
-		//InputBungeeChord(world);
+		InputBungeeChord(world);
 		/////////////////////////////////////////////////////////////////////////////////////////////
 
 		/////////////////////For assignment Buoyancy///////////////////////////////
-		InputBuoyancy(world);
+		//InputBuoyancy(world);
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		
 
@@ -364,12 +366,17 @@ void MakeBungeeChord(ECSWorld& world)
 
 void MakeBuoyancy(ECSWorld& world)
 {
-	auto particle1 = world.createEntity();
-	particle1.addComponent<TransformComponent>(Vector3(0, 20, 0));
-	particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
-	particle1.addComponent<ForceAccumulatorComponent>();
-	particle1.addComponent<GravityForceComponent>();
-	particle1.addComponent<BuoyancyComponent>(5.f, 2.f);
+	for (int i = 0; i < 5; ++i)
+	{
+		auto particle1 = world.createEntity();
+		particle1.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-100, 100), RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-100, 100)));
+		particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+		particle1.addComponent<ForceAccumulatorComponent>();
+		particle1.addComponent<GravityForceComponent>();
+		particle1.addComponent<DragForceComponent>(1.f, 0.f);
+		particle1.addComponent<BuoyancyComponent>(5.f, 2.f);
+	}
+
 }
 
 void MakeNBody(ECSWorld& world)
@@ -382,14 +389,6 @@ void MakeNBody(ECSWorld& world)
 		particle1.addComponent<ForceAccumulatorComponent>();
 		particle1.addComponent<NBodyComponent>(RANDOM_FLOAT(1, 4));
 	}
-
-	
-
-	//auto particle2 = world.createEntity();
-	//particle2.addComponent<TransformComponent>(Vector3(-5, 0, 0));
-	//particle2.addComponent<ParticleComponent>(Vector3(1, -1, 0));
-	//particle2.addComponent<ForceAccumulatorComponent>();
-	//particle2.addComponent<NBodyComponent>(1.f);
 }
 
 
@@ -481,5 +480,47 @@ void InputBungeeChord(ECSWorld& world)
 
 void InputBuoyancy(ECSWorld& world)
 {
+	GLFWwindow* window = world.data.renderUtil->window->glfwWindow;
+	if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) && bPressSpace == false)
+	{
+		bPressSpace = true;
 
+		Camera& camera = world.data.renderUtil->camera;
+		Vector3 front = camera.Front;
+		float dis = 20;
+		front.x *= dis;
+		front.y *= dis;
+		front.z *= dis;
+		auto particle1 = world.createEntity();
+		particle1.addComponent<TransformComponent>(camera.Position + front);
+		particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+		particle1.addComponent<ForceAccumulatorComponent>();
+		particle1.addComponent<GravityForceComponent>();
+		particle1.addComponent<DragForceComponent>(1.f, 0.f);
+		particle1.addComponent<BuoyancyComponent>(5.f, 2.f);
+	}
+	else if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) && bPressSpace == true)
+	{
+		bPressSpace = false;
+	}
+
+	if ((glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) && bPressUp == false)
+	{
+		world.getSystemManager().getSystem<BuoyancySystem>().liquidDensity++;
+		bPressUp = true;
+	}
+	else if ((glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE) && bPressUp == true)
+	{
+		bPressUp = false;
+	}
+
+	if ((glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) && bPressDown == false)
+	{
+		world.getSystemManager().getSystem<BuoyancySystem>().liquidDensity--;
+		bPressDown = true;
+	}
+	else if ((glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_RELEASE) && bPressDown == true)
+	{
+		bPressDown = false;
+	}
 }

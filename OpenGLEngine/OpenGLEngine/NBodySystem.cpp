@@ -33,28 +33,15 @@ namespace Reality
 					{
 						float force = G * entity1NBody.mass * entity2NBody.mass / (dis * dis);
 						Vector3 forceDir = glm::normalize(relativeVec);
+						
+						if (force > 100)
+							force = 100;
 
 						entity1ForceAcc.AddForce(force * -forceDir);
 						entity2ForceAcc.AddForce(force * forceDir);
 					}
 				}
 			}
-		//	for (int i = 0; i < entity1NBody.vecNBodyEntities->size(); ++i)
-		//	{
-		//		ECSEntity entity2 = (*entity1NBody.vecNBodyEntities)[i];
-
-		//		//distance between two entity
-		//		Vector3 disVec = entity1Transform.position - entity2.getComponent<TransformComponent>().position;
-		//		float dis = glm::length(disVec);
-
-		//		if (dis > 0)
-		//		{
-		//			float force = G * entity1NBody.mass * entity2.getComponent<NBodyComponent>().mass / (dis * dis);
-		//			Vector3 forceDir = glm::normalize(disVec);
-
-
-		//		}
-		//	}
 		}
 	}
 }
