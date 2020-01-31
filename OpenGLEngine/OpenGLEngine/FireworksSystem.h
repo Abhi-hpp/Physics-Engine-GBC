@@ -1,14 +1,14 @@
 #pragma once
 #include "ECSConfig.h"
 #include "TransformComponent.h"
-#include "ParticleComponent.h"
+#include "FireworksComponent.h"
 
 namespace Reality
 {
-	class ParticleSystem : public ECSSystem
+	class FireworksSystem : public ECSSystem
 	{
 	public:
-		ParticleSystem();
+		FireworksSystem();
 		void Update(float deltaTime);
 	};
 }
