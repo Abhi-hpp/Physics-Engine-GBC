@@ -1,6 +1,7 @@
 #pragma once
 #include "ECSConfig.h"
 #include "ParticleComponent.h"
+#include "ForceAccumulatorComponent.h"
 
 namespace Reality
 {
@@ -11,4 +12,3 @@ namespace Reality
 		void Update(float deltaTime);
 	};
 }
-

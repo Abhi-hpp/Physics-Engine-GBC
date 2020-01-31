@@ -3,12 +3,13 @@
 
 namespace Reality
 {
-	struct PairedSpringComponent
+	struct BungeeComponent
 	{
-		PairedSpringComponent(float _springConstant = 10.0f,
-			float _restLength = 10.0f,
+		BungeeComponent(float _springConstant = 10.0f, 
+			float _restLength = 10.0f, 
 			ECSEntity _connectedEntityA = ECSEntity(),
-			ECSEntity _connectedEntityB = ECSEntity())
+			ECSEntity _connectedEntityB = ECSEntity()
+		)
 			: springConstant(_springConstant),
 			restLength(_restLength),
 			connectedEntityA(_connectedEntityA),
@@ -16,6 +17,7 @@ namespace Reality
 		{
 
 		}
+
 		float springConstant;
 		float restLength;
 		ECSEntity connectedEntityA;
