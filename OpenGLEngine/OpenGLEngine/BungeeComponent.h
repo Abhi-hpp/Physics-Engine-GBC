@@ -5,8 +5,8 @@ namespace Reality
 {
 	struct BungeeComponent
 	{
-		BungeeComponent(float _springConstant = 10.0f, 
-			float _restLength = 10.0f, 
+		BungeeComponent(float _springConstant = 10.0f,
+			float _restLength = 10.0f,
 			ECSEntity _connectedEntityA = ECSEntity(),
 			ECSEntity _connectedEntityB = ECSEntity()
 		)

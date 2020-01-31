@@ -46,6 +46,11 @@ namespace Reality
 			}
 		}
 		// Draw "sun"
-		getWorld().data.renderUtil->DrawSphere(Vector3(0.0f), 3, Color(1, 1, 0, 1));
+		for (auto e : getEntities()) 
+		{
+			if (e.hasComponent<NBodyComponent>()) {
+				getWorld().data.renderUtil->DrawSphere(centerPoint, 3, Color(1, 1, 1, 1));
+			}
+		}
 	}
 }

@@ -37,6 +37,7 @@ void MakeBuoyancy(ECSWorld& world);
 void MakeGravity(ECSWorld& world);
 
 bool bungeeControl = false;
+float liquidDensity = 10.0f;
 
 int main()
 {
@@ -59,9 +60,9 @@ int main()
 	//MakeFireworks(world);
 	//Make3Particles(world);
 	//MakeABunchaSprings(world);
-	//MakeBungee(world);
+	MakeBungee(world);
 	//MakeBuoyancy(world);
-	MakeGravity(world);
+	//MakeGravity(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -136,10 +137,10 @@ int main()
 		// Update Transform
 
 		// Physics
-		float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;
+	//	float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;
 	//	timeToggle = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? !timeToggle : timeToggle;
 	//	float fixedDeltaTime = !timeToggle ? 1 / 60.0f : 0;		
-		//float fixedDeltaTime = 1 / 60.0f;
+		float fixedDeltaTime = 1 / 60.0f;
 		// Force Generator
 		world.getSystemManager().getSystem<GravityForceSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<DragForceSystem>().Update(fixedDeltaTime);
@@ -358,9 +359,11 @@ void MakeBuoyancy(ECSWorld& world)
 	particle1.addComponent<DragForceComponent>(0.01f, 0.01f);
 
 	auto buoyancy = world.createEntity();
-
+	
 	buoyancy.addComponent<TransformComponent>(Vector3(0, 0, 0));
 	buoyancy.addComponent<BuoyancyComponent>(25.0f, 0.04f, 25.0f, particle1, 10.0f);
+
+	buoyancy.getComponent<BuoyancyComponent>().density = liquidDensity;
 }
 
 void MakeGravity(ECSWorld& world)

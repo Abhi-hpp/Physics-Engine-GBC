@@ -7,7 +7,6 @@ namespace Reality
 	BuoyancySystem::BuoyancySystem()
 	{
 		requireComponent<BuoyancyComponent>();
-
 	}
 
 	void BuoyancySystem::Update(float deltaTime)
@@ -20,6 +19,19 @@ namespace Reality
 			// Variable to change so the boundary check always works
 			buoyancy.waterXWidth = 50.0f;
 			buoyancy.waterZWidth = 50.0f;
+
+			if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, GLFW_KEY_UP))
+			{
+				buoyancy.density += 1.0f;
+			}
+
+			if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, GLFW_KEY_DOWN))
+			{
+				if (buoyancy.density >= 1.0f)
+				{
+					buoyancy.density -= 1.0f;
+				}
+			}
 
 			if (buoyancy.buoyEntity.hasComponent<TransformComponent>())
 			{

@@ -49,21 +49,14 @@ namespace Reality
 						return;
 					}
 
-					if (length > 0)
+					if (length > bungee.restLength)
 					{
 						deltaL = length - bungee.restLength;
 
 						Vector3 force = -glm::normalize(relativePosition);
 						force *= bungee.springConstant * deltaL;
 
-						/*if (bungee.connectedEntityA.hasComponent<ForceAccumulatorComponent>())
-						{
-							bungee.connectedEntityA.getComponent<ForceAccumulatorComponent>().AddForce(force);
-						}*/
-						if (bungee.connectedEntityB.hasComponent<ForceAccumulatorComponent>())
-						{
-							bungee.connectedEntityB.getComponent<ForceAccumulatorComponent>().AddForce(-force);
-						}
+						bungee.connectedEntityB.getComponent<ForceAccumulatorComponent>().AddForce(-force);
 
 						float g = 1.0f / (1.0f + pow(abs(deltaL), 0.5f));
 						float r = 1 - g;
