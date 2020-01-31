@@ -6,6 +6,7 @@
 #include "FireworksSystem.h"
 #include "GravityForceSystem.h"
 #include "DragForceSystem.h"
+#include "NBodySystem.h"
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
 #include "ForceAccumulatorSystem.h"
@@ -26,6 +27,7 @@ void MakeABunchaObjects(ECSWorld& world);
 void MakeFireworks(ECSWorld& world);
 void Make3Particles(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
+void MakeNBody(ECSWorld& world);
 
 int main()
 {
@@ -34,7 +36,7 @@ int main()
 	// Init and Load
 	world.data.InitRendering();
 	//LoadAssets(world);
-	
+
 	world.data.renderUtil->camera.Position = Vector3(0, 40.0f, 50.0f);
 	world.data.renderUtil->SetFOV(60);
 	// Create entities
@@ -59,6 +61,7 @@ int main()
 	world.getSystemManager().addSystem<DragForceSystem>();
 	world.getSystemManager().addSystem<FixedSpringSystem>();
 	world.getSystemManager().addSystem<PairedSpringSystem>();
+	world.getSystemManager().addSystem<NBodySystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
@@ -96,7 +99,7 @@ int main()
 		{
 			shadersLoaded = world.data.assetLoader->ShadersLoaded();
 		}
-		if(shadersLoaded && !modelsLoadStarted)
+		if (shadersLoaded && !modelsLoadStarted)
 		{
 			LoadModels(world);
 			modelsLoadStarted = true;
@@ -110,6 +113,7 @@ int main()
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<FireworksSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<NBodySystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -154,11 +158,11 @@ int main()
 			std::string renderString = logic < 10 ? " " + std::to_string(render) : std::to_string(render);
 			int debug = (int)round(debugDelta * 100.0f / deltaTime);
 			std::string debugString = logic < 10 ? " " + std::to_string(debug) : std::to_string(debug);
-			
+
 			world.data.renderUtil->RenderText("Logic : " + logicString + "%" +
 				//+ " | Physics : " + std::to_string((int)round(physicsDelta * 100.0f / deltaTime)) + "%" +
-				+ " | Rendering : " + renderString + "%" +
-				+ " | Debug : " + debugString + "%"
+				+" | Rendering : " + renderString + "%" +
+				+" | Debug : " + debugString + "%"
 				, 1680.0f, 1040.0f, 0.25f, Color(0, 1, 1, 1));
 		}
 		if (DEBUG_LOG_LEVEL > 2)
@@ -230,7 +234,7 @@ void MakeFireworks(ECSWorld & world)
 		fireworks.addComponent<GravityForceComponent>();
 		fireworks.addComponent<FireworksComponent>(6, 3, 3 + RANDOM_FLOAT(-1, 1));
 	}
-	
+
 }
 
 void Make3Particles(ECSWorld & world)
@@ -265,7 +269,7 @@ void MakeABunchaSprings(ECSWorld & world)
 	particle1.addComponent<ForceAccumulatorComponent>();
 	particle1.addComponent<GravityForceComponent>();
 
-	auto particle2= world.createEntity();
+	auto particle2 = world.createEntity();
 	particle2.addComponent<TransformComponent>(Vector3(-10, 0, -50));
 	particle2.addComponent<ParticleComponent>(Vector3(0, 0, 0));
 	particle2.addComponent<ForceAccumulatorComponent>();
@@ -282,6 +286,19 @@ void MakeABunchaSprings(ECSWorld & world)
 	auto pairedSpring = world.createEntity();
 	pairedSpring.addComponent<PairedSpringComponent>(20.0f, 20.0f, particle1, particle2);
 
+}
+
+void MakeNBody(ECSWorld & world)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		auto nBody = world.createEntity();
+		nBody.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-50.0f, 50.0f), RANDOM_FLOAT(-50.0f, 50.0f), RANDOM_FLOAT(-100.0f, 0.0f)));
+		nBody.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+		nBody.addComponent<ForceAccumulatorComponent>();
+		//nBody.addComponent<GravityForceComponent>();
+		nBody.addComponent<NBodyComponent>(1, 10, 3, 10, RANDOM_FLOAT(1.0f, 10.0f));
+	}
 }
 
 void SetupLights(ECSWorld& world)
@@ -310,7 +327,7 @@ void SetupLights(ECSWorld& world)
 	hook.addComponent<TransformComponent>(Vector3(-14.5f - 0.5f, 14 + 1, 49.0f));
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f, 14 - 1, 49.0f + 1));
-	
+
 	auto pl3 = world.createEntity();
 	pl3.addComponent<TransformComponent>(Vector3(22, 14, -62.0f));
 	pl3.addComponent<DynamicPointLightComponent>(100.0f, Color(0, 0.1f, 0), Color(0.0f, 1.0f, 0.0f), Color(0.0f, 1.0f, 0.0f));
@@ -325,11 +342,11 @@ void SetupLights(ECSWorld& world)
 	pl4.addComponent<TransformComponent>(Vector3(-14.5f, 14, -61.5f));
 	pl4.addComponent<DynamicPointLightComponent>(100.0f, Color(0.1, 0.05, 0), Color(1.0f, 0.55f, 0.0f), Color(1.0f, 0.55f, 0.0f));
 	hook = world.createEntity();
-	hook.addComponent<TransformComponent>(Vector3(-14.5f - 1, 14, -61.5f -1));
+	hook.addComponent<TransformComponent>(Vector3(-14.5f - 1, 14, -61.5f - 1));
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f - 0.25f, 14 - 0.5f, -61.5f + 1));
 	hook = world.createEntity();
-	hook.addComponent<TransformComponent>(Vector3(-14.5f + 0.5f, 14+ 1, -61.5f + 1));
+	hook.addComponent<TransformComponent>(Vector3(-14.5f + 0.5f, 14 + 1, -61.5f + 1));
 
 	// Spears
 	std::vector<Color> cols = { Color(1,0,0), Color(0,1,0), Color(0,0,1), Color(0.7f,0.55f,0) };
