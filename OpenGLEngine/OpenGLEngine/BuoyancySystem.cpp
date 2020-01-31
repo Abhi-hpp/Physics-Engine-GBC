@@ -14,9 +14,19 @@ namespace Reality
 	{
 		for (auto e : getEntities())
 		{
-
 			auto& buoyancy = e.getComponent<BuoyancyComponent>();
 			auto& waterTransform = e.getComponent<TransformComponent>();
+
+			if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, GLFW_KEY_UP))
+			{
+				buoyancy.density += 1.0f;
+			}
+			if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, GLFW_KEY_DOWN))
+			{
+				buoyancy.density -= 1.0f;
+				if (buoyancy.density <= 0.0f)
+					buoyancy.density = 0.0f;
+			}
 
 			if (buoyancy.buoyEntity.hasComponent<TransformComponent>())
 			{

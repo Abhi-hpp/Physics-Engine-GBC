@@ -15,11 +15,13 @@ namespace Reality
 		for (auto e : getEntities())
 		{
 			auto& bungee = e.getComponent<BungeeComponent>();
-
+			//getWorld().data.renderUtil->RenderText(bungee.connectedEntityB.toString(), 200.0f, 200.0f, 1.0f, Color(1, 0, 1, 1));
 			// Paired Bungees
 			if (!e.hasComponent<TransformComponent>()) {
 			//if (bungee.connectedEntityB.hasComponent<TransformComponent>()) {
-		
+			//if (bungee.connectedEntityB.getIndex() != 0) {
+				
+				//getWorld().data.renderUtil->RenderText(bungee.connectedEntityB.toString(), 25.0f, 25.0f, 1.0f, Color(1, 1, 1, 1));
 				if (bungee.connectedEntityA.hasComponent<TransformComponent>()
 					&& bungee.connectedEntityB.hasComponent<TransformComponent>())
 				{

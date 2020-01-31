@@ -59,9 +59,9 @@ int main()
 	//MakeFireworks(world);
 	//Make3Particles(world);
 	//MakeABunchaSprings(world);
-	//MakeABunchaBungee(world);
+	MakeABunchaBungee(world);
 	//MakeWater(world);
-	MakeGravity(world);
+	//MakeGravity(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -136,9 +136,9 @@ int main()
 		// Update Transform
 
 		// Physics
-		float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;
-	//	timeToggle = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? !timeToggle : timeToggle;
-	//	float fixedDeltaTime = !timeToggle ? 1 / 60.0f : 0;		
+		//float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;
+		timeToggle = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? !timeToggle : timeToggle;
+		float fixedDeltaTime = !timeToggle ? 1 / 60.0f : 0;		
 		//float fixedDeltaTime = 1 / 60.0f;
 		// Force Generator
 		world.getSystemManager().getSystem<GravityForceSystem>().Update(fixedDeltaTime);
@@ -169,13 +169,6 @@ int main()
 		elapsedDeltaTime = glfwGetTime() - time;
 		logicDelta = elapsedDeltaTime - world.data.renderUtil->GetRenderDelta();
 		stepTime = glfwGetTime();
-
-		// Bungee Control
-		
-		if(glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_B))
-		{
-			bungeeControl != bungeeControl;
-		}
 
 		// Debug
 		if (DEBUG_LOG_LEVEL > 0)
@@ -339,11 +332,9 @@ void MakeABunchaBungee(ECSWorld& world)
 	bungee.addComponent<TransformComponent>(Vector3(0, 0, -50));
 	bungee.addComponent<BungeeComponent>(8.0f, 30.0f, particle1);
 
-	if (bungeeControl)
-	{
-		auto pairedBungee = world.createEntity();
-		pairedBungee.addComponent<BungeeComponent>(20.0f, 50.0f, particle1, particle2);
-	}
+	auto pairedBungee = world.createEntity();
+	pairedBungee.addComponent<BungeeComponent>(8.0f, 30.0f, particle1, particle2);
+	
 }
 
 void MakeWater(ECSWorld& world)

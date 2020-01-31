@@ -67,10 +67,10 @@
     <Filter Include="Physics\Particles\BungeeCord">
       <UniqueIdentifier>{3de3ce0c-06e6-4384-a478-59fbb453ba67}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Buoyancy">
+    <Filter Include="Physics\Particles\Buoyancy">
       <UniqueIdentifier>{d7dfa830-a004-42bd-ba44-27121774ea6a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\N-Body">
+    <Filter Include="Physics\Particles\N-Body">
       <UniqueIdentifier>{3b55161d-d015-4fd4-9031-364339f7b1d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -169,10 +169,10 @@
       <Filter>Physics\Particles\BungeeCord</Filter>
     </ClCompile>
     <ClCompile Include="BuoyancySystem.cpp">
-      <Filter>Physics\Buoyancy</Filter>
+      <Filter>Physics\Particles\Buoyancy</Filter>
     </ClCompile>
     <ClCompile Include="NBodySystem.cpp">
-      <Filter>Physics\N-Body</Filter>
+      <Filter>Physics\Particles\N-Body</Filter>
     </ClCompile>
     <ClCompile Include="ParticleSphereSystem.cpp">
       <Filter>Physics</Filter>
@@ -339,16 +339,16 @@
       <Filter>Physics\Particles\BungeeCord</Filter>
     </ClInclude>
     <ClInclude Include="BuoyancyComponent.h">
-      <Filter>Physics\Buoyancy</Filter>
+      <Filter>Physics\Particles\Buoyancy</Filter>
     </ClInclude>
     <ClInclude Include="BuoyancySystem.h">
-      <Filter>Physics\Buoyancy</Filter>
+      <Filter>Physics\Particles\Buoyancy</Filter>
     </ClInclude>
     <ClInclude Include="NBodyComponent.h">
-      <Filter>Physics\N-Body</Filter>
+      <Filter>Physics\Particles\N-Body</Filter>
     </ClInclude>
     <ClInclude Include="NBodySystem.h">
-      <Filter>Physics\N-Body</Filter>
+      <Filter>Physics\Particles\N-Body</Filter>
     </ClInclude>
     <ClInclude Include="ParticleSphereComponent.h">
       <Filter>Physics</Filter>

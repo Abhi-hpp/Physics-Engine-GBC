@@ -43,7 +43,10 @@ namespace Reality
 				}
 			}
 		}
-
-		getWorld().data.renderUtil->DrawSphere(centerPoint, 3, Color(1, 1, 1, 1));
+		for (auto e : getEntities()){
+			if (e.hasComponent<NBodyComponent>()) {
+				getWorld().data.renderUtil->DrawSphere(centerPoint, 3, Color(1, 1, 1, 1));
+			}
+		}
 	}
 }
