@@ -33,6 +33,7 @@ void MakeABunchaSprings(ECSWorld& world);
 void MakeNBody(ECSWorld& world);
 void MakeBungee(ECSWorld& world);
 void MakeBuoyancy(ECSWorld& world);
+void InputBoyant(ECSWorld& world);
 
 int main()
 {
@@ -54,7 +55,9 @@ int main()
 	//MakeABunchaObjects(world);
 	//MakeFireworks(world);
 	//Make3Particles(world);
-	MakeABunchaSprings(world);
+	//MakeABunchaSprings(world);
+	MakeBuoyancy(world);
+
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -115,11 +118,15 @@ int main()
 		// Process Input
 		world.getSystemManager().getSystem<InputEventSystem>().Update(deltaTime);
 
+		InputBoyant(world);
+
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<FireworksSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<BungeeSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<NBodySystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<BuoyantSpringSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -340,6 +347,55 @@ void MakeBuoyancy(ECSWorld & world)
 		particle.addComponent<GravityForceComponent>();
 		particle.addComponent<DragForceComponent>(1.0f, 0.0f);
 		particle.addComponent<BuoyantSpringComponent>(5.0f, 2.0f);
+	}
+}
+
+void InputBoyant(ECSWorld& world)
+{
+	bool spaceBar = false, upKey = false, downKey = false;
+	GLFWwindow* window = world.data.renderUtil->window->glfwWindow;
+	if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) && spaceBar == false)
+	{
+		spaceBar = true;
+
+		Camera& camera = world.data.renderUtil->camera;
+		Vector3 front = camera.Front;
+		float distance = 20;
+		front.x *= distance;
+		front.y *= distance;
+		front.z *= distance;
+
+		auto particle = world.createEntity();
+		particle.addComponent<TransformComponent>(camera.Position + front);
+		particle.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+		particle.addComponent<ForceAccumulatorComponent>();
+		particle.addComponent<GravityForceComponent>();
+		particle.addComponent<DragForceComponent>(1.0f, 0.0f);
+		particle.addComponent<BuoyantSpringComponent>(4.0f, 1.5f);
+	}
+	else if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) && spaceBar == true)
+	{
+		spaceBar = false;
+	}
+
+	if ((glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) && upKey == false)
+	{
+		world.getSystemManager().getSystem<BuoyantSpringSystem>().density++;
+		upKey = true;
+	}
+	else if ((glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE) && upKey == true)
+	{
+		upKey = false;
+	}
+
+	if ((glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) && downKey == false)
+	{
+		world.getSystemManager().getSystem<BuoyantSpringSystem>().density--;
+		downKey = true;
+	}
+	else if ((glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_RELEASE) && downKey == true)
+	{
+		downKey = false;
 	}
 }
 
