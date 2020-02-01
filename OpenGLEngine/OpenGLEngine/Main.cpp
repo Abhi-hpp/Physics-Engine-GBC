@@ -6,6 +6,12 @@
 #include "FireworksSystem.h"
 #include "GravityForceSystem.h"
 #include "ForceAccumulatorSystem.h"
+#include "DragForceSystem.h"
+#include "FixedSpringSystem.h"
+#include "PairedSpringSystem.h"
+#include "BungeeSystem.h"
+#include "BuoyancySystem.h"
+#include "NBodySystem.h"
 #include "ParticleSystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
@@ -21,6 +27,11 @@ void LoadModels(ECSWorld& world);
 void SetupLights(ECSWorld& world);
 void MakeABunchaObjects(ECSWorld& world);
 void MakeFireworks(ECSWorld& world);
+void Make3Particles(ECSWorld& world);
+void MakeABunchaSprings(ECSWorld& world);
+void MakeBungee(ECSWorld& world);
+void MakeLiquid(ECSWorld& world);
+void MakeNBody(ECSWorld& world);
 
 int main()
 {
@@ -40,7 +51,12 @@ int main()
 
 	SetupLights(world);
 	//MakeABunchaObjects(world);
-	MakeFireworks(world);
+	//MakeFireworks(world);
+	//Make3Particles(world);
+	//MakeABunchaSprings(world);
+	MakeBungee(world);
+	//MakeLiquid(world);
+	//MakeNBody(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -50,10 +66,16 @@ int main()
 	world.getSystemManager().addSystem<FireworksSystem>();
 	world.getSystemManager().addSystem<GravityForceSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
+	world.getSystemManager().addSystem<FixedSpringSystem>();
+	world.getSystemManager().addSystem<PairedSpringSystem>();
+	world.getSystemManager().addSystem<BungeeSystem>();
+	world.getSystemManager().addSystem<BuoyancySystem>();
+	world.getSystemManager().addSystem<NBodySystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
+	world.getSystemManager().addSystem<DragForceSystem>();
 
 	float time = glfwGetTime();
 	float stepTime = glfwGetTime();
@@ -108,6 +130,14 @@ int main()
 		float fixedDeltaTime = 1 / 60.0f;
 		// Force Generator
 		world.getSystemManager().getSystem<GravityForceSystem>().Update(fixedDeltaTime);
+
+		// Drag Force
+		world.getSystemManager().getSystem<DragForceSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<FixedSpringSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BungeeSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BuoyancySystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<NBodySystem>().Update(fixedDeltaTime);
 
 		// Force Accumulator
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
@@ -215,6 +245,112 @@ void MakeFireworks(ECSWorld & world)
 		fireworks.addComponent<FireworksComponent>(6, 3, 3 + RANDOM_FLOAT(-1, 1));
 	}
 	
+}
+
+void Make3Particles(ECSWorld & world)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		auto fireworks = world.createEntity();
+		fireworks.addComponent<TransformComponent>(Vector3(-50 + 50 * i, 70, -50));
+		fireworks.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+		fireworks.addComponent<ForceAccumulatorComponent>();
+		fireworks.addComponent<GravityForceComponent>();
+		fireworks.addComponent<DragForceComponent>(i == 0 ? 0 : 1, i == 2 ? 1 : 0);
+	}
+}
+
+void MakeABunchaSprings(ECSWorld & world)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		auto entity = world.createEntity();
+		entity.addComponent<TransformComponent>(Vector3(-20, 20, -50));
+		entity.addComponent<ParticleComponent>();
+		entity.addComponent<ForceAccumulatorComponent>();
+		entity.addComponent<GravityForceComponent>();
+
+		auto spring1 = world.createEntity();
+		spring1.addComponent<TransformComponent>(Vector3(0, 60, -50));
+		spring1.addComponent<FixedSpringComponent>(10, 20, entity);
+
+		//auto spring2 = world.createEntity();
+		//spring2.addComponent<TransformComponent>(Vector3(-30, 50, -50));
+		//spring2.addComponent<FixedSpringComponent>(10, 20, entity);
+
+		//auto entityA = world.createEntity();
+		//entityA.addComponent<TransformComponent>(Vector3(-20, 20, -50));
+		//entityA.addComponent<ParticleComponent>();
+		//entityA.addComponent<ForceAccumulatorComponent>();
+		//entityA.addComponent<GravityForceComponent>();
+
+		//auto entityB = world.createEntity();
+		//entityB.addComponent<TransformComponent>(Vector3(-20, 20, -50));
+		//entityB.addComponent<ParticleComponent>();
+		//entityB.addComponent<ForceAccumulatorComponent>();
+		//entityB.addComponent<GravityForceComponent>();
+
+		//auto spring1 = world.createEntity();
+		//spring1.addComponent<TransformComponent>(Vector3(0, 60, -50));
+		//spring1.addComponent<FixedSpringComponent>(10, 20, entityA);
+
+		//auto spring2 = world.createEntity();
+		//spring2.addComponent<TransformComponent>(Vector3(-30, 50, -50));
+		//spring2.addComponent<FixedSpringComponent>(10, 20, entityA);
+
+		//auto pairedSpring = world.createEntity();
+		//pairedSpring.addComponent<PairedSpringComponent>(10, 20, entityA, entityB);
+	}
+}
+
+void MakeBungee(ECSWorld & world)
+{
+	auto entityA = world.createEntity();
+	entityA.addComponent<TransformComponent>(Vector3(-20, 20, -50));
+	entityA.addComponent<ParticleComponent>(Vector3(10, 0, 0));
+	entityA.addComponent<ForceAccumulatorComponent>();
+	entityA.addComponent<GravityForceComponent>();
+
+	auto entityB = world.createEntity();
+	entityB.addComponent<TransformComponent>(Vector3(-20, 20, -50));
+	entityB.addComponent<ParticleComponent>();
+
+	auto bungee = world.createEntity();
+	bungee.addComponent<BungeeComponent>(10, 20, entityA, entityB, entityA);
+}
+
+void MakeLiquid(ECSWorld & world)
+{
+	auto entity = world.createEntity();
+	entity.addComponent<TransformComponent>(Vector3(0, 20, -50));
+	entity.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	entity.addComponent<ForceAccumulatorComponent>();
+	entity.addComponent<GravityForceComponent>(0.1);
+
+	auto liquid = world.createEntity();
+	liquid.addComponent<TransformComponent>(Vector3(0, 0, -50), Vector3(100, 100, 100));
+
+	entity.addComponent<BuoyancyComponent>(50, 1, 50, liquid);
+}
+
+void MakeNBody(ECSWorld & world)
+{
+	int i;
+	vector<ECSEntity> entities;
+
+	for (i = 0; i < 10; i++)
+	{
+		auto entity = world.createEntity();
+		entities.push_back(entity);
+	}
+
+	for (i = 0; i < 10; i++)
+	{
+		entities[i].addComponent<TransformComponent>(Vector3(cos(0.62832 * i), sin(0.62832 * i), -50));
+		entities[i].addComponent<ParticleComponent>(Vector3(0, 10, 0));
+		entities[i].addComponent<ForceAccumulatorComponent>();
+		entities[i].addComponent<NBodyComponent>(1, 1, entities);
+	}
 }
 
 void SetupLights(ECSWorld& world)
