@@ -57,6 +57,7 @@ int main()
 	//Make3Particles(world);
 	MakeABunchaSprings(world);
 	MakeBuoyancy(world);
+	MakeNBody(world);
 
 
 	// Create Systems
