@@ -1,15 +1,14 @@
 #pragma once
 #include "ECSConfig.h"
 #include "TransformComponent.h"
-#include "FixedSpringComponent.h"
+#include "NBodyComponent.h"
 
 namespace Reality
 {
-	class FixedSpringSystem : public ECSSystem
+	class NBodySystem : public ECSSystem
 	{
 	public:
-		FixedSpringSystem();
+		NBodySystem();
 		void Update(float deltaTime);
 	};
-
 }

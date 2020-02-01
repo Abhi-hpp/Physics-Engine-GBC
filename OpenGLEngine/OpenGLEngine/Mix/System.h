@@ -5,6 +5,7 @@
 #include <vector>
 #include <unordered_map>
 #include <typeindex>
+#include <stdexcept>
 #include <memory>
 
 namespace Mix
