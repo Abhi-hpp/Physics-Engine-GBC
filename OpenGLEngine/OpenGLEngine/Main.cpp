@@ -55,9 +55,10 @@ int main()
 	//MakeABunchaObjects(world);
 	//MakeFireworks(world);
 	//Make3Particles(world);
-	MakeABunchaSprings(world);
-	MakeBuoyancy(world);
-	MakeNBody(world);
+	//MakeABunchaSprings(world);
+	MakeBungee(world);
+	// Part 2: MakeBuoyancy(world);
+	// Part 3: MakeNBody(world);
 
 
 	// Create Systems
