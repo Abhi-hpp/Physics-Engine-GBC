@@ -10,5 +10,8 @@ namespace Reality
 	public:
 		BuoyantSpringSystem();
 		void Update(float deltaTime);
+
+		float height = 0.0f;
+		float density = 10.0f;
 	};
 }
