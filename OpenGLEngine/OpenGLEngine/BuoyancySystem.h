@@ -1,14 +1,15 @@
 #pragma once
 #include "ECSConfig.h"
+#include "BuoyancyComponent.h"
 #include "TransformComponent.h"
-#include "ParticleComponent.h"
+#include "ForceAccumulatorComponent.h"
 
 namespace Reality
 {
-	class ParticleSystem : public ECSSystem
+	class BuoyancySystem : public ECSSystem
 	{
 	public:
-		ParticleSystem();
+		BuoyancySystem();
 		void Update(float deltaTime);
 	};
 }
