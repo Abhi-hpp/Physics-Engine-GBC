@@ -322,7 +322,7 @@ void MakeBungee(ECSWorld& world)
 	// Create Bungee
 	bool create = 0;
 	//if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-		create = 1;
+		//create = 1;
 	for (int i = 0; i < 10; i++)
 		{
 		if (create = 1) 
@@ -331,7 +331,7 @@ void MakeBungee(ECSWorld& world)
 			bungee.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-50.0f, 50.0f), RANDOM_FLOAT(-50.0f, 50.0f), RANDOM_FLOAT(-100.0f, 0.0f)));
 			bungee.addComponent<ParticleComponent>(Vector3(0, 0, 0));
 			bungee.addComponent<ForceAccumulatorComponent>();
-			bungee.addComponent<GravityForceComponent>();
+			//bungee.addComponent<GravityForceComponent>();
 			bungee.addComponent<NBodyComponent>(1, 10, 3, 10, RANDOM_FLOAT(1.0f, 10.0f));
 		}
 		
