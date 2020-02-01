@@ -8,6 +8,7 @@
 #include "DragForceSystem.h"
 #include "NBodySystem.h"
 #include "BungeeSystem.h"
+#include "BuoyantSpringSystem.h"
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
 #include "ForceAccumulatorSystem.h"
@@ -31,6 +32,7 @@ void Make3Particles(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
 void MakeNBody(ECSWorld& world);
 void MakeBungee(ECSWorld& world);
+void MakeBuoyancy(ECSWorld& world);
 
 int main()
 {
@@ -325,6 +327,20 @@ void MakeBungee(ECSWorld& world)
 		
 		}
 	
+}
+
+void MakeBuoyancy(ECSWorld & world)
+{
+	for (int i = 0; i < 2; i++)
+	{
+		auto particle = world.createEntity();
+		particle.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-100, 100), RANDOM_FLOAT(0, 50), RANDOM_FLOAT(-100, 100)));
+		particle.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+		particle.addComponent<ForceAccumulatorComponent>();
+		particle.addComponent<GravityForceComponent>();
+		particle.addComponent<DragForceComponent>(1.0f, 0.0f);
+		particle.addComponent<BuoyantSpringComponent>(5.0f, 2.0f);
+	}
 }
 
 void SetupLights(ECSWorld& world)
