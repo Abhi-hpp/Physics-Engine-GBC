@@ -7,6 +7,7 @@
 #include "GravityForceSystem.h"
 #include "DragForceSystem.h"
 #include "NBodySystem.h"
+#include "BungeeSystem.h"
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
 #include "ForceAccumulatorSystem.h"

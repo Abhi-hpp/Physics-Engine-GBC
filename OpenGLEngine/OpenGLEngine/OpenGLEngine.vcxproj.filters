@@ -67,6 +67,12 @@
     <Filter Include="Physics\Particles\ForceGenerators\Bungee">
       <UniqueIdentifier>{6d04afd7-85e9-44fd-9e89-bdab0e343dc3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\NBody">
+      <UniqueIdentifier>{1ed1645a-d2ea-4217-bf09-4d1e5532f03e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Bouyancy">
+      <UniqueIdentifier>{69de594a-df75-411d-98f0-f1c886f54f6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -161,6 +167,12 @@
     </ClCompile>
     <ClCompile Include="BungeeSystem.cpp">
       <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoyantSpringSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NBodySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +331,18 @@
     </ClInclude>
     <ClInclude Include="BungeeSystem.h">
       <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyantSpringComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyantSpringSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

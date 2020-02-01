@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -126,6 +126,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="BuoyantSpringSystem.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DragForceSystem.cpp">
       <SubType>
@@ -171,6 +172,7 @@
     <ClCompile Include="Mix\System.cpp" />
     <ClCompile Include="Mix\World.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="NBodySystem.cpp" />
     <ClCompile Include="PairedSpringSystem.cpp">
       <SubType>
       </SubType>
@@ -199,6 +201,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="BuoyantSpringComponent.h" />
+    <ClInclude Include="BuoyantSpringSystem.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLightComponent.h" />
@@ -277,6 +281,8 @@
     <ClInclude Include="Mix\World.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseMoveEvent.h" />
+    <ClInclude Include="NBodyComponent.h" />
+    <ClInclude Include="NBodySystem.h" />
     <ClInclude Include="PairedSpringComponent.h">
       <SubType>
       </SubType>
