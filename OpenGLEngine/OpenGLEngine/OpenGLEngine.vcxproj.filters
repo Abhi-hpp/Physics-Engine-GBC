@@ -61,8 +61,20 @@
     <Filter Include="Physics\Particles\ForceGenerators\FixedSpring">
       <UniqueIdentifier>{4c54bdb5-bf1a-46eb-97aa-4ad2f029416e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Particles\PairedSpring">
+    <Filter Include="TestCS\ParticleSphereDemo">
+      <UniqueIdentifier>{7d8136d0-4c62-41a5-b8ce-b4ec82a65b43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\PairedSpring">
       <UniqueIdentifier>{26df7371-0611-42cd-b6e5-2556995c23d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Bungee">
+      <UniqueIdentifier>{f508b92f-cf40-402f-9609-603deffbeab8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Buoyancy">
+      <UniqueIdentifier>{58b03937-c7e1-4090-aa21-0bcde9f86458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\NBody">
+      <UniqueIdentifier>{8cb794c3-3549-419e-bec7-ac6865a207a8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +166,25 @@
       <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
     </ClCompile>
     <ClCompile Include="PairedSpringSystem.cpp">
-      <Filter>Physics\Particles\PairedSpring</Filter>
+      <Filter>Physics\Particles\ForceGenerators\PairedSpring</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSphereSystem.cpp">
+      <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="BungeeSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClCompile>
+    <ClCompile Include="PairedBungeeSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoyancySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClCompile>
+    <ClCompile Include="NBodySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -303,10 +333,46 @@
       <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
     </ClInclude>
     <ClInclude Include="PairedSpringComponent.h">
-      <Filter>Physics\Particles\PairedSpring</Filter>
+      <Filter>Physics\Particles\ForceGenerators\PairedSpring</Filter>
     </ClInclude>
     <ClInclude Include="PairedSpringSystem.h">
-      <Filter>Physics\Particles\PairedSpring</Filter>
+      <Filter>Physics\Particles\ForceGenerators\PairedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereComponent.h">
+      <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereSystem.h">
+      <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedBungeeComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedBungeeSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

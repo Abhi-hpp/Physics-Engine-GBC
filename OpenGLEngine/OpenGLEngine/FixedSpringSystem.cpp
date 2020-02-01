@@ -24,7 +24,7 @@ namespace Reality
 
 				Vector3 relativePosition = transform.position - springTransform.position;
 				float length = glm::length(relativePosition);
-				if (length > 0)
+				if (length > 0) // I think (length > 0) needs to be changed to (length < spring.restLength)
 				{
 					float deltaL = length - spring.restLength;
 					Vector3 force = -glm::normalize(relativePosition);

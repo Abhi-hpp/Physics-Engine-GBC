@@ -122,6 +122,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetLoader.cpp" />
+    <ClCompile Include="BungeeSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="BuoyancySystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DragForceSystem.cpp">
       <SubType>
@@ -167,7 +175,23 @@
     <ClCompile Include="Mix\System.cpp" />
     <ClCompile Include="Mix\World.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="NBodySystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="PairedBungeeSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="PairedSpringSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ParticleSphereSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -187,6 +211,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetLoader.h" />
+    <ClInclude Include="BungeeComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BungeeSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BuoyancyComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BuoyancySystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLightComponent.h" />
@@ -265,6 +305,22 @@
     <ClInclude Include="Mix\World.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseMoveEvent.h" />
+    <ClInclude Include="NBodyComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="NBodySystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PairedBungeeComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PairedBungeeSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="PairedSpringComponent.h">
       <SubType>
       </SubType>
@@ -274,6 +330,22 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ParticleComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
