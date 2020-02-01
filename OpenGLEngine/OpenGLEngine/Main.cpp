@@ -55,7 +55,7 @@ int main()
 	//MakeABunchaObjects(world);
 	//MakeFireworks(world);
 	//Make3Particles(world);
-	//MakeABunchaSprings(world);
+	MakeABunchaSprings(world);
 	MakeBuoyancy(world);
 
 
@@ -69,6 +69,7 @@ int main()
 	world.getSystemManager().addSystem<DragForceSystem>();
 	world.getSystemManager().addSystem<FixedSpringSystem>();
 	world.getSystemManager().addSystem<BungeeSystem>();
+	world.getSystemManager().addSystem<BuoyantSpringSystem>();
 	world.getSystemManager().addSystem<PairedSpringSystem>();
 	world.getSystemManager().addSystem<NBodySystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
