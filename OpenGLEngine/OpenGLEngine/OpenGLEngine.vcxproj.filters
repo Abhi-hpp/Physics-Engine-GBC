@@ -67,14 +67,14 @@
     <Filter Include="Physics\Particles\BungeeChord">
       <UniqueIdentifier>{3203914a-4ca3-4db1-9805-4fb113387656}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Particles\PariedBungeeChord">
-      <UniqueIdentifier>{6c44b191-1178-4519-ae8a-a23a1f64b2f4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Physics\Particles\Buoyancy">
       <UniqueIdentifier>{3cb93172-c818-4ffc-afa5-8ad183c1b98d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Physics\Particles\NBody">
       <UniqueIdentifier>{c7190f66-ed2e-46e3-a0e0-d5b78c881977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\PairedBungeeChord">
+      <UniqueIdentifier>{6c44b191-1178-4519-ae8a-a23a1f64b2f4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +172,7 @@
       <Filter>Physics\Particles\BungeeChord</Filter>
     </ClCompile>
     <ClCompile Include="PairedBungeeChordSystem.cpp">
-      <Filter>Physics\Particles\PariedBungeeChord</Filter>
+      <Filter>Physics\Particles\PairedBungeeChord</Filter>
     </ClCompile>
     <ClCompile Include="BuoyancySystem.cpp">
       <Filter>Physics\Particles\Buoyancy</Filter>
@@ -339,10 +339,10 @@
       <Filter>Physics\Particles\BungeeChord</Filter>
     </ClInclude>
     <ClInclude Include="PairedBungeeChordComponent.h">
-      <Filter>Physics\Particles\PariedBungeeChord</Filter>
+      <Filter>Physics\Particles\PairedBungeeChord</Filter>
     </ClInclude>
     <ClInclude Include="PairedBungeeChordSystem.h">
-      <Filter>Physics\Particles\PariedBungeeChord</Filter>
+      <Filter>Physics\Particles\PairedBungeeChord</Filter>
     </ClInclude>
     <ClInclude Include="BuoyancyComponent.h">
       <Filter>Physics\Particles\Buoyancy</Filter>

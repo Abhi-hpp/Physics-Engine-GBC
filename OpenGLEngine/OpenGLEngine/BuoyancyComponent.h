@@ -6,13 +6,13 @@ namespace Reality
 	struct BuoyancyComponent
 	{
 		BuoyancyComponent(float _maxDepth = 5.f, float _volume = 10.f)
-			:maxDepth(_maxDepth), volume(_volume)
+			:maxBuoyancyDepth(_maxDepth), buoyancyVolume(_volume)
 		{
 
 		}
 		
-		float maxDepth;
-		float volume;
+		float maxBuoyancyDepth;
+		float buoyancyVolume;
 	};
 }
 

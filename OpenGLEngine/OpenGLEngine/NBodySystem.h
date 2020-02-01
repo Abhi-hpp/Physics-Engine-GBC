@@ -13,6 +13,6 @@ namespace Reality
 		void Update(float deltaTime);
 
 	private :
-		float G = 0.2f;
+		float G = 0.3f;
 	};
 }

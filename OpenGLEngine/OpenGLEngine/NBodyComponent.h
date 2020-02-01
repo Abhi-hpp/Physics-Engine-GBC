@@ -10,6 +10,6 @@ namespace Reality
 		{
 
 		}
-		float mass = 1.f;
+		float mass = 1.0f;
 	};
 }

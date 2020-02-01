@@ -29,27 +29,24 @@ void SetupLights(ECSWorld& world);
 void MakeABunchaObjects(ECSWorld& world);
 void MakeFireworks(ECSWorld& world);
 void Make3Particles(ECSWorld& world);
-void MakeABunchaSprings(ECSWorld& world);
 
-/////////////////////For assignment Bungee chord///////////////////////////////
+//Assignment 1 Functions - By: Brian Viveiros & Emmannuel Nofuente-Loblack
+// Bungee Chord **********************************************************************************************************
 void MakeBungeeChord(ECSWorld& world);
 void InputBungeeChord(ECSWorld& world);
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////For assignment Buoyancy///////////////////////////////
+void MakeNewBungee(Reality::ECSWorld& world, Camera& camera);
+// Buoyancy **************************************************************************************************************
 void MakeBuoyancy(ECSWorld& world);
 void InputBuoyancy(ECSWorld& world);
-/////////////////////////////////////////////////////////////////////////////////////////////
-
-/////////////////////For assignment NBody///////////////////////////////
+// N-Body ***************************************************************************************************************
 void MakeNBody(ECSWorld& world);
-/////////////////////////////////////////////////////////////////////////////////////////////
+//************************************************************************************************************************
 
 
-bool bPressSpace = false;
-bool bPressUp = false;
-bool bPressDown = false;
-ECSEntity lastConnectedParticle = ECSEntity();
+bool bSpaceBar = false;
+bool bUpArrow = false;
+bool bDownArrow = false;
+ECSEntity previousBungeeParticle = ECSEntity();
 
 int main()
 {
@@ -72,18 +69,17 @@ int main()
 	//MakeFireworks(world);
 	//Make3Particles(world);
 
-	/////////////////////For assignment Bungee chord///////////////////////////////
-	//MakeABunchaSprings(world);
-	//MakeBungeeChord(world);
-	/////////////////////////////////////////////////////////////////////////////////////////////
+	//For Bungee chord************************************************************
+	MakeBungeeChord(world);
+	//***************************************************************************************
 
-	/////////////////////For assignment Buoyancy///////////////////////////////
+	//For Buoyancy
 	//MakeBuoyancy(world);
-	/////////////////////////////////////////////////////////////////////////////////////////////
-
-	/////////////////////For assignment NBody///////////////////////////////
-	MakeNBody(world);
-	/////////////////////////////////////////////////////////////////////////////////////////////
+	//***************************************************************************************
+	
+	//For NBody
+	//MakeNBody(world);
+	//***************************************************************************************
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -115,8 +111,6 @@ int main()
 	LoadShaders(world);
 	bool shadersLoaded = false;
 	bool modelsLoadStarted = false;
-
-	
 
 	// game loop
 	// -----------
@@ -150,14 +144,12 @@ int main()
 		world.getSystemManager().getSystem<InputEventSystem>().Update(deltaTime);
 
 
-		/////////////////////For assignment Bungee chord///////////////////////////////
-		//InputBungeeChord(world);
-		/////////////////////////////////////////////////////////////////////////////////////////////
-
-		/////////////////////For assignment Buoyancy///////////////////////////////
+		//For Bungee chord************************************************************
+		InputBungeeChord(world);
+		//***************************************************************************************
+		//For Buoyancy****************************************************************
 		//InputBuoyancy(world);
-		/////////////////////////////////////////////////////////////////////////////////////////////
-		
+		//***************************************************************************************
 
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
@@ -314,32 +306,6 @@ void Make3Particles(ECSWorld & world)
 	particle3.addComponent<DragForceComponent>(1, 1);
 }
 
-void MakeABunchaSprings(ECSWorld & world)
-{
-	auto particle1 = world.createEntity();
-	particle1.addComponent<TransformComponent>(Vector3(0, -5, 0));
-	particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
-	particle1.addComponent<ForceAccumulatorComponent>();
-	particle1.addComponent<GravityForceComponent>();
-
-	/*auto particle2= world.createEntity();
-	particle2.addComponent<TransformComponent>(Vector3(-10, 0, -50));
-	particle2.addComponent<ParticleComponent>(Vector3(0, 0, 0));
-	particle2.addComponent<ForceAccumulatorComponent>();
-	particle2.addComponent<GravityForceComponent>();
-*/
-	auto spring1 = world.createEntity();
-	spring1.addComponent<TransformComponent>(Vector3(0, 0, 0));
-	spring1.addComponent<FixedSpringComponent>(10.0f, 20.0f, particle1);
-
-	//auto spring2 = world.createEntity();
-	//spring2.addComponent<TransformComponent>(Vector3(-10, 60, -50));
-	//spring2.addComponent<FixedSpringComponent>(20.0f, 15.0f, particle1);
-
-	//auto pairedSpring = world.createEntity();
-	//pairedSpring.addComponent<PairedSpringComponent>(20.0f, 20.0f, particle1, particle2);
-}
-
 void MakeBungeeChord(ECSWorld& world)
 {
 	auto particle1 = world.createEntity();
@@ -359,14 +325,14 @@ void MakeBungeeChord(ECSWorld& world)
 	spring1.addComponent<BungeeChordComponent>(10.0f, 20.0f, particle1);
 
 	auto pariedSpring = world.createEntity();
-	pariedSpring.addComponent<PariedBungeeChordComponent>(10.0f, 20.0f, particle1, particle2);
+	pariedSpring.addComponent<PairedBungeeChordComponent>(10.0f, 20.0f, particle1, particle2);
 
-	lastConnectedParticle = particle2;
+	previousBungeeParticle = particle2;
 }
 
 void MakeBuoyancy(ECSWorld& world)
 {
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 8; ++i)
 	{
 		auto particle1 = world.createEntity();
 		particle1.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-100, 100), RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-100, 100)));
@@ -381,7 +347,7 @@ void MakeBuoyancy(ECSWorld& world)
 
 void MakeNBody(ECSWorld& world)
 {
-	for (int i = 0; i < 30; ++i)
+	for (int i = 0; i < 40; ++i)
 	{
 		auto particle1 = world.createEntity();
 		particle1.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-10, 10)));
@@ -455,35 +421,40 @@ void SetupLights(ECSWorld& world)
 void InputBungeeChord(ECSWorld& world)
 {
 	GLFWwindow* window = world.data.renderUtil->window->glfwWindow;
-	if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) && bPressSpace == false)
+	if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) && bSpaceBar == false)
 	{
-		bPressSpace = true;
+		bSpaceBar = true;
 
 		Camera& camera = world.data.renderUtil->camera;
 
-		auto particle = world.createEntity();
-		particle.addComponent<TransformComponent>(camera.Position + camera.Front);
-		particle.addComponent<ParticleComponent>(Vector3(0, 0, 0));
-		particle.addComponent<ForceAccumulatorComponent>();
-		particle.addComponent<GravityForceComponent>();
-
-		auto pairedSpring = world.createEntity();
-		pairedSpring.addComponent<PariedBungeeChordComponent>(10.0f, 20.0f, lastConnectedParticle, particle);
-
-		lastConnectedParticle = particle;
+		MakeNewBungee(world, camera);
 	}
-	else if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) && bPressSpace == true)
+	else if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) && bSpaceBar == true)
 	{
-		bPressSpace = false;
+		bSpaceBar = false;
 	}
+}
+
+void MakeNewBungee(Reality::ECSWorld& world, Camera& camera)
+{
+	auto particle = world.createEntity();
+	particle.addComponent<TransformComponent>(camera.Position + camera.Front);
+	particle.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle.addComponent<ForceAccumulatorComponent>();
+	particle.addComponent<GravityForceComponent>();
+
+	auto pairedSpring = world.createEntity();
+	pairedSpring.addComponent<PairedBungeeChordComponent>(10.0f, 20.0f, previousBungeeParticle, particle);
+
+	previousBungeeParticle = particle;
 }
 
 void InputBuoyancy(ECSWorld& world)
 {
 	GLFWwindow* window = world.data.renderUtil->window->glfwWindow;
-	if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) && bPressSpace == false)
+	if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) && bSpaceBar == false)
 	{
-		bPressSpace = true;
+		bSpaceBar = true;
 
 		Camera& camera = world.data.renderUtil->camera;
 		Vector3 front = camera.Front;
@@ -499,28 +470,28 @@ void InputBuoyancy(ECSWorld& world)
 		particle1.addComponent<DragForceComponent>(1.f, 0.f);
 		particle1.addComponent<BuoyancyComponent>(5.f, 2.f);
 	}
-	else if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) && bPressSpace == true)
+	else if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) && bSpaceBar == true)
 	{
-		bPressSpace = false;
+		bSpaceBar = false;
 	}
 
-	if ((glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) && bPressUp == false)
+	if ((glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) && bUpArrow == false)
 	{
 		world.getSystemManager().getSystem<BuoyancySystem>().liquidDensity++;
-		bPressUp = true;
+		bUpArrow = true;
 	}
-	else if ((glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE) && bPressUp == true)
+	else if ((glfwGetKey(window, GLFW_KEY_UP) == GLFW_RELEASE) && bUpArrow == true)
 	{
-		bPressUp = false;
+		bUpArrow = false;
 	}
 
-	if ((glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) && bPressDown == false)
+	if ((glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) && bDownArrow == false)
 	{
 		world.getSystemManager().getSystem<BuoyancySystem>().liquidDensity--;
-		bPressDown = true;
+		bDownArrow = true;
 	}
-	else if ((glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_RELEASE) && bPressDown == true)
+	else if ((glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_RELEASE) && bDownArrow == true)
 	{
-		bPressDown = false;
+		bDownArrow = false;
 	}
 }
