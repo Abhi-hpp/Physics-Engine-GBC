@@ -1,59 +1,55 @@
 //#define STB_IMAGE_IMPLEMENTATION
-#include "UpdateTransformMatricesSystem.h"
 #include "RenderingSystem.h"
-#include "RenderingSystemV2.h"
 #include "InputEventSystem.h"
+#include "FPSControlSystem.h"
 #include "RotateSystem.h"
 #include "ParticleSystem.h"
-#include "ParticleSpawnerSystem.h"
-#include "GravityForceGeneratorSystem.h"
-#include "FixedSpringForceGeneratorSystem.h"
 #include "ForceAccumulatorSystem.h"
-#include "PairedSpringForceGeneratorSystem.h"
-#include "SphereContactGeneratorSystem.h"
+#include "GravityForceSystem.h"
+#include "FireworksSystem.h"
+#include "DragForceSystem.h"
+#include "FixedSpringSystem.h"
+#include "PairedSpringSystem.h"
+#include "ParticleSphereSystem.h"
 #include "ParticleContactResolutionSystem.h"
-#include "CableComponentSystem.h"
-#include "RodSystem.h"
-#include "ForceAndTorqueAccumulatorSystem.h"
-#include "RigidBodySystem.h"
-#include "RigidbodyGravityForceGeneratorSystem.h"
-#include "ContactGenerationSystem.h"
-#include "ContactResolutionSystem.h"
-#include "SphereColliderSystem.h"
-#include "BoxColliderSystem.h"
-#include "MoveInBoundsSystem.h"
-#include "FPSControlSystem.h"
+#include "BungeeChordSystem.h"
+#include "BungeeEndSystem.h"
+#include "SpacebarResolutionSystem.h"
+#include "BuoyancySystem.h"
+#include "BuoyancyControlSystem.h"
+#include "BuoyancyResolutionSystem.h"
+#include "NBodySystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
 #include "DynamicSpotLightSystem.h"
-#include "FlightSimulatorSystem.h"
-#include "FollowCameraSystem.h"
-#include "InfiniteSpawnSystem.h"
-#include "InfiniteSpawnTargetSystem.h"
-#include "AeroControlSystem.h"
-#include "SetAerodynamicTensorSystem.h"
-#include "AeroSystem.h"
-#include "CameraLookSystem.h"
-#include "LifeTimeSystem.h"
 #include <string>
-#include <stdlib.h>     
-#include <time.h>      
-
-#define DEBUG_LOG_LEVEL 3
+#include <stdlib.h>
+#include <time.h>
 
 using namespace Reality;
 
+/*
+	Written By: Russell Brabers, 101192571
+				Nabil Babu, 101214336
+
+	Note: Both the Bungee System and the Buoyancy System use Space Bar for events
+		  Disable the necessary line under 'Assignment 1 System Updates' to prevent
+		  both firing
+*/
+
 void LoadShaders(ECSWorld& world);
 void LoadModels(ECSWorld& world);
-void MakeABunchaObjects(ECSWorld& world);
-void MakeABunchaSprings(ECSWorld& world);
-void MakeABunchaSpheres(ECSWorld& world);
-void MakeACable(ECSWorld& world);
-void MakeCablesAndRods(ECSWorld& world);
-void MakeFlight(ECSWorld& world);
-void TestContacts(ECSWorld& world);
-void TestCollision(ECSWorld& world);
 void SetupLights(ECSWorld& world);
+// Simulations
+void MakeABunchaObjects(ECSWorld& world);
+void MakeFireworks(ECSWorld& world);
+void MakeThreeParticles(ECSWorld& world);
+void MakeSprings(ECSWorld& world);
+void SphereSystem(ECSWorld& world);
+/***** Assignment 1 Simulations *****/
+void Assignment1Part1(ECSWorld& world);
+void Assignment1Part2(ECSWorld& world);
+void Assignment1Part3(ECSWorld& world);
 
 int main()
 {
@@ -62,7 +58,7 @@ int main()
 	// Init and Load
 	world.data.InitRendering();
 	//LoadAssets(world);
-	
+
 	world.data.renderUtil->camera.Position = Vector3(0, 15.0f, 100.0f);
 	world.data.renderUtil->SetFOV(60);
 	// Create entities
@@ -71,62 +67,44 @@ int main()
 	auto e = world.createEntity();
 	e.addComponent<FPSControlComponent>();
 
-	//auto wall = world.createEntity();
-	//wall.addComponent<TransformComponent>(Vector3(0, -3.0f, 0.0f), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 270, 0));
-	//// Add mesh
-	//wall.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
-
 	SetupLights(world);
 	//MakeABunchaObjects(world);
-	//MakeABunchaSpheres(world);
-	//MakeABunchaSprings(world);
-	//MakeACable(world);
-	//akeCablesAndRods(world);
-	//MakeFlight(world);
-	//TestContacts(world);
-	TestCollision(world);
+	//MakeFireworks(world);
+	//MakeThreeParticles(world);
+	//MakeSprings(world);
+	//SphereSystem(world);
+
+	/***** Assignment 1 Method Calls *****/
+	//Assignment1Part1(world);
+	//Assignment1Part2(world);
+	Assignment1Part3(world);
 
 	// Create Systems
-	world.getSystemManager().addSystem<UpdateTransformMatricesSystem>();
 	world.getSystemManager().addSystem<RenderingSystem>();
-	world.getSystemManager().addSystem<RenderingSystemV2>();
 	world.getSystemManager().addSystem<InputEventSystem>();
+	world.getSystemManager().addSystem<FPSControlSystem>();
 	world.getSystemManager().addSystem<RotateSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
-	world.getSystemManager().addSystem<ParticleSpawnerSystem>();
-	world.getSystemManager().addSystem<GravityForceGeneratorSystem>();
-	world.getSystemManager().addSystem<FixedSpringForceGeneratorSystem>();
-	world.getSystemManager().addSystem<PairedSpringForceGeneratorSystem>();
-	world.getSystemManager().addSystem<SphereContactGeneratorSystem>();
-	world.getSystemManager().addSystem<CableComponentSystem>();
-	world.getSystemManager().addSystem<RodSystem>();
-	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
-	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
-	world.getSystemManager().addSystem<FlightSimulatorSystem>();
-	world.getSystemManager().addSystem<FPSControlSystem>();
-	world.getSystemManager().addSystem<FollowCameraSystem>();
-	world.getSystemManager().addSystem<CameraLookSystem>();
-	world.getSystemManager().addSystem<InfiniteSpawnSystem>();
-	world.getSystemManager().addSystem<InfiniteSpawnTargetSystem>();
-	world.getSystemManager().addSystem<AeroControlSystem>();
-	world.getSystemManager().addSystem<SetAerodynamicTensorSystem>();
-	world.getSystemManager().addSystem<AeroSystem>();
-	world.getSystemManager().addSystem<LifeTimeSystem>();
-	world.getSystemManager().addSystem<MoveInBoundsSystem>();
+	world.getSystemManager().addSystem<GravityForceSystem>();
+	world.getSystemManager().addSystem<FireworksSystem>();
+	world.getSystemManager().addSystem<DragForceSystem>();
+	world.getSystemManager().addSystem<FixedSpringSystem>();
+	world.getSystemManager().addSystem<PairedSpringSystem>();
+	world.getSystemManager().addSystem<ParticleSphereSystem>();
+	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
+	/***** Assignment 1 Systems *****/
+	world.getSystemManager().addSystem<BungeeChordSystem>();
+	world.getSystemManager().addSystem<BungeeEndSystem>();
+	world.getSystemManager().addSystem<SpacebarResolutionSystem>();
+	world.getSystemManager().addSystem<BuoyancySystem>();
+	world.getSystemManager().addSystem<BuoyancyControlSystem>();
+	world.getSystemManager().addSystem<BuoyancyResolutionSystem>();
+	world.getSystemManager().addSystem<NBodySystem>();
+	/********************************/
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
-
-	// Rigidbody Physics
-	rp3d::CollisionWorld rp3dWorld;
-	world.getSystemManager().addSystem<RigidBodySystem>(rp3dWorld);
-	world.getSystemManager().addSystem<ContactGenerationSystem>(rp3dWorld);
-	world.getSystemManager().addSystem<ContactResolutionSystem>(rp3dWorld);
-	world.getSystemManager().addSystem<SphereColliderSystem>(rp3dWorld);
-	world.getSystemManager().addSystem<BoxColliderSystem>(rp3dWorld);
-	world.getSystemManager().addSystem<RigidbodyGravityForceGeneratorSystem>();
-
 
 	float time = glfwGetTime();
 	float stepTime = glfwGetTime();
@@ -159,7 +137,7 @@ int main()
 		{
 			shadersLoaded = world.data.assetLoader->ShadersLoaded();
 		}
-		if(shadersLoaded && !modelsLoadStarted)
+		if (shadersLoaded && !modelsLoadStarted)
 		{
 			LoadModels(world);
 			modelsLoadStarted = true;
@@ -172,53 +150,45 @@ int main()
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<ParticleSpawnerSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<MoveInBoundsSystem>().Update(deltaTime);
-
-		//Flight Sim
-		world.getSystemManager().getSystem<FlightSimulatorSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<FollowCameraSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<CameraLookSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<InfiniteSpawnTargetSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<InfiniteSpawnSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<AeroControlSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<SetAerodynamicTensorSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<LifeTimeSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<FireworksSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
+		/***** Assignment 1 System Updates *****/
+		world.getSystemManager().getSystem<BungeeEndSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<BuoyancyControlSystem>().Update(deltaTime);
 
 		// Update Transform
-		world.getSystemManager().getSystem<UpdateTransformMatricesSystem>().Update(deltaTime);
+
 		// Physics
-		float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
-		//float fixedDeltaTime = 1 / 60.0f;
-		world.getSystemManager().getSystem<AeroSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<AeroSystem>().Update(fixedDeltaTime);
-		// Particle Force Generators
-		world.getSystemManager().getSystem<GravityForceGeneratorSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<FixedSpringForceGeneratorSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<PairedSpringForceGeneratorSystem>().Update(fixedDeltaTime);
+		//float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
+		float fixedDeltaTime = 1 / 60.0f;
+
+		// Force Generators
+		world.getSystemManager().getSystem<GravityForceSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<DragForceSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<FixedSpringSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BungeeChordSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BuoyancySystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<NBodySystem>().Update(fixedDeltaTime);
+
+		// Force Accumulation
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
-		// Rigiidbody Force Generators and collisions
-		world.getSystemManager().getSystem<RigidbodyGravityForceGeneratorSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<ForceAndTorqueAccumulatorSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<RigidBodySystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<SphereColliderSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<BoxColliderSystem>().Update(fixedDeltaTime);
-		// Physics Solvers
-		world.getSystemManager().getSystem<SphereContactGeneratorSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<CableComponentSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<RodSystem>().Update(fixedDeltaTime);
+
+		// Contact Resolution
 		world.getSystemManager().getSystem<ParticleContactResolutionSystem>().Update(fixedDeltaTime);
 
-		world.getSystemManager().getSystem<ContactGenerationSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<ContactResolutionSystem>().Update(fixedDeltaTime);
+		/***** Assignment 1 Resolution Systems ****/
+		world.getSystemManager().getSystem<SpacebarResolutionSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BuoyancyResolutionSystem>().Update(fixedDeltaTime);
+
+		// Integration
+		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
 
 		// Rendering Update
 		world.getSystemManager().getSystem<DynamicDirectionalLightSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<DynamicPointLightSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<DynamicSpotLightSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RenderingSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<RenderingSystemV2>().Update(deltaTime);
 
 		elapsedDeltaTime = glfwGetTime() - time;
 		logicDelta = elapsedDeltaTime - world.data.renderUtil->GetRenderDelta();
@@ -237,11 +207,11 @@ int main()
 			std::string renderString = logic < 10 ? " " + std::to_string(render) : std::to_string(render);
 			int debug = (int)round(debugDelta * 100.0f / deltaTime);
 			std::string debugString = logic < 10 ? " " + std::to_string(debug) : std::to_string(debug);
-			
+
 			world.data.renderUtil->RenderText("Logic : " + logicString + "%" +
 				//+ " | Physics : " + std::to_string((int)round(physicsDelta * 100.0f / deltaTime)) + "%" +
-				+ " | Rendering : " + renderString + "%" +
-				+ " | Debug : " + debugString + "%"
+				+" | Rendering : " + renderString + "%" +
+				+" | Debug : " + debugString + "%"
 				, 1680.0f, 1040.0f, 0.25f, Color(0, 1, 1, 1));
 		}
 		if (DEBUG_LOG_LEVEL > 2)
@@ -277,8 +247,8 @@ void LoadModels(ECSWorld& world)
 {
 	world.data.assetLoader->StartModelLoading({
 		//ModelData("Resources/Models/snowy-mountain-terrain/SnowyMountainMesh.obj"),
-		//ModelData("Resources/Models/Sponza-master/sponza.obj"),
-		//ModelData("Resources/Models/nanosuit/nanosuit.obj"),*/
+		ModelData("Resources/Models/Sponza-master/sponza.obj"),
+		ModelData("Resources/Models/nanosuit/nanosuit.obj"),
 		ModelData("Resources/Models/supermarine-spitfire/spitfire.fbx",
 			{{"spitfire_d.png"}})
 		});
@@ -286,290 +256,147 @@ void LoadModels(ECSWorld& world)
 
 void MakeABunchaObjects(ECSWorld& world)
 {
-	auto e = world.createEntity();
-	e.addComponent<TransformComponent>(Vector3(4, 10.0f, 48), Vector3(0.10f, 0.1f, 0.1f), Vector3(-90, 180, 0));
-	// Add mesh
-	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
-	e.addComponent<RotateComponent>(0, 40, 0);
+	//auto castle = world.createEntity();
+	//castle.addComponent<TransformComponent>(Vector3(0, -3.0f, 0.0f), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 270, 0));
+	//// Add mesh
+	//castle.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
+	// Add rotation
+	//castle.addComponent<RotateComponent>(Vector3(0, 15, 0));
 
-	e = world.createEntity();
-	e.addComponent<TransformComponent>(Vector3(4, 10.0f, -62), Vector3(0.1f, 0.1f, 0.1f), Vector3(-90, 0, 0));
-	// Add mesh
-	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
-	e.addComponent<RotateComponent>(0, 40, 0);
+	auto flight = world.createEntity();
+	flight.addComponent<TransformComponent>(Vector3(0, 25, -50), Vector3(0.1f, 0.1f, 0.1f), Vector3(-90, 180, 0));
+	flight.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
+	flight.addComponent<RotateComponent>(Vector3(0, 30, 0));
+	flight.addComponent<ParticleComponent>(Vector3(0, 30, 0));
+	flight.addComponent<GravityForceComponent>();
+	flight.addComponent<ForceAccumulatorComponent>();
 }
 
-void MakeABunchaSprings(ECSWorld& world)
+void MakeFireworks(ECSWorld& world)
 {
-	auto e = world.createEntity();
-	float yOffset = 30;
-	e.addComponent<TransformComponent>(Vector3(-2.5f, -5 + yOffset, -3), Vector3(1.0f, 1.0f, 1.0f));
-	e.addComponent<ParticleComponent>();
-	// Add mesh
-	e.addComponent<ModelComponent>("Resources/Models/nanosuit/nanosuit.obj");
-
-	auto springEntinty = world.createEntity();
-	springEntinty.addComponent<TransformComponent>(Vector3(-2.5f, 0 + yOffset, 3));
-	springEntinty.addComponent<FixedSpringComponent>(8, 2, e);
-
-	auto e2 = world.createEntity();
-	e2.addComponent<TransformComponent>(Vector3(2.5f, -5 + yOffset, -1), Vector3(1.0f, 1.0f, 1.0f));
-	e2.addComponent<ParticleComponent>();
-	// Add mesh
-	e2.addComponent<ModelComponent>("Resources/Models/nanosuit/nanosuit.obj");
-
-	auto springEntinty2 = world.createEntity();
-	springEntinty2.addComponent<TransformComponent>(Vector3(2.5f, 0 + yOffset, 1));
-	springEntinty2.addComponent<FixedSpringComponent>(5, 5, e2);
-
-	auto pairedSpring = world.createEntity();
-	pairedSpring.addComponent<PairedSpringComponent>(100, 5.0f, e, e2);
-
-	auto e3 = world.createEntity();
-	e3.addComponent<TransformComponent>(Vector3(-7.5f, -7.5f + yOffset, 1), Vector3(1.0f, 1.0f, 1.0f));
-	e3.addComponent<ParticleComponent>();
-	// Add mesh
-	e3.addComponent<ModelComponent>("Resources/Models/nanosuit/nanosuit.obj");
-
-	auto springEntinty3 = world.createEntity();
-	springEntinty3.addComponent<TransformComponent>(Vector3(-7.5f, -10 + yOffset, -1));
-	springEntinty3.addComponent<FixedSpringComponent>(7, 7, e3);
-
-	auto e4 = world.createEntity();
-	e4.addComponent<TransformComponent>(Vector3(7.5f, -7.5f + yOffset, 3), Vector3(1.0f, 1.0f, 1.0f));
-	e4.addComponent<ParticleComponent>();
-	// Add mesh
-	e4.addComponent<ModelComponent>("Resources/Models/nanosuit/nanosuit.obj");
-
-	auto springEntinty4 = world.createEntity();
-	springEntinty4.addComponent<TransformComponent>(Vector3(7.5f, -10 + yOffset, -3));
-	springEntinty4.addComponent<FixedSpringComponent>(5, 0, e4);
-
-	auto pairedSpring2 = world.createEntity();
-	pairedSpring2.addComponent<PairedSpringComponent>(100, 5.2f, e, e3);
-
-	auto pairedSpring3 = world.createEntity();
-	pairedSpring3.addComponent<PairedSpringComponent>(100, 5.2f, e2, e4);
-
-	auto pairedSpring4 = world.createEntity();
-	pairedSpring4.addComponent<PairedSpringComponent>(100, 10.0f, e3, e4);
+	auto fireworks = world.createEntity();
+	fireworks.addComponent<TransformComponent>(Vector3(0, 60, -50));
+	fireworks.addComponent<ParticleComponent>(Vector3(0, 100, 0));
+	fireworks.addComponent<ForceAccumulatorComponent>();
+	fireworks.addComponent<GravityForceComponent>(0.1f);
+	fireworks.addComponent<FireworksComponent>();
 }
 
-void MakeABunchaSpheres(ECSWorld& world)
+void MakeThreeParticles(ECSWorld& world)
 {
-	for (int i = 0; i < 30; i++)
+	auto particle1 = world.createEntity();
+	particle1.addComponent<TransformComponent>(Vector3(-20, 10, -50));
+	particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle1.addComponent<ForceAccumulatorComponent>();
+	particle1.addComponent<GravityForceComponent>(0.1f);
+	particle1.addComponent<DragForceComponent>();
+
+	auto particle2 = world.createEntity();
+	particle2.addComponent<TransformComponent>(Vector3(0, 10, -50));
+	particle2.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle2.addComponent<ForceAccumulatorComponent>();
+	particle2.addComponent<GravityForceComponent>(0.1f);
+	particle2.addComponent<DragForceComponent>(1.0f, 0.0f);
+
+	auto particle3 = world.createEntity();
+	particle3.addComponent<TransformComponent>(Vector3(20, 10, -50));
+	particle3.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle3.addComponent<ForceAccumulatorComponent>();
+	particle3.addComponent<GravityForceComponent>(0.1f);
+	particle3.addComponent<DragForceComponent>(1.0f, 1.0f);
+}
+
+void MakeSprings(ECSWorld& world)
+{
+	auto particle1 = world.createEntity();
+	particle1.addComponent<TransformComponent>(Vector3(0, 40, -50));
+	particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle1.addComponent<ForceAccumulatorComponent>();
+	particle1.addComponent<GravityForceComponent>();
+
+	auto fSpring1 = world.createEntity();
+	fSpring1.addComponent<TransformComponent>(Vector3(-10, 50, -50));
+	fSpring1.addComponent<FixedSpringComponent>(10.0f, 20.0f, particle1);
+
+	auto fSpring2 = world.createEntity();
+	fSpring2.addComponent<TransformComponent>(Vector3(10, 55, -50));
+	fSpring2.addComponent<FixedSpringComponent>(10.0f, 20.0f, particle1);
+
+	auto particle2 = world.createEntity();
+	particle2.addComponent<TransformComponent>(Vector3(-10, 20, -50));
+	particle2.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle2.addComponent<ForceAccumulatorComponent>();
+	particle2.addComponent<GravityForceComponent>(0.1f);
+
+	auto spring = world.createEntity();
+	spring.addComponent<PairedSpringComponent>(10.0f, 15.0f, particle1, particle2);
+}
+
+void SphereSystem(ECSWorld& world)
+{
+	auto sphere = world.createEntity();
+	sphere.addComponent<TransformComponent>(Vector3(0, 2, 0));
+	sphere.addComponent<ParticleComponent>(Vector3(0, 40, 0));
+	sphere.addComponent<ForceAccumulatorComponent>();
+	sphere.addComponent<GravityForceComponent>();
+	sphere.addComponent<ParticleSphereComponent>(2);
+
+	auto sphere1 = world.createEntity();
+	sphere1.addComponent<TransformComponent>(Vector3(0, 2, 0));
+	sphere1.addComponent<ParticleComponent>(Vector3(RANDOM_FLOAT(-40, 40), 0, 0));
+	sphere1.addComponent<ForceAccumulatorComponent>();
+	sphere1.addComponent<GravityForceComponent>();
+	sphere1.addComponent<ParticleSphereComponent>(2);
+
+	auto sphere2 = world.createEntity();
+	sphere2.addComponent<TransformComponent>(Vector3(0, 2, 0));
+	sphere2.addComponent<ParticleComponent>(Vector3(0, 0, RANDOM_FLOAT(-40, 40)));
+	sphere2.addComponent<ForceAccumulatorComponent>();
+	sphere2.addComponent<GravityForceComponent>();
+	sphere2.addComponent<ParticleSphereComponent>(2);
+}
+
+/***** Assignment 1 Part 1 method *****/
+void Assignment1Part1(ECSWorld& world)
+{
+	auto pivot = world.createEntity();
+	pivot.addComponent<TransformComponent>(Vector3(0, 10, 20));
+
+	auto particle = world.createEntity();
+	particle.addComponent<TransformComponent>(Vector3(0, -5, 20));
+	particle.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle.addComponent<ForceAccumulatorComponent>();
+	particle.addComponent<GravityForceComponent>();
+	particle.addComponent<BungeeEndComponent>();
+
+	auto bungee = world.createEntity();
+	bungee.addComponent<BungeeChordComponent>(10.0f, 10.0f, pivot, particle);
+}
+
+/***** Assignment 1 Part 2 method *****/
+void Assignment1Part2(ECSWorld& world)
+{
+	auto particle = world.createEntity();
+	particle.addComponent<TransformComponent>(Vector3(0, 20, 0));
+	particle.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle.addComponent<ForceAccumulatorComponent>();
+	particle.addComponent<GravityForceComponent>();
+	particle.addComponent<BuoyancyComponent>(Vector3(10, 10, 10), 5, 1);
+	particle.addComponent<DragForceComponent>(0.2f, 0.1f);
+}
+
+/***** Assignment 1 Part 3 method *****/
+void Assignment1Part3(ECSWorld& world)
+{
+	const float range = 30;
+
+	for (int i = 0; i < 20; i++)
 	{
-		auto e = world.createEntity();
-		//e.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-1, 1), 20,0));
-
-		e.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-15.0f, 15.0f), RANDOM_FLOAT(6.0f, 34.0f), RANDOM_FLOAT(-15.0f, 15.0f)));
-		e.addComponent<ParticleComponent>(1, Vector3(RANDOM_FLOAT(-5, 5), RANDOM_FLOAT(-5, 5), RANDOM_FLOAT(-5, 5)));
-		e.addComponent<SphereComponent>(1);
-		Color col = Color(0, RANDOM_FLOAT(0.0f, 1.0f), RANDOM_FLOAT(0.0f, 1.0f));
-		//e.addComponent<DynamicPointLightComponent>(20.0f, col, col, col);
-	}
-
-	auto ref = world.createEntity();
-	ref.addComponent<TransformComponent>(Vector3(0, 20, 0), Vector3(0.3f, 0.3f, 0.3f), Vector3(0, 180, 0));
-	// Add mesh
-	ref.addComponent<ModelComponent>("Resources/Models/nanosuit/nanosuit.obj");
-	ref.addComponent<RotateComponent>(0, 40, 0);
-}
-
-void MakeACable(ECSWorld& world)
-{
-	auto e1 = world.createEntity();
-	e1.addComponent<TransformComponent>(Vector3(0, 40, 0));
-	//e1.addComponent<ParticleComponent>(1, Vector3(0,0,0), 0);
-
-	auto e2 = world.createEntity();
-	e2.addComponent<TransformComponent>(Vector3(0, 30, 0));
-	e2.addComponent<ParticleComponent>(1);
-	
-	auto e = world.createEntity();
-	e.addComponent<CableComponent>(e1, e2, 20);
-}
-
-void MakeCablesAndRods(ECSWorld& world)
-{
-	auto eFixed = world.createEntity();
-	eFixed.addComponent<TransformComponent>(Vector3(10, 40, 0));
-	//e1.addComponent<ParticleComponent>(1, Vector3(0,0,0), 0);
-
-	auto eFixed2 = world.createEntity();
-	eFixed2.addComponent<TransformComponent>(Vector3(20, 10, 0));
-
-	auto eFixed3 = world.createEntity();
-	eFixed3.addComponent<TransformComponent>(Vector3(-20, 10, 0));
-
-	auto e1 = world.createEntity();
-	e1.addComponent<TransformComponent>(Vector3(0, 30, 0));
-	e1.addComponent<ParticleComponent>(10);
-
-	auto e2 = world.createEntity();
-	e2.addComponent<TransformComponent>(Vector3(-10, 20, 0));
-	e2.addComponent<ParticleComponent>(10);
-
-	auto e3 = world.createEntity();
-	e3.addComponent<TransformComponent>(Vector3(0, 10, 0));
-	e3.addComponent<ParticleComponent>(10);
-
-	auto e4 = world.createEntity();
-	e4.addComponent<TransformComponent>(Vector3(10, 20, 0));
-	e4.addComponent<ParticleComponent>(10);
-
-	auto eCable = world.createEntity();
-	eCable.addComponent<CableComponent>(eFixed, e1, 20);
-
-	auto eCable2 = world.createEntity();
-	eCable2.addComponent<PairedSpringComponent>(1000, 20, eFixed2, e4);
-
-	auto eCable3 = world.createEntity();
-	eCable3.addComponent<PairedSpringComponent>(1000, 20, eFixed3, e2);
-
-	auto eRod1 = world.createEntity();
-	eRod1.addComponent<RodComponent>(e1, e2, 10 * sqrt(2));
-	auto eRod2 = world.createEntity();
-	eRod2.addComponent<RodComponent>(e2, e3, 10 * sqrt(2));
-	auto eRod3 = world.createEntity();
-	eRod3.addComponent<RodComponent>(e3, e4, 10 * sqrt(2));
-	auto eRod4 = world.createEntity();
-	eRod4.addComponent<RodComponent>(e4, e1, 10 * sqrt(2));
-
-	auto eRodDiagonal1 = world.createEntity();
-	eRodDiagonal1.addComponent<RodComponent>(e1, e3, 20);
-	auto eRodDiagonal2 = world.createEntity();
-	eRodDiagonal2.addComponent<RodComponent>(e2, e4, 20);
-}
-
-void MakeFlight(ECSWorld& world)
-{
-	auto e = world.createEntity();
-	glm::vec3 rotationInRads = glm::vec3(glm::radians(-90.0f),
-		glm::radians(180.0f), glm::radians(0.0f));
-	Quaternion orientation = glm::quat(rotationInRads);
-	e.addComponent<TransformComponentV2>(Vector3(0, 350.0f, 0), Vector3(0.10f, 0.1f, 0.1f));
-	// Add mesh
-	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(0, -50, 20), Vector3(-90, 0, 0));
-	e.addComponent<RigidBodyComponent>(10.0f ,0.3f, 0.5f);
-	e.addComponent<FlighSimulatorComponent>();
-	e.addComponent<FollowCameraComponent>(Vector3(0.0f, 15.0f, 40.0f));
-	e.addComponent<CameraLookComponent>();
-	e.addComponent<InfiniteSpawnTargetComponent>();
-
-	std::vector<int> p1 { GLFW_KEY_E };
-	std::vector<int> n1 { GLFW_KEY_Q };
-	//Right Wing
-	auto RW = world.createEntity();
-	RW.addComponent<AeroControlComponent>(p1, n1);
-	RW.addComponent<AeroMinMaxComponent>(Mat3(0, 0, 0, 0, 0.000f, 0, 0, -0.0005f, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-		Mat3(0, 0, 0, 0, -0.000f, 0, 0, 0.0005f, 0));
-	RW.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(100.0f, 0, 50.0f));
-
-	//Left Wing
-	auto LW = world.createEntity();
-	LW.addComponent<AeroControlComponent>(n1, p1);
-	LW.addComponent<AeroMinMaxComponent>(Mat3(0, 0, 0, 0, 0.000f, 0, 0, -0.0005f, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-		Mat3(0, 0, 0, 0, -0.000f, 0, 0, 0.0005f, 0));
-	LW.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(-100.0f, 0, 50.0f));
-
-	//Rudder 
-	std::vector<int> pR = { GLFW_KEY_A };
-	std::vector<int> nR = { GLFW_KEY_D };
-	auto R = world.createEntity();
-	R.addComponent<AeroControlComponent>(pR, nR);
-	R.addComponent<AeroMinMaxComponent>(Mat3(0, 0, 0, 0, 0, 0, 0.002f, 0, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0.00f, 0, 0),
-		Mat3(0, 0, 0, 0, 0, 0, -0.002f, 0, 0));
-	R.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(0, 0, -200.0f));
-
-	//Back Wing
-	std::vector<int> p2{ GLFW_KEY_W };
-	std::vector<int> n2{ GLFW_KEY_S };
-	auto RW2 = world.createEntity();
-	RW2.addComponent<AeroControlComponent>(p2, n2);
-	RW2.addComponent<AeroMinMaxComponent>(Mat3(0, 0, 0, 0, 0, 0, 0, -0.0015f, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0, 0.0015f, 0));
-	RW2.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(0.0f, 0, -200.0f));
-
-	for (int i = -40; i <= 40; i++)
-	{
-		auto buildingR = world.createEntity();
-		buildingR.addComponent<TransformComponentV2>(Vector3(100.0f, 0.0f, 50.0f * i));
-		buildingR.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(100.0f, 500.0f));
-
-		auto buildingL = world.createEntity();
-		buildingL.addComponent<TransformComponentV2>(Vector3(-100.0f, 0.0f, 50.0f * i));
-		buildingL.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(100.0f, 500.0f));
-	}
-}
-
-void TestContacts(ECSWorld& world)
-{
-	for (int i = 0; i < 30; i++)
-	{
-		auto e = world.createEntity();
-		e.addComponent<TransformComponentV2>(Vector3(RANDOM_FLOAT(-200.0f, 200.0f), RANDOM_FLOAT(-200.0f, 200.0f), RANDOM_FLOAT(-200.0f, 200.0f)),
-			Vector3(1, 1, 1),
-			Vector3(RANDOM_FLOAT(-180.0f, 180.0f), RANDOM_FLOAT(-180.0f, 180.0f), RANDOM_FLOAT(-180.0f, 180.0f)));
-		e.addComponent<RigidBodyComponent>();
-		e.addComponent<MoveInBoundsComponent>(Vector3(RANDOM_FLOAT(-10.0f, 10.0f), RANDOM_FLOAT(-10.0f, 10.0f), RANDOM_FLOAT(-10.0f, 10.0f)),
-			Vector3(200, 200, 200));
-		auto col = world.createEntity();
-		if ((RANDOM_FLOAT(0.0f, 1.0f) >= 0.5f))
-		{
-			col.addComponent<SphereColliderComponent>(e, RANDOM_FLOAT(10.0f, 50.0f));
-		}
-		else
-		{
-			col.addComponent<BoxColliderComponent>(e, Vector3(RANDOM_FLOAT(30.0f, 70.0f), RANDOM_FLOAT(30.0f, 70.0f), RANDOM_FLOAT(30.0f, 70.0f)));
-		}
-	}
-	/*for (int i = 0; i < 2; i++)
-	{
-		auto e = world.createEntity();
-		e.addComponent<TransformComponentV2>(Vector3(50 * ( i % 2 == 0 ? -1 : 1), 0, 0));
-		e.addComponent<RigidBodyComponent>();
-		e.addComponent<MoveInBoundsComponent>(Vector3(10 * (i % 2 == 0 ? 1 : -1), 0, 0), Vector3(100, 100, 100));
-		auto col = world.createEntity();
-		col.addComponent<SphereColliderComponent>(e, 30);
-	}*/
-}
-
-void TestCollision(ECSWorld& world)
-{
-	// Floor 1
-	auto floor1 = world.createEntity();
-	floor1.addComponent<TransformComponentV2>(Vector3(0, -50, 0), Vector3(1, 1, 1), Vector3(0, 0, 0));
-	floor1.addComponent<RigidBodyComponent>(100000.0f, 0.4f, 0.3f, Vector3(0, 0, 0), Vector3(0, 0, 0), 0);
-	auto floorCol1 = world.createEntity();
-	floorCol1.addComponent<BoxColliderComponent>(floor1, Vector3(1000, 10, 1000));
-
-	// Floor 2
-	/*auto floor2 = world.createEntity();
-	floor2.addComponent<TransformComponentV2>(Vector3(80, -50, 0), Vector3(1, 1, 1), Vector3(0, 0, 30));
-	floor2.addComponent<RigidBodyComponent>(10000.0f, 0.0f, 0.0f, Vector3(0, 0, 0), Vector3(0, 0, 0), 0);
-	auto floorCol2 = world.createEntity();
-	floorCol2.addComponent<BoxColliderComponent>(floor2, Vector3(300, 10, 300));*/
-
-	//// Object 1
-	//auto object1 = world.createEntity();
-	//object1.addComponent<TransformComponentV2>(Vector3(-30, 50, 0));
-	//object1.addComponent<RigidBodyComponent>();
-	//auto objectCol1 = world.createEntity();
-	//objectCol1.addComponent<SphereColliderComponent>(object1, 10);
-
-	// Object 2
-	for (int i = 0; i < 40; i++)
-	{
-		auto object2 = world.createEntity();
-		object2.addComponent<TransformComponentV2>(Vector3(RANDOM_FLOAT(-50.0f, 50.0f), 50, RANDOM_FLOAT(-50.0f, 50.0f)), Vector3(1, 1, 1), Vector3(RANDOM_FLOAT(0, 180), RANDOM_FLOAT(0, 180), RANDOM_FLOAT(0, 180)));
-		object2.addComponent<RigidBodyComponent>(10.0f, 0.1f, 0.1f, Vector3(0, 0, 0), Vector3(0, 0, 0), 5);
-		auto objectCol2 = world.createEntity();
-		objectCol2.addComponent<BoxColliderComponent>(object2, Vector3(10, 10, 10));
+		auto particle1 = world.createEntity();
+		particle1.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-range, range), RANDOM_FLOAT(-range, range), RANDOM_FLOAT(-range / 2, range / 2)));
+		particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+		particle1.addComponent<ForceAccumulatorComponent>(RANDOM_FLOAT(1, 10));
+		particle1.addComponent<NBodyComponent>();
 	}
 }
 
@@ -577,64 +404,48 @@ void SetupLights(ECSWorld& world)
 {
 	auto l = world.createEntity();
 	l.addComponent<TransformComponent>(Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(90, 0, 0));
-	l.addComponent<DynamicDirectionalLightComponent>(Color(0.00, 0.0, 0), Color::White, Color::Orange);
+	l.addComponent<DynamicDirectionalLightComponent>(Color(0.0, 0.1, 0.1), Color(0.0, 0.1, 0.1), Color(0.0, 0.1, 0.1));
 
 	// Lanterns
 	auto pl1 = world.createEntity();
 	pl1.addComponent<TransformComponent>(Vector3(22, 14, 48.5f));
 	pl1.addComponent<DynamicPointLightComponent>(100.0f, Color(0.1, 0, 0), Color(1.0f, 0.0f, 0.0f), Color(1.0f, 0.0f, 0.0f));
-	pl1.addComponent<ParticleComponent>();
 	auto hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(23, 15, 48.0f));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl1);
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(22, 13.5f, 50.5f));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl1);
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(21, 12.5f, 47.5f));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl1);
 
 	auto pl2 = world.createEntity();
 	pl2.addComponent<TransformComponent>(Vector3(-14.5f, 14, 49.0f));
 	pl2.addComponent<DynamicPointLightComponent>(100.0f, Color(0, 0, 0.1f), Color(0.0f, 0.0f, 1.0f), Color(0.0f, 0.0f, 1.0f));
-	pl2.addComponent<ParticleComponent>();
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f + 1, 14 - 1, 49.0f - 1));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl2);
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f - 0.5f, 14 + 1, 49.0f));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl2);
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f, 14 - 1, 49.0f + 1));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl2);
-	
+
 	auto pl3 = world.createEntity();
 	pl3.addComponent<TransformComponent>(Vector3(22, 14, -62.0f));
 	pl3.addComponent<DynamicPointLightComponent>(100.0f, Color(0, 0.1f, 0), Color(0.0f, 1.0f, 0.0f), Color(0.0f, 1.0f, 0.0f));
-	pl3.addComponent<ParticleComponent>();
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(22 - 1, 14 - 1, -62.0f));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl3);
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(22, 14 + 0.5f, -62.0f - 1));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl3);
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(22 + 1, 14, -62.0f + 0.5f));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl3);
 
 	auto pl4 = world.createEntity();
 	pl4.addComponent<TransformComponent>(Vector3(-14.5f, 14, -61.5f));
 	pl4.addComponent<DynamicPointLightComponent>(100.0f, Color(0.1, 0.05, 0), Color(1.0f, 0.55f, 0.0f), Color(1.0f, 0.55f, 0.0f));
-	pl4.addComponent<ParticleComponent>();
 	hook = world.createEntity();
-	hook.addComponent<TransformComponent>(Vector3(-14.5f - 1, 14, -61.5f -1));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl4);
+	hook.addComponent<TransformComponent>(Vector3(-14.5f - 1, 14, -61.5f - 1));
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f - 0.25f, 14 - 0.5f, -61.5f + 1));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl4);
 	hook = world.createEntity();
-	hook.addComponent<TransformComponent>(Vector3(-14.5f + 0.5f, 14+ 1, -61.5f + 1));
-	hook.addComponent<FixedSpringComponent>(5, 1, pl4);
+	hook.addComponent<TransformComponent>(Vector3(-14.5f + 0.5f, 14 + 1, -61.5f + 1));
 
 	// Spears
 	std::vector<Color> cols = { Color(1,0,0), Color(0,1,0), Color(0,0,1), Color(0.7f,0.55f,0) };
@@ -645,7 +456,6 @@ void SetupLights(ECSWorld& world)
 			pl1 = world.createEntity();
 			pl1.addComponent<TransformComponent>(Vector3((i % 2 == 0 ? 8 : -1), 85, 49.5f - 37 * j), Vector3(1, 1, 1), Vector3(180, 0, 0));
 			pl1.addComponent<DynamicSpotLightComponent>(10.0f, 100, Color(0, 0, 0), cols[3 - j], cols[3 - j], 5);
-			pl1.addComponent<RotateComponent>((i % 2 == 0 ? 1 : -1) * 100,100,100);
 		}
 	}
 }

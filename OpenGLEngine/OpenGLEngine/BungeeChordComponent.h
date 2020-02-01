@@ -3,9 +3,9 @@
 
 namespace Reality
 {
-	struct PairedSpringComponent
+	struct BungeeChordComponent
 	{
-		PairedSpringComponent(float _springConstant = 10.0f, float _restLength = 10.0f, ECSEntity _connectedEntityA = ECSEntity(), ECSEntity _connectedEntityB = ECSEntity()) :
+		BungeeChordComponent(float _springConstant = 10.0f, float _restLength = 10.0f, ECSEntity _connectedEntityA = ECSEntity(), ECSEntity _connectedEntityB = ECSEntity()) :
 			springConstant(_springConstant), restLength(_restLength), connectedEntityA(_connectedEntityA), connectedEntityB(_connectedEntityB)
 		{
 

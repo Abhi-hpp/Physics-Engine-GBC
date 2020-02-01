@@ -2,6 +2,11 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "MouseMoveEvent.h"
+#include "TransformComponent.h"
+#include "ParticleComponent.h"
+#include "ForceAccumulatorComponent.h"
+#include "GravityForceComponent.h"
+#include "BungeeChordComponent.h"
 
 namespace Reality
 {
