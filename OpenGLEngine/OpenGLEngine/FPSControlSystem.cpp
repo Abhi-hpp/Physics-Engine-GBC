@@ -7,7 +7,7 @@ namespace Reality
 	{
 		requireComponent<FPSControlComponent>();
 	}
-
+bool create = 0;
 
 	void FPSControlSystem::Update(float deltaTime)
 	{
@@ -17,6 +17,10 @@ namespace Reality
 		// Move
 		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 			glfwSetWindowShouldClose(window, true);
+		
+		
+		
+		
 
 		for (auto e : getEntities())
 		{
@@ -30,7 +34,10 @@ namespace Reality
 				camera.ProcessKeyboard(LEFT, fpsControl.sidewaysSpeed * deltaTime);
 			if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 				camera.ProcessKeyboard(RIGHT, fpsControl.sidewaysSpeed * deltaTime);
-
+			
+			//// Create Bungee
+			//if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+			//	create = 1;
 			// Look
 			auto mouseMoveEvents = getWorld().getEventManager().getEvents<MouseMoveEvent>();
 			for (auto event : mouseMoveEvents)

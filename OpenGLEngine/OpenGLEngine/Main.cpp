@@ -15,6 +15,7 @@
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
 #include "DynamicSpotLightSystem.h"
+#include "MouseMoveEvent.h"
 #include <string>
 #include <stdlib.h>     
 #include <time.h>      
@@ -29,6 +30,7 @@ void MakeFireworks(ECSWorld& world);
 void Make3Particles(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
 void MakeNBody(ECSWorld& world);
+void MakeBungee(ECSWorld& world);
 
 int main()
 {
@@ -61,6 +63,7 @@ int main()
 	world.getSystemManager().addSystem<GravityForceSystem>();
 	world.getSystemManager().addSystem<DragForceSystem>();
 	world.getSystemManager().addSystem<FixedSpringSystem>();
+	world.getSystemManager().addSystem<BungeeSystem>();
 	world.getSystemManager().addSystem<PairedSpringSystem>();
 	world.getSystemManager().addSystem<NBodySystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
@@ -300,6 +303,28 @@ void MakeNBody(ECSWorld & world)
 		//nBody.addComponent<GravityForceComponent>();
 		nBody.addComponent<NBodyComponent>(1, 10, 3, 10, RANDOM_FLOAT(1.0f, 10.0f));
 	}
+}
+
+void MakeBungee(ECSWorld& world)
+{
+	// Create Bungee
+	bool create = 0;
+	//if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+		create = 1;
+	for (int i = 0; i < 10; i++)
+		{
+		if (create = 1) 
+	{
+			auto bungee = world.createEntity();
+			bungee.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-50.0f, 50.0f), RANDOM_FLOAT(-50.0f, 50.0f), RANDOM_FLOAT(-100.0f, 0.0f)));
+			bungee.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+			bungee.addComponent<ForceAccumulatorComponent>();
+			bungee.addComponent<GravityForceComponent>();
+			bungee.addComponent<NBodyComponent>(1, 10, 3, 10, RANDOM_FLOAT(1.0f, 10.0f));
+		}
+		
+		}
+	
 }
 
 void SetupLights(ECSWorld& world)
