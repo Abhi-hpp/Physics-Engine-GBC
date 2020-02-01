@@ -168,11 +168,11 @@
     <ClCompile Include="BungeeSystem.cpp">
       <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
     </ClCompile>
-    <ClCompile Include="BuoyantSpringSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="NBodySystem.cpp">
       <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoyantSpringSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Bouyancy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,17 +332,17 @@
     <ClInclude Include="BungeeSystem.h">
       <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
     </ClInclude>
-    <ClInclude Include="BuoyantSpringComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BuoyantSpringSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="NBodyComponent.h">
       <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
     </ClInclude>
     <ClInclude Include="NBodySystem.h">
       <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyantSpringComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Bouyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyantSpringSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Bouyancy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
