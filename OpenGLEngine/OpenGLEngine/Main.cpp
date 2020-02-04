@@ -8,6 +8,8 @@
 #include "DragForceSystem.h"
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
+#include "ParticleSphereSystem.h"
+#include "ParticleContactResolutionSystem.h"
 #include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
 #include "DynamicDirectionalLightSystem.h"
@@ -26,6 +28,7 @@ void MakeABunchaObjects(ECSWorld& world);
 void MakeFireworks(ECSWorld& world);
 void Make3Particles(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
+void MakeABunchaSpheres(ECSWorld& world);
 
 int main()
 {
@@ -35,7 +38,7 @@ int main()
 	world.data.InitRendering();
 	//LoadAssets(world);
 	
-	world.data.renderUtil->camera.Position = Vector3(0, 40.0f, 50.0f);
+	world.data.renderUtil->camera.Position = Vector3(0, 0.0f, 50.0f);
 	world.data.renderUtil->SetFOV(60);
 	// Create entities
 
@@ -47,7 +50,8 @@ int main()
 	//MakeABunchaObjects(world);
 	//MakeFireworks(world);
 	//Make3Particles(world);
-	MakeABunchaSprings(world);
+	//MakeABunchaSprings(world);
+	MakeABunchaSpheres(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -59,6 +63,8 @@ int main()
 	world.getSystemManager().addSystem<DragForceSystem>();
 	world.getSystemManager().addSystem<FixedSpringSystem>();
 	world.getSystemManager().addSystem<PairedSpringSystem>();
+	world.getSystemManager().addSystem<ParticleSphereSystem>();
+	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
@@ -110,6 +116,7 @@ int main()
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<FireworksSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -124,6 +131,9 @@ int main()
 
 		// Force Accumulator
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
+
+		// Contact Resolution
+		world.getSystemManager().getSystem<ParticleContactResolutionSystem>().Update(fixedDeltaTime);
 
 		// Integrator
 		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
@@ -282,6 +292,16 @@ void MakeABunchaSprings(ECSWorld & world)
 	auto pairedSpring = world.createEntity();
 	pairedSpring.addComponent<PairedSpringComponent>(20.0f, 20.0f, particle1, particle2);
 
+}
+
+void MakeABunchaSpheres(ECSWorld & world)
+{
+	auto sphere = world.createEntity();
+	sphere.addComponent<TransformComponent>(Vector3(0, 0, 0));
+	sphere.addComponent<ParticleComponent>(Vector3(RANDOM_FLOAT(-40, 40), RANDOM_FLOAT(-40, 40), RANDOM_FLOAT(-40, 40)));
+	sphere.addComponent<ForceAccumulatorComponent>(1.0f);
+	sphere.addComponent<GravityForceComponent>();
+	sphere.addComponent<ParticleSphereComponent>(3);
 }
 
 void SetupLights(ECSWorld& world)

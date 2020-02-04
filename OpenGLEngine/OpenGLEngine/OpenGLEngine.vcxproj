@@ -171,6 +171,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ParticleSphereSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ParticleSystem.cpp">
       <SubType>
       </SubType>
@@ -274,6 +282,22 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ParticleComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereSystem.h">
       <SubType>
       </SubType>
     </ClInclude>

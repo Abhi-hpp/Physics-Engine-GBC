@@ -64,6 +64,9 @@
     <Filter Include="Physics\Particles\PairedSpring">
       <UniqueIdentifier>{26df7371-0611-42cd-b6e5-2556995c23d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestCS\ParticleSphereDemo">
+      <UniqueIdentifier>{8f440b87-7f9c-4d7f-993c-ec5fa08dde39}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -155,6 +158,12 @@
     </ClCompile>
     <ClCompile Include="PairedSpringSystem.cpp">
       <Filter>Physics\Particles\PairedSpring</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSphereSystem.cpp">
+      <Filter>TestCS\ParticleSphereDemo</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +316,18 @@
     </ClInclude>
     <ClInclude Include="PairedSpringSystem.h">
       <Filter>Physics\Particles\PairedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereComponent.h">
+      <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereSystem.h">
+      <Filter>TestCS\ParticleSphereDemo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
