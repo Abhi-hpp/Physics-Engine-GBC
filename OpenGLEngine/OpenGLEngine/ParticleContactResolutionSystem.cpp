@@ -1,6 +1,7 @@
 #include "ParticleContactResolutionSystem.h"
 #include "ParticleComponent.h"
 #include "ForceAccumulatorSystem.h"
+#include "TransformComponent.h"
 
 namespace Reality
 {
@@ -15,6 +16,7 @@ namespace Reality
 		for (auto& contact : contactEvents)
 		{
 			ResolveVelocity(contact, deltaTime);
+			ResolveInterPenetration(contact);
 		}
 	}
 
@@ -69,5 +71,38 @@ namespace Reality
 		{
 			contact.entityB.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invMB;
 		}
+	}
+	void ParticleContactResolutionSystem::ResolveInterPenetration(ParticleContactEvent & contact)
+	{
+		if (contact.penetration < 0)
+		{
+			return;
+		}
+
+		float invMassA = contact.entityA.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityA.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
+
+		float invMassB = contact.entityB.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityB.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
+
+		float totalInverseMass = invMassA + invMassB;
+
+		if (totalInverseMass <= 0)
+		{
+			return;
+		}
+
+		Vector3 movePerUnitIMass = contact.normal * (contact.penetration / totalInverseMass);
+
+		if (contact.entityA.hasComponent<TransformComponent>())
+		{
+			contact.entityA.getComponent<TransformComponent>().position += movePerUnitIMass * invMassA;
+		}
+
+		if (contact.entityB.hasComponent<TransformComponent>())
+		{
+			contact.entityB.getComponent<TransformComponent>().position -= movePerUnitIMass * invMassB;
+		}
+
 	}
 }

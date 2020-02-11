@@ -12,5 +12,6 @@ namespace Reality
 	private:
 		float CalculateSeparationVelocity(ParticleContactEvent& contact);
 		void ResolveVelocity(ParticleContactEvent& contact, float deltaTime);
+		void ResolveInterPenetration(ParticleContactEvent& contact);
 	};
 }
