@@ -124,6 +124,10 @@
     <ClCompile Include="AssetLoader.cpp" />
     <ClCompile Include="BungeeChordSystem.cpp" />
     <ClCompile Include="BuoyancySystem.cpp" />
+    <ClCompile Include="CableSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DragForceSystem.cpp">
       <SubType>
@@ -178,12 +182,28 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ParticleSphereSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ParticleSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RotateSystem.cpp">
       <SubType>
       </SubType>
@@ -198,6 +218,14 @@
     <ClInclude Include="BungeeChordSystem.h" />
     <ClInclude Include="BuoyancyComponent.h" />
     <ClInclude Include="BuoyancySystem.h" />
+    <ClInclude Include="CableComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CableSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLightComponent.h" />
@@ -298,13 +326,45 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ParticleSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RotateComponent.h">
       <SubType>
       </SubType>
