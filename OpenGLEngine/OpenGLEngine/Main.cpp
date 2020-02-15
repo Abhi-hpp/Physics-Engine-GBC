@@ -443,6 +443,8 @@ void CreateParticleArchetype(ECSEntity e)
 
 void MakeARopeBridge(ECSWorld & world)
 {
+	///////////////////////////////////1 Set/////////////////////////////////////
+	//FIrst cable
 	auto ePivot1 = world.createEntity();
 	ePivot1.addComponent<TransformComponent>(Vector3(3, 10, 5));
 
@@ -450,6 +452,11 @@ void MakeARopeBridge(ECSWorld & world)
 	e1.addComponent<TransformComponent>(Vector3(0, 3, 5));
 	CreateParticleArchetype(e1);
 
+	auto cable1 = world.createEntity();
+	cable1.addComponent<CableComponent>(ePivot1, e1, 20, 1);
+
+
+	//Second cable
 	auto ePivot2 = world.createEntity();
 	ePivot2.addComponent<TransformComponent>(Vector3(3, 10, -5));
 
@@ -457,16 +464,18 @@ void MakeARopeBridge(ECSWorld & world)
 	e2.addComponent<TransformComponent>(Vector3(0, 2, -5));
 	CreateParticleArchetype(e2);
 
-	auto rod1 = world.createEntity();
-	rod1.addComponent<RodComponent>(e1, e2, 10);
-
-	auto cable1 = world.createEntity();
-	cable1.addComponent<CableComponent>(ePivot1, e1, 20, 1);
-
 	auto cable2 = world.createEntity();
 	cable2.addComponent<CableComponent>(ePivot2, e2, 20, 1);
 
-	// 2
+
+	//Connect first and second
+	auto rod1 = world.createEntity();
+	rod1.addComponent<RodComponent>(e1, e2, 10);
+	///////////////////////////////////1 Set/////////////////////////////////////
+
+
+	///////////////////////////////////2 Set/////////////////////////////////////
+	//Third cable
 	auto ePivot3 = world.createEntity();
 	ePivot3.addComponent<TransformComponent>(Vector3(3 + 10, 10, 5));
 
@@ -474,6 +483,11 @@ void MakeARopeBridge(ECSWorld & world)
 	e3.addComponent<TransformComponent>(Vector3(0 + 10, -2, 5));
 	CreateParticleArchetype(e3);
 
+	auto cable3 = world.createEntity();
+	cable3.addComponent<CableComponent>(ePivot3, e3, 22, 1);
+
+
+	//Fourth cable
 	auto ePivot4 = world.createEntity();
 	ePivot4.addComponent<TransformComponent>(Vector3(3 + 10, 10, -5));
 
@@ -481,16 +495,36 @@ void MakeARopeBridge(ECSWorld & world)
 	e4.addComponent<TransformComponent>(Vector3(0 + 10, 0, -5));
 	CreateParticleArchetype(e4);
 
-	auto rod2 = world.createEntity();
-	rod2.addComponent<RodComponent>(e3, e4, 10);
-
-	auto cable3 = world.createEntity();
-	cable3.addComponent<CableComponent>(ePivot3, e3, 15, 1);
-
 	auto cable4 = world.createEntity();
-	cable4.addComponent<CableComponent>(ePivot4, e4, 15, 1);
+	cable4.addComponent<CableComponent>(ePivot4, e4, 22, 1);
 
-	// 3
+	//connect 3, 4
+	auto rod2 = world.createEntity();
+	rod2.addComponent<RodComponent>(e3, e4, 10);	
+	///////////////////////////////////2 Set/////////////////////////////////////
+
+
+	///////////////////////////////////connect 1, 2 Set/////////////////////////////////////
+	//Connect 1, 3
+	auto rod3 = world.createEntity();
+	rod3.addComponent<RodComponent>(e1, e3, 10);
+	//Connect 2, 4
+	auto rod4 = world.createEntity();
+	rod4.addComponent<RodComponent>(e2, e4, 10);
+	//Connect 1, 4
+	auto rod5 = world.createEntity();
+	rod5.addComponent<RodComponent>(e1, e4, 10 * pow(2.0f, 0.5f));
+	//Connect 2, 3
+	auto rod6 = world.createEntity();
+	rod6.addComponent<RodComponent>(e2, e3, 10 * pow(2.0f, 0.5f));
+	///////////////////////////////////connect 1, 2 Set/////////////////////////////////////
+
+
+
+
+
+	///////////////////////////////////3 Set/////////////////////////////////////
+	//5 cable
 	auto ePivot5 = world.createEntity();
 	ePivot5.addComponent<TransformComponent>(Vector3(3 - 10, 10, 5));
 
@@ -498,6 +532,10 @@ void MakeARopeBridge(ECSWorld & world)
 	e5.addComponent<TransformComponent>(Vector3(0 - 10, 1, 5));
 	CreateParticleArchetype(e5);
 
+	auto cable5 = world.createEntity();
+	cable5.addComponent<CableComponent>(ePivot5, e5, 18, 1);
+
+	//6 cable
 	auto ePivot6 = world.createEntity();
 	ePivot6.addComponent<TransformComponent>(Vector3(3 - 10, 10, -5));
 
@@ -505,34 +543,162 @@ void MakeARopeBridge(ECSWorld & world)
 	e6.addComponent<TransformComponent>(Vector3(0 - 10, -1, -5));
 	CreateParticleArchetype(e6);
 
-	auto rod3 = world.createEntity();
-	rod3.addComponent<RodComponent>(e5, e6, 10);
-
-	auto cable5 = world.createEntity();
-	cable5.addComponent<CableComponent>(ePivot5, e5, 15, 1);
-
 	auto cable6 = world.createEntity();
-	cable6.addComponent<CableComponent>(ePivot6, e6, 15, 1);
+	cable6.addComponent<CableComponent>(ePivot6, e6, 18, 1);
 
-	// rods
-	auto rod4 = world.createEntity();
-	rod4.addComponent<RodComponent>(e1, e3, 10);
-	auto rod5 = world.createEntity();
-	rod5.addComponent<RodComponent>(e2, e4, 10);
-	auto rod6 = world.createEntity();
-	rod6.addComponent<RodComponent>(e5, e1, 10);
+	//connect 5, 6
 	auto rod7 = world.createEntity();
-	rod7.addComponent<RodComponent>(e6, e2, 10);
+	rod7.addComponent<RodComponent>(e5, e6, 10);
+	///////////////////////////////////3 Set/////////////////////////////////////
 
-	// diagonal rods
+
+	///////////////////////////////////connect 1, 3 Set/////////////////////////////////////
+	//connect 5, 1
 	auto rod8 = world.createEntity();
-	rod8.addComponent<RodComponent>(e1, e4, 10 * pow(2.0f, 0.5f));
+	rod8.addComponent<RodComponent>(e5, e1, 10);
+	//connect 6, 2
 	auto rod9 = world.createEntity();
-	rod9.addComponent<RodComponent>(e2, e3, 10 * pow(2.0f, 0.5f));
+	rod9.addComponent<RodComponent>(e6, e2, 10);
+	//connect 6, 1
 	auto rod10 = world.createEntity();
 	rod10.addComponent<RodComponent>(e6, e1, 10 * pow(2.0f, 0.5f));
+	//connect 5, 2
 	auto rod11 = world.createEntity();
 	rod11.addComponent<RodComponent>(e5, e2, 10 * pow(2.0f, 0.5f));
+	///////////////////////////////////connect 1, 3 Set/////////////////////////////////////
+
+
+	///////////////////////////////////4 Set/////////////////////////////////////
+	//7 cable
+	auto ePivot7 = world.createEntity();
+	ePivot7.addComponent<TransformComponent>(Vector3(3 + 20, 10, 5));
+
+	auto e7 = world.createEntity();
+	e7.addComponent<TransformComponent>(Vector3(0 + 20, 1, 5));
+	CreateParticleArchetype(e7);
+
+	auto cable7 = world.createEntity();
+	cable7.addComponent<CableComponent>(ePivot7, e7, 22, 1);
+
+	//8 cable
+	auto ePivot8 = world.createEntity();
+	ePivot8.addComponent<TransformComponent>(Vector3(3 + 20, 10, -5));
+
+	auto e8 = world.createEntity();
+	e8.addComponent<TransformComponent>(Vector3(0 + 20, -1, -5));
+	CreateParticleArchetype(e8);
+
+	auto cable8 = world.createEntity();
+	cable8.addComponent<CableComponent>(ePivot8, e8, 22, 1);
+
+	//connect 7, 8
+	auto rod12 = world.createEntity();
+	rod12.addComponent<RodComponent>(e7, e8, 10);
+	///////////////////////////////////4 Set/////////////////////////////////////
+
+	///////////////////////////////////connect 2, 4 Set/////////////////////////////////////
+	//connect 3, 7
+	auto rod13 = world.createEntity();
+	rod13.addComponent<RodComponent>(e3, e7, 10);
+	//connect 4, 8
+	auto rod14 = world.createEntity();
+	rod14.addComponent<RodComponent>(e4, e8, 10);
+	//connect 3, 8
+	auto rod15 = world.createEntity();
+	rod15.addComponent<RodComponent>(e3, e8, 10 * pow(2.0f, 0.5f));
+	//connect 4, 7
+	auto rod16 = world.createEntity();
+	rod16.addComponent<RodComponent>(e4, e7, 10 * pow(2.0f, 0.5f));
+	///////////////////////////////////connect 2, 4 Set/////////////////////////////////////
+
+
+	///////////////////////////////////5 Set/////////////////////////////////////
+	//9 cable
+	auto ePivot9 = world.createEntity();
+	ePivot9.addComponent<TransformComponent>(Vector3(3 + 30, 10, 5));
+
+	auto e9 = world.createEntity();
+	e9.addComponent<TransformComponent>(Vector3(0 + 30, 1, 5));
+	CreateParticleArchetype(e9);
+
+	auto cable9 = world.createEntity();
+	cable9.addComponent<CableComponent>(ePivot9, e9, 20, 1);
+
+	//10 cable
+	auto ePivot10 = world.createEntity();
+	ePivot10.addComponent<TransformComponent>(Vector3(3 + 30, 10, -5));
+
+	auto e10 = world.createEntity();
+	e10.addComponent<TransformComponent>(Vector3(0 + 30, -1, -5));
+	CreateParticleArchetype(e10);
+
+	auto cable10 = world.createEntity();
+	cable10.addComponent<CableComponent>(ePivot10, e10, 20, 1);
+
+	//connect 9, 10
+	auto rod17 = world.createEntity();
+	rod17.addComponent<RodComponent>(e9, e10, 10);
+	///////////////////////////////////5 Set/////////////////////////////////////
+
+
+	///////////////////////////////////connect 4, 5 Set/////////////////////////////////////
+	//connect 7, 9
+	auto rod18 = world.createEntity();
+	rod18.addComponent<RodComponent>(e7, e9, 10);
+	//connect 8, 10
+	auto rod19 = world.createEntity();
+	rod19.addComponent<RodComponent>(e8, e10, 10);
+	//connect 7, 10
+	auto rod20 = world.createEntity();
+	rod20.addComponent<RodComponent>(e7, e10, 10 * pow(2.0f, 0.5f));
+	//connect 8, 9
+	auto rod21 = world.createEntity();
+	rod21.addComponent<RodComponent>(e8, e9, 10 * pow(2.0f, 0.5f));
+	///////////////////////////////////connect 4, 5 Set/////////////////////////////////////
+
+
+	///////////////////////////////////6 Set/////////////////////////////////////
+	//11 cable
+	auto ePivot11 = world.createEntity();
+	ePivot11.addComponent<TransformComponent>(Vector3(3 + 40, 10, 5));
+
+	auto e11 = world.createEntity();
+	e11.addComponent<TransformComponent>(Vector3(0 + 40, 1, 5));
+	CreateParticleArchetype(e11);
+
+	auto cable11 = world.createEntity();
+	cable11.addComponent<CableComponent>(ePivot11, e11, 18, 1);
+
+	//12 cable
+	auto ePivot12 = world.createEntity();
+	ePivot12.addComponent<TransformComponent>(Vector3(3 + 40, 10, -5));
+
+	auto e12 = world.createEntity();
+	e12.addComponent<TransformComponent>(Vector3(0 + 40, -1, -5));
+	CreateParticleArchetype(e12);
+
+	auto cable12 = world.createEntity();
+	cable12.addComponent<CableComponent>(ePivot12, e12, 18, 1);
+
+	//connect 11, 12
+	auto rod22 = world.createEntity();
+	rod22.addComponent<RodComponent>(e11, e12, 10);
+	///////////////////////////////////6 Set/////////////////////////////////////
+
+	///////////////////////////////////connect 5, 6 Set/////////////////////////////////////
+	//connect 9, 11
+	auto rod23 = world.createEntity();
+	rod23.addComponent<RodComponent>(e9, e11, 10);
+	//connect 10, 12
+	auto rod24 = world.createEntity();
+	rod24.addComponent<RodComponent>(e10, e12, 10);
+	//connect 9, 12
+	auto rod25 = world.createEntity();
+	rod25.addComponent<RodComponent>(e9, e12, 10 * pow(2.0f, 0.5f));
+	//connect 10, 11
+	auto rod26 = world.createEntity();
+	rod26.addComponent<RodComponent>(e10, e11, 10 * pow(2.0f, 0.5f));
+	///////////////////////////////////connect 5, 6 Set/////////////////////////////////////
 }
 
 void MakeABunchaCablesAndRods(ECSWorld & world)
