@@ -12,6 +12,7 @@
 #include "PairedBungeeChordSystem.h"
 #include "BuoyancySystem.h"
 #include "NBodySystem.h"
+#include "TriangleOfBridgeSystem.h"
 #include "ParticleSphereSystem.h"
 #include "CableSystem.h"
 #include "RodSystem.h"
@@ -37,7 +38,6 @@ void Make3Particles(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
 void MakeABunchaSpheres(ECSWorld& world);
 void MakeABunchaCablesAndRods(ECSWorld& world);
-void MakeARopeBridge(ECSWorld& world);
 
 /////////////////////For assignment Bungee chord///////////////////////////////
 void MakeBungeeChord(ECSWorld& world);
@@ -53,11 +53,17 @@ void InputBuoyancy(ECSWorld& world);
 void MakeNBody(ECSWorld& world);
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+/////////////////////For assignment2 Bridge///////////////////////////////
+void MakeARopeBridge(ECSWorld& world);
+void InputBridge(ECSWorld& world);
+/////////////////////////////////////////////////////////////////////////////////////////////
+
 
 bool bPressSpace = false;
 bool bPressUp = false;
 bool bPressDown = false;
 ECSEntity lastConnectedParticle = ECSEntity();
+ECSEntity BridgeColSphere;
 
 int main()
 {
@@ -98,7 +104,7 @@ int main()
 	//MakeABunchaSprings(world);
 	//MakeABunchaSpheres(world);
 	//MakeABunchaCablesAndRods(world);
-	MakeARopeBridge(world);
+
 
 
 	// Create Systems
@@ -115,6 +121,7 @@ int main()
 	world.getSystemManager().addSystem<PairedBungeeChordSystem>();
 	world.getSystemManager().addSystem<BuoyancySystem>();
 	world.getSystemManager().addSystem<NBodySystem>();
+	world.getSystemManager().addSystem<TriangleOfBridgeSystem>();
 	world.getSystemManager().addSystem<ParticleSphereSystem>();
 	world.getSystemManager().addSystem<CableSystem>();
 	world.getSystemManager().addSystem<RodSystem>();
@@ -125,6 +132,10 @@ int main()
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
+
+	/////////////////////For assignment2 Bridge///////////////////////////////
+	MakeARopeBridge(world);
+	/////////////////////////////////////////////////////////////////////////////////////////////
 
 	float time = glfwGetTime();
 	float stepTime = glfwGetTime();
@@ -172,13 +183,16 @@ int main()
 
 
 		/////////////////////For assignment Bungee chord///////////////////////////////
-		InputBungeeChord(world);
+		//InputBungeeChord(world);
 		/////////////////////////////////////////////////////////////////////////////////////////////
 
 		/////////////////////For assignment Buoyancy///////////////////////////////
 		//InputBuoyancy(world);
 		/////////////////////////////////////////////////////////////////////////////////////////////
 		
+		/////////////////////For assignment2 Brideg///////////////////////////////
+		InputBridge(world);
+		/////////////////////////////////////////////////////////////////////////////////////////////
 
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
@@ -187,6 +201,7 @@ int main()
 		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<CableSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<TriangleOfBridgeSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -443,6 +458,14 @@ void CreateParticleArchetype(ECSEntity e)
 
 void MakeARopeBridge(ECSWorld & world)
 {
+	BridgeColSphere = world.createEntity();
+	BridgeColSphere.addComponent<TransformComponent>(Vector3(20, 10, 0));
+	BridgeColSphere.addComponent<ParticleComponent>();
+	BridgeColSphere.addComponent<ForceAccumulatorComponent>(1.0f);
+	BridgeColSphere.addComponent<GravityForceComponent>();
+	BridgeColSphere.addComponent<PenetrationDeltaMoveComponent>();
+	world.getSystemManager().getSystem<TriangleOfBridgeSystem>().SetSphere(BridgeColSphere);
+
 	///////////////////////////////////1 Set/////////////////////////////////////
 	//FIrst cable
 	auto ePivot1 = world.createEntity();
@@ -517,6 +540,14 @@ void MakeARopeBridge(ECSWorld & world)
 	//Connect 2, 3
 	auto rod6 = world.createEntity();
 	rod6.addComponent<RodComponent>(e2, e3, 10 * pow(2.0f, 0.5f));
+
+	//make triangle1
+	auto tri1 = world.createEntity();
+	tri1.addComponent<TriangleOfBridgeComponent>(e2, e1, e4);
+
+	//make triangle2
+	auto tri2 = world.createEntity();
+	tri2.addComponent<TriangleOfBridgeComponent>(e3, e4, e1);
 	///////////////////////////////////connect 1, 2 Set/////////////////////////////////////
 
 
@@ -565,6 +596,14 @@ void MakeARopeBridge(ECSWorld & world)
 	//connect 5, 2
 	auto rod11 = world.createEntity();
 	rod11.addComponent<RodComponent>(e5, e2, 10 * pow(2.0f, 0.5f));
+
+	//make triangle3
+	auto tri3 = world.createEntity();
+	tri3.addComponent<TriangleOfBridgeComponent>(e6, e5, e2);
+
+	//make triangle4
+	auto tri4 = world.createEntity();
+	tri4.addComponent<TriangleOfBridgeComponent>(e1, e2, e5);
 	///////////////////////////////////connect 1, 3 Set/////////////////////////////////////
 
 
@@ -609,6 +648,14 @@ void MakeARopeBridge(ECSWorld & world)
 	//connect 4, 7
 	auto rod16 = world.createEntity();
 	rod16.addComponent<RodComponent>(e4, e7, 10 * pow(2.0f, 0.5f));
+
+	//make triangle5
+	auto tri5 = world.createEntity();
+	tri5.addComponent<TriangleOfBridgeComponent>(e4, e3, e8);
+
+	//make triangle6
+	auto tri6 = world.createEntity();
+	tri6.addComponent<TriangleOfBridgeComponent>(e7, e8, e3);
 	///////////////////////////////////connect 2, 4 Set/////////////////////////////////////
 
 
@@ -654,6 +701,14 @@ void MakeARopeBridge(ECSWorld & world)
 	//connect 8, 9
 	auto rod21 = world.createEntity();
 	rod21.addComponent<RodComponent>(e8, e9, 10 * pow(2.0f, 0.5f));
+
+	//make triangle7
+	auto tri7 = world.createEntity();
+	tri7.addComponent<TriangleOfBridgeComponent>(e8, e7, e10);
+
+	//make triangle8
+	auto tri8 = world.createEntity();
+	tri8.addComponent<TriangleOfBridgeComponent>(e9, e10, e7);
 	///////////////////////////////////connect 4, 5 Set/////////////////////////////////////
 
 
@@ -698,8 +753,17 @@ void MakeARopeBridge(ECSWorld & world)
 	//connect 10, 11
 	auto rod26 = world.createEntity();
 	rod26.addComponent<RodComponent>(e10, e11, 10 * pow(2.0f, 0.5f));
+
+	//make triangle9
+	auto tri9 = world.createEntity();
+	tri9.addComponent<TriangleOfBridgeComponent>(e10, e9, e12);
+
+	//make triangle10
+	auto tri10 = world.createEntity();
+	tri10.addComponent<TriangleOfBridgeComponent>(e11, e12, e9);
 	///////////////////////////////////connect 5, 6 Set/////////////////////////////////////
 }
+
 
 void MakeABunchaCablesAndRods(ECSWorld & world)
 {
@@ -921,5 +985,35 @@ void InputBuoyancy(ECSWorld& world)
 	else if ((glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_RELEASE) && bPressDown == true)
 	{
 		bPressDown = false;
+	}
+}
+
+void InputBridge(ECSWorld& world)
+{
+	GLFWwindow* window = world.data.renderUtil->window->glfwWindow;
+	if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) && bPressSpace == false)
+	{
+		bPressSpace = true;
+
+		Camera& camera = world.data.renderUtil->camera;
+		Vector3 front = camera.Front;
+		float dis = 20;
+		front.x *= dis;
+		front.y *= dis;
+		front.z *= dis;
+		
+		world.destroyEntity(BridgeColSphere);
+		BridgeColSphere = world.createEntity();
+		BridgeColSphere.addComponent<TransformComponent>(camera.Position + front);
+		BridgeColSphere.addComponent<ParticleComponent>();
+		BridgeColSphere.addComponent<ForceAccumulatorComponent>(1.0f);
+		BridgeColSphere.addComponent<GravityForceComponent>();
+		BridgeColSphere.addComponent<PenetrationDeltaMoveComponent>();
+		world.getSystemManager().getSystem<TriangleOfBridgeSystem>().SetSphere(BridgeColSphere);
+
+	}
+	else if ((glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) && bPressSpace == true)
+	{
+		bPressSpace = false;
 	}
 }
