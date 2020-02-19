@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\CMakeFiles\a3899015c233a00da78c2302428fcbee\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{84924C46-82FA-3580-9786-7EC0764C7AC3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
