@@ -12,6 +12,7 @@
 #include "CableSystem.h"
 #include "RodSystem.h"
 #include "ParticleContactResolutionSystem.h"
+#include "ResetPenetrationDeltaMoveSystem.h"
 #include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
 #include "DynamicDirectionalLightSystem.h"
@@ -32,6 +33,7 @@ void Make3Particles(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
 void MakeABunchaSpheres(ECSWorld& world);
 void MakeABunchaCablesAndRods(ECSWorld& world);
+void MakeARopeBridge(ECSWorld& world);
 
 int main()
 {
@@ -55,7 +57,8 @@ int main()
 	//Make3Particles(world);
 	//MakeABunchaSprings(world);
 	//MakeABunchaSpheres(world);
-	MakeABunchaCablesAndRods(world);
+	//MakeABunchaCablesAndRods(world);
+	MakeARopeBridge(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -71,6 +74,7 @@ int main()
 	world.getSystemManager().addSystem<CableSystem>();
 	world.getSystemManager().addSystem<RodSystem>();
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
+	world.getSystemManager().addSystem<ResetPenetrationDeltaMoveSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
@@ -142,6 +146,7 @@ int main()
 
 		// Contact Resolution
 		world.getSystemManager().getSystem<ParticleContactResolutionSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<ResetPenetrationDeltaMoveSystem>().Update(fixedDeltaTime);
 
 		// Integrator
 		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
@@ -315,6 +320,218 @@ void MakeABunchaSpheres(ECSWorld & world)
 	}
 }
 
+void CreateParticleArchetype(ECSEntity e)
+{
+	e.addComponent<ParticleComponent>();
+	e.addComponent<ForceAccumulatorComponent>();
+	e.addComponent<GravityForceComponent>();
+	//e.addComponent<ParticleSphereComponent>();
+	e.addComponent<PenetrationDeltaMoveComponent>();
+}
+
+void MakeARopeBridge(ECSWorld & world)
+{
+	// 1
+	auto ePivot1 = world.createEntity();
+	ePivot1.addComponent<TransformComponent>(Vector3(3, 10, 5));
+
+	auto e1 = world.createEntity();
+	e1.addComponent<TransformComponent>(Vector3(0, 3, 5));
+	CreateParticleArchetype(e1);
+
+	auto ePivot2 = world.createEntity();
+	ePivot2.addComponent<TransformComponent>(Vector3(3, 10, -5));
+
+	auto e2 = world.createEntity();
+	e2.addComponent<TransformComponent>(Vector3(0, 2, -5));
+	CreateParticleArchetype(e2);
+
+	auto rod1 = world.createEntity();
+	rod1.addComponent<RodComponent>(e1, e2, 10);
+
+	auto cable1 = world.createEntity();
+	cable1.addComponent<CableComponent>(ePivot1, e1, 20, 1);
+
+	auto cable2 = world.createEntity();
+	cable2.addComponent<CableComponent>(ePivot2, e2, 20, 1);
+
+	// 2
+	auto ePivot3 = world.createEntity();
+	ePivot3.addComponent<TransformComponent>(Vector3(3 + 10, 10, 5));
+
+	auto e3 = world.createEntity();
+	e3.addComponent<TransformComponent>(Vector3(0 + 10, -2, 5));
+	CreateParticleArchetype(e3);
+
+	auto ePivot4 = world.createEntity();
+	ePivot4.addComponent<TransformComponent>(Vector3(3 + 10, 10, -5));
+
+	auto e4 = world.createEntity();
+	e4.addComponent<TransformComponent>(Vector3(0 + 10, 0, -5));
+	CreateParticleArchetype(e4);
+
+	auto rod2 = world.createEntity();
+	rod2.addComponent<RodComponent>(e3, e4, 10);
+
+	auto cable3 = world.createEntity();
+	cable3.addComponent<CableComponent>(ePivot3, e3, 22, 1);
+
+	auto cable4 = world.createEntity();
+	cable4.addComponent<CableComponent>(ePivot4, e4, 22, 1);
+
+	// 3
+	auto ePivot5 = world.createEntity();
+	ePivot5.addComponent<TransformComponent>(Vector3(3 - 10, 10, 5));
+
+	auto e5 = world.createEntity();
+	e5.addComponent<TransformComponent>(Vector3(0 - 10, 1, 5));
+	CreateParticleArchetype(e5);
+
+	auto ePivot6 = world.createEntity();
+	ePivot6.addComponent<TransformComponent>(Vector3(3 - 10, 10, -5));
+
+	auto e6 = world.createEntity();
+	e6.addComponent<TransformComponent>(Vector3(0 - 10, -1, -5));
+	CreateParticleArchetype(e6);
+
+	auto cable5 = world.createEntity();
+	cable5.addComponent<CableComponent>(ePivot5, e5, 18, 1);
+
+	auto cable6 = world.createEntity();
+	cable6.addComponent<CableComponent>(ePivot6, e6, 18, 1);
+
+	auto rod3 = world.createEntity();
+	rod3.addComponent<RodComponent>(e1, e3, 10);
+	auto rod4 = world.createEntity();
+	rod4.addComponent<RodComponent>(e2, e4, 10);
+	auto rod5 = world.createEntity();
+	rod5.addComponent<RodComponent>(e1, e4, 10 * pow(2.0f, 0.5f));
+	auto rod6 = world.createEntity();
+	rod6.addComponent<RodComponent>(e2, e3, 10 * pow(2.0f, 0.5f));
+	auto rod7 = world.createEntity();
+	rod7.addComponent<RodComponent>(e5, e6, 10);
+
+	// diagonal rods
+	auto rod8 = world.createEntity();
+	rod8.addComponent<RodComponent>(e5, e1, 10);
+	auto rod9 = world.createEntity();
+	rod9.addComponent<RodComponent>(e6, e2, 10);
+	auto rod10 = world.createEntity();
+	rod10.addComponent<RodComponent>(e6, e1, 10 * pow(2.0f, 0.5f));
+	auto rod11 = world.createEntity();
+	rod11.addComponent<RodComponent>(e5, e2, 10 * pow(2.0f, 0.5f));
+
+	// 4
+	auto ePivot7 = world.createEntity();
+	ePivot7.addComponent<TransformComponent>(Vector3(3 + 20, 10, 5));
+
+	auto e7 = world.createEntity();
+	e7.addComponent<TransformComponent>(Vector3(0 + 20, 1, 5));
+	CreateParticleArchetype(e7);
+
+	auto ePivot8 = world.createEntity();
+	ePivot8.addComponent<TransformComponent>(Vector3(3 + 20, 10, -5));
+
+	auto e8 = world.createEntity();
+	e8.addComponent<TransformComponent>(Vector3(0 + 20, -1, -5));
+	CreateParticleArchetype(e8);
+
+	auto rod12 = world.createEntity();
+	rod12.addComponent<RodComponent>(e7, e8, 10);
+
+	auto cable7 = world.createEntity();
+	cable7.addComponent<CableComponent>(ePivot7, e7, 22, 1);
+
+	auto cable8 = world.createEntity();
+	cable8.addComponent<CableComponent>(ePivot8, e8, 22, 1);
+
+	// diagonal rods
+	auto rod13 = world.createEntity();
+	rod13.addComponent<RodComponent>(e3, e7, 10);
+	auto rod14 = world.createEntity();
+	rod14.addComponent<RodComponent>(e4, e8, 10);
+	auto rod15 = world.createEntity();
+	rod15.addComponent<RodComponent>(e3, e8, 10 * pow(2.0f, 0.5f));
+	auto rod16 = world.createEntity();
+	rod16.addComponent<RodComponent>(e4, e7, 10 * pow(2.0f, 0.5f));
+
+	// 5
+	auto ePivot9 = world.createEntity();
+	ePivot9.addComponent<TransformComponent>(Vector3(3 + 30, 10, 5));
+
+	auto e9 = world.createEntity();
+	e9.addComponent<TransformComponent>(Vector3(0 + 30, 1, 5));
+	CreateParticleArchetype(e9);
+
+	auto ePivot10 = world.createEntity();
+	ePivot10.addComponent<TransformComponent>(Vector3(3 + 30, 10, -5));
+
+	auto e10 = world.createEntity();
+	e10.addComponent<TransformComponent>(Vector3(0 + 30, -1, -5));
+	CreateParticleArchetype(e10);
+
+	//connect 9, 10
+	auto rod17 = world.createEntity();
+	rod17.addComponent<RodComponent>(e9, e10, 10);
+
+	auto cable9 = world.createEntity();
+	cable9.addComponent<CableComponent>(ePivot9, e9, 20, 1);
+
+	auto cable10 = world.createEntity();
+	cable10.addComponent<CableComponent>(ePivot10, e10, 20, 1);
+
+	// diagonal rods
+	auto rod18 = world.createEntity();
+	rod18.addComponent<RodComponent>(e7, e9, 10);
+	auto rod19 = world.createEntity();
+	rod19.addComponent<RodComponent>(e8, e10, 10);
+	auto rod20 = world.createEntity();
+	rod20.addComponent<RodComponent>(e7, e10, 10 * pow(2.0f, 0.5f));
+	auto rod21 = world.createEntity();
+	rod21.addComponent<RodComponent>(e8, e9, 10 * pow(2.0f, 0.5f));
+
+	// 6
+	auto ePivot11 = world.createEntity();
+	ePivot11.addComponent<TransformComponent>(Vector3(3 + 40, 10, 5));
+
+	auto e11 = world.createEntity();
+	e11.addComponent<TransformComponent>(Vector3(0 + 40, 1, 5));
+	CreateParticleArchetype(e11);
+
+	auto ePivot12 = world.createEntity();
+	ePivot12.addComponent<TransformComponent>(Vector3(3 + 40, 10, -5));
+
+	auto e12 = world.createEntity();
+	e12.addComponent<TransformComponent>(Vector3(0 + 40, -1, -5));
+	CreateParticleArchetype(e12);
+
+	auto cable11 = world.createEntity();
+	cable11.addComponent<CableComponent>(ePivot11, e11, 18, 1);
+
+	auto cable12 = world.createEntity();
+	cable12.addComponent<CableComponent>(ePivot12, e12, 18, 1);
+
+	auto rod22 = world.createEntity();
+	rod22.addComponent<RodComponent>(e11, e12, 10);
+
+	// diagonal rods
+	auto rod23 = world.createEntity();
+	rod23.addComponent<RodComponent>(e9, e11, 10);
+	auto rod24 = world.createEntity();
+	rod24.addComponent<RodComponent>(e10, e12, 10);
+	auto rod25 = world.createEntity();
+	rod25.addComponent<RodComponent>(e9, e12, 10 * pow(2.0f, 0.5f));
+	auto rod26 = world.createEntity();
+	rod26.addComponent<RodComponent>(e10, e11, 10 * pow(2.0f, 0.5f));
+
+	ECSEntity testSphere;
+	testSphere = world.createEntity();
+	testSphere.addComponent<TransformComponent>(Vector3(20, 10, 0));
+	testSphere.addComponent<ParticleComponent>();
+	testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
+	testSphere.addComponent<GravityForceComponent>();
+}
+
 void MakeABunchaCablesAndRods(ECSWorld & world)
 {
 	auto ePivot = world.createEntity();
@@ -326,6 +543,7 @@ void MakeABunchaCablesAndRods(ECSWorld & world)
 	e1.addComponent<ForceAccumulatorComponent>();
 	e1.addComponent<GravityForceComponent>();
 	e1.addComponent<ParticleSphereComponent>();
+	e1.addComponent<PenetrationDeltaMoveComponent>();
 
 	auto e2 = world.createEntity();
 	e2.addComponent<TransformComponent>(Vector3(5, 5, 0));
@@ -333,6 +551,7 @@ void MakeABunchaCablesAndRods(ECSWorld & world)
 	e2.addComponent<ForceAccumulatorComponent>();
 	e2.addComponent<GravityForceComponent>();
 	e2.addComponent<ParticleSphereComponent>();
+	e2.addComponent<PenetrationDeltaMoveComponent>();
 
 	auto e3 = world.createEntity();
 	e3.addComponent<TransformComponent>(Vector3(0, 0, 0));
@@ -340,6 +559,7 @@ void MakeABunchaCablesAndRods(ECSWorld & world)
 	e3.addComponent<ForceAccumulatorComponent>();
 	e3.addComponent<GravityForceComponent>();
 	e3.addComponent<ParticleSphereComponent>();
+	e3.addComponent<PenetrationDeltaMoveComponent>();
 
 	auto e4 = world.createEntity();
 	e4.addComponent<TransformComponent>(Vector3(-5, 5, 0));
@@ -347,9 +567,19 @@ void MakeABunchaCablesAndRods(ECSWorld & world)
 	e4.addComponent<ForceAccumulatorComponent>();
 	e4.addComponent<GravityForceComponent>();
 	e4.addComponent<ParticleSphereComponent>();
+	e4.addComponent<PenetrationDeltaMoveComponent>();
 
-	auto cable = world.createEntity();
-	cable.addComponent<CableComponent>(ePivot, e1, 10, 2);
+	auto cable1 = world.createEntity();
+	//cable.addComponent<CableComponent>(ePivot, e1, 5, 1);
+	cable1.addComponent<PairedSpringComponent>(50, 2, ePivot, e1);
+
+	auto cable2 = world.createEntity();
+	//cable.addComponent<CableComponent>(ePivot, e1, 5, 1);
+	cable2.addComponent<PairedSpringComponent>(50, 25, ePivot, e2);
+
+	auto cable3 = world.createEntity();
+	cable3.addComponent<CableComponent>(ePivot, e3, 15, 1);
+	//cable3.addComponent<PairedSpringComponent>(50, 20, ePivot, e3);
 
 	auto rod1 = world.createEntity();
 	rod1.addComponent<RodComponent>(e1, e2, 5 * pow(2, 0.5f));
@@ -366,28 +596,30 @@ void MakeABunchaCablesAndRods(ECSWorld & world)
 	auto rod5 = world.createEntity();
 	rod5.addComponent<RodComponent>(e1, e3, 10);
 
-	/*auto rod6 = world.createEntity();
-	rod6.addComponent<RodComponent>(e2, e4, 10);*/
+	auto rod6 = world.createEntity();
+	rod6.addComponent<RodComponent>(e2, e4, 10);
 
-	/*for (int i = 0; i < 10; i++)
-	{
-		auto e1 = world.createEntity();
-		e1.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-10, 10)));
-		e1.addComponent<ParticleComponent>();
-		e1.addComponent<ForceAccumulatorComponent>();
-		e1.addComponent<GravityForceComponent>();
-		e1.addComponent<ParticleSphereComponent>(RANDOM_FLOAT(1, 3));
+	//for (int i = 0; i < 20; i++)
+	//{
+	//	auto e1 = world.createEntity();
+	//	e1.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-5, 5), RANDOM_FLOAT(-5, 5), RANDOM_FLOAT(-5, 5)));
+	//	e1.addComponent<ParticleComponent>();
+	//	e1.addComponent<ForceAccumulatorComponent>();
+	//	e1.addComponent<GravityForceComponent>();
+	//	e1.addComponent<ParticleSphereComponent>(RANDOM_FLOAT(0.5, 1.5));
+	//	e1.addComponent<PenetrationDeltaMoveComponent>();
 
-		auto e2 = world.createEntity();
-		e2.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-10, 10), RANDOM_FLOAT(-10, 10)));
-		e2.addComponent<ParticleComponent>();
-		e2.addComponent<ForceAccumulatorComponent>();
-		e2.addComponent<GravityForceComponent>();
-		e2.addComponent<ParticleSphereComponent>(RANDOM_FLOAT(1, 3));
+	//	auto e2 = world.createEntity();
+	//	e2.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-5, 5), RANDOM_FLOAT(-5, 5), RANDOM_FLOAT(-5, 5)));
+	//	e2.addComponent<ParticleComponent>();
+	//	e2.addComponent<ForceAccumulatorComponent>();
+	//	e2.addComponent<GravityForceComponent>();
+	//	e2.addComponent<ParticleSphereComponent>(RANDOM_FLOAT(0.5, 1.5));
+	//	e2.addComponent<PenetrationDeltaMoveComponent>();
 
-		auto rod = world.createEntity();
-		rod.addComponent<RodComponent>(e1, e2, RANDOM_FLOAT(6, 10));
-	}*/
+	//	auto rod = world.createEntity();
+	//	rod.addComponent<RodComponent>(e1, e2, RANDOM_FLOAT(6, 10));
+	//}
 }
 
 void SetupLights(ECSWorld& world)
