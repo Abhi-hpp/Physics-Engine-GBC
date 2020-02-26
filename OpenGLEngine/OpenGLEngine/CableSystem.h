@@ -1,13 +1,13 @@
 #pragma once
 #include "ECSConfig.h"
-#include "NBodyComponent.h"
+#include "CableComponent.h"
 
 namespace Reality
 {
-	class NBodySystem : public ECSSystem
+	class CableSystem : public ECSSystem
 	{
 	public:
-		NBodySystem();
+		CableSystem();
 		void Update(float deltaTime);
 	};
 }

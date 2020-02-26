@@ -22,32 +22,32 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{BF971B9A-9ACC-4B50-8E62-4CC32E780AA5}</ProjectGuid>
     <RootNamespace>OpenGLEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -122,11 +122,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetLoader.cpp" />
-    <ClCompile Include="BungeeSystem.cpp">
-      <SubType>
-      </SubType>
-    </ClCompile>
-    <ClCompile Include="BuoyancySystem.cpp">
+    <ClCompile Include="CableSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -175,7 +171,6 @@
     <ClCompile Include="Mix\System.cpp" />
     <ClCompile Include="Mix\World.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="NBodySystem.cpp" />
     <ClCompile Include="PairedSpringSystem.cpp">
       <SubType>
       </SubType>
@@ -194,29 +189,33 @@
     </ClCompile>
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RotateSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TriangleSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetLoader.h" />
-    <ClInclude Include="BungeeComponent.h">
+    <ClInclude Include="CableComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BungeeSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="BuoyancyComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="BuoyancySystem.h">
+    <ClInclude Include="CableSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -298,8 +297,6 @@
     <ClInclude Include="Mix\World.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseMoveEvent.h" />
-    <ClInclude Include="NBodyComponent.h" />
-    <ClInclude Include="NBodySystem.h" />
     <ClInclude Include="PairedSpringComponent.h">
       <SubType>
       </SubType>
@@ -332,9 +329,25 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RotateComponent.h">
       <SubType>
       </SubType>
@@ -348,6 +361,14 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="TriangleComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TriangleSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Window.h" />
     <ClInclude Include="WorldData.h" />
   </ItemGroup>

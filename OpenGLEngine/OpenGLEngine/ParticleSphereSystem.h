@@ -10,8 +10,9 @@ namespace Reality
 	public:
 		ParticleSphereSystem();
 		void Update(float deltaTime);
-
-	private :
-		bool CheckCollision(ECSEntity sphereA, ECSEntity sphereB);
+	private:
+		bool createBox = false;
+		ECSEntity boundingBox;
+		void CheckCollision(ECSEntity sphereEntityA, ECSEntity sphereEntityB);
 	};
 }

@@ -21,7 +21,6 @@ namespace Reality
 			if (DEBUG_LOG_LEVEL > 0)
 			{
 				getWorld().data.renderUtil->DrawSphere(transform.position);
-				//getWorld().data.renderUtil->DrawCube(Vector3(0, 0, 0), Vector3(20, 20, 20), Vector3(0,0,0), Color::Red);
 			}
 		}
 	}

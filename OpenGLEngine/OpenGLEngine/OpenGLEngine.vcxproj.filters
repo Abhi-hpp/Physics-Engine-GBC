@@ -65,16 +65,10 @@
       <UniqueIdentifier>{26df7371-0611-42cd-b6e5-2556995c23d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="TestCS\ParticleSphereDemo">
-      <UniqueIdentifier>{39d06eb6-f3cd-4662-a116-3623e5378d40}</UniqueIdentifier>
+      <UniqueIdentifier>{8f440b87-7f9c-4d7f-993c-ec5fa08dde39}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TestCS\Nbody">
-      <UniqueIdentifier>{117769b2-3e56-45a6-85ac-7b71329b0e7a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestCS\BungeeDemo">
-      <UniqueIdentifier>{bf5ae235-8905-4a11-97cf-ec268fb18885}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TestCS\BuoyancyDemo">
-      <UniqueIdentifier>{47140400-32d6-4c58-b46c-1b08b076728e}</UniqueIdentifier>
+    <Filter Include="TestCS\CablesAndRods">
+      <UniqueIdentifier>{8d7d692e-fedf-4e75-9661-f2eb1dd346c1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -174,14 +168,17 @@
     <ClCompile Include="ParticleSphereSystem.cpp">
       <Filter>TestCS\ParticleSphereDemo</Filter>
     </ClCompile>
-    <ClCompile Include="NBodySystem.cpp">
-      <Filter>TestCS\Nbody</Filter>
+    <ClCompile Include="CableSystem.cpp">
+      <Filter>TestCS\CablesAndRods</Filter>
     </ClCompile>
-    <ClCompile Include="BungeeSystem.cpp">
-      <Filter>TestCS\BungeeDemo</Filter>
+    <ClCompile Include="RodSystem.cpp">
+      <Filter>TestCS\CablesAndRods</Filter>
     </ClCompile>
-    <ClCompile Include="BuoyancySystem.cpp">
-      <Filter>TestCS\BuoyancyDemo</Filter>
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleSystem.cpp">
+      <Filter>TestCS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -347,23 +344,29 @@
     <ClInclude Include="ParticleSphereSystem.h">
       <Filter>TestCS\ParticleSphereDemo</Filter>
     </ClInclude>
-    <ClInclude Include="NBodyComponent.h">
-      <Filter>TestCS\Nbody</Filter>
+    <ClInclude Include="CableComponent.h">
+      <Filter>TestCS\CablesAndRods</Filter>
     </ClInclude>
-    <ClInclude Include="NBodySystem.h">
-      <Filter>TestCS\Nbody</Filter>
+    <ClInclude Include="CableSystem.h">
+      <Filter>TestCS\CablesAndRods</Filter>
     </ClInclude>
-    <ClInclude Include="BungeeComponent.h">
-      <Filter>TestCS\BungeeDemo</Filter>
+    <ClInclude Include="RodComponent.h">
+      <Filter>TestCS\CablesAndRods</Filter>
     </ClInclude>
-    <ClInclude Include="BungeeSystem.h">
-      <Filter>TestCS\BungeeDemo</Filter>
+    <ClInclude Include="RodSystem.h">
+      <Filter>TestCS\CablesAndRods</Filter>
     </ClInclude>
-    <ClInclude Include="BuoyancyComponent.h">
-      <Filter>TestCS\BuoyancyDemo</Filter>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <Filter>Physics\Particles</Filter>
     </ClInclude>
-    <ClInclude Include="BuoyancySystem.h">
-      <Filter>TestCS\BuoyancyDemo</Filter>
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleSystem.h">
+      <Filter>TestCS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
