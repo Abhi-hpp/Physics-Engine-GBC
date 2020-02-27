@@ -67,6 +67,15 @@
     <Filter Include="TestCS\ParticleSphereDemo">
       <UniqueIdentifier>{8f440b87-7f9c-4d7f-993c-ec5fa08dde39}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Bungee">
+      <UniqueIdentifier>{1eac0c30-4835-479e-9b05-c0b988229c49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Buoyancy">
+      <UniqueIdentifier>{a7f8580a-5864-4000-9912-386b9c752957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\N_Body">
+      <UniqueIdentifier>{de2aee44-c2d1-46d8-a0e0-6c9908f85f3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -164,6 +173,15 @@
     </ClCompile>
     <ClCompile Include="ParticleSphereSystem.cpp">
       <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="BungeeSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoyancySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClCompile>
+    <ClCompile Include="NBodySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\N_Body</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -328,6 +346,24 @@
     </ClInclude>
     <ClInclude Include="ParticleSphereSystem.h">
       <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\N_Body</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\N_Body</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

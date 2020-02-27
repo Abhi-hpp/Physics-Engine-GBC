@@ -8,6 +8,9 @@
 #include "DragForceSystem.h"
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
+#include "BungeeSystem.h"
+#include "BuoyancySystem.h"
+#include "NBodySystem.h"
 #include "ParticleSphereSystem.h"
 #include "ParticleContactResolutionSystem.h"
 #include "ForceAccumulatorSystem.h"
@@ -19,6 +22,8 @@
 #include <stdlib.h>     
 #include <time.h>      
 
+#define FPS 240.0f
+
 using namespace Reality;
 
 void LoadShaders(ECSWorld& world);
@@ -29,6 +34,9 @@ void MakeFireworks(ECSWorld& world);
 void Make3Particles(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
 void MakeABunchaSpheres(ECSWorld& world);
+void MakeABunchaBungees(ECSWorld& world);
+void MakeABuoyancy(ECSWorld& world);
+void MakeABunchaNbodies(ECSWorld& world);
 
 int main()
 {
@@ -51,7 +59,10 @@ int main()
 	//MakeFireworks(world);
 	//Make3Particles(world);
 	//MakeABunchaSprings(world);
-	MakeABunchaSpheres(world);
+	//MakeABunchaSpheres(world);
+	//MakeABunchaBungees(world);	// Bungee chord Simulation
+	MakeABuoyancy(world);		// Buoyancy Simulation
+	//MakeABunchaNbodies(world);	// N-Body Simulation
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -63,6 +74,9 @@ int main()
 	world.getSystemManager().addSystem<DragForceSystem>();
 	world.getSystemManager().addSystem<FixedSpringSystem>();
 	world.getSystemManager().addSystem<PairedSpringSystem>();
+	world.getSystemManager().addSystem<BungeeSystem>();
+	world.getSystemManager().addSystem<BuoyancySystem>();
+	world.getSystemManager().addSystem<NBodySystem>();
 	world.getSystemManager().addSystem<ParticleSphereSystem>();
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
@@ -87,7 +101,7 @@ int main()
 	{
 		float current = glfwGetTime();
 		deltaTime = current - time;
-		deltaTime = 1 / 60.0f;
+		deltaTime = 1 / FPS;
 		time = glfwGetTime();
 
 		world.update();
@@ -116,18 +130,21 @@ int main()
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<FireworksSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<NBodySystem>().Update(deltaTime);
 
 		// Update Transform
 
 		// Physics
 		//float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
-		float fixedDeltaTime = 1 / 60.0f;
+		float fixedDeltaTime = 1 / FPS;
 		// Force Generator
 		world.getSystemManager().getSystem<GravityForceSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<DragForceSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<FixedSpringSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BungeeSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BuoyancySystem>().Update(fixedDeltaTime);
 
 		// Force Accumulator
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
@@ -154,7 +171,7 @@ int main()
 		// Debug
 		if (DEBUG_LOG_LEVEL > 0)
 		{
-			world.data.renderUtil->RenderText("FPS : " + std::to_string((int)round(1.0f / deltaTime)), 1810.0f, 1060.0f, 0.5f, Color(0, 1, 1, 1));
+			world.data.renderUtil->RenderText("FPS : " + std::to_string(/*(int)round(1.0f / deltaTime)*/FPS), 1810.0f, 1060.0f, 0.5f, Color(0, 1, 1, 1));
 		}
 		if (DEBUG_LOG_LEVEL > 1)
 		{
@@ -302,6 +319,46 @@ void MakeABunchaSpheres(ECSWorld & world)
 	sphere.addComponent<ForceAccumulatorComponent>(1.0f);
 	sphere.addComponent<GravityForceComponent>();
 	sphere.addComponent<ParticleSphereComponent>(3);
+}
+
+void MakeABunchaBungees(ECSWorld & world)
+{
+	auto particle1 = world.createEntity();
+	particle1.addComponent<TransformComponent>(Vector3(85, 30, -50));
+	particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle1.addComponent<ForceAccumulatorComponent>();
+	particle1.addComponent<GravityForceComponent>();
+	particle1.addComponent<DragForceComponent>(0, 0);
+
+	auto bungee1 = world.createEntity();
+	bungee1.addComponent<TransformComponent>(Vector3(85, 30, -50));
+	bungee1.addComponent<BungeeComponent>(2.0f, 200.0f, particle1);
+}
+
+void MakeABuoyancy(ECSWorld & world)
+{
+	auto particle1 = world.createEntity();
+	particle1.addComponent<TransformComponent>(Vector3(0, 10, 0));
+	particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
+	particle1.addComponent<ForceAccumulatorComponent>();
+	particle1.addComponent<GravityForceComponent>();
+
+	auto buoyancy = world.createEntity();
+	buoyancy.addComponent<TransformComponent>(Vector3(0, 10, 0));
+	buoyancy.addComponent<BuoyancyComponent>(particle1);
+}
+
+void MakeABunchaNbodies(ECSWorld & world)
+{
+	for (int i = 0; i < 10; i++)
+	{
+		auto nBody = world.createEntity();
+		nBody.addComponent<TransformComponent>(Vector3(-30 + 5 * i, 0 + RANDOM_FLOAT(-10, 10), -50));
+		nBody.addComponent<ParticleComponent>(Vector3(RANDOM_FLOAT(30, 60), RANDOM_FLOAT(30, 60), RANDOM_FLOAT(30, 60)));
+		nBody.addComponent<ForceAccumulatorComponent>();
+		//nBody.addComponent<GravityForceComponent>();
+		nBody.addComponent<NBodyComponent>(RANDOM_FLOAT(5, 10));
+	}
 }
 
 void SetupLights(ECSWorld& world)
