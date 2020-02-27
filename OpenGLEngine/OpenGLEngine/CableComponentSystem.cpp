@@ -40,6 +40,12 @@ namespace Reality
 				cable.restitution,
 				normal,
 				penetration);
+
+			getWorld().data.renderUtil->DrawLine(
+				cable.entityA.getComponent<TransformComponent>().position,
+				cable.entityB.getComponent<TransformComponent>().position,
+				Color::Brown
+			);
 		}
 	}
 }
