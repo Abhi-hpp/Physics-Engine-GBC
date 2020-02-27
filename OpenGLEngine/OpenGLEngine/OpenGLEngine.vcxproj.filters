@@ -76,6 +76,9 @@
     <Filter Include="Physics\Particles\ForceGenerators\N-Body">
       <UniqueIdentifier>{1a7abecf-bda3-471a-888e-db99d28cfcbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestCS\CablesAndR">
+      <UniqueIdentifier>{e4de7756-c74a-47c7-987f-090aab75378f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -179,6 +182,24 @@
     </ClCompile>
     <ClCompile Include="NBodySystem.cpp">
       <Filter>Physics\Particles\ForceGenerators\N-Body</Filter>
+    </ClCompile>
+    <ClCompile Include="TrianglePlaneCollisionSystem.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSphereSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="CableSystem.cpp">
+      <Filter>TestCS\CablesAndR</Filter>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <Filter>TestCS\CablesAndR</Filter>
+    </ClCompile>
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <Filter>Physics\Particles</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +376,42 @@
     </ClInclude>
     <ClInclude Include="NBodySystem.h">
       <Filter>Physics\Particles\ForceGenerators\N-Body</Filter>
+    </ClInclude>
+    <ClInclude Include="TrianglePlaneComponent.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="TrianglePlaneCollisionSystem.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="CableComponent.h">
+      <Filter>TestCS\CablesAndR</Filter>
+    </ClInclude>
+    <ClInclude Include="CableSystem.h">
+      <Filter>TestCS\CablesAndR</Filter>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <Filter>TestCS\CablesAndR</Filter>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <Filter>TestCS\CablesAndR</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <Filter>Physics\Particles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

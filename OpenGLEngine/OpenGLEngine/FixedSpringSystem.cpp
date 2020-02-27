@@ -1,7 +1,6 @@
 #include "FixedSpringSystem.h"
 #include "ForceAccumulatorComponent.h"
 
-
 namespace Reality
 {
 	FixedSpringSystem::FixedSpringSystem()

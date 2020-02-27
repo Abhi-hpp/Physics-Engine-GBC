@@ -130,6 +130,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="CableSystem.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DragForceSystem.cpp">
       <SubType>
@@ -187,18 +188,23 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp" />
+    <ClCompile Include="ParticleSphereSystem.cpp" />
     <ClCompile Include="ParticleSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp" />
+    <ClCompile Include="RodSystem.cpp" />
     <ClCompile Include="RotateSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TrianglePlaneCollisionSystem.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -219,6 +225,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="CableComponent.h" />
+    <ClInclude Include="CableSystem.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLightComponent.h" />
@@ -325,13 +333,21 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h" />
+    <ClInclude Include="ParticleContactResolutionSystem.h" />
+    <ClInclude Include="ParticleSphereComponent.h" />
+    <ClInclude Include="ParticleSphereSystem.h" />
     <ClInclude Include="ParticleSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h" />
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h" />
+    <ClInclude Include="RodComponent.h" />
+    <ClInclude Include="RodSystem.h" />
     <ClInclude Include="RotateComponent.h">
       <SubType>
       </SubType>
@@ -345,6 +361,8 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="TrianglePlaneCollisionSystem.h" />
+    <ClInclude Include="TrianglePlaneComponent.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WorldData.h" />
   </ItemGroup>

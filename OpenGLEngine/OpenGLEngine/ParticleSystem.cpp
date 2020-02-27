@@ -18,7 +18,7 @@ namespace Reality
 			particle.velocity += particle.acceleration * deltaTime;
 			transform.position += particle.velocity * deltaTime;
 
-			if (DEBUG_LOG_LEVEL > 4)
+			if (DEBUG_LOG_LEVEL > 0)
 			{
 				getWorld().data.renderUtil->DrawSphere(transform.position);
 			}
