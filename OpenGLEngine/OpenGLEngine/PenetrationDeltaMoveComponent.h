@@ -5,9 +5,10 @@ namespace Reality
 {
 	struct PenetrationDeltaMoveComponent
 	{
-		PenetrationDeltaMoveComponent()
+		PenetrationDeltaMoveComponent() : deltaMove(Vector3(0, 0, 0))
 		{
 
 		}
+		Vector3 deltaMove;
 	};
 }
