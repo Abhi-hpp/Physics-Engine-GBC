@@ -34,6 +34,10 @@ void MakeABunchaSprings(ECSWorld& world);
 void MakeABunchaSpheres(ECSWorld& world);
 void MakeABunchaCablesAndRods(ECSWorld& world);
 void MakeARopeBridge(ECSWorld& world);
+void InputBridgeNSphere(ECSWorld& world);
+
+ECSEntity lastConnectedParticle = ECSEntity();
+ECSEntity testSphere;
 
 bool eKey = false;
 bool upKey = false;
@@ -528,13 +532,42 @@ void MakeARopeBridge(ECSWorld & world)
 	auto rod26 = world.createEntity();
 	rod26.addComponent<RodComponent>(e10, e11, 10 * pow(2.0f, 0.5f));
 
-	ECSEntity testSphere;
+	// Make the sphere
 	testSphere = world.createEntity();
 	testSphere.addComponent<TransformComponent>(Vector3(20, 10, 0));
 	testSphere.addComponent<ParticleComponent>();
 	testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
 	testSphere.addComponent<GravityForceComponent>();
 	testSphere.addComponent<PenetrationDeltaMoveComponent>();
+}
+
+void InputBridgeNSphere(ECSWorld& world)
+{
+	GLFWwindow* window = world.data.renderUtil->window->glfwWindow;
+
+	if ((glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) && eKey == false) 
+	{
+		eKey = true;
+
+		Camera& camera = world.data.renderUtil->camera;
+		Vector3 front = camera.Front;
+		float distance = 20.0f;
+		front.x *= distance;
+		front.y *= distance;
+		front.z *= distance;
+
+		world.destroyEntity(testSphere);
+		testSphere = world.createEntity();
+		testSphere.addComponent<TransformComponent>(Vector3(20, 10, 0));
+		testSphere.addComponent<ParticleComponent>();
+		testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
+		testSphere.addComponent<GravityForceComponent>();
+		testSphere.addComponent<PenetrationDeltaMoveComponent>();
+	}
+	else if ((glfwGetKey(window, GLFW_KEY_E) == GLFW_RELEASE) && eKey == true)
+	{
+		eKey = false;
+	}
 }
 
 void MakeABunchaCablesAndRods(ECSWorld & world)
