@@ -189,6 +189,10 @@
     </ClCompile>
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RodSystem.cpp">
       <SubType>
       </SubType>
@@ -321,9 +325,17 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RodComponent.h">
       <SubType>
       </SubType>
