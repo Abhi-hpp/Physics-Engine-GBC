@@ -35,6 +35,10 @@ void MakeABunchaSpheres(ECSWorld& world);
 void MakeABunchaCablesAndRods(ECSWorld& world);
 void MakeARopeBridge(ECSWorld& world);
 
+bool eKey = false;
+bool upKey = false;
+bool downKey = false;
+
 int main()
 {
 	ECSWorld world;
@@ -530,6 +534,7 @@ void MakeARopeBridge(ECSWorld & world)
 	testSphere.addComponent<ParticleComponent>();
 	testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
 	testSphere.addComponent<GravityForceComponent>();
+	testSphere.addComponent<PenetrationDeltaMoveComponent>();
 }
 
 void MakeABunchaCablesAndRods(ECSWorld & world)
