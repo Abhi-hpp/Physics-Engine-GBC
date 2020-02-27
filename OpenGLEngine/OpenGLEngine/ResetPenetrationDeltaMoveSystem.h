@@ -1,5 +1,6 @@
 #pragma once
 #include "ECSConfig.h"
+#include "PenetrationDeltaMoveComponent.h"
 
 namespace Reality
 {
