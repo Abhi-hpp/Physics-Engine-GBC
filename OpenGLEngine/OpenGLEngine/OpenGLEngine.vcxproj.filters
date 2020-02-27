@@ -70,6 +70,9 @@
     <Filter Include="TestCS\CablesAndRods">
       <UniqueIdentifier>{8d7d692e-fedf-4e75-9661-f2eb1dd346c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\Penetration">
+      <UniqueIdentifier>{492ce7d8-0ca3-43ce-b76d-93ef2b8dd1f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -173,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="RodSystem.cpp">
       <Filter>TestCS\CablesAndRods</Filter>
+    </ClCompile>
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <Filter>Physics\Particles\Penetration</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -349,6 +355,12 @@
     </ClInclude>
     <ClInclude Include="RodSystem.h">
       <Filter>TestCS\CablesAndRods</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <Filter>Physics\Particles\Penetration</Filter>
+    </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <Filter>Physics\Particles\Penetration</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
