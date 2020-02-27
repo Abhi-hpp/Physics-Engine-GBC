@@ -70,6 +70,9 @@
     <Filter Include="TestCS\CablesAndRods">
       <UniqueIdentifier>{8d7d692e-fedf-4e75-9661-f2eb1dd346c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestCS\Assignment2">
+      <UniqueIdentifier>{b892c423-a04c-4069-ae21-89712f702279}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -176,6 +179,9 @@
     </ClCompile>
     <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
       <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleCollisionSystem.cpp">
+      <Filter>TestCS\Assignment2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -358,6 +364,12 @@
     </ClInclude>
     <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
       <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleCollisionComponent.h">
+      <Filter>TestCS\Assignment2</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleCollisionSystem.h">
+      <Filter>TestCS\Assignment2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

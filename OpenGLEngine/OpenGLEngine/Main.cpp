@@ -8,6 +8,7 @@
 #include "DragForceSystem.h"
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
+#include "TriangleCollisionSystem.h"
 #include "ParticleSphereSystem.h"
 #include "CableSystem.h"
 #include "RodSystem.h"
@@ -22,6 +23,11 @@
 #include <stdlib.h>     
 #include <time.h>      
 
+/*
+	Written By: Nabil Babu - 101214336
+				Russell Brabers - 101192571
+*/
+
 using namespace Reality;
 
 void LoadShaders(ECSWorld& world);
@@ -34,6 +40,9 @@ void MakeABunchaSprings(ECSWorld& world);
 void MakeABunchaSpheres(ECSWorld& world);
 void MakeABunchaCablesAndRods(ECSWorld& world);
 void MakeARopeBridge(ECSWorld& world);
+void InputRopeBridge(ECSWorld& world);
+
+bool spacePressed;
 
 int main()
 {
@@ -70,6 +79,7 @@ int main()
 	world.getSystemManager().addSystem<DragForceSystem>();
 	world.getSystemManager().addSystem<FixedSpringSystem>();
 	world.getSystemManager().addSystem<PairedSpringSystem>();
+	world.getSystemManager().addSystem<TriangleCollisionSystem>();
 	world.getSystemManager().addSystem<ParticleSphereSystem>();
 	world.getSystemManager().addSystem<CableSystem>();
 	world.getSystemManager().addSystem<RodSystem>();
@@ -122,6 +132,8 @@ int main()
 		// Process Input
 		world.getSystemManager().getSystem<InputEventSystem>().Update(deltaTime);
 
+		InputRopeBridge(world);
+
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
@@ -129,6 +141,7 @@ int main()
 		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<CableSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<TriangleCollisionSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -331,76 +344,129 @@ void CreateParticleArchetype(ECSEntity e)
 
 void MakeARopeBridge(ECSWorld & world)
 {
+	int centrePivotPoint = 3;
+	int centreEntityPoint = 0;
+
+	
+	// Cables 1
 	auto ePivot1 = world.createEntity();
-	ePivot1.addComponent<TransformComponent>(Vector3(3, 10, 5));
+	ePivot1.addComponent<TransformComponent>(Vector3(centrePivotPoint, 10, 5));
 
 	auto e1 = world.createEntity();
-	e1.addComponent<TransformComponent>(Vector3(0, 3, 5));
+	e1.addComponent<TransformComponent>(Vector3(centreEntityPoint, 3, 5));
 	CreateParticleArchetype(e1);
 
 	auto ePivot2 = world.createEntity();
-	ePivot2.addComponent<TransformComponent>(Vector3(3, 10, -5));
+	ePivot2.addComponent<TransformComponent>(Vector3(centrePivotPoint, 10, -5));
 
 	auto e2 = world.createEntity();
-	e2.addComponent<TransformComponent>(Vector3(0, 2, -5));
+	e2.addComponent<TransformComponent>(Vector3(centreEntityPoint, 2, -5));
 	CreateParticleArchetype(e2);
 
 	auto rod1 = world.createEntity();
 	rod1.addComponent<RodComponent>(e1, e2, 10);
 
 	auto cable1 = world.createEntity();
-	cable1.addComponent<CableComponent>(ePivot1, e1, 20, 1);
+	cable1.addComponent<CableComponent>(ePivot1, e1, 22, 1);
 
 	auto cable2 = world.createEntity();
-	cable2.addComponent<CableComponent>(ePivot2, e2, 20, 1);
+	cable2.addComponent<CableComponent>(ePivot2, e2, 22, 1);
 
-	// 2
+	// Cables 2
 	auto ePivot3 = world.createEntity();
-	ePivot3.addComponent<TransformComponent>(Vector3(3 + 10, 10, 5));
+	ePivot3.addComponent<TransformComponent>(Vector3(centrePivotPoint + 10, 10, 5));
 
 	auto e3 = world.createEntity();
-	e3.addComponent<TransformComponent>(Vector3(0 + 10, -2, 5));
+	e3.addComponent<TransformComponent>(Vector3(centreEntityPoint + 10, -2, 5));
 	CreateParticleArchetype(e3);
 
 	auto ePivot4 = world.createEntity();
-	ePivot4.addComponent<TransformComponent>(Vector3(3 + 10, 10, -5));
+	ePivot4.addComponent<TransformComponent>(Vector3(centrePivotPoint + 10, 10, -5));
 
 	auto e4 = world.createEntity();
-	e4.addComponent<TransformComponent>(Vector3(0 + 10, 0, -5));
+	e4.addComponent<TransformComponent>(Vector3(centreEntityPoint + 10, 0, -5));
 	CreateParticleArchetype(e4);
 
 	auto rod2 = world.createEntity();
 	rod2.addComponent<RodComponent>(e3, e4, 10);
 
 	auto cable3 = world.createEntity();
-	cable3.addComponent<CableComponent>(ePivot3, e3, 15, 1);
+	cable3.addComponent<CableComponent>(ePivot3, e3, 20, 1);
 
 	auto cable4 = world.createEntity();
-	cable4.addComponent<CableComponent>(ePivot4, e4, 15, 1);
+	cable4.addComponent<CableComponent>(ePivot4, e4, 20, 1);
 
-	// 3
+	// Cable 3
 	auto ePivot5 = world.createEntity();
-	ePivot5.addComponent<TransformComponent>(Vector3(3 - 10, 10, 5));
+	ePivot5.addComponent<TransformComponent>(Vector3(centrePivotPoint - 10, 10, 5));
 
 	auto e5 = world.createEntity();
-	e5.addComponent<TransformComponent>(Vector3(0 - 10, 1, 5));
+	e5.addComponent<TransformComponent>(Vector3(centreEntityPoint - 10, 1, 5));
 	CreateParticleArchetype(e5);
 
 	auto ePivot6 = world.createEntity();
-	ePivot6.addComponent<TransformComponent>(Vector3(3 - 10, 10, -5));
+	ePivot6.addComponent<TransformComponent>(Vector3(centrePivotPoint - 10, 10, -5));
 
 	auto e6 = world.createEntity();
-	e6.addComponent<TransformComponent>(Vector3(0 - 10, -1, -5));
+	e6.addComponent<TransformComponent>(Vector3(centreEntityPoint - 10, -1, -5));
 	CreateParticleArchetype(e6);
 
 	auto rod3 = world.createEntity();
 	rod3.addComponent<RodComponent>(e5, e6, 10);
 
 	auto cable5 = world.createEntity();
-	cable5.addComponent<CableComponent>(ePivot5, e5, 15, 1);
+	cable5.addComponent<CableComponent>(ePivot5, e5, 20, 1);
 
 	auto cable6 = world.createEntity();
-	cable6.addComponent<CableComponent>(ePivot6, e6, 15, 1);
+	cable6.addComponent<CableComponent>(ePivot6, e6, 20, 1);
+	// NEW CABLES ADDED
+	// Cable 4
+	auto ePivot7 = world.createEntity();
+	ePivot7.addComponent<TransformComponent>(Vector3(centrePivotPoint - 20, 10, 5));
+
+	auto e7 = world.createEntity();
+	e7.addComponent<TransformComponent>(Vector3(centreEntityPoint - 20, 1, 5));
+	CreateParticleArchetype(e7);
+
+	auto ePivot8 = world.createEntity();
+	ePivot8.addComponent<TransformComponent>(Vector3(centrePivotPoint - 20, 10, -5));
+
+	auto e8 = world.createEntity();
+	e8.addComponent<TransformComponent>(Vector3(centreEntityPoint - 20, -1, -5));
+	CreateParticleArchetype(e8);
+
+	auto rod12 = world.createEntity();
+	rod12.addComponent<RodComponent>(e7, e8, 10);
+
+	auto cable7 = world.createEntity();
+	cable7.addComponent<CableComponent>(ePivot7, e7, 15, 1);
+
+	auto cable8 = world.createEntity();
+	cable8.addComponent<CableComponent>(ePivot8, e8, 15, 1);
+
+	// Cable 5
+	auto ePivot9 = world.createEntity();
+	ePivot9.addComponent<TransformComponent>(Vector3(centrePivotPoint + 20, 10, 5));
+
+	auto e9 = world.createEntity();
+	e9.addComponent<TransformComponent>(Vector3(centreEntityPoint + 20, 1, 5));
+	CreateParticleArchetype(e9);
+
+	auto ePivot10 = world.createEntity();
+	ePivot10.addComponent<TransformComponent>(Vector3(centrePivotPoint + 20, 10, -5));
+
+	auto e10 = world.createEntity();
+	e10.addComponent<TransformComponent>(Vector3(centreEntityPoint + 20, -1, -5));
+	CreateParticleArchetype(e10);
+
+	auto rod17 = world.createEntity();
+	rod17.addComponent<RodComponent>(e9, e10, 10);
+
+	auto cable9 = world.createEntity();
+	cable9.addComponent<CableComponent>(ePivot9, e9, 15, 1);
+
+	auto cable10 = world.createEntity();
+	cable10.addComponent<CableComponent>(ePivot10, e10, 15, 1);
 
 	// rods
 	auto rod4 = world.createEntity();
@@ -411,6 +477,15 @@ void MakeARopeBridge(ECSWorld & world)
 	rod6.addComponent<RodComponent>(e5, e1, 10);
 	auto rod7 = world.createEntity();
 	rod7.addComponent<RodComponent>(e6, e2, 10);
+	// NEW RODS BABY
+	auto rod13 = world.createEntity();
+	rod13.addComponent<RodComponent>(e7, e5, 10);
+	auto rod14 = world.createEntity();
+	rod14.addComponent<RodComponent>(e8, e6, 10);
+	auto rod18 = world.createEntity();
+	rod18.addComponent<RodComponent>(e9, e3, 10);
+	auto rod19 = world.createEntity();
+	rod19.addComponent<RodComponent>(e10, e4, 10);
 
 	// diagonal rods
 	auto rod8 = world.createEntity();
@@ -421,6 +496,34 @@ void MakeARopeBridge(ECSWorld & world)
 	rod10.addComponent<RodComponent>(e6, e1, 10 * pow(2.0f, 0.5f));
 	auto rod11 = world.createEntity();
 	rod11.addComponent<RodComponent>(e5, e2, 10 * pow(2.0f, 0.5f));
+	// NEW DIAGONAL RODS BABY
+	auto rod15 = world.createEntity();
+	rod15.addComponent<RodComponent>(e8, e5, 10 * pow(2.0f, 0.5f));
+	auto rod16 = world.createEntity();
+	rod16.addComponent<RodComponent>(e7, e6, 10 * pow(2.0f, 0.5f));
+	auto rod20 = world.createEntity();
+	rod20.addComponent<RodComponent>(e9, e4, 10 * pow(2.0f, 0.5f));
+	auto rod21 = world.createEntity();
+	rod21.addComponent<RodComponent>(e10, e3, 10 * pow(2.0f, 0.5f));
+
+	// Make Triangles 
+	auto triangle1 = world.createEntity();
+	triangle1.addComponent<TriangleCollisionComponent>(e8, e7, e6);
+	auto triangle2 = world.createEntity();
+	triangle2.addComponent<TriangleCollisionComponent>(e6, e7, e5);
+	auto triangle3 = world.createEntity();
+	triangle3.addComponent<TriangleCollisionComponent>(e6, e5, e2);
+	auto triangle4 = world.createEntity();
+	triangle4.addComponent<TriangleCollisionComponent>(e2, e5, e1);
+	auto triangle5 = world.createEntity();
+	triangle5.addComponent<TriangleCollisionComponent>(e2, e1, e4);
+	auto triangle6 = world.createEntity();
+	triangle6.addComponent<TriangleCollisionComponent>(e4, e1, e3);
+	auto triangle7 = world.createEntity();
+	triangle7.addComponent<TriangleCollisionComponent>(e4, e3, e10);
+	auto triangle8 = world.createEntity();
+	triangle8.addComponent<TriangleCollisionComponent>(e10, e3, e9);
+	
 }
 
 void MakeABunchaCablesAndRods(ECSWorld & world)
@@ -570,5 +673,20 @@ void SetupLights(ECSWorld& world)
 			pl1.addComponent<TransformComponent>(Vector3((i % 2 == 0 ? 8 : -1), 85, 49.5f - 37 * j), Vector3(1, 1, 1), Vector3(180, 0, 0));
 			pl1.addComponent<DynamicSpotLightComponent>(10.0f, 100, Color(0, 0, 0), cols[3 - j], cols[3 - j], 5);
 		}
+	}
+}
+
+void InputRopeBridge(ECSWorld& world)
+{
+	GLFWwindow* window = world.data.renderUtil->window->glfwWindow;
+	if ((glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS) && !spacePressed)
+	{
+		spacePressed = true;
+		world.getSystemManager().getSystem<TriangleCollisionSystem>().GenerateBall();
+	}
+
+	if ((glfwGetKey(window, GLFW_KEY_E) == GLFW_RELEASE))
+	{
+		spacePressed = false;
 	}
 }
