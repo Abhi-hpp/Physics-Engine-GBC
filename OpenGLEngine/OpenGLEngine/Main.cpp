@@ -9,6 +9,7 @@
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
 #include "BridgeSystem.h"
+#include "BridgeComponent.h"
 #include "ParticleSphereSystem.h"
 #include "CableSystem.h"
 #include "RodSystem.h"
@@ -340,6 +341,17 @@ void CreateParticleArchetype(ECSEntity e)
 
 void MakeARopeBridge(ECSWorld & world)
 {
+	// Make the sphere
+	testSphere = world.createEntity();
+	testSphere.addComponent<TransformComponent>(Vector3(20, 10, 0));
+	testSphere.addComponent<ParticleComponent>();
+	testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
+	testSphere.addComponent<GravityForceComponent>();
+	testSphere.addComponent<PenetrationDeltaMoveComponent>();
+	//world.getSystemManager().getSystem<BridgeSystem>().SetSphere(testSphere);
+
+
+
 	// 1
 	auto ePivot1 = world.createEntity();
 	ePivot1.addComponent<TransformComponent>(Vector3(3, 10, 5));
@@ -533,13 +545,44 @@ void MakeARopeBridge(ECSWorld & world)
 	auto rod26 = world.createEntity();
 	rod26.addComponent<RodComponent>(e10, e11, 10 * pow(2.0f, 0.5f));
 
-	// Make the sphere
-	testSphere = world.createEntity();
-	testSphere.addComponent<TransformComponent>(Vector3(20, 10, 0));
-	testSphere.addComponent<ParticleComponent>();
-	testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
-	testSphere.addComponent<GravityForceComponent>();
-	testSphere.addComponent<PenetrationDeltaMoveComponent>();
+	// make triangles
+	auto tri1 = world.createEntity();
+	tri1.addComponent<BridgeComponent>(e2, e1, e4);
+
+	auto tri2 = world.createEntity();
+	tri2.addComponent<BridgeComponent>(e3, e4, e1);
+
+
+
+	auto tri3 = world.createEntity();
+	tri3.addComponent<BridgeComponent>(e6, e5, e2);
+
+	auto tri4 = world.createEntity();
+	tri3.addComponent<BridgeComponent>(e1, e2, e5);
+
+
+
+	auto tri5 = world.createEntity();
+	tri5.addComponent<BridgeComponent>(e4, e3, e8);
+
+	auto tri6 = world.createEntity();
+	tri6.addComponent<BridgeComponent>(e7, e8, e3);
+
+
+
+	auto tri7 = world.createEntity();
+	tri7.addComponent<BridgeComponent>(e8, e7, e10);
+
+	auto tri8 = world.createEntity();
+	tri8.addComponent<BridgeComponent>(e9, e10, e7);
+
+
+
+	auto tri9 = world.createEntity();
+	tri9.addComponent<BridgeComponent>(e10, e9, e12);
+
+	auto tri10 = world.createEntity();
+	tri10.addComponent<BridgeComponent>(e11, e12, e9);
 }
 
 void InputBridgeNSphere(ECSWorld& world)
@@ -550,12 +593,6 @@ void InputBridgeNSphere(ECSWorld& world)
 	{
 		eKey = true;
 
-		Camera& camera = world.data.renderUtil->camera;
-		Vector3 front = camera.Front;
-		float distance = 20.0f;
-		front.x *= distance;
-		front.y *= distance;
-		front.z *= distance;
 
 		world.destroyEntity(testSphere);
 		testSphere = world.createEntity();
@@ -564,6 +601,15 @@ void InputBridgeNSphere(ECSWorld& world)
 		testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
 		testSphere.addComponent<GravityForceComponent>();
 		testSphere.addComponent<PenetrationDeltaMoveComponent>();
+		world.getSystemManager().getSystem<BridgeSystem>().SetSphere(testSphere);
+
+		Camera& camera = world.data.renderUtil->camera;
+		Vector3 front = camera.Front;
+		float distance = 20.0f;
+		front.x *= distance;
+		front.y *= distance;
+		front.z *= distance;
+
 	}
 	else if ((glfwGetKey(window, GLFW_KEY_E) == GLFW_RELEASE) && eKey == true)
 	{
