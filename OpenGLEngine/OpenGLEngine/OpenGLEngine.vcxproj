@@ -122,7 +122,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetLoader.cpp" />
-    <ClCompile Include="BridgeSystem.cpp">
+    <ClCompile Include="TriangleSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -211,11 +211,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetLoader.h" />
-    <ClInclude Include="BridgeComponent.h">
+    <ClInclude Include="TriangleComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BridgeSystem.h">
+    <ClInclude Include="TriangleSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
