@@ -73,6 +73,9 @@
     <Filter Include="Physics\Particles\Penetration">
       <UniqueIdentifier>{492ce7d8-0ca3-43ce-b76d-93ef2b8dd1f9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\Penetration\Bridge">
+      <UniqueIdentifier>{1cdd4988-2f90-4d71-bd91-8d6678016b4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -179,6 +182,9 @@
     </ClCompile>
     <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
       <Filter>Physics\Particles\Penetration</Filter>
+    </ClCompile>
+    <ClCompile Include="BridgeSystem.cpp">
+      <Filter>Physics\Particles\Penetration\Bridge</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,6 +367,12 @@
     </ClInclude>
     <ClInclude Include="PenetrationDeltaMoveComponent.h">
       <Filter>Physics\Particles\Penetration</Filter>
+    </ClInclude>
+    <ClInclude Include="BridgeSystem.h">
+      <Filter>Physics\Particles\Penetration\Bridge</Filter>
+    </ClInclude>
+    <ClInclude Include="BridgeComponent.h">
+      <Filter>Physics\Particles\Penetration\Bridge</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
