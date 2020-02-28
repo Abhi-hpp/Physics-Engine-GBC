@@ -183,7 +183,7 @@
     <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
       <Filter>Physics\Particles\Penetration</Filter>
     </ClCompile>
-    <ClCompile Include="BridgeSystem.cpp">
+    <ClCompile Include="TriangleSystem.cpp">
       <Filter>Physics\Particles\Penetration\Bridge</Filter>
     </ClCompile>
   </ItemGroup>
@@ -368,10 +368,10 @@
     <ClInclude Include="PenetrationDeltaMoveComponent.h">
       <Filter>Physics\Particles\Penetration</Filter>
     </ClInclude>
-    <ClInclude Include="BridgeSystem.h">
+    <ClInclude Include="TriangleComponent.h">
       <Filter>Physics\Particles\Penetration\Bridge</Filter>
     </ClInclude>
-    <ClInclude Include="BridgeComponent.h">
+    <ClInclude Include="TriangleSystem.h">
       <Filter>Physics\Particles\Penetration\Bridge</Filter>
     </ClInclude>
   </ItemGroup>
