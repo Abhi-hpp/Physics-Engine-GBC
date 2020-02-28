@@ -8,8 +8,7 @@
 #include "DragForceSystem.h"
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
-#include "BridgeSystem.h"
-#include "BridgeComponent.h"
+#include "TriangleSystem.h"
 #include "ParticleSphereSystem.h"
 #include "CableSystem.h"
 #include "RodSystem.h"
@@ -85,11 +84,13 @@ int main()
 	world.getSystemManager().addSystem<RodSystem>();
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ResetPenetrationDeltaMoveSystem>();
+	world.getSystemManager().addSystem<TriangleSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
+
 
 	float time = glfwGetTime();
 	float stepTime = glfwGetTime();
@@ -139,6 +140,7 @@ int main()
 		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<CableSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<TriangleSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -348,7 +350,7 @@ void MakeARopeBridge(ECSWorld & world)
 	testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
 	testSphere.addComponent<GravityForceComponent>();
 	testSphere.addComponent<PenetrationDeltaMoveComponent>();
-	//world.getSystemManager().getSystem<BridgeSystem>().SetSphere(testSphere);
+	world.getSystemManager().getSystem<TriangleSystem>().SetSphere(testSphere);
 
 
 
@@ -547,42 +549,42 @@ void MakeARopeBridge(ECSWorld & world)
 
 	// make triangles
 	auto tri1 = world.createEntity();
-	tri1.addComponent<BridgeComponent>(e2, e1, e4);
+	tri1.addComponent<TriangleComponent>(e2, e1, e4);
 
 	auto tri2 = world.createEntity();
-	tri2.addComponent<BridgeComponent>(e3, e4, e1);
+	tri2.addComponent<TriangleComponent>(e3, e4, e1);
 
 
 
 	auto tri3 = world.createEntity();
-	tri3.addComponent<BridgeComponent>(e6, e5, e2);
+	tri3.addComponent<TriangleComponent>(e6, e5, e2);
 
 	auto tri4 = world.createEntity();
-	tri3.addComponent<BridgeComponent>(e1, e2, e5);
+	tri3.addComponent<TriangleComponent>(e1, e2, e5);
 
 
 
 	auto tri5 = world.createEntity();
-	tri5.addComponent<BridgeComponent>(e4, e3, e8);
+	tri5.addComponent<TriangleComponent>(e4, e3, e8);
 
 	auto tri6 = world.createEntity();
-	tri6.addComponent<BridgeComponent>(e7, e8, e3);
+	tri6.addComponent<TriangleComponent>(e7, e8, e3);
 
 
 
 	auto tri7 = world.createEntity();
-	tri7.addComponent<BridgeComponent>(e8, e7, e10);
+	tri7.addComponent<TriangleComponent>(e8, e7, e10);
 
 	auto tri8 = world.createEntity();
-	tri8.addComponent<BridgeComponent>(e9, e10, e7);
+	tri8.addComponent<TriangleComponent>(e9, e10, e7);
 
 
 
 	auto tri9 = world.createEntity();
-	tri9.addComponent<BridgeComponent>(e10, e9, e12);
+	tri9.addComponent<TriangleComponent>(e10, e9, e12);
 
 	auto tri10 = world.createEntity();
-	tri10.addComponent<BridgeComponent>(e11, e12, e9);
+	tri10.addComponent<TriangleComponent>(e11, e12, e9);
 }
 
 void InputBridgeNSphere(ECSWorld& world)
@@ -601,7 +603,7 @@ void InputBridgeNSphere(ECSWorld& world)
 		testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
 		testSphere.addComponent<GravityForceComponent>();
 		testSphere.addComponent<PenetrationDeltaMoveComponent>();
-		world.getSystemManager().getSystem<BridgeSystem>().SetSphere(testSphere);
+		world.getSystemManager().getSystem<TriangleSystem>().SetSphere(testSphere);
 
 		Camera& camera = world.data.renderUtil->camera;
 		Vector3 front = camera.Front;
