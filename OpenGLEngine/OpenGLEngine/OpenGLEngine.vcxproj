@@ -130,6 +130,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="CableSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DragForceSystem.cpp">
       <SubType>
@@ -201,12 +205,24 @@
     </ClCompile>
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RotateSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="TriangleContactSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +240,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="BuoyancySystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CableComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CableSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -353,9 +377,25 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RotateComponent.h">
       <SubType>
       </SubType>
@@ -369,6 +409,14 @@
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="TriangleComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="TriangleContactSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Window.h" />
     <ClInclude Include="WorldData.h" />
   </ItemGroup>

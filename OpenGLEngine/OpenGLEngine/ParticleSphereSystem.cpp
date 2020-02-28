@@ -17,7 +17,7 @@ namespace Reality
 		}
 
 		// Draw the bounding box
-		getWorld().data.renderUtil->DrawCube(Vector3(0, 0, 0), Vector3(20, 20, 20), Vector3(0, 0, 0), Color::Red);
+		//getWorld().data.renderUtil->DrawCube(Vector3(0, 0, 0), Vector3(20, 20, 20), Vector3(0, 0, 0), Color::Red);
 
 		for (auto e : getEntities())
 		{
