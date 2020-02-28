@@ -207,6 +207,9 @@
     <ClCompile Include="RigidbodyGravityForceGeneratorSystem.cpp">
       <Filter>Physics\Rigidbody</Filter>
     </ClCompile>
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -481,6 +484,15 @@
     </ClInclude>
     <ClInclude Include="RigidbodyGravityForceGeneratorSystem.h">
       <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <Filter>Physics\Particles</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

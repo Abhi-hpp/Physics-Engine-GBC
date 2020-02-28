@@ -210,6 +210,7 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp" />
     <ClCompile Include="RigidbodyGravityForceGeneratorSystem.cpp">
       <SubType>
       </SubType>
@@ -391,16 +392,19 @@
     <ClInclude Include="PairedSpringForceGeneratorSystem.h" />
     <ClInclude Include="ParticleComponent.h" />
     <ClInclude Include="ParticleContactComponent.h" />
+    <ClInclude Include="ParticleContactEvent.h" />
     <ClInclude Include="ParticleContactResolutionSystem.h" />
     <ClInclude Include="ParticleSpawnerComponent.h" />
     <ClInclude Include="ParticleSpawnerSystem.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="PenetrationDeltaMoveComponent.h" />
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="RenderingSystemV2.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="RenderUtil.h" />
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h" />
     <ClInclude Include="RigidBodyComponent.h">
       <SubType>
       </SubType>
