@@ -19,11 +19,11 @@ namespace Reality
 			for (int i = 0; i < velocityIterations; i++)
 			{
 				// Sort from highest incoming OR most negetive separting velocity to least
-				std::sort(contactEvents.begin(), contactEvents.end(), 
+				std::sort(contactEvents.begin(), contactEvents.end(),
 					[this](auto a, auto b)
-					{
-						return CalculateSeparationVelocity(a) < CalculateSeparationVelocity(b);
-					});
+				{
+					return CalculateSeparationVelocity(a) < CalculateSeparationVelocity(b);
+				});
 				ResolveVelocity(contactEvents[0], deltaTime);
 			}
 			for (int i = 0; i < positionIterations; i++)
@@ -31,9 +31,9 @@ namespace Reality
 				// Sort from highest penetration to the least
 				std::sort(contactEvents.begin(), contactEvents.end(),
 					[this](auto a, auto b)
-					{
-						return CalculateActualPenetration(a) > CalculateActualPenetration(b);
-					});
+				{
+					return CalculateActualPenetration(a) > CalculateActualPenetration(b);
+				});
 				ResolveInterPenetration(contactEvents[0]);
 			}
 		}
@@ -44,7 +44,7 @@ namespace Reality
 		//}
 	}
 
-	float ParticleContactResolutionSystem::CalculateSeparationVelocity(ParticleContactEvent & contact)
+	float ParticleContactResolutionSystem::CalculateSeparationVelocity(ParticleContactEvent& contact)
 	{
 		Vector3 velocityA = contact.entityA.hasComponent<ParticleComponent>() ?
 			contact.entityA.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
@@ -57,7 +57,7 @@ namespace Reality
 		return glm::dot(separationVelocity, contact.normal);
 	}
 
-	float ParticleContactResolutionSystem::CalculateActualPenetration(ParticleContactEvent & contact)
+	float ParticleContactResolutionSystem::CalculateActualPenetration(ParticleContactEvent& contact)
 	{
 		float actualPenetration = contact.penetration;
 
@@ -76,7 +76,7 @@ namespace Reality
 		return actualPenetration;
 	}
 
-	void ParticleContactResolutionSystem::ResolveVelocity(ParticleContactEvent & contact, float deltaTime)
+	void ParticleContactResolutionSystem::ResolveVelocity(ParticleContactEvent& contact, float deltaTime)
 	{
 		float initialVelocity = CalculateSeparationVelocity(contact);
 
@@ -137,7 +137,7 @@ namespace Reality
 			contact.entityB.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invMB;
 		}
 	}
-	void ParticleContactResolutionSystem::ResolveInterPenetration(ParticleContactEvent & contact)
+	void ParticleContactResolutionSystem::ResolveInterPenetration(ParticleContactEvent& contact)
 	{
 		float actualPenetration = CalculateActualPenetration(contact);
 

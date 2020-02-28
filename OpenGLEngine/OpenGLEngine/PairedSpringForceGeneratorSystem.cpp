@@ -30,12 +30,12 @@ namespace Reality
 
 				if (spring.entityA.hasComponent<ParticleComponent>())
 				{
-					spring.entityA.getComponent<ParticleComponent>().AddForce(-spring.springConstant * x * direction);
+					//spring.entityA.getComponent<ParticleComponent>().AddForce(-spring.springConstant * x * direction);
 				}
 
 				if (spring.entityB.hasComponent<ParticleComponent>())
 				{
-					spring.entityB.getComponent<ParticleComponent>().AddForce(spring.springConstant * x * direction);
+					//spring.entityB.getComponent<ParticleComponent>().AddForce(spring.springConstant * x * direction);
 				}
 
 				float g = 1.0f / (1.0f + pow(abs(x), 0.5f));

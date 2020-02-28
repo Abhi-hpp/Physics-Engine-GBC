@@ -28,7 +28,7 @@ namespace Reality
 				float x = length - spring.restLength;
 				Vector3 direction = glm::normalize(relativePosition);
 
-				particle.AddForce(-spring.springConstant * x * direction);
+				//particle.AddForce(-spring.springConstant * x * direction);
 
 				/*
 				float g = 1.0f / (1.0f +  pow(abs(x), 0.5f));

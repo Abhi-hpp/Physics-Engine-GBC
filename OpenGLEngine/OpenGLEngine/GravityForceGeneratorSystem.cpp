@@ -14,7 +14,7 @@ namespace Reality
 		for (auto e : getEntities())
 		{
 			auto &particle = e.getComponent<ParticleComponent>();
-			particle.AddForce(gravity * particle.gravityScale / particle.inverseMass);
+			//particle.AddForce(gravity * particle.gravityScale / particle.inverseMass);
 		}
 
 	}
