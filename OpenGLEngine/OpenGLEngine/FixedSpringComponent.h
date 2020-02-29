@@ -5,10 +5,17 @@ namespace Reality
 {
 	struct FixedSpringComponent
 	{
-		FixedSpringComponent(float _springConstant = 10, float _restLength = 10, ECSEntity e = ECSEntity())
-			:springConstant(_springConstant), restLength(_restLength), entity(e){}
+		FixedSpringComponent(float _springConstant = 10.0f,
+			float _restLength = 10.0f,
+			ECSEntity _connectedEntity = ECSEntity())
+			: springConstant(_springConstant),
+			restLength(_restLength),
+			connectedEntity(_connectedEntity)
+		{
+
+		}
 		float springConstant;
 		float restLength;
-		ECSEntity entity;
+		ECSEntity connectedEntity;
 	};
 }
