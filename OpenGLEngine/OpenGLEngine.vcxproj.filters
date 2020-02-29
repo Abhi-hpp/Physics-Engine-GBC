@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{f5f91895-769b-4e5d-ba26-2e5ae9b27d4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{4908f04b-fde2-4c3c-aee0-85a0d4fe4985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ECSCore">
+      <UniqueIdentifier>{3e028a8c-baa4-4fc3-bd18-fe7b14239d28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{db276a7f-edce-43c9-ae12-65e1b140881e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ComponentsCore">
+      <UniqueIdentifier>{db2edee8-1859-4e65-b307-c403f18f9748}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mix">
+      <UniqueIdentifier>{f8a9d179-76b0-4e0e-a76c-a1a25c3113a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{e52077c3-76ae-4886-a342-fbe29e147594}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCS">
+      <UniqueIdentifier>{f1bb8739-5560-4299-ba72-675bd37e40e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles">
+      <UniqueIdentifier>{95539126-9b92-4bc9-a37c-8c78d512b869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{09a9940b-c17f-43c0-becf-d8da8efa3d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Rigidbody">
+      <UniqueIdentifier>{3f5a8043-c367-47f5-bbe1-005323d21b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators">
+      <UniqueIdentifier>{7f18e2e3-c9d3-4e51-99af-f305bc7c7809}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCS\FireworksDemo">
+      <UniqueIdentifier>{de659340-4bd0-4122-8ca5-860659a18907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Drag">
+      <UniqueIdentifier>{b4bddbba-a497-4e9b-9cc9-664e79a55420}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Gravity">
+      <UniqueIdentifier>{b06bb596-f3ce-4598-9b55-ceb6e26b9e63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Spring">
+      <UniqueIdentifier>{b2c94cf5-0156-44a9-a22c-e06692d25c4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Buoyancy">
+      <UniqueIdentifier>{d178f406-f2da-461d-a979-2f20de61b98d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\NBody">
+      <UniqueIdentifier>{cc0ec1be-9958-4d93-9dfd-7706bfc2bba9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCS\ParticleSphereDemo">
+      <UniqueIdentifier>{73d2b939-f79d-461e-a35c-9242ac27e47e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Bungee">
+      <UniqueIdentifier>{ee16f864-581e-4e61-b810-d6a0086cc291}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCS\RopeBridge">
+      <UniqueIdentifier>{691f21d8-026e-4b35-8928-ec2d3b25c63c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="glad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\Component.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\Entity.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\Event.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\System.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="Mix\World.cpp">
+      <Filter>Mix</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingSystem.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderUtil.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Window.cpp">
+      <Filter>ECSCore</Filter>
+    </ClCompile>
+    <ClCompile Include="InputEventSystem.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetLoader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicDirectionalLightSystem.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicPointLightSystem.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicSpotLightSystem.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="FPSControlSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceAccumulatorSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators</Filter>
+    </ClCompile>
+    <ClCompile Include="FireworksSystem.cpp">
+      <Filter>TestCS\FireworksDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="DragForceSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityForceSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
+    </ClCompile>
+    <ClCompile Include="FixedSpringSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Spring</Filter>
+    </ClCompile>
+    <ClCompile Include="PairedSpringSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Spring</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoyancySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSphereSystem.cpp">
+      <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="N-BodySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
+    </ClCompile>
+    <ClCompile Include="BungeeChordSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClCompile>
+    <ClCompile Include="BungeeSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClCompile>
+    <ClCompile Include="CableSystem.cpp">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClCompile>
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="TriangleSystem.cpp">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSpawnSystem.cpp">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stb_image.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ECSConfig.h">
+      <Filter>ECSCore</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshComponent.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>ComponentsCore</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldData.h">
+      <Filter>ECSCore</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Component.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Config.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Entity.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Event.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\Pool.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\System.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="Mix\World.h">
+      <Filter>Mix</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingSystem.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderUtil.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Shadinclude.hpp">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Window.h">
+      <Filter>ECSCore</Filter>
+    </ClInclude>
+    <ClInclude Include="InputEventSystem.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseMoveEvent.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Material.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetLoader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLightComponent.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicDirectionalLightSystem.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicPointLightComponent.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicPointLightSystem.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicSpotLightComponent.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicSpotLightSystem.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSControlComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSControlSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAccumulatorComponent.h">
+      <Filter>Physics\Particles\ForceGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAccumulatorSystem.h">
+      <Filter>Physics\Particles\ForceGenerators</Filter>
+    </ClInclude>
+    <ClInclude Include="FireworksComponent.h">
+      <Filter>TestCS\FireworksDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="FireworksSystem.h">
+      <Filter>TestCS\FireworksDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="DragForceComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="DragForceSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Spring</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Spring</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Spring</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Spring</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereComponent.h">
+      <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereSystem.h">
+      <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="N-BodyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
+    </ClInclude>
+    <ClInclude Include="N-BodySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\NBody</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeChordComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeChordSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="CableComponent.h">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="CableSystem.h">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleComponent.h">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="TriangleSystem.h">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSpawnSystem.h">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSpawnComponent.h">
+      <Filter>TestCS\RopeBridge</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\Lighting_Maps.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lighting_Maps.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lamp.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\Lamp.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\vertexDefault.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\fragmentDefault.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\FragmentConstant.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="Shaders\SimpleVertex.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="text.vs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="text.fs">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
