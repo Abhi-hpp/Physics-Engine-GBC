@@ -18,7 +18,9 @@ namespace Reality
 			{
 				auto& plane = e.getComponent<TrianglePlaneComponent>();
 
-				getWorld().data.renderUtil->DrawTriangle(plane.p1.getComponent<TransformComponent>().position, plane.p2.getComponent<TransformComponent>().position, plane.p3.getComponent<TransformComponent>().position, Color::Blue);
+				getWorld().data.renderUtil->DrawTriangle(plane.p1.getComponent<TransformComponent>().position, 
+					plane.p2.getComponent<TransformComponent>().position, 
+					plane.p3.getComponent<TransformComponent>().position, plane.color);
 
 				for (auto s : getEntities())
 				{
@@ -62,6 +64,7 @@ namespace Reality
 								//if the contact point is within the triangle
 								if (totalangle >= 359.8f && totalangle <= 360.2)
 								{
+									plane.color = Color::Red;
 									getWorld().getEventManager().emitEvent<ParticleContactEvent>(
 										s,
 										e,
@@ -69,9 +72,10 @@ namespace Reality
 										Norm,
 										fabs(sphere.radius - d)
 										);
-
 								}
 							}
+							else
+								plane.color = Color::Blue;
 						}
 					}
 				}
