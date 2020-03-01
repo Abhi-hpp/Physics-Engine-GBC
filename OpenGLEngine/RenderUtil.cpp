@@ -43,8 +43,7 @@ namespace Reality
 		if (window == NULL)
 		{
 			std::cout << "Failed to create GLFW window" << std::endl;
-			glfwTermi
-			();
+			glfwTerminate();
 			return NULL;
 		}
 		glfwMakeContextCurrent(window);
