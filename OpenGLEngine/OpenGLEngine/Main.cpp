@@ -84,7 +84,7 @@ int main()
 	world.getSystemManager().addSystem<RodSystem>();
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ResetPenetrationDeltaMoveSystem>();
-	//world.getSystemManager().addSystem<TriangleSystem>();
+	world.getSystemManager().addSystem<TriangleSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
@@ -140,7 +140,7 @@ int main()
 		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<CableSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
-		//world.getSystemManager().getSystem<TriangleSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<TriangleSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -350,7 +350,7 @@ void MakeARopeBridge(ECSWorld & world)
 	testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
 	testSphere.addComponent<GravityForceComponent>();
 	testSphere.addComponent<PenetrationDeltaMoveComponent>();
-	//world.getSystemManager().getSystem<TriangleSystem>().SetSphere(testSphere);
+	world.getSystemManager().getSystem<TriangleSystem>().SetSphere(testSphere);
 
 
 
