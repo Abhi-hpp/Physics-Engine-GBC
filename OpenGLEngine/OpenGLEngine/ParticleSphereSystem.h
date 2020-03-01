@@ -1,6 +1,7 @@
 #pragma once
 #include "ECSConfig.h"
 #include "ParticleSphereComponent.h"
+#include "TransformComponent.h"
 
 namespace Reality
 {
@@ -10,6 +11,8 @@ namespace Reality
 		ParticleSphereSystem();
 		void Update(float deltaTime);
 	private:
-		bool CheckCollision(ECSEntity& sphereA, ECSEntity& sphereB);
+		bool createBox = false;
+		ECSEntity boundingBox;
+		void CheckCollision(ECSEntity sphereEntityA, ECSEntity sphereEntityB);
 	};
 }
