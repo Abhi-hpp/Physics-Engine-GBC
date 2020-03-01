@@ -29,41 +29,38 @@ namespace Reality
 						Vector3 pointAC = glm::normalize(pointC - pointA);
 
 						Vector3 NomalQuad = glm::cross(pointAB, pointAC);
-						Vector3 UnitNorm = glm::normalize(NomalQuad);
+						Vector3 normal = glm::normalize(NomalQuad);
 
 						auto center = i.getComponent<TransformComponent>().position;
 
 						Vector3 someThing = center - pointA;
 
-						float distance = abs(glm::dot(UnitNorm, someThing));
+						float distance = abs(glm::dot(normal, someThing));
 
 						if ((distance < i.getComponent<ParticleSphereComponent>().radius))
 						{
-
 							float angleSum = 0;
 
-							Vector3 vA = pointA - center;
-							Vector3 vB = pointB - center;
-							Vector3 vC = pointC - center;
+							Vector3 vPointA = pointA - center;
+							Vector3 vPointB = pointB - center;
+							Vector3 vPointC = pointC - center;
 
-							float angle1 = acos(glm::dot(vA, vB) / (glm::length(vA) * glm::length(vB)));
-							float angle2 = acos(glm::dot(vB, vC) / (glm::length(vB) * glm::length(vC)));
-							float angle3 = acos(glm::dot(vA, vC) / (glm::length(vC) * glm::length(vA)));
+							float angleA = acos(glm::dot(vPointA, vPointB) / (glm::length(vPointA) * glm::length(vPointB)));
+							float angleB = acos(glm::dot(vPointB, vPointC) / (glm::length(vPointB) * glm::length(vPointC)));
+							float angleC = acos(glm::dot(vPointA, vPointC) / (glm::length(vPointC) * glm::length(vPointA)));
 
-							angleSum = angle1 + angle2 + angle3;
-							angleSum = angleSum / 3.14592654f * 180;
+							angleSum = angleA + angleB + angleC;
+							angleSum = angleSum / 3.14f * 180;
 
-							if (angleSum > 340 && angleSum < 370)
+							if (angleSum > 350 && angleSum < 370)
 							{
-								getWorld().getEventManager().emitEvent<ParticleContactEvent>(e, i, 0.8f, UnitNorm, i.getComponent<ParticleSphereComponent>().radius - distance);
+								getWorld().getEventManager().emitEvent<ParticleContactEvent>(e, i, 0.8f, normal, i.getComponent<ParticleSphereComponent>().radius - distance);
 								getWorld().data.renderUtil->DrawTriangle(pointA, pointB, pointC, Color::Red);
 							}
 						}
-
 					}
 				}
 			}
-
 		}
 	}
 }
