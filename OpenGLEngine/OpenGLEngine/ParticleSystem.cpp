@@ -20,7 +20,7 @@ namespace Reality
 
 			if (DEBUG_LOG_LEVEL > 0)
 			{
-				getWorld().data.renderUtil->DrawSphere(transform.position, 2.0f, particle.colour);
+				getWorld().data.renderUtil->DrawSphere(transform.position);
 			}
 		}
 	}

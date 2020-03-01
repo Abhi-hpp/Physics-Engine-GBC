@@ -122,7 +122,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetLoader.cpp" />
-    <ClCompile Include="BuoyancySystem.cpp">
+    <ClCompile Include="CableSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -171,11 +171,15 @@
     <ClCompile Include="Mix\System.cpp" />
     <ClCompile Include="Mix\World.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="NBodySystem.cpp">
+    <ClCompile Include="PairedSpringSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
-    <ClCompile Include="PairedSpringSystem.cpp">
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ParticleSphereSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -183,8 +187,20 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="PlaneSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RenderingSystem.cpp" />
     <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RotateSystem.cpp">
       <SubType>
       </SubType>
@@ -195,11 +211,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssetLoader.h" />
-    <ClInclude Include="BuoyancyComponent.h">
+    <ClInclude Include="CableComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
-    <ClInclude Include="BuoyancySystem.h">
+    <ClInclude Include="CableSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -281,14 +297,6 @@
     <ClInclude Include="Mix\World.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseMoveEvent.h" />
-    <ClInclude Include="NBodyComponent.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="NBodySystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
     <ClInclude Include="PairedSpringComponent.h">
       <SubType>
       </SubType>
@@ -301,13 +309,53 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ParticleSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlaneComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PlaneSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="RenderingSystem.h" />
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RotateComponent.h">
       <SubType>
       </SubType>
