@@ -34,7 +34,6 @@ void MakeABunchaSprings(ECSWorld& world);
 void MakeABunchaSpheres(ECSWorld& world);
 void MakeARopeBridge(ECSWorld& world);
 void CreateSphere(ECSWorld& world);
-void CreateRandomPosition(Reality::ECSWorld& world);
 
 ECSEntity lastConnectedParticle = ECSEntity();
 ECSEntity testSphere;
@@ -128,7 +127,6 @@ int main()
 		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<TriangleCollisionSystem>().Update(deltaTime);
 		CreateSphere(world);
-
 		// Update Transform
 
 		// Physics
@@ -540,7 +538,12 @@ void MakeARopeBridge(ECSWorld & world)
 	auto triangle10 = world.createEntity();
 	triangle10.addComponent<TriangleCollisionComponent>(e9, e12, e11);
 
-	CreateRandomPosition(world);
+	testSphere = world.createEntity();
+	testSphere.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-0, 40), 10, RANDOM_FLOAT(-4, 4)));
+	testSphere.addComponent<ParticleComponent>();
+	testSphere.addComponent<ForceAccumulatorComponent>(1.0f);
+	testSphere.addComponent<GravityForceComponent>();
+	testSphere.addComponent<ParticleSphereComponent>(1);
 }
 
 void CreateSphere(ECSWorld& world)
@@ -557,22 +560,16 @@ void CreateSphere(ECSWorld& world)
 			testSphere.kill();
 		}
 
-		CreateRandomPosition(world);
+		auto tempSphere = world.createEntity();
+		tempSphere.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-0, 40), 10, RANDOM_FLOAT(-4, 4)));
+		tempSphere.addComponent<ParticleComponent>();
+		tempSphere.addComponent<ForceAccumulatorComponent>(1.0f);
+		tempSphere.addComponent<GravityForceComponent>();
+		tempSphere.addComponent<ParticleSphereComponent>(1);
+		testSphere = tempSphere;
 	}
 
 	keyReleasePrevious = keyReleaseActual;
-}
-
-void CreateRandomPosition(Reality::ECSWorld& world)
-{
-	auto tempSphere = world.createEntity();
-	tempSphere.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-0, 40), 10, RANDOM_FLOAT(-4, 4)));
-	tempSphere.addComponent<ParticleComponent>();
-	tempSphere.addComponent<ForceAccumulatorComponent>(1.0f);
-	tempSphere.addComponent<GravityForceComponent>();
-	tempSphere.addComponent<ParticleSphereComponent>(1);
-
-	testSphere = tempSphere;
 }
 
 void SetupLights(ECSWorld& world)
