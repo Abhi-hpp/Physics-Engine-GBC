@@ -4,8 +4,8 @@ namespace Reality
 {
 	DragForceSystem::DragForceSystem()
 	{
-		requireComponent<ForceAccumulatorComponent>();
 		requireComponent<ParticleComponent>();
+		requireComponent<ForceAccumulatorComponent>();
 		requireComponent<DragForceComponent>();
 	}
 
@@ -13,21 +13,17 @@ namespace Reality
 	{
 		for (auto e : getEntities())
 		{
-
-			auto& forceAcc = e.getComponent<ForceAccumulatorComponent>();
 			auto& particle = e.getComponent<ParticleComponent>();
+			auto& forceAcc = e.getComponent<ForceAccumulatorComponent>();
 			auto& drag = e.getComponent<DragForceComponent>();
 
-			float velocityMag = glm::length(particle.velocity);
-
-			if (velocityMag > 0)
+			float speed = glm::length(particle.velocity);
+			if (speed > 0)
 			{
 				Vector3 force = -glm::normalize(particle.velocity);
-				force *= drag.k1 * velocityMag + drag.k2 * pow(velocityMag, 2);
-
+				force *= drag.k1 * speed + drag.k2 * pow(speed, 2);
 				forceAcc.AddForce(force);
 			}
-
 		}
 	}
 }

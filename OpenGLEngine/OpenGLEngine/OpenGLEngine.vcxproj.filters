@@ -53,28 +53,22 @@
       <UniqueIdentifier>{2a1ab3ed-c9b4-469a-8efb-a6ad96814ca1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Physics\Particles\ForceGenerators\Drag">
-      <UniqueIdentifier>{772c6d34-fc70-4bc3-ad55-844fcaeadfdf}</UniqueIdentifier>
+      <UniqueIdentifier>{a47e3b81-90db-42eb-a5f1-e5a072f9b973}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Particles\ForceGenerators\GRavity">
-      <UniqueIdentifier>{2c57427f-cce0-4116-9fac-ecc1375ca1d0}</UniqueIdentifier>
+    <Filter Include="Physics\Particles\ForceGenerators\Gravity">
+      <UniqueIdentifier>{05f83a53-3654-4ae0-99f7-3b5b0131942b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Particles\ForceGenerators\Springs">
-      <UniqueIdentifier>{b03d0e21-717d-4863-8965-85aeeb83eb91}</UniqueIdentifier>
+    <Filter Include="Physics\Particles\ForceGenerators\FixedSpring">
+      <UniqueIdentifier>{4c54bdb5-bf1a-46eb-97aa-4ad2f029416e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Particles\ForceGenerators\PairedSprings">
-      <UniqueIdentifier>{fbe47503-22ff-465f-91aa-0525f81f791e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Physics\Particles\ForceGenerators\Buoyancy">
-      <UniqueIdentifier>{b922ea81-2400-40ec-8801-42c23a3d7b06}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Physics\Particles\ForceGenerators\Bungee">
-      <UniqueIdentifier>{1ef57328-19e1-4a3b-a890-4f3fce56e65d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Physics\Particles\ForceGenerators\N Body">
-      <UniqueIdentifier>{4eb38363-470a-4852-8880-d1a4cb92c4eb}</UniqueIdentifier>
+    <Filter Include="Physics\Particles\PairedSpring">
+      <UniqueIdentifier>{26df7371-0611-42cd-b6e5-2556995c23d7}</UniqueIdentifier>
     </Filter>
     <Filter Include="TestCS\ParticleSphereDemo">
-      <UniqueIdentifier>{c8898a22-8eca-4f5d-9a35-cc05ca96d58b}</UniqueIdentifier>
+      <UniqueIdentifier>{8f440b87-7f9c-4d7f-993c-ec5fa08dde39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCS\CablesAndRods">
+      <UniqueIdentifier>{8d7d692e-fedf-4e75-9661-f2eb1dd346c1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -157,31 +151,40 @@
       <Filter>TestCS\FireWorksDemo</Filter>
     </ClCompile>
     <ClCompile Include="GravityForceSystem.cpp">
-      <Filter>Physics\Particles\ForceGenerators\GRavity</Filter>
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
     </ClCompile>
     <ClCompile Include="DragForceSystem.cpp">
       <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
     </ClCompile>
     <ClCompile Include="FixedSpringSystem.cpp">
-      <Filter>Physics\Particles\ForceGenerators\Springs</Filter>
+      <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
     </ClCompile>
     <ClCompile Include="PairedSpringSystem.cpp">
-      <Filter>Physics\Particles\ForceGenerators\PairedSprings</Filter>
-    </ClCompile>
-    <ClCompile Include="BungeeSystem.cpp">
-      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
-    </ClCompile>
-    <ClCompile Include="BuoyancySystem.cpp">
-      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
-    </ClCompile>
-    <ClCompile Include="NBodySystem.cpp">
-      <Filter>Physics\Particles\ForceGenerators\N Body</Filter>
+      <Filter>Physics\Particles\PairedSpring</Filter>
     </ClCompile>
     <ClCompile Include="ParticleContactResolutionSystem.cpp">
       <Filter>Physics\Particles</Filter>
     </ClCompile>
     <ClCompile Include="ParticleSphereSystem.cpp">
       <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="CableSystem.cpp">
+      <Filter>TestCS\CablesAndRods</Filter>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <Filter>TestCS\CablesAndRods</Filter>
+    </ClCompile>
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingSystemV2.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="RotateSystemV2.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="PlaneSystem.cpp">
+      <Filter>TestCS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -312,10 +315,10 @@
       <Filter>TestCS\FireWorksDemo</Filter>
     </ClInclude>
     <ClInclude Include="GravityForceComponent.h">
-      <Filter>Physics\Particles\ForceGenerators\GRavity</Filter>
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
     </ClInclude>
     <ClInclude Include="GravityForceSystem.h">
-      <Filter>Physics\Particles\ForceGenerators\GRavity</Filter>
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
     </ClInclude>
     <ClInclude Include="DragForceComponent.h">
       <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
@@ -324,39 +327,21 @@
       <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
     </ClInclude>
     <ClInclude Include="FixedSpringComponent.h">
-      <Filter>Physics\Particles\ForceGenerators\Springs</Filter>
+      <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
     </ClInclude>
     <ClInclude Include="FixedSpringSystem.h">
-      <Filter>Physics\Particles\ForceGenerators\Springs</Filter>
+      <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
     </ClInclude>
     <ClInclude Include="PairedSpringComponent.h">
-      <Filter>Physics\Particles\ForceGenerators\PairedSprings</Filter>
+      <Filter>Physics\Particles\PairedSpring</Filter>
     </ClInclude>
     <ClInclude Include="PairedSpringSystem.h">
-      <Filter>Physics\Particles\ForceGenerators\PairedSprings</Filter>
-    </ClInclude>
-    <ClInclude Include="BuoyancyComponent.h">
-      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
-    </ClInclude>
-    <ClInclude Include="BungeeComponent.h">
-      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
-    </ClInclude>
-    <ClInclude Include="BungeeSystem.h">
-      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
-    </ClInclude>
-    <ClInclude Include="BuoyancySystem.h">
-      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
-    </ClInclude>
-    <ClInclude Include="NBodyComponent.h">
-      <Filter>Physics\Particles\ForceGenerators\N Body</Filter>
-    </ClInclude>
-    <ClInclude Include="NBodySystem.h">
-      <Filter>Physics\Particles\ForceGenerators\N Body</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleContactResolutionSystem.h">
-      <Filter>Physics\Particles</Filter>
+      <Filter>Physics\Particles\PairedSpring</Filter>
     </ClInclude>
     <ClInclude Include="ParticleContactEvent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
       <Filter>Physics\Particles</Filter>
     </ClInclude>
     <ClInclude Include="ParticleSphereComponent.h">
@@ -364,6 +349,42 @@
     </ClInclude>
     <ClInclude Include="ParticleSphereSystem.h">
       <Filter>TestCS\ParticleSphereDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="CableComponent.h">
+      <Filter>TestCS\CablesAndRods</Filter>
+    </ClInclude>
+    <ClInclude Include="CableSystem.h">
+      <Filter>TestCS\CablesAndRods</Filter>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <Filter>TestCS\CablesAndRods</Filter>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <Filter>TestCS\CablesAndRods</Filter>
+    </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponentV2.h">
+      <Filter>ComponentsCore</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingSystemV2.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateComponentV2.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="RotateSystemV2.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="PlaneSystem.h">
+      <Filter>TestCS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

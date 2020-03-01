@@ -1,4 +1,6 @@
 #include "RenderingSystemV2.h"
+#include "Shader.h"
+#include "Camera.h"
 
 namespace Reality
 {
@@ -12,29 +14,28 @@ namespace Reality
 	{
 		for (auto e : getEntities())
 		{
-			auto& transform = e.getComponent<TransformComponentV2>();
-			auto &model = e.getComponent<ModelComponent>();
+			auto &transform = e.getComponent<TransformComponentV2>();
+			auto &mesh = e.getComponent<ModelComponent>();
 
 			if (getWorld().data.assetLoader->ModelsLoaded())
 			{
 				getWorld().data.assetLoader->SetLight(getWorld().data.renderUtil->camera.Position);
 			}
-			if (model.modelId < 0)
+
+			if (mesh.modelId < 0)
 			{
-				model.modelId = getWorld().data.assetLoader->GetModelId(model.mesh);
+				mesh.modelId = getWorld().data.assetLoader->GetModelId(mesh.mesh);
 			}
-			if (model.modelId >= 0)
+
+			if (mesh.modelId >= 0)
 			{
-				//Mat4 modelMat = glm::translate(glm::mat4(1.0f), model.offset.x * transform.Right() + model.offset.y * transform.Up() + model.offset.z * transform.Forward()) * transform.transformationMatrix;
-				//Mat4 modelMat = glm::translate(transform.transformationMatrix, model.offset.x * transform.Right() + model.offset.y * transform.Up() + model.offset.z * transform.Forward());
-				glm::vec3 rotationOffsetInRads = glm::vec3(glm::radians(model.rotation.x), glm::radians(model.rotation.y), glm::radians(model.rotation.z));
-				glm::mat4 rotationOffsetMat = glm::toMat4(glm::quat(rotationOffsetInRads));
-				Mat4 modelMat = transform.GetTransformationMatrix() * glm::translate(glm::mat4(1.0f), model.offset) * rotationOffsetMat;
-				getWorld().data.renderUtil->DrawModel(model.modelId, modelMat);
+				getWorld().data.renderUtil->DrawModel(mesh.modelId, transform.GetTransformationMatrix());
 			}
-			getWorld().data.renderUtil->DrawLine(transform.GetPosition(), transform.GetPosition() + transform.Right() * 10.0f, Color::Red);
-			getWorld().data.renderUtil->DrawLine(transform.GetPosition(), transform.GetPosition() + transform.Up() * 10.0f, Color::Green);
-			getWorld().data.renderUtil->DrawLine(transform.GetPosition(), transform.GetPosition() + transform.Forward() * 10.0f, Color::Blue);
+
+			// Draw
+			//getWorld().data.renderUtil->DrawCube(transform.position, Vector3(10,10,10), transform.eulerAngles);
+			//getWorld().data.renderUtil->DrawCube(transform.position + Vector3(0, transform.scale.y , 0) * 7.5f, transform.scale * 15.0f, transform.eulerAngles);
+			//getWorld().data.renderUtil->DrawLine(transform.position - Vector3(1, 1, 1), transform.position + Vector3(1, 1, 1));
 		}
 	}
 }

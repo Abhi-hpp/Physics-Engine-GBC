@@ -2,6 +2,10 @@
 #include "ECSConfig.h"
 #include "TransformComponentV2.h"
 #include "MeshComponent.h"
+
+class Shader;
+class Camera;
+
 namespace Reality
 {
 	class RenderingSystemV2 : public ECSSystem
@@ -11,3 +15,4 @@ namespace Reality
 		void Update(float deltaTime);
 	};
 }
+
