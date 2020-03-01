@@ -100,7 +100,7 @@ namespace Reality
 			getWorld().data.renderUtil->DrawLine(avg, avg + (crossNormalized), Color::Yellow);
 			getWorld().data.renderUtil->DrawSphere(avg, 0.1f, Color::Yellow);
 		
-			if ((D < player.getComponent<ParticleComponent>().radius))
+			if ((D < player.getComponent<ParticleComponent>().radius) && isInside(e1Pos, e2Pos, e3Pos, pos))
 			{
 				getWorld().data.renderUtil->DrawTriangle(e3Pos, e1Pos, e2Pos, Color::Green);
 				getWorld().data.renderUtil->RenderText("HIT", 1500.0f, 900.0f, 1.f, Color::Red);
