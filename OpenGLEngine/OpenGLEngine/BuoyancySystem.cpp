@@ -37,6 +37,6 @@ namespace Reality
 			}
 			forceAcc.AddForce(force);
 		}
-		getWorld().data.renderUtil->DrawCube(Vector3(0, 0, 0), Vector3(200, 200, 200), Vector3(0, 0, 0), Color::Orange);
+		//getWorld().data.renderUtil->DrawCube(Vector3(0, 0, 0), Vector3(200, 200, 200), Vector3(0, 0, 0), Color::Orange);
 	}
 }

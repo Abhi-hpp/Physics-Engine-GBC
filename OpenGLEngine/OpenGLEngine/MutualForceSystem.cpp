@@ -52,7 +52,7 @@ namespace Reality
 
 		if (DEBUG_LOG_LEVEL > 0)
 		{
-			getWorld().data.renderUtil->DrawLine(positionA, positionB, Color::Red);
+			//getWorld().data.renderUtil->DrawLine(positionA, positionB, Color::Red);
 			//getWorld().data.renderUtil->RenderText("Distance : " + std::to_string(distance), 1650.0f, 960.0f, 0.35f, Color(1, 0, 0, 1));
 		}
 	}

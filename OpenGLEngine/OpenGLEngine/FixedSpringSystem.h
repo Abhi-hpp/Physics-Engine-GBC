@@ -11,5 +11,4 @@ namespace Reality
 		FixedSpringSystem();
 		void Update(float deltaTime);
 	};
-
 }
