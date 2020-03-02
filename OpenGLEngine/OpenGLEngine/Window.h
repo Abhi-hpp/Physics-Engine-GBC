@@ -8,7 +8,7 @@ public:
 	Window() {}
 	/*Properties*/
 	GLFWwindow* glfwWindow;
-	int width = 1024;
-	int height = 768;
+	int width = 1920;
+	int height = 1080;
 };
 

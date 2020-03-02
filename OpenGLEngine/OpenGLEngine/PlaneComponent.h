@@ -3,19 +3,19 @@
 
 namespace Reality
 {
-	struct RodComponent
+	struct PlaneComponent
 	{
-		RodComponent(ECSEntity a = ECSEntity(),
+		PlaneComponent(ECSEntity a = ECSEntity(),
 			ECSEntity b = ECSEntity(),
-			float _rodLength = 10)
+			ECSEntity c = ECSEntity())
 			: entityA(a),
 			entityB(b),
-			rodLength(_rodLength)
+			entityC(c)
 		{
 
 		}
 		ECSEntity entityA;
 		ECSEntity entityB;
-		float rodLength;
+		ECSEntity entityC;
 	};
 }
