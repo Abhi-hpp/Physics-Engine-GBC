@@ -1,6 +1,5 @@
 #include "ParticleSystem.h"
 
-
 namespace Reality
 {
 	ParticleSystem::ParticleSystem()
@@ -13,21 +12,16 @@ namespace Reality
 	{
 		for (auto e : getEntities())
 		{
-			auto &particle = e.getComponent<ParticleComponent>();
-			auto &transform = e.getComponent<TransformComponent>();
+			auto& transform = e.getComponent<TransformComponent>();
+			auto& particle = e.getComponent<ParticleComponent>();
 
-			// HACK for bounce
-			if (transform.position.y <= -10)
-			{
-				//particle.velocity.y = -particle.velocity.y;
-				//e.kill();
-			}
-
-			// Update velocity from accelarartion
-			particle.velocity += particle.accelaration * deltaTime;
-
-			// Update position from velocity
+			particle.velocity += particle.acceleration * deltaTime;
 			transform.position += particle.velocity * deltaTime;
+
+			if (DEBUG_LOG_LEVEL > 0)
+			{
+				getWorld().data.renderUtil->DrawSphere(transform.position);
+			}
 		}
 	}
 }
