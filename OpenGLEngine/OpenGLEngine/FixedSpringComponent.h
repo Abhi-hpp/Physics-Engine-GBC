@@ -14,11 +14,8 @@ namespace Reality
 		{
 
 		}
-		/** Holds the spring constant. */
 		float springConstant;
-		/** Holds the rest length of the spring. */
 		float restLength;
-		/** The location of the anchored end of the spring. */
 		ECSEntity connectedEntity;
 	};
 }

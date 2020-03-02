@@ -39,8 +39,6 @@ public:
 
 	WorldData data;
 
-	int spaceIsPressed = 0;
-
 private:
     // vector of entities that are awaiting creation
     std::vector<Entity> createdEntities;

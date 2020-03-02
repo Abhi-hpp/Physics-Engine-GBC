@@ -23,7 +23,6 @@ namespace Reality
 				auto& transform = spring.connectedEntity.getComponent<TransformComponent>();
 
 				Vector3 relativePosition = transform.position - springTransform.position;
-
 				float length = glm::length(relativePosition);
 				if (length > 0)
 				{

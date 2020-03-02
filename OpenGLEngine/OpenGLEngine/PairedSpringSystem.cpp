@@ -28,7 +28,7 @@ namespace Reality
 					float deltaL = length - spring.restLength;
 					Vector3 force = -glm::normalize(relativePosition);
 					force *= spring.springConstant * deltaL;
-
+					
 					if (spring.connectedEntityA.hasComponent<ForceAccumulatorComponent>())
 					{
 						spring.connectedEntityA.getComponent<ForceAccumulatorComponent>().AddForce(force);
