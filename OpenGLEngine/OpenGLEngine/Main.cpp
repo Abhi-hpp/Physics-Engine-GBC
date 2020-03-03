@@ -11,6 +11,7 @@
 #include "ParticleSphereSystem.h"
 #include "CableSystem.h"
 #include "RodSystem.h"
+#include "TriangleSystem.h"
 #include "ParticleContactResolutionSystem.h"
 #include "ResetPenetrationDeltaMoveSystem.h"
 #include "ForceAccumulatorSystem.h"
@@ -73,6 +74,7 @@ int main()
 	world.getSystemManager().addSystem<ParticleSphereSystem>();
 	world.getSystemManager().addSystem<CableSystem>();
 	world.getSystemManager().addSystem<RodSystem>();
+	world.getSystemManager().addSystem<TriangleSystem>();
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ResetPenetrationDeltaMoveSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
@@ -129,6 +131,7 @@ int main()
 		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<CableSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<TriangleSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -331,22 +334,33 @@ void CreateParticleArchetype(ECSEntity e)
 
 void MakeARopeBridge(ECSWorld & world)
 {
+	auto sphere = world.createEntity();
+	sphere.addComponent<TransformComponent>(Vector3(RANDOM_FLOAT(-18, 18), RANDOM_FLOAT(30, 35), RANDOM_FLOAT(-8, 8)));
+	sphere.addComponent<ParticleComponent>(Vector3(0.0f, RANDOM_FLOAT(-40, -5), 0.0f));
+	sphere.addComponent<ForceAccumulatorComponent>(1.0f);
+	sphere.addComponent<GravityForceComponent>();
+	sphere.addComponent<ParticleSphereComponent>(RANDOM_FLOAT(1, 3));
+
+
+	// 1
 	auto ePivot1 = world.createEntity();
-	ePivot1.addComponent<TransformComponent>(Vector3(3, 10, 5));
+	ePivot1.addComponent<TransformComponent>(Vector3(3, 10, 10));
+	ePivot1.addComponent<ParticleComponent>();
 
 	auto e1 = world.createEntity();
-	e1.addComponent<TransformComponent>(Vector3(0, 3, 5));
+	e1.addComponent<TransformComponent>(Vector3(0, 3, 10));
 	CreateParticleArchetype(e1);
 
 	auto ePivot2 = world.createEntity();
-	ePivot2.addComponent<TransformComponent>(Vector3(3, 10, -5));
+	ePivot2.addComponent<TransformComponent>(Vector3(3, 10, -10));
+	ePivot2.addComponent<ParticleComponent>();
 
 	auto e2 = world.createEntity();
-	e2.addComponent<TransformComponent>(Vector3(0, 2, -5));
+	e2.addComponent<TransformComponent>(Vector3(0, 2, -10));
 	CreateParticleArchetype(e2);
 
 	auto rod1 = world.createEntity();
-	rod1.addComponent<RodComponent>(e1, e2, 10);
+	rod1.addComponent<RodComponent>(e1, e2, 20);
 
 	auto cable1 = world.createEntity();
 	cable1.addComponent<CableComponent>(ePivot1, e1, 20, 1);
@@ -354,73 +368,167 @@ void MakeARopeBridge(ECSWorld & world)
 	auto cable2 = world.createEntity();
 	cable2.addComponent<CableComponent>(ePivot2, e2, 20, 1);
 
+	
 	// 2
 	auto ePivot3 = world.createEntity();
-	ePivot3.addComponent<TransformComponent>(Vector3(3 + 10, 10, 5));
+	ePivot3.addComponent<TransformComponent>(Vector3(3 + 10, 10, 10));
+	ePivot3.addComponent<ParticleComponent>();
 
 	auto e3 = world.createEntity();
-	e3.addComponent<TransformComponent>(Vector3(0 + 10, -2, 5));
+	e3.addComponent<TransformComponent>(Vector3(0 + 10, -2, 10));
 	CreateParticleArchetype(e3);
 
 	auto ePivot4 = world.createEntity();
-	ePivot4.addComponent<TransformComponent>(Vector3(3 + 10, 10, -5));
+	ePivot4.addComponent<TransformComponent>(Vector3(3 + 10, 10, -10));
+	ePivot4.addComponent<ParticleComponent>();
 
 	auto e4 = world.createEntity();
-	e4.addComponent<TransformComponent>(Vector3(0 + 10, 0, -5));
+	e4.addComponent<TransformComponent>(Vector3(0 + 10, 0, -10));
 	CreateParticleArchetype(e4);
 
 	auto rod2 = world.createEntity();
-	rod2.addComponent<RodComponent>(e3, e4, 10);
+	rod2.addComponent<RodComponent>(e3, e4, 20);
 
 	auto cable3 = world.createEntity();
-	cable3.addComponent<CableComponent>(ePivot3, e3, 15, 1);
+	cable3.addComponent<CableComponent>(ePivot3, e3, 17, 1);
 
 	auto cable4 = world.createEntity();
-	cable4.addComponent<CableComponent>(ePivot4, e4, 15, 1);
+	cable4.addComponent<CableComponent>(ePivot4, e4, 17, 1);
 
+	
 	// 3
 	auto ePivot5 = world.createEntity();
-	ePivot5.addComponent<TransformComponent>(Vector3(3 - 10, 10, 5));
+	ePivot5.addComponent<TransformComponent>(Vector3(3 - 10, 10, 10));
+	ePivot5.addComponent<ParticleComponent>();
 
 	auto e5 = world.createEntity();
-	e5.addComponent<TransformComponent>(Vector3(0 - 10, 1, 5));
+	e5.addComponent<TransformComponent>(Vector3(0 - 10, 1, 10));
 	CreateParticleArchetype(e5);
 
 	auto ePivot6 = world.createEntity();
-	ePivot6.addComponent<TransformComponent>(Vector3(3 - 10, 10, -5));
+	ePivot6.addComponent<TransformComponent>(Vector3(3 - 10, 10, -10));
+	ePivot6.addComponent<ParticleComponent>();
 
 	auto e6 = world.createEntity();
-	e6.addComponent<TransformComponent>(Vector3(0 - 10, -1, -5));
+	e6.addComponent<TransformComponent>(Vector3(0 - 10, -1, -10));
 	CreateParticleArchetype(e6);
 
 	auto rod3 = world.createEntity();
-	rod3.addComponent<RodComponent>(e5, e6, 10);
+	rod3.addComponent<RodComponent>(e5, e6, 20);
 
 	auto cable5 = world.createEntity();
-	cable5.addComponent<CableComponent>(ePivot5, e5, 15, 1);
+	cable5.addComponent<CableComponent>(ePivot5, e5, 17, 1);
 
 	auto cable6 = world.createEntity();
-	cable6.addComponent<CableComponent>(ePivot6, e6, 15, 1);
+	cable6.addComponent<CableComponent>(ePivot6, e6, 17, 1);
 
-	// rods
+	
+	// 4
+	auto ePivot7 = world.createEntity();
+	ePivot7.addComponent<TransformComponent>(Vector3(3 + 20, 10, 10));
+	ePivot7.addComponent<ParticleComponent>();
+
+	auto e7 = world.createEntity();
+	e7.addComponent<TransformComponent>(Vector3(0 + 20, 0, 10));
+	CreateParticleArchetype(e7);
+
+	auto ePivot8 = world.createEntity();
+	ePivot8.addComponent<TransformComponent>(Vector3(3 + 20, 10, -10));
+	ePivot8.addComponent<ParticleComponent>();
+
+	auto e8 = world.createEntity();
+	e8.addComponent<TransformComponent>(Vector3(0 + 20, 1, -10));
+	CreateParticleArchetype(e8);
+
 	auto rod4 = world.createEntity();
-	rod4.addComponent<RodComponent>(e1, e3, 10);
-	auto rod5 = world.createEntity();
-	rod5.addComponent<RodComponent>(e2, e4, 10);
-	auto rod6 = world.createEntity();
-	rod6.addComponent<RodComponent>(e5, e1, 10);
-	auto rod7 = world.createEntity();
-	rod7.addComponent<RodComponent>(e6, e2, 10);
+	rod4.addComponent<RodComponent>(e7, e8, 20);
 
-	// diagonal rods
+	auto cable7 = world.createEntity();
+	cable7.addComponent<CableComponent>(ePivot7, e7, 14, 1);
+
+	auto cable8 = world.createEntity();
+	cable8.addComponent<CableComponent>(ePivot8, e8, 14, 1);
+
+
+	// 5
+	auto ePivot9 = world.createEntity();
+	ePivot9.addComponent<TransformComponent>(Vector3(3 - 20, 10, 10));
+	ePivot9.addComponent<ParticleComponent>();
+
+	auto e9 = world.createEntity();
+	e9.addComponent<TransformComponent>(Vector3(0 - 20, 2, 10));
+	CreateParticleArchetype(e9);
+
+	auto ePivot10 = world.createEntity();
+	ePivot10.addComponent<TransformComponent>(Vector3(3 - 20, 10, -10));
+	ePivot10.addComponent<ParticleComponent>();
+
+	auto e10 = world.createEntity();
+	e10.addComponent<TransformComponent>(Vector3(0 - 20, -2, -10));
+	CreateParticleArchetype(e10);
+
+	auto rod5 = world.createEntity();
+	rod5.addComponent<RodComponent>(e9, e10, 20);
+
+	auto cable9 = world.createEntity();
+	cable9.addComponent<CableComponent>(ePivot9, e9, 14, 1);
+
+	auto cable10 = world.createEntity();
+	cable10.addComponent<CableComponent>(ePivot10, e10, 14, 1);
+
+	
+	// rods
+	auto rod6 = world.createEntity();
+	rod6.addComponent<RodComponent>(e1, e3, 10);
+	auto rod7 = world.createEntity();
+	rod7.addComponent<RodComponent>(e2, e4, 10);
 	auto rod8 = world.createEntity();
-	rod8.addComponent<RodComponent>(e1, e4, 10 * pow(2.0f, 0.5f));
+	rod8.addComponent<RodComponent>(e5, e1, 10);
 	auto rod9 = world.createEntity();
-	rod9.addComponent<RodComponent>(e2, e3, 10 * pow(2.0f, 0.5f));
+	rod9.addComponent<RodComponent>(e6, e2, 10);
 	auto rod10 = world.createEntity();
-	rod10.addComponent<RodComponent>(e6, e1, 10 * pow(2.0f, 0.5f));
+	rod10.addComponent<RodComponent>(e3, e7, 10);
 	auto rod11 = world.createEntity();
-	rod11.addComponent<RodComponent>(e5, e2, 10 * pow(2.0f, 0.5f));
+	rod11.addComponent<RodComponent>(e9, e5, 10);
+	auto rod12 = world.createEntity();
+	rod12.addComponent<RodComponent>(e4, e8, 10);
+	auto rod13 = world.createEntity();
+	rod13.addComponent<RodComponent>(e10, e6, 10);
+
+	//// diagonal rods
+	///*auto rod14 = world.createEntity();
+	//rod14.addComponent<RodComponent>(e1, e4, 10 * pow(2.0f, 0.5f));*/
+	//auto rod15 = world.createEntity();
+	//rod15.addComponent<RodComponent>(e2, e3, 10 * pow(2.0f, 0.5f));
+	///*auto rod16 = world.createEntity();
+	//rod16.addComponent<RodComponent>(e6, e1, 10 * pow(2.0f, 0.5f));*/
+	//auto rod17 = world.createEntity();
+	//rod17.addComponent<RodComponent>(e5, e2, 10 * pow(2.0f, 0.5f));
+	///*auto rod18 = world.createEntity();
+	//rod18.addComponent<RodComponent>(e3, e8, 10 * pow(2.0f, 0.5f));*/
+	//auto rod19 = world.createEntity();
+	//rod19.addComponent<RodComponent>(e4, e7, 10 * pow(2.0f, 0.5f));
+	///*auto rod20 = world.createEntity();
+	//rod20.addComponent<RodComponent>(e10, e5, 10 * pow(2.0f, 0.5f));*/
+	//auto rod21 = world.createEntity();
+	//rod21.addComponent<RodComponent>(e9, e6, 10 * pow(2.0f, 0.5f));
+
+	auto triangle1 = world.createEntity();
+	triangle1.addComponent<TriangleComponent>(e1, e2, e3, sphere);
+	auto triangle2 = world.createEntity();
+	triangle2.addComponent<TriangleComponent>(e2, e3, e4, sphere);
+	auto triangle3 = world.createEntity();
+	triangle3.addComponent<TriangleComponent>(e1, e2, e5, sphere);
+	auto triangle4 = world.createEntity();
+	triangle4.addComponent<TriangleComponent>(e2, e5, e6, sphere);
+	auto triangle5 = world.createEntity();
+	triangle5.addComponent<TriangleComponent>(e3, e4, e7, sphere);
+	auto triangle6 = world.createEntity();
+	triangle6.addComponent<TriangleComponent>(e4, e7, e8, sphere);
+	auto triangle7 = world.createEntity();
+	triangle7.addComponent<TriangleComponent>(e5, e6, e9, sphere);
+	auto triangle8 = world.createEntity();
+	triangle8.addComponent<TriangleComponent>(e6, e9, e10, sphere);
 }
 
 void MakeABunchaCablesAndRods(ECSWorld & world)
