@@ -52,6 +52,27 @@
     <Filter Include="TestCS\FireWorksDemo">
       <UniqueIdentifier>{2a1ab3ed-c9b4-469a-8efb-a6ad96814ca1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Drag">
+      <UniqueIdentifier>{374bd302-ae82-4abd-b085-aa1aab476574}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Gravity">
+      <UniqueIdentifier>{2b3c765e-08ae-4ab3-9980-779abb7f7eee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\FixedSpring">
+      <UniqueIdentifier>{768b3103-442d-4d00-811b-405ddc2c174b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\PairedSpring">
+      <UniqueIdentifier>{fa13a248-8c31-4cbe-b525-040efcb48d06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Bungee">
+      <UniqueIdentifier>{9c233b3a-d3d2-4f63-aa9c-f7d67e0d4fbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Buoyancy">
+      <UniqueIdentifier>{00d80f41-3013-4716-9a4b-965bc05d42a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\N-Body">
+      <UniqueIdentifier>{1ec626aa-347e-47bf-a11c-9532b603a09a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -129,11 +150,29 @@
     <ClCompile Include="ForceAccumulatorSystem.cpp">
       <Filter>Physics\Particles</Filter>
     </ClCompile>
-    <ClCompile Include="GravityForceSystem.cpp">
-      <Filter>Physics\Particles\ForceGenerators</Filter>
-    </ClCompile>
     <ClCompile Include="FireworksSystem.cpp">
       <Filter>TestCS\FireWorksDemo</Filter>
+    </ClCompile>
+    <ClCompile Include="GravityForceSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
+    </ClCompile>
+    <ClCompile Include="DragForceSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
+    </ClCompile>
+    <ClCompile Include="FixedSpringSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
+    </ClCompile>
+    <ClCompile Include="PairedSpringSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\PairedSpring</Filter>
+    </ClCompile>
+    <ClCompile Include="BungeeSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoyancySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClCompile>
+    <ClCompile Include="NBodySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\N-Body</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,17 +296,53 @@
     <ClInclude Include="ForceAccumulatorSystem.h">
       <Filter>Physics\Particles</Filter>
     </ClInclude>
-    <ClInclude Include="GravityForceComponent.h">
-      <Filter>Physics\Particles\ForceGenerators</Filter>
-    </ClInclude>
-    <ClInclude Include="GravityForceSystem.h">
-      <Filter>Physics\Particles\ForceGenerators</Filter>
-    </ClInclude>
     <ClInclude Include="FireworksComponent.h">
       <Filter>TestCS\FireWorksDemo</Filter>
     </ClInclude>
     <ClInclude Include="FireworksSystem.h">
       <Filter>TestCS\FireWorksDemo</Filter>
+    </ClInclude>
+    <ClInclude Include="DragForceComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Gravity</Filter>
+    </ClInclude>
+    <ClInclude Include="DragForceSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Drag</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="FixedSpringSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\PairedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="PairedSpringSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\PairedSpring</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BungeeSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Bungee</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\N-Body</Filter>
+    </ClInclude>
+    <ClInclude Include="NBodySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\N-Body</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

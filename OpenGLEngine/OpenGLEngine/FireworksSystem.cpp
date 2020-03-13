@@ -2,6 +2,7 @@
 #include "ParticleComponent.h"
 #include "ForceAccumulatorComponent.h"
 #include "GravityForceComponent.h"
+#include "DragForceComponent.h"
 
 namespace Reality
 {
