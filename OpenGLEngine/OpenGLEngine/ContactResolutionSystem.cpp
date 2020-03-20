@@ -18,7 +18,7 @@ namespace Reality
 			ResolvePenetration(contact);
 			ResolveVelocity(contact);
 		}
-		getWorld().data.renderUtil->RenderText("Num Contacts = " + to_string(contactEvents.size()), 1920 * 0.5f - 100, 1080 * 0.5f, 0.5f, Color::Red);
+		//getWorld().data.renderUtil->RenderText("Num Contacts = " + to_string(contactEvents.size()), 1920 * 0.5f - 100, 1080 * 0.5f, 0.5f, Color::Red);
 	}
 	void ContactResolutionSystem::ResolvePenetration(ContactEvent & contact)
 	{

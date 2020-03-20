@@ -15,8 +15,8 @@ namespace Reality
 		Vector3 position;
 		Vector3 scale;
 		Quaternion orientation;
-		Mat4 scaleMatrix;
 		Mat4 rotationMatrix;
+		Mat4 scaleMatrix;
 		Mat4 translationMatrix;
 		Mat4 unScaledTransformationMatrix;
 		Mat4 transformationMatrix;
@@ -60,10 +60,55 @@ namespace Reality
 		// Euler angles in degrees
 		inline void SetRotation(Vector3 eulerAngles)
 		{
-			glm::vec3 rotationInRads = glm::vec3(glm::radians(eulerAngles.x), 
-				glm::radians(eulerAngles.y), glm::radians(eulerAngles.z));
+			glm::vec3 rotationInRads = glm::vec3(
+				glm::radians(eulerAngles.x), 
+				glm::radians(eulerAngles.y), 
+				glm::radians(eulerAngles.z)
+			);
 			orientation = glm::quat(rotationInRads);
 			dirty = true;
+		}
+
+		inline void SetRotZ(bool clockwise)
+		{
+			if (clockwise == true)
+			{
+				glm::vec3 rad = glm::vec3(
+					glm::radians(0.0f),
+					glm::radians(1.0f),
+					glm::radians(0.0f)
+				);
+				orientation = glm::quat(rad+glm::eulerAngles(orientation));
+			}else
+			{
+					glm::vec3 rad = glm::vec3(
+					glm::radians(0.0f),
+					glm::radians(-1.0f),
+					glm::radians(0.0f)
+				);
+				orientation = glm::quat(rad+glm::eulerAngles(orientation));
+			}
+		}
+
+		inline void SetRotX(bool clockwise)
+		{
+			if (clockwise == true)
+			{
+				glm::vec3 rad = glm::vec3(
+					glm::radians(0.5f),
+					glm::radians(0.0f),
+					glm::radians(0.0f)
+				);
+				orientation = glm::quat(rad+glm::eulerAngles(orientation));
+			}else
+			{
+					glm::vec3 rad = glm::vec3(
+					glm::radians(-0.5f),
+					glm::radians(0.0f),
+					glm::radians(0.0f)
+				);
+				orientation = glm::quat(rad+glm::eulerAngles(orientation));
+			}
 		}
 
 		inline Vector3 GetRotation() { return glm::eulerAngles(orientation); }
