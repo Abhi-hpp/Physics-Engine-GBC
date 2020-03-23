@@ -38,7 +38,7 @@ namespace Reality
 			}
 			if (mesh.modelId >= 0)
 			{
-				getWorld().data.renderUtil->DrawModel(mesh.modelId, transform.GetTransformationMatrix(), drawModes[drawMode]);
+				getWorld().data.renderUtil->DrawModel(mesh.modelId, transform.GetTransformationMatrix() * mesh.GetModelOffsetTransformation(), drawModes[drawMode]);
 			}
 
 			if (DEBUG_LOG_LEVEL > 0)

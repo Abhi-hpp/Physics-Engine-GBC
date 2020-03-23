@@ -186,6 +186,18 @@
     <ClCompile Include="LifeTimeSystem.cpp">
       <Filter>TestCS</Filter>
     </ClCompile>
+    <ClCompile Include="RigidbodySystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceAndTorqueAccumulatorSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="DragSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="AddTorqueFromCameraSystem.cpp">
+      <Filter>TestCS</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -384,6 +396,30 @@
       <Filter>TestCS</Filter>
     </ClInclude>
     <ClInclude Include="LifeTimeSystem.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidbodyComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidbodySystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="DragComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="DragSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="AddTorqueFromCameraComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="AddTorqueFromCameraSystem.h">
       <Filter>TestCS</Filter>
     </ClInclude>
   </ItemGroup>

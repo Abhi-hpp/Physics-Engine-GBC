@@ -121,6 +121,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddTorqueFromCameraSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="AssetLoader.cpp" />
     <ClCompile Include="CableSystem.cpp">
       <SubType>
@@ -128,6 +132,10 @@
     </ClCompile>
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="DragForceSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DragSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -152,6 +160,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="ForceAccumulatorSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ForceAndTorqueAccumulatorSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -201,6 +213,10 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="RigidbodySystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RodSystem.cpp">
       <SubType>
       </SubType>
@@ -218,6 +234,14 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddTorqueFromCameraComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AddTorqueFromCameraSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="AssetLoader.h" />
     <ClInclude Include="CableComponent.h">
       <SubType>
@@ -230,11 +254,19 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLightComponent.h" />
+    <ClInclude Include="DragComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DragForceComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="DragForceSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DragSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -280,6 +312,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ForceAccumulatorSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -357,6 +397,14 @@
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RigidbodyComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RigidbodySystem.h">
       <SubType>
       </SubType>
     </ClInclude>

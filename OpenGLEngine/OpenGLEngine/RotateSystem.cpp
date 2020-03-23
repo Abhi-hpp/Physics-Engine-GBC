@@ -40,6 +40,6 @@ namespace Reality
 			timer = 0;
 		}
 
-		getWorld().data.renderUtil->RenderText("Euler Angles", 350, 200, 1, Color::Orange);
+		//getWorld().data.renderUtil->RenderText("Euler Angles", 350, 200, 1, Color::Orange);
 	}
 }

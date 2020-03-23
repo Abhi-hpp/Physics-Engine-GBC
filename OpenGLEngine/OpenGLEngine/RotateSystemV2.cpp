@@ -46,6 +46,6 @@ namespace Reality
 			timer = 0;
 		}
 
-		getWorld().data.renderUtil->RenderText("Quaternions", 1300, 200, 1, Color::Orange);
+		//getWorld().data.renderUtil->RenderText("Quaternions", 1300, 200, 1, Color::Orange);
 	}
 }

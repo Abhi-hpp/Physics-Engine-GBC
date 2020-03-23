@@ -18,6 +18,10 @@
 #include "ResetPenetrationDeltaMoveSystem.h"
 #include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
+#include "RigidbodySystem.h"
+#include "ForceAndTorqueAccumulatorSystem.h"
+#include "DragSystem.h"
+#include "AddTorqueFromCameraSystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
 #include "DynamicSpotLightSystem.h"
@@ -38,6 +42,8 @@ void MakeABunchaSpheres(ECSWorld& world);
 void MakeABunchaCablesAndRods(ECSWorld& world);
 void MakeARopeBridge(ECSWorld& world);
 void MakeABunchaObjectsV2(ECSWorld& world);
+void MakeRigidBodyTest(ECSWorld& world);
+
 
 int main()
 {
@@ -63,7 +69,8 @@ int main()
 	//MakeABunchaSpheres(world);
 	//MakeABunchaCablesAndRods(world);
 	//MakeARopeBridge(world);
-	MakeABunchaObjectsV2(world);
+	//MakeABunchaObjectsV2(world);
+	MakeRigidBodyTest(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -85,6 +92,10 @@ int main()
 	world.getSystemManager().addSystem<ResetPenetrationDeltaMoveSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
+	world.getSystemManager().addSystem<RigidbodySystem>();
+	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
+	world.getSystemManager().addSystem<DragSystem>();
+	world.getSystemManager().addSystem<AddTorqueFromCameraSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
@@ -139,6 +150,7 @@ int main()
 		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<CableSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<AddTorqueFromCameraSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -146,20 +158,29 @@ int main()
 		//float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
 		float fixedDeltaTime = 1 / 60.0f;
 		// Force Generator
+		/// Particle
 		world.getSystemManager().getSystem<GravityForceSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<DragForceSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<FixedSpringSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
+		/// Rigidbody
+		world.getSystemManager().getSystem<DragSystem>().Update(fixedDeltaTime);
 
 		// Force Accumulator
+		/// Particle
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
+		/// Rigidbody
+		world.getSystemManager().getSystem<ForceAndTorqueAccumulatorSystem>().Update(fixedDeltaTime);
 
 		// Contact Resolution
 		world.getSystemManager().getSystem<ParticleContactResolutionSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ResetPenetrationDeltaMoveSystem>().Update(fixedDeltaTime);
 
 		// Integrator
+		/// Particle
 		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
+		/// Rigidbody
+		world.getSystemManager().getSystem<RigidbodySystem>().Update(fixedDeltaTime);
 
 		// Rendering Update
 		///*** HACK: For the last DrawCall not working on some systems
@@ -447,6 +468,17 @@ void MakeABunchaObjectsV2(ECSWorld & world)
 	// Add mesh
 	flightV2.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx");
 	flightV2.addComponent<RotateComponentV2>(Vector3(45, 70, -20));
+}
+
+void MakeRigidBodyTest(ECSWorld & world)
+{
+	auto flight = world.createEntity();
+	flight.addComponent<TransformComponentV2>(Vector3(0, 0, -50), Vector3(0.1f, 0.1f, 0.1f));
+	flight.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90, 0, 0), Vector3(0, -50, 0));
+	flight.addComponent<RigidbodyComponent>();
+	flight.addComponent<ForceAndTorqueAccumulatorComponent>();
+	flight.addComponent<DragComponent>();
+	flight.addComponent<AddTorqueFromCameraComponent>();
 }
 
 void MakeABunchaCablesAndRods(ECSWorld & world)
