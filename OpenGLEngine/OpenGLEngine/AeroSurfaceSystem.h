@@ -12,7 +12,7 @@ namespace Reality
 		void Update(float deltaTime);
 		Vector3 windVelocity = Vector3(0, 0, 0);
 	private:
-		const Vector3& CalculateWorldAerodynamicForce(const Mat3& localAeroTensor,
-			TransformComponentV2& transform, const Vector3& targetVelocity);
+		const Vector3& CalculateWorldAerodynamicForce(const Vector3& localAeroForce,
+			TransformComponentV2& transform);
 	};
 }

@@ -33,8 +33,7 @@ namespace Reality
 					Vector3(1, 1, 1),
 					surfaceTransform.GetOrientation());
 
-				Vector3 force = CalculateWorldAerodynamicForce(aero.aerodynamicTensor,
-					targetTransform, rigidbody.velocity);
+				Vector3 force = CalculateWorldAerodynamicForce(aero.aerodynamicForce, targetTransform);
 				forceAndTorque.AddForceAtPoint(force,
 					surfaceTransform.GetPosition(),
 					targetTransform.GetPosition());
@@ -42,10 +41,8 @@ namespace Reality
 		}
 	}
 
-	const Vector3 & AeroSurfaceSystem::CalculateWorldAerodynamicForce(const Mat3 & localAeroTensor, TransformComponentV2 & transform, const Vector3 & targetVelocity)
+	const Vector3 & AeroSurfaceSystem::CalculateWorldAerodynamicForce(const Vector3& localAeroForce, TransformComponentV2& transform)
 	{
-		Vector3 localVelocity = transform.WorldToLocalDirection(targetVelocity + windVelocity);
-		Vector3 localForce = localAeroTensor * localVelocity;
-		return transform.LocalToWorldDirection(localForce);
+		return transform.LocalToWorldDirection(localAeroForce);
 	}
 }

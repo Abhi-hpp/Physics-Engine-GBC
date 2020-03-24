@@ -3,6 +3,7 @@
 #include "RenderingSystemV2.h"
 #include "InputEventSystem.h"
 #include "FPSControlSystem.h"
+#include "FollowCameraSystem.h"
 #include "RotateSystem.h"
 #include "RotateSystemV2.h"
 #include "LifeTimeSystem.h"
@@ -81,6 +82,7 @@ int main()
 	world.getSystemManager().addSystem<RenderingSystemV2>();
 	world.getSystemManager().addSystem<InputEventSystem>();
 	world.getSystemManager().addSystem<FPSControlSystem>();
+	world.getSystemManager().addSystem<FollowCameraSystem>();
 	world.getSystemManager().addSystem<RotateSystem>();
 	world.getSystemManager().addSystem<RotateSystemV2>();
 	world.getSystemManager().addSystem<LifeTimeSystem>();
@@ -150,6 +152,7 @@ int main()
 
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<FollowCameraSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystemV2>().Update(deltaTime);
 		world.getSystemManager().getSystem<LifeTimeSystem>().Update(deltaTime);
@@ -498,44 +501,41 @@ void MakeAFlightSimulator(ECSWorld & world)
 	flight.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90, 0, 0), Vector3(0, -50, 0));
 	flight.addComponent<RigidbodyComponent>();
 	flight.addComponent<ForceAndTorqueAccumulatorComponent>();
-	flight.addComponent<DragComponent>();
+	flight.addComponent<DragComponent>(0.3, 0.5);
+	flight.addComponent<FollowCameraComponent>();
 
 	auto engine = world.createEntity();
 	engine.addComponent<ThrusterComponent>(flight);
 
 	auto leftWing = world.createEntity();
 	leftWing.addComponent<TransformComponentV2>();
-	leftWing.addComponent<AeroSurfaceComponent>(flight, Mat3(0.0f), Vector3(100, 50, -50));
-	std::vector<int> leftWingPositiveKeys = { GLFW_KEY_UP };
-	std::vector<int> leftWingNegetiveKeys = { GLFW_KEY_DOWN };
+	leftWing.addComponent<AeroSurfaceComponent>(flight, Vector3(0, 0, 0), Vector3(100, 50, -50));
+	std::vector<int> leftWingPositiveKeys = { GLFW_KEY_S, GLFW_KEY_Q };
+	std::vector<int> leftWingNegetiveKeys = { GLFW_KEY_W, GLFW_KEY_E };
 	leftWing.addComponent<AeroControlComponent>(
-		Mat3(
-			0, 0, 0,
-			0, 0, 0,
-			0, 0.1f, 0
-		),
-		Mat3(
-			0, 0, 0,
-			0, 0, 0,
-			0, -0.1f, 0
-		),leftWingPositiveKeys, leftWingNegetiveKeys);
+		Vector3(0, 0.1f, 0),
+		Vector3(0, -0.1f, 0),
+		leftWingPositiveKeys, leftWingNegetiveKeys);
 
 	auto rightWing = world.createEntity();
 	rightWing.addComponent<TransformComponentV2>();
-	rightWing.addComponent<AeroSurfaceComponent>(flight, Mat3(0.0f), Vector3(-100, 50, -50));
-	std::vector<int> rightWingPositiveKeys = { GLFW_KEY_UP };
-	std::vector<int> rightWingNegetiveKeys = { GLFW_KEY_DOWN };
+	rightWing.addComponent<AeroSurfaceComponent>(flight, Vector3(0, 0, 0), Vector3(-100, 50, -50));
+	std::vector<int> rightWingPositiveKeys = { GLFW_KEY_S, GLFW_KEY_E };
+	std::vector<int> rightWingNegetiveKeys = { GLFW_KEY_W, GLFW_KEY_Q };
 	rightWing.addComponent<AeroControlComponent>(
-		Mat3(
-			0, 0, 0,
-			0, 0, 0,
-			0, 0.1f, 0
-		),
-		Mat3(
-			0, 0, 0,
-			0, 0, 0,
-			0, -0.1f, 0
-		), rightWingPositiveKeys, rightWingNegetiveKeys);
+		Vector3(0, 0.1f, 0),
+		Vector3(0, -0.1f, 0), 
+		rightWingPositiveKeys, rightWingNegetiveKeys);
+
+	auto rudder = world.createEntity();
+	rudder.addComponent<TransformComponentV2>();
+	rudder.addComponent<AeroSurfaceComponent>(flight, Vector3(0, 0, 0), Vector3(0, 0, -150));
+	std::vector<int> rudderWingPositiveKeys = { GLFW_KEY_D };
+	std::vector<int> rudderWingNegetiveKeys = { GLFW_KEY_A };
+	rudder.addComponent<AeroControlComponent>(
+		Vector3(-0.04f, 0, 0),
+		Vector3(0.04f, 0, 0),
+		rudderWingPositiveKeys, rudderWingNegetiveKeys);
 
 }
 

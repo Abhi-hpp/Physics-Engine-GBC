@@ -167,6 +167,7 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FollowCameraSystem.cpp" />
     <ClCompile Include="ForceAccumulatorSystem.cpp">
       <SubType>
       </SubType>
@@ -181,6 +182,8 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="InfiniteSpawnSystem.cpp" />
+    <ClCompile Include="InfiniteSpawnTargetSystem.cpp" />
     <ClCompile Include="InputEventSystem.cpp" />
     <ClCompile Include="LifeTimeSystem.cpp">
       <SubType>
@@ -335,6 +338,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FollowCameraComponent.h" />
+    <ClInclude Include="FollowCameraSystem.h" />
     <ClInclude Include="ForceAccumulatorComponent.h">
       <SubType>
       </SubType>
@@ -361,6 +366,10 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="InfiniteSpawnComponent.h" />
+    <ClInclude Include="InfiniteSpawnSystem.h" />
+    <ClInclude Include="InfiniteSpawnTargetComponent.h" />
+    <ClInclude Include="InfiniteSpawnTargetSystem.h" />
     <ClInclude Include="InputEventSystem.h" />
     <ClInclude Include="LifeTimeComponent.h">
       <SubType>

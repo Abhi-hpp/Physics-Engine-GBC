@@ -51,7 +51,7 @@ namespace Reality
 			}
 
 			float t = (control.controlSetting + 1) * 0.5f;
-			surface.aerodynamicTensor = t * control.aeroMinusOne + (1 - t) * control.aeroPlusOne;			
+			surface.aerodynamicForce = t * control.aeroMinusOne + (1 - t) * control.aeroPlusOne;			
 		}
 	}
 }
