@@ -15,7 +15,7 @@ namespace Reality
 			auto& transform = e.getComponent<TransformComponentV2>();
 			auto& lifeTime = e.getComponent<LifeTimeComponent>();
 
-			getWorld().data.renderUtil->DrawSphere(transform.GetPosition(), 0.2f, lifeTime.color);
+			getWorld().data.renderUtil->DrawSphere(transform.GetPosition(), 1.0f, lifeTime.color);
 
 			lifeTime.timer += deltaTime;
 			if (lifeTime.timer >= lifeTime.maxTime)

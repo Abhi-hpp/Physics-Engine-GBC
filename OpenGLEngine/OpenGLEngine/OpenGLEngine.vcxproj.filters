@@ -213,12 +213,6 @@
     <ClCompile Include="FollowCameraSystem.cpp">
       <Filter>TestCS\FlightSimulator</Filter>
     </ClCompile>
-    <ClCompile Include="InfiniteSpawnSystem.cpp">
-      <Filter>TestCS\FlightSimulator</Filter>
-    </ClCompile>
-    <ClCompile Include="InfiniteSpawnTargetSystem.cpp">
-      <Filter>TestCS\FlightSimulator</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -465,18 +459,6 @@
       <Filter>TestCS\FlightSimulator</Filter>
     </ClInclude>
     <ClInclude Include="FollowCameraSystem.h">
-      <Filter>TestCS\FlightSimulator</Filter>
-    </ClInclude>
-    <ClInclude Include="InfiniteSpawnComponent.h">
-      <Filter>TestCS\FlightSimulator</Filter>
-    </ClInclude>
-    <ClInclude Include="InfiniteSpawnSystem.h">
-      <Filter>TestCS\FlightSimulator</Filter>
-    </ClInclude>
-    <ClInclude Include="InfiniteSpawnTargetComponent.h">
-      <Filter>TestCS\FlightSimulator</Filter>
-    </ClInclude>
-    <ClInclude Include="InfiniteSpawnTargetSystem.h">
       <Filter>TestCS\FlightSimulator</Filter>
     </ClInclude>
   </ItemGroup>

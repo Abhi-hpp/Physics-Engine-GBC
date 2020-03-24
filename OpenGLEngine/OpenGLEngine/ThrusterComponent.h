@@ -7,7 +7,7 @@ namespace Reality
 	{
 		ThrusterComponent(ECSEntity _targetEntity = ECSEntity(), 
 			Vector3 _localThrustDirection = Vector3(0, 0, 1),
-			float _thrust = 100)
+			float _thrust = 200)
 			:targetEntity(_targetEntity),
 			localThrustDirection(_localThrustDirection),
 			thrust(_thrust)
