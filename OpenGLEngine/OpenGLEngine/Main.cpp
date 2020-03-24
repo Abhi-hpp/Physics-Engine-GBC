@@ -22,6 +22,9 @@
 #include "ForceAndTorqueAccumulatorSystem.h"
 #include "DragSystem.h"
 #include "AddTorqueFromCameraSystem.h"
+#include "AeroControlSystem.h"
+#include "AeroSurfaceSystem.h"
+#include "ThrusterSystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
 #include "DynamicSpotLightSystem.h"
@@ -43,7 +46,7 @@ void MakeABunchaCablesAndRods(ECSWorld& world);
 void MakeARopeBridge(ECSWorld& world);
 void MakeABunchaObjectsV2(ECSWorld& world);
 void MakeRigidBodyTest(ECSWorld& world);
-
+void MakeAFlightSimulator(ECSWorld& world);
 
 int main()
 {
@@ -70,7 +73,8 @@ int main()
 	//MakeABunchaCablesAndRods(world);
 	//MakeARopeBridge(world);
 	//MakeABunchaObjectsV2(world);
-	MakeRigidBodyTest(world);
+	//MakeRigidBodyTest(world);
+	MakeAFlightSimulator(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -96,6 +100,9 @@ int main()
 	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
 	world.getSystemManager().addSystem<DragSystem>();
 	world.getSystemManager().addSystem<AddTorqueFromCameraSystem>();
+	world.getSystemManager().addSystem<AeroControlSystem>();
+	world.getSystemManager().addSystem<AeroSurfaceSystem>();
+	world.getSystemManager().addSystem<ThrusterSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
@@ -151,6 +158,7 @@ int main()
 		world.getSystemManager().getSystem<CableSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<AddTorqueFromCameraSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<AeroControlSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -165,6 +173,8 @@ int main()
 		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
 		/// Rigidbody
 		world.getSystemManager().getSystem<DragSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<AeroSurfaceSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<ThrusterSystem>().Update(fixedDeltaTime);
 
 		// Force Accumulator
 		/// Particle
@@ -479,6 +489,54 @@ void MakeRigidBodyTest(ECSWorld & world)
 	flight.addComponent<ForceAndTorqueAccumulatorComponent>();
 	flight.addComponent<DragComponent>();
 	flight.addComponent<AddTorqueFromCameraComponent>();
+}
+
+void MakeAFlightSimulator(ECSWorld & world)
+{
+	auto flight = world.createEntity();
+	flight.addComponent<TransformComponentV2>(Vector3(0, 0, -50), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 180, 0));
+	flight.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90, 0, 0), Vector3(0, -50, 0));
+	flight.addComponent<RigidbodyComponent>();
+	flight.addComponent<ForceAndTorqueAccumulatorComponent>();
+	flight.addComponent<DragComponent>();
+
+	auto engine = world.createEntity();
+	engine.addComponent<ThrusterComponent>(flight);
+
+	auto leftWing = world.createEntity();
+	leftWing.addComponent<TransformComponentV2>();
+	leftWing.addComponent<AeroSurfaceComponent>(flight, Mat3(0.0f), Vector3(100, 50, -50));
+	std::vector<int> leftWingPositiveKeys = { GLFW_KEY_UP };
+	std::vector<int> leftWingNegetiveKeys = { GLFW_KEY_DOWN };
+	leftWing.addComponent<AeroControlComponent>(
+		Mat3(
+			0, 0, 0,
+			0, 0, 0,
+			0, 0.1f, 0
+		),
+		Mat3(
+			0, 0, 0,
+			0, 0, 0,
+			0, -0.1f, 0
+		),leftWingPositiveKeys, leftWingNegetiveKeys);
+
+	auto rightWing = world.createEntity();
+	rightWing.addComponent<TransformComponentV2>();
+	rightWing.addComponent<AeroSurfaceComponent>(flight, Mat3(0.0f), Vector3(-100, 50, -50));
+	std::vector<int> rightWingPositiveKeys = { GLFW_KEY_UP };
+	std::vector<int> rightWingNegetiveKeys = { GLFW_KEY_DOWN };
+	rightWing.addComponent<AeroControlComponent>(
+		Mat3(
+			0, 0, 0,
+			0, 0, 0,
+			0, 0.1f, 0
+		),
+		Mat3(
+			0, 0, 0,
+			0, 0, 0,
+			0, -0.1f, 0
+		), rightWingPositiveKeys, rightWingNegetiveKeys);
+
 }
 
 void MakeABunchaCablesAndRods(ECSWorld & world)

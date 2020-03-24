@@ -125,6 +125,14 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="AeroControlSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="AeroSurfaceSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="AssetLoader.cpp" />
     <ClCompile Include="CableSystem.cpp">
       <SubType>
@@ -231,6 +239,10 @@
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="ThrusterSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +251,22 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="AddTorqueFromCameraSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroControlComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroControlSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroSurfaceComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroSurfaceSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -436,6 +464,14 @@
     <ClInclude Include="Shadinclude.hpp" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="ThrusterComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ThrusterSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TransformComponent.h" />
     <ClInclude Include="TransformComponentV2.h">
       <SubType>

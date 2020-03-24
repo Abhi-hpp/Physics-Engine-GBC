@@ -70,6 +70,9 @@
     <Filter Include="TestCS\CablesAndRods">
       <UniqueIdentifier>{8d7d692e-fedf-4e75-9661-f2eb1dd346c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestCS\FlightSimulator">
+      <UniqueIdentifier>{fee04adf-2290-4e0b-9dd6-1b2c67f5a98f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -197,6 +200,15 @@
     </ClCompile>
     <ClCompile Include="AddTorqueFromCameraSystem.cpp">
       <Filter>TestCS</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroSurfaceSystem.cpp">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="ThrusterSystem.cpp">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroControlSystem.cpp">
+      <Filter>TestCS\FlightSimulator</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -421,6 +433,24 @@
     </ClInclude>
     <ClInclude Include="AddTorqueFromCameraSystem.h">
       <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroSurfaceComponent.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroSurfaceSystem.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrusterComponent.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrusterSystem.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroControlComponent.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroControlSystem.h">
+      <Filter>TestCS\FlightSimulator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

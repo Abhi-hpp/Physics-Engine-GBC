@@ -20,7 +20,7 @@ namespace Reality
 		Mat4 translationMatrix;
 		Mat4 unScaledTransformationMatrix;
 		Mat4 transformationMatrix;
-		bool dirty = false;
+		bool dirty = true;
 
 		inline void UpdateMatrices()
 		{
@@ -156,14 +156,14 @@ namespace Reality
 
 		inline const Vector3& LocalToWorldPosition(const Vector3& _localPosition)
 		{
-			return transformationMatrix * Vector4(_localPosition, 1.0f);
+			return GetTransformationMatrix() * Vector4(_localPosition, 1.0f);
 		}
 
 		inline const Vector3& WorldToLocalPosition(const Vector3& _worldPosition)
 		{
-			if (abs(glm::determinant(transformationMatrix)) > 0)
+			if (abs(glm::determinant(GetTransformationMatrix())) > 0)
 			{
-				return glm::inverse(transformationMatrix) * Vector4(_worldPosition, 1.0f);
+				return glm::inverse(GetTransformationMatrix()) * Vector4(_worldPosition, 1.0f);
 			}
 			return Vector3(0, 0, 0);
 		}
