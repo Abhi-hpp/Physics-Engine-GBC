@@ -82,6 +82,9 @@
     <Filter Include="TestCS\Triangles">
       <UniqueIdentifier>{0b39e99e-0e4d-415d-9da9-b237f42aaea1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TestCS\FlightSimulator">
+      <UniqueIdentifier>{0ceb3a8b-e0d8-4ca7-8841-eaaf11ca1375}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -203,6 +206,33 @@
     </ClCompile>
     <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
       <Filter>Physics\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderingSystemV2.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DragSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="ForceAndTorqueAccumulatorSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidbodySystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroControlSystem.cpp">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="AeroSurfaceSystem.cpp">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="FollowCameraSystem.cpp">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="ThrusterSystem.cpp">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="LifeTimeSystem.cpp">
+      <Filter>TestCS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -415,6 +445,60 @@
     </ClInclude>
     <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
       <Filter>Physics\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformComponentV2.h">
+      <Filter>ComponentsCore</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderingSystemV2.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="DragComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidbodyComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="DragSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidbodySystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroControlComponent.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroControlSystem.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroSurfaceComponent.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="AeroSurfaceSystem.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowCameraComponent.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="FollowCameraSystem.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrusterComponent.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="ThrusterSystem.h">
+      <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeTimeComponent.h">
+      <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeTimeSystem.h">
+      <Filter>TestCS</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

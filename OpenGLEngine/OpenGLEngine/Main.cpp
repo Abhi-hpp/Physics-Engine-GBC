@@ -1,7 +1,9 @@
 //#define STB_IMAGE_IMPLEMENTATION
 #include "RenderingSystem.h"
+#include "RenderingSystemV2.h"
 #include "InputEventSystem.h"
 #include "FPSControlSystem.h"
+#include "FollowCameraSystem.h"
 #include "RotateSystem.h"
 #include "FireworksSystem.h"
 #include "GravityForceSystem.h"
@@ -20,6 +22,12 @@
 #include "ParticleContactResolutionSystem.h"
 #include "ResetPenetrationDeltaMoveSystem.h"
 #include "ParticleSystem.h"
+#include "RigidbodySystem.h"
+#include "ForceAndTorqueAccumulatorSystem.h"
+#include "DragSystem.h"
+#include "AeroControlSystem.h"
+#include "AeroSurfaceSystem.h"
+#include "ThrusterSystem.h"
 #include "ParticleSphereSystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
@@ -43,6 +51,7 @@ void MakeBuoyancy(ECSWorld& world);
 void MakeNBody(ECSWorld& world);
 void MakePairedSprings(ECSWorld& world);
 void MakeRopeBridge(ECSWorld& world);
+void MakeAFlightSimulator(ECSWorld& world);
 
 void BridgeSpawnBall(ECSWorld& world);
 
@@ -84,12 +93,18 @@ int main()
 
 	/// Assignment 2 Functions
 	// Construct Bridge
-	MakeRopeBridge(world);
+	//MakeRopeBridge(world);
+
+	/// Assignment 3 Functions
+	// Make a Flight Simulator
+	MakeAFlightSimulator(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
+	world.getSystemManager().addSystem<RenderingSystemV2>(); // Rendering System V2
 	world.getSystemManager().addSystem<InputEventSystem>();
 	world.getSystemManager().addSystem<FPSControlSystem>();
+	world.getSystemManager().addSystem<FollowCameraSystem>(); // Follow Camera System
 	world.getSystemManager().addSystem<RotateSystem>();
 	world.getSystemManager().addSystem<FireworksSystem>();
 	world.getSystemManager().addSystem<GravityForceSystem>();
@@ -107,7 +122,13 @@ int main()
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
+	world.getSystemManager().addSystem<RigidbodySystem>(); // Rigidbody System
+	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>(); // Force and Torque Accumulator System
+	world.getSystemManager().addSystem<DragSystem>(); // Drag System
 	world.getSystemManager().addSystem<ParticleSphereSystem>();
+	world.getSystemManager().addSystem<AeroControlSystem>(); // Aero Control System
+	world.getSystemManager().addSystem<AeroSurfaceSystem>(); // Aero Surface System
+	world.getSystemManager().addSystem<ThrusterSystem>(); // Thruster System
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
@@ -156,16 +177,18 @@ int main()
 
 		// BungeeInput
 		// BuoyancyInput
-		BridgeSpawnBall(world);
+		//BridgeSpawnBall(world);
 
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<FollowCameraSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<FireworksSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime); // Commented out to remove red cube.
 		world.getSystemManager().getSystem<CableSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<TriangleContactSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<AeroControlSystem>().Update(deltaTime);
 
 		// Update Transform
 
@@ -181,9 +204,14 @@ int main()
 		world.getSystemManager().getSystem<PairedBungeeSystem>().Update(fixedDeltaTime); // Paired Bungee system
 		world.getSystemManager().getSystem<BuoyancySystem>().Update(fixedDeltaTime); // Buoyancy system
 		world.getSystemManager().getSystem<NBodySystem>().Update(fixedDeltaTime); // NBody system
+		world.getSystemManager().getSystem<DragSystem>().Update(fixedDeltaTime); // Drag System
+		world.getSystemManager().getSystem<AeroSurfaceSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<ThrusterSystem>().Update(fixedDeltaTime);
+
 
 		// Force Accumulator
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<ForceAndTorqueAccumulatorSystem>().Update(fixedDeltaTime);
 
 		// Contact Resolution
 		world.getSystemManager().getSystem<ParticleContactResolutionSystem>().Update(fixedDeltaTime);
@@ -191,6 +219,7 @@ int main()
 
 		// Integrator
 		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<RigidbodySystem>().Update(fixedDeltaTime);
 
 		// Rendering Update
 		///*** HACK: For the last DrawCall not working on some systems
@@ -200,6 +229,7 @@ int main()
 		world.getSystemManager().getSystem<DynamicPointLightSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<DynamicSpotLightSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RenderingSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<RenderingSystemV2>().Update(deltaTime);
 
 		elapsedDeltaTime = glfwGetTime() - time;
 		logicDelta = elapsedDeltaTime - world.data.renderUtil->GetRenderDelta();
@@ -260,8 +290,8 @@ void LoadModels(ECSWorld& world)
 		//ModelData("Resources/Models/snowy-mountain-terrain/SnowyMountainMesh.obj"),
 		ModelData("Resources/Models/Sponza-master/sponza.obj"),
 		ModelData("Resources/Models/nanosuit/nanosuit.obj"),
-		ModelData("Resources/Models/supermarine-spitfire/spitfire.fbx",
-			{{"spitfire_d.png"}})
+		ModelData("Resources/Models/supermarine-spitfire/spitfire.fbx", {{"spitfire_d.png"}}),
+		ModelData("Resources/Models/boat/boat.obj")
 		});
 }
 
@@ -736,6 +766,55 @@ void MakeRopeBridge(ECSWorld & world)
 	triangle7.addComponent<TriangleComponent>(e7, e8, e10);
 	auto triangle8 = world.createEntity();
 	triangle8.addComponent<TriangleComponent>(e7, e10, e9);
+}
+
+void MakeAFlightSimulator(ECSWorld& world)
+{
+	//auto ground = world.createEntity();
+	//ground.addComponent<TransformComponentV2>(Vector3(0, -1000, 0), Vector3(10, 10, 10), Vector3(0, 90, 0));
+	//ground.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
+
+	auto flight = world.createEntity();
+	flight.addComponent<TransformComponentV2>(Vector3(0, 0, -50), Vector3(10.1f, 10.1f, 10.1f), Vector3(0, 180, 0));
+	//flight.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90, 0, 0), Vector3(0, -50, 0));
+	flight.addComponent<ModelComponent>("Resources/Models/boat/boat.obj", Vector3(0, 0, 0), Vector3(2, -1, 0));
+	flight.addComponent<RigidbodyComponent>();
+	flight.addComponent<ForceAndTorqueAccumulatorComponent>();
+	flight.addComponent<DragComponent>(0.3, 0.5);
+	flight.addComponent<FollowCameraComponent>();
+
+	//auto engine = world.createEntity();
+	//engine.addComponent<ThrusterComponent>(flight);
+
+	//auto leftWing = world.createEntity();
+	//leftWing.addComponent<TransformComponentV2>();
+	//leftWing.addComponent<AeroSurfaceComponent>(flight, Vector3(0, 0, 0), Vector3(100, 50, -50));
+	//std::vector<int> leftWingPositiveKeys = { GLFW_KEY_S, GLFW_KEY_Q };
+	//std::vector<int> leftWingNegetiveKeys = { GLFW_KEY_W, GLFW_KEY_E };
+	//leftWing.addComponent<AeroControlComponent>(
+	//	Vector3(0, 0.1f, 0),
+	//	Vector3(0, -0.1f, 0),
+	//	leftWingPositiveKeys, leftWingNegetiveKeys);
+
+	//auto rightWing = world.createEntity();
+	//rightWing.addComponent<TransformComponentV2>();
+	//rightWing.addComponent<AeroSurfaceComponent>(flight, Vector3(0, 0, 0), Vector3(-100, 50, -50));
+	//std::vector<int> rightWingPositiveKeys = { GLFW_KEY_S, GLFW_KEY_E };
+	//std::vector<int> rightWingNegetiveKeys = { GLFW_KEY_W, GLFW_KEY_Q };
+	//rightWing.addComponent<AeroControlComponent>(
+	//	Vector3(0, 0.1f, 0),
+	//	Vector3(0, -0.1f, 0),
+	//	rightWingPositiveKeys, rightWingNegetiveKeys);
+
+	//auto rudder = world.createEntity();
+	//rudder.addComponent<TransformComponentV2>();
+	//rudder.addComponent<AeroSurfaceComponent>(flight, Vector3(0, 0, 0), Vector3(0, 0, -150));
+	//std::vector<int> rudderWingPositiveKeys = { GLFW_KEY_D };
+	//std::vector<int> rudderWingNegetiveKeys = { GLFW_KEY_A };
+	//rudder.addComponent<AeroControlComponent>(
+	//	Vector3(-0.04f, 0, 0),
+	//	Vector3(0.04f, 0, 0),
+	//	rudderWingPositiveKeys, rudderWingNegetiveKeys);
 }
 
 void SetupLights(ECSWorld& world)
