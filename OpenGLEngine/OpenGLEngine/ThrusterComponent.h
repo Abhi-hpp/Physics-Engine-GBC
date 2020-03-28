@@ -6,8 +6,8 @@ namespace Reality
 	struct ThrusterComponent
 	{
 		ThrusterComponent(ECSEntity _targetEntity = ECSEntity(), 
-			Vector3 _localThrustDirection = Vector3(0, 0, 1),
-			float _thrust = 200)
+			Vector3 _localThrustDirection = Vector3(0, 0, -1),
+			float _thrust = 50)
 			:targetEntity(_targetEntity),
 			localThrustDirection(_localThrustDirection),
 			thrust(_thrust)

@@ -560,6 +560,9 @@ void MakeABoatSImulator(ECSWorld& world)
 	boat.addComponent<GravityForceComponent>();
 	boat.addComponent<FollowCameraComponent>();
 
+	auto engine = world.createEntity();
+	engine.addComponent<ThrusterComponent>(boat);
+
 	auto buoyancyFront = world.createEntity();
 	buoyancyFront.addComponent<TransformComponentV2>();
 	buoyancyFront.addComponent<BuoyancyComponent>(boat, 4.f, 2.f, Vector3(-2, 0, 0));
