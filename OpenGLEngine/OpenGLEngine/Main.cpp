@@ -13,6 +13,7 @@
 #include "FixedSpringSystem.h"
 #include "PairedSpringSystem.h"
 #include "ParticleSphereSystem.h"
+#include "BuoyancySystem.h"
 #include "CableSystem.h"
 #include "RodSystem.h"
 #include "ParticleContactResolutionSystem.h"
@@ -48,6 +49,7 @@ void MakeARopeBridge(ECSWorld& world);
 void MakeABunchaObjectsV2(ECSWorld& world);
 void MakeRigidBodyTest(ECSWorld& world);
 void MakeAFlightSimulator(ECSWorld& world);
+void MakeABoatSImulator(ECSWorld& world);
 
 int main()
 {
@@ -75,7 +77,8 @@ int main()
 	//MakeARopeBridge(world);
 	//MakeABunchaObjectsV2(world);
 	//MakeRigidBodyTest(world);
-	MakeAFlightSimulator(world);
+	//MakeAFlightSimulator(world);
+	MakeABoatSImulator(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -97,6 +100,7 @@ int main()
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ResetPenetrationDeltaMoveSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
+	world.getSystemManager().addSystem<BuoyancySystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<RigidbodySystem>();
 	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
@@ -174,6 +178,7 @@ int main()
 		world.getSystemManager().getSystem<DragForceSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<FixedSpringSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BuoyancySystem>().Update(fixedDeltaTime);
 		/// Rigidbody
 		world.getSystemManager().getSystem<DragSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<AeroSurfaceSystem>().Update(fixedDeltaTime);
@@ -261,10 +266,11 @@ void LoadShaders(ECSWorld& world)
 void LoadModels(ECSWorld& world)
 {
 	world.data.assetLoader->StartModelLoading({
-		ModelData("Resources/Models/Sponza-master/sponza.obj"),
-		ModelData("Resources/Models/nanosuit/nanosuit.obj"),
+		//ModelData("Resources/Models/Sponza-master/sponza.obj"),
+		//ModelData("Resources/Models/nanosuit/nanosuit.obj"),
 		ModelData("Resources/Models/supermarine-spitfire/spitfire.fbx",
-			{{"spitfire_d.png"}})
+			{{"spitfire_d.png"}}),
+		ModelData("Resources/Models/Boat/boat.obj", {{"wood1.jpg"}})
 		});
 }
 
@@ -495,9 +501,9 @@ void MakeRigidBodyTest(ECSWorld & world)
 
 void MakeAFlightSimulator(ECSWorld & world)
 {
-	auto ground = world.createEntity();
-	ground.addComponent<TransformComponentV2>(Vector3(0, -1000, 0), Vector3(10, 10, 10), Vector3(0, 90, 0));
-	ground.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
+	//auto ground = world.createEntity();
+	//ground.addComponent<TransformComponentV2>(Vector3(0, -1000, 0), Vector3(10, 10, 10), Vector3(0, 90, 0));
+	//ground.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
 	
 	auto flight = world.createEntity();
 	flight.addComponent<TransformComponentV2>(Vector3(0, 0, -50), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 180, 0));
@@ -540,6 +546,59 @@ void MakeAFlightSimulator(ECSWorld & world)
 		Vector3(0.04f, 0, 0),
 		rudderWingPositiveKeys, rudderWingNegetiveKeys);
 
+}
+
+void MakeABoatSImulator(ECSWorld& world)
+{
+	auto boat = world.createEntity();
+	boat.addComponent<TransformComponentV2>(Vector3(0, 10, 0), Vector3(5.f, 5.f, 5.f), Vector3(0, 0, 0));
+	boat.addComponent<ModelComponent>("Resources/Models/Boat/boat.obj", Vector3(0, 180, 0), Vector3(-2, 0, 1));
+	//boat.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90, 0, 0), Vector3(0, -50, 0)); 
+	boat.addComponent<RigidbodyComponent>();
+	boat.addComponent<ForceAndTorqueAccumulatorComponent>();
+	boat.addComponent<DragComponent>(0.3, 0.5);
+	boat.addComponent<GravityForceComponent>();
+	boat.addComponent<FollowCameraComponent>();
+
+	auto buoyancyFront = world.createEntity();
+	buoyancyFront.addComponent<TransformComponentV2>();
+	buoyancyFront.addComponent<BuoyancyComponent>(boat, 4.f, 2.f, Vector3(-2, 0, 0));
+
+	auto buoyancyRear = world.createEntity();
+	buoyancyRear.addComponent<TransformComponentV2>();
+	buoyancyRear.addComponent<BuoyancyComponent>(boat, 4.f, 2.f, Vector3(2, 0, 0));
+
+
+	auto leftRotating = world.createEntity();
+	leftRotating.addComponent<TransformComponentV2>();
+	leftRotating.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(-5, 0, 0));
+	std::vector<int> leftRotatingPositiveKeys = { GLFW_KEY_Q};
+	std::vector<int> leftRotatingNegetiveKeys = { GLFW_KEY_E};
+	leftRotating.addComponent<AeroControlComponent>(
+		Vector3(0, 5.f, 0),
+		Vector3(0, -5.f, 0),
+		leftRotatingPositiveKeys, leftRotatingNegetiveKeys);
+
+	auto rightRotating = world.createEntity();
+	rightRotating.addComponent<TransformComponentV2>();
+	rightRotating.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(5, 0, 0));
+	std::vector<int> rightRotatingPositiveKeys = { GLFW_KEY_E };
+	std::vector<int> rightRotatingNegetiveKeys = { GLFW_KEY_Q };
+	rightRotating.addComponent<AeroControlComponent>(
+		Vector3(0, 5.f, 0),
+		Vector3(0, -5.f, 0),
+		rightRotatingPositiveKeys, rightRotatingNegetiveKeys);
+
+
+	auto rudder = world.createEntity();
+	rudder.addComponent<TransformComponentV2>();
+	rudder.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(0, 0, 5));
+	std::vector<int> rudderWingPositiveKeys = { GLFW_KEY_A };
+	std::vector<int> rudderWingNegetiveKeys = { GLFW_KEY_D };
+	rudder.addComponent<AeroControlComponent>(
+		Vector3(-0.04f, 0, 0),
+		Vector3(0.04f, 0, 0),
+		rudderWingPositiveKeys, rudderWingNegetiveKeys);
 }
 
 void MakeABunchaCablesAndRods(ECSWorld & world)
