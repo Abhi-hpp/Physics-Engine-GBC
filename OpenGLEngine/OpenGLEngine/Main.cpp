@@ -472,66 +472,13 @@ void MakeFlight(ECSWorld& world)
 
 	// Add mesh
 	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(0, -50, 20), Vector3(-90, 0, 0));
-<<<<<<< Updated upstream
-	e.addComponent<RigidBodyComponent>(20.0f ,0.2f, 0.5f);
-=======
 	e.addComponent<RigidBodyComponent>(25.0f ,0.5f, 0.6f);
->>>>>>> Stashed changes
 	e.addComponent<FollowCameraComponent>(Vector3(0.0f, 15.0f, 40.0f));
 	e.addComponent<CameraLookComponent>();
 	e.addComponent<InfiniteSpawnTargetComponent>();
 	e.addComponent<BoatSimulatorComponent>();
 	e.addComponent<Buoyancy>();
 
-<<<<<<< Updated upstream
-	// std::vector<int> p1 { GLFW_KEY_E };
-	// std::vector<int> n1 { GLFW_KEY_Q };
-	// //Right Wing
-	// auto RW = world.createEntity();
-	// RW.addComponent<AeroControlComponent>(p1, n1);
-	// RW.addComponent<AeroMinMaxComponent>(
-	// 	Mat3(0, 0, 0, 0, 0.000f, 0, 0, -0.000005f, 0),
-	// 	Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-	// 	Mat3(0, 0, 0, 0, -0.000f, 0, 0, 0.000005f, 0)
-	// );
-	// RW.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(100.0f, 0, 50.0f));
-
-	// //Left Wing
-	// auto LW = world.createEntity();
-	// LW.addComponent<AeroControlComponent>(n1, p1);
-	// LW.addComponent<AeroMinMaxComponent>(
-	// 	Mat3(0, 0, 0, 0, 0.000f, 0, 0, -0.000005f, 0),
-	// 	Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-	// 	Mat3(0, 0, 0, 0, -0.000f, 0, 0, 0.000005f, 0)
-	// );
-	// LW.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(-100.0f, 0, 50.0f));
-
-	// //Rudder 
-	// std::vector<int> pR = { GLFW_KEY_A };
-	// std::vector<int> nR = { GLFW_KEY_D };
-	// auto R = world.createEntity();
-
-	// R.addComponent<AeroControlComponent>(pR, nR);
-	// R.addComponent<AeroMinMaxComponent>(
-	// 	Mat3(0, 0, 0, 0, 0, 0, 0.0000002f, 0, 0),
-	// 	Mat3(0, 0, 0, 0, 0, 0, 0.00f, 0, 0),
-	// 	Mat3(0, 0, 0, 0, 0, 0, -0.0000002f, 0, 0)
-	// );
-	// R.addComponent<AeroComponent>(e, Mat3(2.0f), Vector3(0, 0, -200.0f));
-
-	// //Back Wing
-	// std::vector<int> p2{ GLFW_KEY_W };
-	// std::vector<int> n2{ GLFW_KEY_S };
-	// auto RW2 = world.createEntity();
-	// RW2.addComponent<AeroControlComponent>(p2, n2);
-	// RW2.addComponent<AeroMinMaxComponent>(
-	// 	Mat3(0, 0, 0, 0, 0, 0, 0, -0.0000015f, 0),
-	// 	Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-	// 	Mat3(0, 0, 0, 0, 0, 0, 0, 0.0000015f, 0)
-	// );
-	// RW2.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(0.0f, 0, -200.0f));
-=======
->>>>>>> Stashed changes
 
 	for (int i = -40; i <= 40; i++)
 	{

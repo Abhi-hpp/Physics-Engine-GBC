@@ -16,11 +16,8 @@ namespace Reality
 			auto &rigidbody = e.getComponent<RigidBodyComponent>();
 			auto &transform = e.getComponent<TransformComponentV2>();
 			auto &BuoyancyComp = e.getComponent<Buoyancy>();
-<<<<<<< Updated upstream
-=======
 			GLFWwindow *window = getWorld().data.renderUtil->window->glfwWindow;
 
->>>>>>> Stashed changes
 
 			srand(time(NULL));
 
@@ -30,19 +27,6 @@ namespace Reality
 			// if boat under waterheight apply force at random rate
 			if (transform.GetPosition().y <= BuoyancyComp.GetWaterHeight())
 			{
-<<<<<<< Updated upstream
-				
-					
-					rigidbody.AddForce(
-						Vector3(0, (depth * (rigidbody.gravityScale / rigidbody.inverseMass)) * BuoyancyComp.GetLiquidDensity(), 0)
-					);
-
-					// rigidbody.AddForceAtPoint(
-					// 	Vector3(0, (rand() % 200), 0),
-					// 	Vector3((rand() % 200), (rand() % 200), (rand() % 200)),
-					// 	Vector3(0, 0, 0)
-					// );
-=======
 				rigidbody.AddForce(
 					Vector3(0, (depth * (rigidbody.gravityScale / rigidbody.inverseMass)) * BuoyancyComp.GetLiquidDensity(), 0)
 				);
@@ -92,7 +76,6 @@ namespace Reality
 						BuoyancyComp.GetCenterOfBuoyancy()
 					);
 				}
->>>>>>> Stashed changes
 
 			}
 			

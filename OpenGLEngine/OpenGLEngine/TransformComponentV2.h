@@ -75,26 +75,16 @@ namespace Reality
 			{
 				glm::vec3 rad = glm::vec3(
 					glm::radians(0.0f),
-<<<<<<< Updated upstream
-					glm::radians(1.0f),
-					glm::radians(0.0f)
-=======
 					glm::radians(0.0f),
 					glm::radians(1.0f)
->>>>>>> Stashed changes
 				);
 				orientation = glm::quat(rad+glm::eulerAngles(orientation));
 			}else
 			{
 					glm::vec3 rad = glm::vec3(
 					glm::radians(0.0f),
-<<<<<<< Updated upstream
-					glm::radians(-1.0f),
-					glm::radians(0.0f)
-=======
 					glm::radians(0.0f),
 					glm::radians(-1.0f)
->>>>>>> Stashed changes
 				);
 				orientation = glm::quat(rad+glm::eulerAngles(orientation));
 			}
@@ -121,8 +111,6 @@ namespace Reality
 			}
 		}
 
-<<<<<<< Updated upstream
-=======
 		inline void SetRotY(bool clockwise)
 		{
 			if (clockwise == true)
@@ -144,7 +132,6 @@ namespace Reality
 			}
 		}
 
->>>>>>> Stashed changes
 		inline Vector3 GetRotation() { return glm::eulerAngles(orientation); }
 
 		inline Vector3 Up()
