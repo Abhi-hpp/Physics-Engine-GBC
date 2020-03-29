@@ -575,8 +575,8 @@ void MakeABoatSimulator(ECSWorld & world)
 	std::vector<int> leftRotatingPositiveKeys = { GLFW_KEY_Q };
 	std::vector<int> leftRotatingNegetiveKeys = { GLFW_KEY_E };
 	leftRotating.addComponent<AeroControlComponent>(
-		Vector3(0, 5.f, 0),
-		Vector3(0, -5.f, 0),
+		Vector3(0, 0.1f, 0),
+		Vector3(0, -0.1f, 0),
 		leftRotatingPositiveKeys, leftRotatingNegetiveKeys);
 
 	auto rightRotating = world.createEntity();
@@ -585,8 +585,8 @@ void MakeABoatSimulator(ECSWorld & world)
 	std::vector<int> rightRotatingPositiveKeys = { GLFW_KEY_E };
 	std::vector<int> rightRotatingNegetiveKeys = { GLFW_KEY_Q };
 	rightRotating.addComponent<AeroControlComponent>(
-		Vector3(0, 5.f, 0),
-		Vector3(0, -5.f, 0),
+		Vector3(0, 0.1f, 0),
+		Vector3(0, -0.1f, 0),
 		rightRotatingPositiveKeys, rightRotatingNegetiveKeys);
 
 
