@@ -472,13 +472,18 @@ void MakeFlight(ECSWorld& world)
 
 	// Add mesh
 	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(0, -50, 20), Vector3(-90, 0, 0));
+<<<<<<< Updated upstream
 	e.addComponent<RigidBodyComponent>(20.0f ,0.2f, 0.5f);
+=======
+	e.addComponent<RigidBodyComponent>(25.0f ,0.5f, 0.6f);
+>>>>>>> Stashed changes
 	e.addComponent<FollowCameraComponent>(Vector3(0.0f, 15.0f, 40.0f));
 	e.addComponent<CameraLookComponent>();
 	e.addComponent<InfiniteSpawnTargetComponent>();
 	e.addComponent<BoatSimulatorComponent>();
 	e.addComponent<Buoyancy>();
 
+<<<<<<< Updated upstream
 	// std::vector<int> p1 { GLFW_KEY_E };
 	// std::vector<int> n1 { GLFW_KEY_Q };
 	// //Right Wing
@@ -525,6 +530,8 @@ void MakeFlight(ECSWorld& world)
 	// 	Mat3(0, 0, 0, 0, 0, 0, 0, 0.0000015f, 0)
 	// );
 	// RW2.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(0.0f, 0, -200.0f));
+=======
+>>>>>>> Stashed changes
 
 	for (int i = -40; i <= 40; i++)
 	{
@@ -617,7 +624,7 @@ void SetupLights(ECSWorld& world)
 
 	// Lanterns
 	auto pl1 = world.createEntity();
-	pl1.addComponent<TransformComponent>(Vector3(22, 14, 48.5f));
+	pl1.addComponent<TransformComponent>(Vector3(25, 14, 48.5f));
 	pl1.addComponent<DynamicPointLightComponent>(100.0f, Color(0.1, 0, 0), Color(1.0f, 0.0f, 0.0f), Color(1.0f, 0.0f, 0.0f));
 	pl1.addComponent<ParticleComponent>();
 	auto hook = world.createEntity();

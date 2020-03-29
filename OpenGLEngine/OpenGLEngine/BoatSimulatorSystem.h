@@ -14,5 +14,13 @@ namespace Reality
 	private:
 		float timer = 0;
 		float i = 0;
+<<<<<<< Updated upstream
+=======
+		Reality::Vector3 rad = glm::vec3(
+			glm::radians(0.0f),
+			glm::radians(0.0f),
+			glm::radians(0.0f)
+		);
+>>>>>>> Stashed changes
 	};
 }

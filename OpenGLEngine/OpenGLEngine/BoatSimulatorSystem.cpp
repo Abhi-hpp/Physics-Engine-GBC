@@ -20,8 +20,13 @@ namespace Reality
 			auto& eTransform = e.getComponent<TransformComponentV2>();
 			auto& boat = e.getComponent<BoatSimulatorComponent>();
 
+<<<<<<< Updated upstream
 
 
+=======
+			
+			
+>>>>>>> Stashed changes
 
 			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 			{
@@ -63,6 +68,7 @@ namespace Reality
 
 			if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 			{
+<<<<<<< Updated upstream
 				eTransform.SetRotZ(true);
 			}
 
@@ -72,6 +78,20 @@ namespace Reality
 			}
 		}
 
+=======
+				eTransform.SetRotY(true);
+	
+			}
+
+			
+
+			if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+			{
+				eTransform.SetRotY(false);
+			}
+
+		}
+>>>>>>> Stashed changes
 		if (getEntities().size() > 0)
 		{
 			float width = getWorld().data.renderUtil->window->width;
