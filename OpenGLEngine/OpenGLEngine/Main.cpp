@@ -268,8 +268,8 @@ void LoadModels(ECSWorld& world)
 	world.data.assetLoader->StartModelLoading({
 		ModelData("Resources/Models/Sponza-master/sponza.obj"),
 		ModelData("Resources/Models/nanosuit/nanosuit.obj"),
-		ModelData("Resources/Models/supermarine-spitfire/spitfire.fbx",
-			{{"spitfire_d.png"}})
+		ModelData("Resources/Models/boat/jetski.fbx"),
+			{{"jetski.jpg"}}
 		});
 }
 
@@ -550,8 +550,8 @@ void MakeAFlightSimulator(ECSWorld & world)
 void MakeABoatSimulator(ECSWorld & world)
 {
 	auto boat = world.createEntity();
-	boat.addComponent<TransformComponentV2>(Vector3(0, 10, 0), Vector3(5.f, 5.f, 5.f), Vector3(0, 0, 0));
-	//boat.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90, 0, 0), Vector3(0, -50, 0)); 
+	boat.addComponent<TransformComponentV2>(Vector3(0, 10, 0), Vector3(1.f, 1.f, 1.f), Vector3(0, 0, 0));
+	boat.addComponent<ModelComponent>("Resources/Models/boat/jetski.fbx", Vector3(270, 0, 0), Vector3(0, -0, 0));
 	boat.addComponent<RigidbodyComponent>();
 	boat.addComponent<ForceAndTorqueAccumulatorComponent>();
 	boat.addComponent<DragComponent>(0.3, 0.5);
@@ -571,7 +571,7 @@ void MakeABoatSimulator(ECSWorld & world)
 
 	auto leftRotating = world.createEntity();
 	leftRotating.addComponent<TransformComponentV2>();
-	leftRotating.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(-5, 0, 0));
+	leftRotating.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(-25, 0, 0));
 	std::vector<int> leftRotatingPositiveKeys = { GLFW_KEY_Q };
 	std::vector<int> leftRotatingNegetiveKeys = { GLFW_KEY_E };
 	leftRotating.addComponent<AeroControlComponent>(
@@ -581,7 +581,7 @@ void MakeABoatSimulator(ECSWorld & world)
 
 	auto rightRotating = world.createEntity();
 	rightRotating.addComponent<TransformComponentV2>();
-	rightRotating.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(5, 0, 0));
+	rightRotating.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(25, 0, 0));
 	std::vector<int> rightRotatingPositiveKeys = { GLFW_KEY_E };
 	std::vector<int> rightRotatingNegetiveKeys = { GLFW_KEY_Q };
 	rightRotating.addComponent<AeroControlComponent>(
