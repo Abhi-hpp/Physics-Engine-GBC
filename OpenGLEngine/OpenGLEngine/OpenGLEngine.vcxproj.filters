@@ -73,6 +73,9 @@
     <Filter Include="TestCS\FlightSimulator">
       <UniqueIdentifier>{fee04adf-2290-4e0b-9dd6-1b2c67f5a98f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Buoyancy">
+      <UniqueIdentifier>{ee038ee7-9c19-4968-b2e7-8e145a7959c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -212,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="FollowCameraSystem.cpp">
       <Filter>TestCS\FlightSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoyantSpringSystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -460,6 +466,12 @@
     </ClInclude>
     <ClInclude Include="FollowCameraSystem.h">
       <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyantSpringComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyantSpringSystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoyancy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
