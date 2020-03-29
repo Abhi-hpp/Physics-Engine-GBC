@@ -18,6 +18,7 @@
 #include "ParticleContactResolutionSystem.h"
 #include "ResetPenetrationDeltaMoveSystem.h"
 #include "ForceAccumulatorSystem.h"
+#include "BuoyantSpringSystem.h"
 #include "ParticleSystem.h"
 #include "RigidbodySystem.h"
 #include "ForceAndTorqueAccumulatorSystem.h"
@@ -48,6 +49,7 @@ void MakeARopeBridge(ECSWorld& world);
 void MakeABunchaObjectsV2(ECSWorld& world);
 void MakeRigidBodyTest(ECSWorld& world);
 void MakeAFlightSimulator(ECSWorld& world);
+void MakeABoatSimulator(ECSWorld& world);
 
 int main()
 {
@@ -75,7 +77,8 @@ int main()
 	//MakeARopeBridge(world);
 	//MakeABunchaObjectsV2(world);
 	//MakeRigidBodyTest(world);
-	MakeAFlightSimulator(world);
+	//MakeAFlightSimulator(world);
+	MakeABoatSimulator(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -97,6 +100,7 @@ int main()
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ResetPenetrationDeltaMoveSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
+	world.getSystemManager().addSystem<BuoyantSpringSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<RigidbodySystem>();
 	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
@@ -174,6 +178,7 @@ int main()
 		world.getSystemManager().getSystem<DragForceSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<FixedSpringSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BuoyantSpringSystem>().Update(fixedDeltaTime);
 		/// Rigidbody
 		world.getSystemManager().getSystem<DragSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<AeroSurfaceSystem>().Update(fixedDeltaTime);
@@ -540,6 +545,60 @@ void MakeAFlightSimulator(ECSWorld & world)
 		Vector3(0.04f, 0, 0),
 		rudderWingPositiveKeys, rudderWingNegetiveKeys);
 
+}
+
+void MakeABoatSimulator(ECSWorld & world)
+{
+	auto boat = world.createEntity();
+	boat.addComponent<TransformComponentV2>(Vector3(0, 10, 0), Vector3(5.f, 5.f, 5.f), Vector3(0, 0, 0));
+	//boat.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90, 0, 0), Vector3(0, -50, 0)); 
+	boat.addComponent<RigidbodyComponent>();
+	boat.addComponent<ForceAndTorqueAccumulatorComponent>();
+	boat.addComponent<DragComponent>(0.3, 0.5);
+	boat.addComponent<GravityForceComponent>();
+	boat.addComponent<FollowCameraComponent>();
+
+	auto engine = world.createEntity();
+	engine.addComponent<ThrusterComponent>(boat);
+
+	auto buoyancyFront = world.createEntity();
+	buoyancyFront.addComponent<TransformComponentV2>();
+	buoyancyFront.addComponent<BuoyantSpringComponent>(boat, 4.f, 2.f, Vector3(-2, 0, 0));
+
+	auto buoyancyRear = world.createEntity();
+	buoyancyRear.addComponent<TransformComponentV2>();
+	buoyancyRear.addComponent<BuoyantSpringComponent>(boat, 4.f, 2.f, Vector3(2, 0, 0));
+
+	auto leftRotating = world.createEntity();
+	leftRotating.addComponent<TransformComponentV2>();
+	leftRotating.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(-5, 0, 0));
+	std::vector<int> leftRotatingPositiveKeys = { GLFW_KEY_Q };
+	std::vector<int> leftRotatingNegetiveKeys = { GLFW_KEY_E };
+	leftRotating.addComponent<AeroControlComponent>(
+		Vector3(0, 5.f, 0),
+		Vector3(0, -5.f, 0),
+		leftRotatingPositiveKeys, leftRotatingNegetiveKeys);
+
+	auto rightRotating = world.createEntity();
+	rightRotating.addComponent<TransformComponentV2>();
+	rightRotating.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(5, 0, 0));
+	std::vector<int> rightRotatingPositiveKeys = { GLFW_KEY_E };
+	std::vector<int> rightRotatingNegetiveKeys = { GLFW_KEY_Q };
+	rightRotating.addComponent<AeroControlComponent>(
+		Vector3(0, 5.f, 0),
+		Vector3(0, -5.f, 0),
+		rightRotatingPositiveKeys, rightRotatingNegetiveKeys);
+
+
+	auto rudder = world.createEntity();
+	rudder.addComponent<TransformComponentV2>();
+	rudder.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(0, 0, 5));
+	std::vector<int> rudderWingPositiveKeys = { GLFW_KEY_A };
+	std::vector<int> rudderWingNegetiveKeys = { GLFW_KEY_D };
+	rudder.addComponent<AeroControlComponent>(
+		Vector3(-0.04f, 0, 0),
+		Vector3(0.04f, 0, 0),
+		rudderWingPositiveKeys, rudderWingNegetiveKeys);
 }
 
 void MakeABunchaCablesAndRods(ECSWorld & world)
