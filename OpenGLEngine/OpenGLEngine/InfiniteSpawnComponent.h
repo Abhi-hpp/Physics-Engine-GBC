@@ -5,7 +5,7 @@ namespace Reality
 {
 	struct InfiniteSpawnComponent
 	{
-		InfiniteSpawnComponent(float _height = 0)
+		InfiniteSpawnComponent(float _height = 130)
 			: height(_height)
 		{
 

@@ -27,7 +27,7 @@ namespace Reality
 					transform.SetPosition(transform.GetPosition() + (target.z > transform.GetPosition().z ? 4050.0f : -4050.0f) * Vector3(0, 0, 1));
 					spawn.height = RANDOM_FLOAT(100.0f, 500.0f);
 				}
-				getWorld().data.renderUtil->DrawCube(transform.GetPosition() + spawn.height * 0.5f * Vector3(0, 1, 0), Vector3(50.0f, spawn.height, 50.0f));
+				getWorld().data.renderUtil->DrawCube(transform.GetPosition() - spawn.height * 0.5f * Vector3(0, 1, 0), Vector3(50.0f, spawn.height, 50.0f),Vector3(1,0,0), Color(0,0,1,1));
 			}
 		}	
 	}
