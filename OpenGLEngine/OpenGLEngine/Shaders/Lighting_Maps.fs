@@ -111,7 +111,9 @@ void main()
 	{
         result += CalcSpotLight(spotLights[i], norm, FragPos, viewDir);    
 	}
-    FragColor = vec4(result, texture(material.diffuse, TexCoords).a);
+    //FragColor = vec4(result, texture(material.diffuse, TexCoords).a);
+
+	FragColor = vec4(0.f, 0.f, 1.f, 1.f);
 }
 
 // calculates the color when using a directional light.
