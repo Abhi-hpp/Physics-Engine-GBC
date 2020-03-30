@@ -5,23 +5,24 @@ namespace Reality
 	ForceAndTorqueAccumulatorSystem::ForceAndTorqueAccumulatorSystem()
 	{
 		requireComponent<TransformComponentV2>();
-		requireComponent<RigidBodyComponent>();
+		requireComponent<RigidbodyComponent>();
+		requireComponent<ForceAndTorqueAccumulatorComponent>();
 	}
 
 	void ForceAndTorqueAccumulatorSystem::Update(float deltaTime)
 	{
 		for (auto e : getEntities())
 		{
-			auto &rigidbody = e.getComponent<RigidBodyComponent>();
-			auto &transform = e.getComponent<TransformComponentV2>();
+			auto& transform = e.getComponent<TransformComponentV2>();
+			auto& rigidbody = e.getComponent<RigidbodyComponent>();
+			auto& forceAndTorqueAcc = e.getComponent<ForceAndTorqueAccumulatorComponent>();
 
-			rigidbody.accelaration = rigidbody.GetForce() * rigidbody.inverseMass;
-			rigidbody.ResetForceAccumulator();
+			rigidbody.acceleration = forceAndTorqueAcc.GetAccumulatedForce() * forceAndTorqueAcc.inverseMass;
+			forceAndTorqueAcc.ResetForceAccumulator();
 
-			Mat3 rotMat = transform.GetRotationMatrix();
-			rigidbody.angularAccelaration = rigidbody.worldInverseInertiaTensor(rotMat)
-				* rigidbody.GetTorque();
-			rigidbody.ResetTorqueAccumulator();
+			Mat3 worldInvInertia = forceAndTorqueAcc.GetWorldInverseInertiaTensor(transform.GetRotationMatrix());
+			rigidbody.angularAcceleration = worldInvInertia * forceAndTorqueAcc.GetAccumulatedTorque();
+			forceAndTorqueAcc.ResetTorqueAccumulator();
 		}
 	}
 }

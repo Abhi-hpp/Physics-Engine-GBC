@@ -1,6 +1,6 @@
 #pragma once
 #include "ECSConfig.h"
-#include "AeroMinMaxComponent.h"
+#include "AeroSurfaceComponent.h"
 #include "AeroControlComponent.h"
 
 namespace Reality
@@ -10,8 +10,5 @@ namespace Reality
 	public:
 		AeroControlSystem();
 		void Update(float deltaTime);
-	private:
-		bool pKey = false;
-		bool nKey = false;
 	};
 }
