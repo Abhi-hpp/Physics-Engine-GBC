@@ -1,15 +1,15 @@
 #pragma once
 #include "ECSConfig.h"
-#include "TransformComponentV2.h"
+#include "SphereColliderComponent.h"
 #include "RigidbodyComponent.h"
 #include <React3D/reactphysics3d.h>
 
 namespace Reality
 {
-	class RigidbodySystem : public ECSSystem
+	class SphereColliderSystem : public ECSSystem
 	{
 	public:
-		RigidbodySystem(rp3d::CollisionWorld& _rp3dWorld);
+		SphereColliderSystem(rp3d::CollisionWorld& _rp3dWorld);
 		void Update(float deltaTime);
 	private:
 		rp3d::CollisionWorld& rp3dWorld;

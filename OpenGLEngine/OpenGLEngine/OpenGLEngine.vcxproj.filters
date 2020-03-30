@@ -213,6 +213,12 @@
     <ClCompile Include="FollowCameraSystem.cpp">
       <Filter>TestCS\FlightSimulator</Filter>
     </ClCompile>
+    <ClCompile Include="SphereColliderSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="ContactResolutionSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -460,6 +466,24 @@
     </ClInclude>
     <ClInclude Include="FollowCameraSystem.h">
       <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereColliderComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereColliderSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactEvent.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactResolutionSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="RP3DCollisionCallback.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="BodyData.h">
+      <Filter>Physics\Rigidbody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

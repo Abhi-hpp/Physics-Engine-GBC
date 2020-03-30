@@ -139,6 +139,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="ContactResolutionSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DragForceSystem.cpp">
       <SubType>
       </SubType>
@@ -239,6 +243,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SphereColliderSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="ThrusterSystem.cpp">
       <SubType>
@@ -272,6 +280,10 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="AssetLoader.h" />
+    <ClInclude Include="BodyData.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CableComponent.h">
       <SubType>
       </SubType>
@@ -282,6 +294,14 @@
     </ClInclude>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="ContactEvent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ContactResolutionSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DirectionalLightComponent.h" />
     <ClInclude Include="DragComponent.h">
       <SubType>
@@ -463,8 +483,20 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="RP3DCollisionCallback.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Shadinclude.hpp" />
+    <ClInclude Include="SphereColliderComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="SphereColliderSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="ThrusterComponent.h">

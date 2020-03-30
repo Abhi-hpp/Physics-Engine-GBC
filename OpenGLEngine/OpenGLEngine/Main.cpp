@@ -20,6 +20,7 @@
 #include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
 #include "RigidbodySystem.h"
+#include "SphereColliderSystem.h"
 #include "ForceAndTorqueAccumulatorSystem.h"
 #include "DragSystem.h"
 #include "AddTorqueFromCameraSystem.h"
@@ -31,7 +32,8 @@
 #include "DynamicSpotLightSystem.h"
 #include <string>
 #include <stdlib.h>     
-#include <time.h>      
+#include <time.h>   
+#include <React3D/reactphysics3d.h>
 
 using namespace Reality;
 
@@ -52,7 +54,7 @@ void MakeAFlightSimulator(ECSWorld& world);
 int main()
 {
 	ECSWorld world;
-
+	rp3d::CollisionWorld rp3dCollisionWorld;
 	// Init and Load
 	world.data.InitRendering();
 	//LoadAssets(world);
@@ -98,7 +100,8 @@ int main()
 	world.getSystemManager().addSystem<ResetPenetrationDeltaMoveSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
-	world.getSystemManager().addSystem<RigidbodySystem>();
+	world.getSystemManager().addSystem<RigidbodySystem>(rp3dCollisionWorld);
+	world.getSystemManager().addSystem<SphereColliderSystem>(rp3dCollisionWorld);
 	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
 	world.getSystemManager().addSystem<DragSystem>();
 	world.getSystemManager().addSystem<AddTorqueFromCameraSystem>();
@@ -194,6 +197,7 @@ int main()
 		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
 		/// Rigidbody
 		world.getSystemManager().getSystem<RigidbodySystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<SphereColliderSystem>().Update(fixedDeltaTime);
 
 		// Rendering Update
 		///*** HACK: For the last DrawCall not working on some systems
