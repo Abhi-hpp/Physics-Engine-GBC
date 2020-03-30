@@ -20,10 +20,19 @@ namespace Reality
 				thruster.targetEntity.hasComponent<ForceAndTorqueAccumulatorComponent>())
 			{
 				auto& transform = thruster.targetEntity.getComponent<TransformComponentV2>();
-				auto& forceAndTorque = thruster.targetEntity.getComponent<ForceAndTorqueAccumulatorComponent>();
+				auto& forceAndTorqueAcc = thruster.targetEntity.getComponent<ForceAndTorqueAccumulatorComponent>();
 
 				Vector3 worldThrustDirection = transform.LocalToWorldDirection(thruster.localThrustDirection);
-				forceAndTorque.AddForce(worldThrustDirection * thruster.thrust);
+
+				if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, GLFW_KEY_W) == GLFW_PRESS)
+				{
+					forceAndTorqueAcc.AddForce(-worldThrustDirection * thruster.thrust);
+				}
+
+				if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, GLFW_KEY_S) == GLFW_PRESS)
+				{
+					forceAndTorqueAcc.AddForce(worldThrustDirection * thruster.thrust);
+				}
 
 				thruster.timer += deltaTime;
 

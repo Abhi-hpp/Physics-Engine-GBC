@@ -234,6 +234,12 @@
     <ClCompile Include="LifeTimeSystem.cpp">
       <Filter>TestCS</Filter>
     </ClCompile>
+    <ClCompile Include="GravityForceSystemV2.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoyancySystemV2.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -499,6 +505,18 @@
     </ClInclude>
     <ClInclude Include="LifeTimeSystem.h">
       <Filter>TestCS</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceComponentV2.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="GravityForceSystemV2.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancyComponentV2.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancySystemV2.h">
+      <Filter>Physics\Rigidbody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
