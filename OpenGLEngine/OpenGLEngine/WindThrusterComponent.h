@@ -3,9 +3,9 @@
 
 namespace Reality
 {
-	struct WindComponent
+	struct WindThrusterComponent
 	{
-		WindComponent(ECSEntity _targetEntity = ECSEntity(),
+		WindThrusterComponent(ECSEntity _targetEntity = ECSEntity(),
 			Vector3 _localWindDirection = Vector3(0, 0, 1),
 			float _wind = 10, 
 			Vector3 _sailPosition = Vector3(0,0,0))

@@ -1,23 +1,23 @@
-#include "BuoyancyGeneratorSystem.h"
+#include "BuoyancyForceGeneratorSystem.h"
 #include "ForceAndTorqueAccumulatorComponent.h"
 #include "RigidBodyComponent.h"
 
 namespace Reality
 {
-	BuoyancyGeneratorSystem::BuoyancyGeneratorSystem()
+	BuoyancyForceGeneratorSystem::BuoyancyForceGeneratorSystem()
 	{
-		requireComponent<BuoyancyGeneratorComponent>();
+		requireComponent<BuoyancyForceGeneratorComponent>();
 		requireComponent<TransformComponentV2>();
 	}
 
-	void BuoyancyGeneratorSystem::Update(float deltaTime)
+	void BuoyancyForceGeneratorSystem::Update(float deltaTime)
 	{
 		for (auto e : getEntities())
 		{
-			auto& liquid = e.getComponent<BuoyancyGeneratorComponent>().liquid;
+			auto& liquid = e.getComponent<BuoyancyForceGeneratorComponent>().liquid;
 			auto& liquidTransform = liquid.getComponent<TransformComponentV2>();
 			auto& hullTransform = e.getComponent<TransformComponentV2>(); // Location force is applied to, AKA the hull of the ship, AKA center of buoyancy
-			auto& hull = e.getComponent<BuoyancyGeneratorComponent>();
+			auto& hull = e.getComponent<BuoyancyForceGeneratorComponent>();
 
 			if (hull.targetEntity.hasComponent<TransformComponentV2>() &&
 				hull.targetEntity.hasComponent<RigidbodyComponent>() &&

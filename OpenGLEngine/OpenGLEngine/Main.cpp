@@ -22,8 +22,8 @@
 #include "AeroControlSystem.h"
 #include "AeroSurfaceSystem.h"
 #include "ThrusterSystem.h"
-#include "BuoyancyGeneratorSystem.h"
-#include "WindSystem.h"
+#include "BuoyancyForceGeneratorSystem.h"
+#include "WindThrusterSystem.h"
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
 #include "DynamicSpotLightSystem.h"
@@ -78,14 +78,14 @@ int main()
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<RigidbodySystem>();
-	world.getSystemManager().addSystem<BuoyancyGeneratorSystem>();
+	world.getSystemManager().addSystem<BuoyancyForceGeneratorSystem>();
 	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
 	world.getSystemManager().addSystem<DragSystem>();
 	world.getSystemManager().addSystem<AddTorqueFromCameraSystem>();
 	world.getSystemManager().addSystem<AeroControlSystem>();
 	world.getSystemManager().addSystem<AeroSurfaceSystem>();
 	world.getSystemManager().addSystem<ThrusterSystem>();
-	world.getSystemManager().addSystem<WindSystem>();
+	world.getSystemManager().addSystem<WindThrusterSystem>();
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
@@ -157,8 +157,8 @@ int main()
 		world.getSystemManager().getSystem<AeroSurfaceSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ThrusterSystem>().Update(fixedDeltaTime);
 		
-		world.getSystemManager().getSystem<BuoyancyGeneratorSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<WindSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BuoyancyForceGeneratorSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<WindThrusterSystem>().Update(fixedDeltaTime);
 
 		// Force Accumulator
 		/// Particle
@@ -342,12 +342,12 @@ void MakeABoatSimulator(ECSWorld & world)
 	auto hullBuoyancyA = world.createEntity();
 	hullBuoyancyA.addComponent<TransformComponentV2>();
 	hullBuoyancyA.addComponent<ForceAndTorqueAccumulatorComponent>();
-	hullBuoyancyA.addComponent<BuoyancyGeneratorComponent>(5, 2, 3, water, Vector3(0, 0, -130), ship);
+	hullBuoyancyA.addComponent<BuoyancyForceGeneratorComponent>(5, 2, 3, water, Vector3(0, 0, -130), ship);
 	
 	auto hullBuoyancyB = world.createEntity();
 	hullBuoyancyB.addComponent<TransformComponentV2>();
 	hullBuoyancyB.addComponent<ForceAndTorqueAccumulatorComponent>();
-	hullBuoyancyB.addComponent<BuoyancyGeneratorComponent>(5, 2, 3, water, Vector3(0, 0, 150), ship);
+	hullBuoyancyB.addComponent<BuoyancyForceGeneratorComponent>(5, 2, 3, water, Vector3(0, 0, 150), ship);
 
 	auto rudder = world.createEntity();
 	rudder.addComponent<TransformComponentV2>();
@@ -360,7 +360,7 @@ void MakeABoatSimulator(ECSWorld & world)
 		rudderPositiveKeys, rudderNegetiveKeys);
 
 	auto sail = world.createEntity();
-	sail.addComponent<WindComponent>(ship, Vector3(0, 0, -1), 1, Vector3(0,-20,-55));
+	sail.addComponent<WindThrusterComponent>(ship, Vector3(0, 0, -1), 1, Vector3(0,-20,-55));
 }
 
 void SetupLights(ECSWorld& world)

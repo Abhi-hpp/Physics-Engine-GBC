@@ -195,10 +195,10 @@
     <ClCompile Include="FollowCameraSystem.cpp">
       <Filter>TestCS\FlightSimulator</Filter>
     </ClCompile>
-    <ClCompile Include="BuoyancyGeneratorSystem.cpp">
+    <ClCompile Include="WindThrusterSystem.cpp">
       <Filter>TestCS\BoatSimulator</Filter>
     </ClCompile>
-    <ClCompile Include="WindSystem.cpp">
+    <ClCompile Include="BuoyancyForceGeneratorSystem.cpp">
       <Filter>TestCS\BoatSimulator</Filter>
     </ClCompile>
   </ItemGroup>
@@ -425,16 +425,16 @@
     <ClInclude Include="FollowCameraSystem.h">
       <Filter>TestCS\FlightSimulator</Filter>
     </ClInclude>
-    <ClInclude Include="BuoyancyGeneratorComponent.h">
+    <ClInclude Include="WindThrusterComponent.h">
       <Filter>TestCS\BoatSimulator</Filter>
     </ClInclude>
-    <ClInclude Include="BuoyancyGeneratorSystem.h">
+    <ClInclude Include="WindThrusterSystem.h">
       <Filter>TestCS\BoatSimulator</Filter>
     </ClInclude>
-    <ClInclude Include="WindComponent.h">
+    <ClInclude Include="BuoyancyForceGeneratorComponent.h">
       <Filter>TestCS\BoatSimulator</Filter>
     </ClInclude>
-    <ClInclude Include="WindSystem.h">
+    <ClInclude Include="BuoyancyForceGeneratorSystem.h">
       <Filter>TestCS\BoatSimulator</Filter>
     </ClInclude>
   </ItemGroup>

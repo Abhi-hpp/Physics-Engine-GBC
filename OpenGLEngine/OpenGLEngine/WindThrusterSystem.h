@@ -1,13 +1,13 @@
 #pragma once
 #include "ECSConfig.h"
-#include "WindComponent.h"
+#include "WindThrusterComponent.h"
 
 namespace Reality
 {
-	class WindSystem : public ECSSystem
+	class WindThrusterSystem : public ECSSystem
 	{
 	public:
-		WindSystem();
+		WindThrusterSystem();
 		void Update(float deltaTime);
 	};
 }

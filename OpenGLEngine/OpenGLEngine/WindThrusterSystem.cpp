@@ -1,20 +1,20 @@
-#include "WindSystem.h"
+#include "WindThrusterSystem.h"
 #include "TransformComponentV2.h"
 #include "LifeTimeComponent.h"
 #include "ForceAndTorqueAccumulatorComponent.h"
 
 namespace Reality
 {
-	WindSystem::WindSystem()
+	WindThrusterSystem::WindThrusterSystem()
 	{
-		requireComponent<WindComponent>();
+		requireComponent<WindThrusterComponent>();
 	}
 
-	void WindSystem::Update(float deltaTime)
+	void WindThrusterSystem::Update(float deltaTime)
 	{
 		for (auto e : getEntities())
 		{
-			auto& wind = e.getComponent<WindComponent>();
+			auto& wind = e.getComponent<WindThrusterComponent>();
 
 			if (wind.targetEntity.hasComponent<TransformComponentV2>() &&
 				wind.targetEntity.hasComponent<ForceAndTorqueAccumulatorComponent>())
