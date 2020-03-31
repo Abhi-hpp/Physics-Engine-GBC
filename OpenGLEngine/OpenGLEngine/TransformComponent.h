@@ -12,11 +12,26 @@ namespace Reality
 		Vector3 position;
 		Vector3 scale;
 		Vector3 eulerAngles;
-		Quaternion orientation;
-		Mat4 scaleMatrix;
-		Mat4 rotationMatrix;
-		Mat4 translationMatrix;
-		Mat4 unScaledTransformationMatrix;
-		Mat4 transformationMatrix;
+
+		inline const Vector3& Right()
+		{
+			Vector3 radAngle = Vector3(glm::radians(eulerAngles.x),
+				glm::radians(eulerAngles.y), glm::radians(eulerAngles.z));
+			return glm::quat(radAngle) * Vector3(1, 0, 0);
+		}
+
+		inline const Vector3& Up()
+		{
+			Vector3 radAngle = Vector3(glm::radians(eulerAngles.x),
+				glm::radians(eulerAngles.y), glm::radians(eulerAngles.z));
+			return glm::quat(radAngle) * Vector3(0, 1, 0);
+		}
+
+		inline const Vector3& Forward()
+		{
+			Vector3 radAngle = Vector3(glm::radians(eulerAngles.x),
+				glm::radians(eulerAngles.y), glm::radians(eulerAngles.z));
+			return glm::quat(radAngle) * Vector3(0, 0, 1);
+		}
 	};
 }

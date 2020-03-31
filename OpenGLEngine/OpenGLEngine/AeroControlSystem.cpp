@@ -4,43 +4,54 @@ namespace Reality
 {
 	AeroControlSystem::AeroControlSystem()
 	{
-		requireComponent<AeroMinMaxComponent>();
+		requireComponent<AeroSurfaceComponent>();
 		requireComponent<AeroControlComponent>();
 	}
 
 	void AeroControlSystem::Update(float deltaTime)
 	{
-		pKey = false;
-		nKey = false;
 		for (auto e : getEntities())
 		{
-			auto& aero = e.getComponent<AeroMinMaxComponent>();
+			auto& surface = e.getComponent<AeroSurfaceComponent>();
 			auto& control = e.getComponent<AeroControlComponent>();
 
-			for (auto key : control.positiveKeys)
+			bool reset = true;
+
+			for (int key : control.positiveKeys)
 			{
 				if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, key) == GLFW_PRESS)
 				{
-					aero.controlSetting += control.rate * deltaTime;
-					pKey = true;
+					control.controlSetting += control.controlSpeed * deltaTime;
+					reset = false;
 				}
 			}
-			
-			for (auto key : control.negetiveKeys)
+
+			if (control.controlSetting > 1)
+			{
+				control.controlSetting = 1;
+			}
+
+			for (int key : control.negetiveKeys)
 			{
 				if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, key) == GLFW_PRESS)
 				{
-					aero.controlSetting -= control.rate * deltaTime;
-					nKey = true;
+					control.controlSetting -= control.controlSpeed * deltaTime;
+					reset = false;
 				}
 			}
 
-			if (!pKey && !nKey)
+			if (control.controlSetting < -1)
 			{
-				aero.controlSetting = 0;
+				control.controlSetting = -1;
 			}
 
-			aero.controlSetting = glm::clamp(aero.controlSetting, -1.0f, 1.0f);
+			if (reset)
+			{
+				control.controlSetting = 0;
+			}
+
+			float t = (control.controlSetting + 1) * 0.5f;
+			surface.aerodynamicForce = t * control.aeroMinusOne + (1 - t) * control.aeroPlusOne;			
 		}
 	}
 }
