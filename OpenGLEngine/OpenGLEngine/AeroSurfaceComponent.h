@@ -7,13 +7,13 @@ namespace Reality
 	{
 		AeroSurfaceComponent(ECSEntity _targetEntity = ECSEntity(), Vector3 _aerodynamicForce = Vector3(0, 0, 0),
 			Vector3 _localOffset = Vector3(0, 0, 0))
-			:targetEntity(_targetEntity),
+			:attachedEntity(_targetEntity),
 			aerodynamicForce(_aerodynamicForce),
 			localOffset(_localOffset)
 		{
 
 		}
-		ECSEntity targetEntity;
+		ECSEntity attachedEntity;
 		Vector3 aerodynamicForce;
 		Vector3 localOffset;
 	};

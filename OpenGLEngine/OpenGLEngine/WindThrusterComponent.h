@@ -9,14 +9,14 @@ namespace Reality
 			Vector3 _localWindDirection = Vector3(0, 0, 1),
 			float _wind = 10, 
 			Vector3 _sailPosition = Vector3(0,0,0))
-			:targetEntity(_targetEntity),
+			:attachedEntity(_targetEntity),
 			localWindDirection(_localWindDirection),
 			wind(_wind),
 			sailPosition(_sailPosition)
 		{
 
 		}
-		ECSEntity targetEntity;
+		ECSEntity attachedEntity;
 		Vector3 localWindDirection;
 		float wind;
 		float timer = 0;

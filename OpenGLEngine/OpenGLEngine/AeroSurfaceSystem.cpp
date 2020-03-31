@@ -17,13 +17,13 @@ namespace Reality
 			auto& surfaceTransform = e.getComponent<TransformComponentV2>();
 			auto& aero = e.getComponent<AeroSurfaceComponent>();
 
-			if (aero.targetEntity.hasComponent<TransformComponentV2>() &&
-				aero.targetEntity.hasComponent<RigidbodyComponent>() &&
-				aero.targetEntity.hasComponent<ForceAndTorqueAccumulatorComponent>())
+			if (aero.attachedEntity.hasComponent<TransformComponentV2>() &&
+				aero.attachedEntity.hasComponent<RigidbodyComponent>() &&
+				aero.attachedEntity.hasComponent<ForceAndTorqueAccumulatorComponent>())
 			{
-				auto& targetTransform = aero.targetEntity.getComponent<TransformComponentV2>();
-				auto& rigidbody = aero.targetEntity.getComponent<RigidbodyComponent>();
-				auto& forceAndTorque = aero.targetEntity.getComponent<ForceAndTorqueAccumulatorComponent>();
+				auto& targetTransform = aero.attachedEntity.getComponent<TransformComponentV2>();
+				auto& rigidbody = aero.attachedEntity.getComponent<RigidbodyComponent>();
+				auto& forceAndTorque = aero.attachedEntity.getComponent<ForceAndTorqueAccumulatorComponent>();
 
 				// HACK: For lack of scene graph
 				Vector3 worldSurfacePosition = targetTransform.LocalToWorldPosition(aero.localOffset);

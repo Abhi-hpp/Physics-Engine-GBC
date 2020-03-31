@@ -16,11 +16,11 @@ namespace Reality
 		{
 			auto& thruster = e.getComponent<ThrusterComponent>();
 
-			if (thruster.targetEntity.hasComponent<TransformComponentV2>() &&
-				thruster.targetEntity.hasComponent<ForceAndTorqueAccumulatorComponent>())
+			if (thruster.attachedEntity.hasComponent<TransformComponentV2>() &&
+				thruster.attachedEntity.hasComponent<ForceAndTorqueAccumulatorComponent>())
 			{
-				auto& transform = thruster.targetEntity.getComponent<TransformComponentV2>();
-				auto& forceAndTorque = thruster.targetEntity.getComponent<ForceAndTorqueAccumulatorComponent>();
+				auto& transform = thruster.attachedEntity.getComponent<TransformComponentV2>();
+				auto& forceAndTorque = thruster.attachedEntity.getComponent<ForceAndTorqueAccumulatorComponent>();
 
 				Vector3 worldThrustDirection = transform.LocalToWorldDirection(thruster.localThrustDirection);
 				forceAndTorque.AddForce(worldThrustDirection * thruster.thrust);
