@@ -9,5 +9,6 @@ namespace Reality
 	public:
 		WindThrusterSystem();
 		void Update(float deltaTime);
+		void WindThrusterInput(Reality::WindThrusterComponent& wind);
 	};
 }

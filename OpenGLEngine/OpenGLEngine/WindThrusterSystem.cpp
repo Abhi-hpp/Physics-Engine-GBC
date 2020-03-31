@@ -22,38 +22,30 @@ namespace Reality
 				auto& transform = wind.attachedEntity.getComponent<TransformComponentV2>();
 				auto& forceAndTorque = wind.attachedEntity.getComponent<ForceAndTorqueAccumulatorComponent>();
 
-				Vector3 worldWindDirection = transform.LocalToWorldDirection(wind.localWindDirection);
+				Vector3 worldWindDirection = transform.LocalToWorldDirection(wind.windDirection);
 				forceAndTorque.AddForce(worldWindDirection * wind.wind);
 
 				wind.sailPosition = transform.LocalToWorldPosition(wind.sailPosition);
 
 				wind.timer += deltaTime;
 				
-				GLFWwindow*  window = getWorld().data.renderUtil->window->glfwWindow;
-				if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-				{
-					if (wind.wind < 100)
-					{
-						wind.localWindDirection = Vector3(0, 0, -1);
-						wind.wind += 0.01;
-					}
-				} else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-				{
-					if (wind.wind < 100)
-					{
-						wind.localWindDirection = Vector3(0, 0, 1);
-						wind.wind += 0.01;
-					}
-				}
-
-				if (wind.timer > 0.3f)
-				{
-					auto smokeTrail = getWorld().createEntity();
-					smokeTrail.addComponent<TransformComponentV2>(Vector3(transform.GetPosition().x, 5.0f, transform.GetPosition().z) - worldWindDirection * 10.0f);
-					smokeTrail.addComponent<LifeTimeComponent>();
-					wind.timer = 0;
-				}
+				WindThrusterInput(wind);
 			}
+		}
+	}
+
+	void WindThrusterSystem::WindThrusterInput(Reality::WindThrusterComponent& wind)
+	{
+		GLFWwindow* window = getWorld().data.renderUtil->window->glfwWindow;
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		{
+			wind.windDirection = Vector3(0, 0, -1);
+			wind.wind += 0.05;
+		}
+		else if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		{
+			wind.windDirection = Vector3(0, 0, 1);
+			wind.wind += 0.05;
 		}
 	}
 }

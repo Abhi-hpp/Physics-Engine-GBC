@@ -5,21 +5,18 @@ namespace Reality
 {
 	struct WindThrusterComponent
 	{
-		WindThrusterComponent(ECSEntity _targetEntity = ECSEntity(),
-			Vector3 _localWindDirection = Vector3(0, 0, 1),
-			float _wind = 10, 
-			Vector3 _sailPosition = Vector3(0,0,0))
-			:attachedEntity(_targetEntity),
-			localWindDirection(_localWindDirection),
-			wind(_wind),
-			sailPosition(_sailPosition)
+		WindThrusterComponent(ECSEntity _attachedEntity = ECSEntity(), Vector3 _windDirection = Vector3(0, 0, 1),
+			float _wind = 10, Vector3 _sailPosition = Vector3(0,0,0))
+			:attachedEntity(_attachedEntity), windDirection(_windDirection), wind(_wind), sailPosition(_sailPosition)
 		{
 
 		}
+
 		ECSEntity attachedEntity;
-		Vector3 localWindDirection;
+		Vector3 windDirection;
+		Vector3 sailPosition;
 		float wind;
 		float timer = 0;
-		Vector3 sailPosition;
+		
 	};
 }
