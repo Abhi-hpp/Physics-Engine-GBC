@@ -1,67 +1,73 @@
 #include "BuoyancySystem.h"
-#include "ParticleComponent.h"
+#include "RigidBodyComponent.h"
 #include "GravityForceComponent.h"
-#include "DragForceComponent.h"
+//#include "DragForceComponent.h"
+#include "TransformComponentV2.h"
+#include "ForceAndTorqueAccumulatorComponent.h"
 
 namespace Reality
 {
 	BuoyancySystem::BuoyancySystem()
 	{
 		requireComponent<BuoyancyComponent>();
-		requireComponent<TransformComponent>();
-		requireComponent<ForceAccumulatorComponent>();
+		requireComponent<TransformComponentV2>();
+		//requireComponent<ForceAndTorqueAccumulatorComponent>();
 	}
 
 	void BuoyancySystem::Update(float deltaTime)
 	{
 		GLFWwindow*  window = getWorld().data.renderUtil->window->glfwWindow;
-		Camera& camera = getWorld().data.renderUtil->camera;
-
-		if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-		{
-			Vector3 spawnLocation = camera.Position + camera.Front * 30.0f;
-
-			auto particle1 = getWorld().createEntity();
-			particle1.addComponent<TransformComponent>(spawnLocation);
-			particle1.addComponent<ForceAccumulatorComponent>();
-			particle1.addComponent<ParticleComponent>(Vector3(0, 0, 0));
-			particle1.addComponent<GravityForceComponent>(0.1f);
-			particle1.addComponent<DragForceComponent>(0.05f, 0);
-			particle1.addComponent<BuoyancyComponent>(4, 64);
-		}
 
 		if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS) { liquidDensity += 0.05f; }
 		if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS) { liquidDensity -= 0.05f; }
 
 		for (auto e : getEntities())
 		{
-			auto& force = e.getComponent<ForceAccumulatorComponent>();
-			auto position = e.getComponent<TransformComponent>().position;
+			//auto& forceAndTorqueAcc = e.getComponent<ForceAndTorqueAccumulatorComponent>();
+			auto buoyTransform = e.getComponent<TransformComponentV2>();
 			auto buoy = e.getComponent<BuoyancyComponent>();
-
-			float d = ((buoy.maxDepth / 2) - (position.y - liquidVolume.y)) / buoy.maxDepth;
-
-			Color color = Color::Red;
-			if (d <= 0) 
+			if (buoy.targetEntity.hasComponent<ForceAndTorqueAccumulatorComponent>() &&
+				buoy.targetEntity.hasComponent<TransformComponentV2>())
 			{
-				color = Color::Orange;
-				//Force = 0 
-			} 
-			else if (d >= 1) 
-			{ 
-				color = Color::Blue;
-				float vp = liquidDensity * buoy.volume;
-				force.AddForce(Vector3(0, vp, 0));
-			} 
-			else // 0 < d < 1
-			{ 
-				color = Color::Green;
-				float dvp = d * liquidDensity * buoy.volume;
-				force.AddForce(Vector3(0, dvp, 0));
-			}
+				auto& forceAndTorqueAcc = buoy.targetEntity.getComponent<ForceAndTorqueAccumulatorComponent>();
+				auto& targetTransform = buoy.targetEntity.getComponent<TransformComponentV2>();
 
-			getWorld().data.renderUtil->DrawSphere(position, buoy.maxDepth, color);
-			getWorld().data.renderUtil->DrawLine(liquidVolume, position, color);
+
+				Vector3 buoyancyPos = targetTransform.LocalToWorldPosition(buoy.centerOfBuoyancy);
+				buoyTransform.SetPosition(buoyancyPos);
+				buoyTransform.SetOrientation(targetTransform.GetOrientation());
+
+
+				float d = ((buoy.maxDepth / 2) - (buoyancyPos.y - liquidVolume.y)) / buoy.maxDepth;
+
+				Color color = Color::Red;
+				if (d <= 0)
+				{
+					color = Color::Orange;
+					//Force = 0 
+				}
+				else if (d >= 1)
+				{
+					color = Color::Blue;
+					float vp = liquidDensity * buoy.volume;
+					Vector3 force = Vector3(0, vp, 0);
+					forceAndTorqueAcc.AddForceAtPoint(force, buoyTransform.GetPosition(), targetTransform.GetPosition());
+				}
+				else // 0 < d < 1
+				{
+					color = Color::Green;
+					float dvp = d * liquidDensity * buoy.volume;
+					Vector3 force = Vector3(0, dvp, 0);
+					forceAndTorqueAcc.AddForceAtPoint(force, buoyTransform.GetPosition(), targetTransform.GetPosition());
+				}
+
+				getWorld().data.renderUtil->DrawSphere(buoyTransform.GetPosition(), buoy.maxDepth, color);
+				getWorld().data.renderUtil->DrawSphere(buoyTransform.GetPosition(), buoy.maxDepth, color);
+
+			}
 		}
+		//Agua
+		getWorld().data.renderUtil->DrawCube(glm::vec3(0, -50, 0), glm::vec3(5000, 100, 5000), glm::quat(), Color::Blue);
+
 	}
 }

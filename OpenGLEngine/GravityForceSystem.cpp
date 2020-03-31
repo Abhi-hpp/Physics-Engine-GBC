@@ -12,8 +12,8 @@ namespace Reality
 	{
 		for (auto e : getEntities())
 		{
-			auto& gravity = e.getComponent<GravityForceComponent>();
 			auto& forceAcc = e.getComponent<ForceAccumulatorComponent>();
+			auto& gravity = e.getComponent<GravityForceComponent>();
 
 			if (forceAcc.inverseMass > 0)
 			{

@@ -1,10 +1,10 @@
 #include "DragForceSystem.h"
-#include "ParticleComponent.h"
 
 namespace Reality
 {
 	DragForceSystem::DragForceSystem()
 	{
+		requireComponent<ParticleComponent>();
 		requireComponent<ForceAccumulatorComponent>();
 		requireComponent<DragForceComponent>();
 	}
@@ -13,14 +13,15 @@ namespace Reality
 	{
 		for (auto e : getEntities())
 		{
-			auto velocity = e.getComponent<ParticleComponent>().velocity;
+			auto& particle = e.getComponent<ParticleComponent>();
 			auto& forceAcc = e.getComponent<ForceAccumulatorComponent>();
-			auto drag = e.getComponent<DragForceComponent>();
+			auto& drag = e.getComponent<DragForceComponent>();
 
-			if (glm::length(velocity) > 0) // Non-Zero Vector
+			float speed = glm::length(particle.velocity);
+			if (speed > 0)
 			{
-				auto force = (-glm::normalize(velocity)) *
-					((drag.k1 * glm::length(velocity)) + (drag.k2 * glm::length(velocity) * glm::length(velocity)));
+				Vector3 force = -glm::normalize(particle.velocity);
+				force *= drag.k1 * speed + drag.k2 * pow(speed, 2);
 				forceAcc.AddForce(force);
 			}
 		}

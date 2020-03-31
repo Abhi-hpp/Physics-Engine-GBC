@@ -19,11 +19,11 @@ namespace Reality
 			for (int i = 0; i < velocityIterations; i++)
 			{
 				// Sort from highest incoming OR most negetive separting velocity to least
-				std::sort(contactEvents.begin(), contactEvents.end(),
+				std::sort(contactEvents.begin(), contactEvents.end(), 
 					[this](auto a, auto b)
-				{
-					return CalculateSeparationVelocity(a) < CalculateSeparationVelocity(b);
-				});
+					{
+						return CalculateSeparationVelocity(a) < CalculateSeparationVelocity(b);
+					});
 				ResolveVelocity(contactEvents[0], deltaTime);
 			}
 			for (int i = 0; i < positionIterations; i++)
@@ -31,9 +31,9 @@ namespace Reality
 				// Sort from highest penetration to the least
 				std::sort(contactEvents.begin(), contactEvents.end(),
 					[this](auto a, auto b)
-				{
-					return CalculateActualPenetration(a) > CalculateActualPenetration(b);
-				});
+					{
+						return CalculateActualPenetration(a) > CalculateActualPenetration(b);
+					});
 				ResolveInterPenetration(contactEvents[0]);
 			}
 		}

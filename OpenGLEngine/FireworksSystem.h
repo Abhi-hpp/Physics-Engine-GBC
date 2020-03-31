@@ -1,7 +1,7 @@
 #pragma once
 #include "ECSConfig.h"
-#include "FireworksComponent.h"
 #include "TransformComponent.h"
+#include "FireworksComponent.h"
 
 namespace Reality
 {

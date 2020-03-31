@@ -15,7 +15,7 @@ namespace Reality
 		{
 			auto& follow = e.getComponent<FollowCameraComponent>();
 			auto& transform = e.getComponent<TransformComponentV2>();
-			getWorld().data.renderUtil->camera.Position = transform.GetPosition() + /*transform.LocalToWorldDirection(follow.follow)*/ - cam.Front * 100.0f;
+			getWorld().data.renderUtil->camera.Position = transform.GetPosition() + /*transform.LocalToWorldDirection(follow.follow)*/ - cam.Front * 200.0f;
 		}
 	}
 }

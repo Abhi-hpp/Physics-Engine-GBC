@@ -18,41 +18,42 @@ namespace Reality
 			auto& transform = e.getComponent<TransformComponent>();
 			auto& fireworks = e.getComponent<FireworksComponent>();
 
-			//Update Timer
 			fireworks.timer += deltaTime;
-
-			//Spawn new particles
 			if (fireworks.timer > fireworks.spawnTime)
 			{
 				if (fireworks.generation > 0)
 				{
-					float angleRate = 2 * AI_MATH_PI / fireworks.numParticles;
-					for (int i = 0; i <= fireworks.numParticles; i++)
+					float deltaAngle = 2 * AI_MATH_PI / fireworks.numberOfParticles;
+					for (int i = 0; i < fireworks.numberOfParticles; i++)
 					{
 						auto particle = getWorld().createEntity();
 						particle.addComponent<TransformComponent>(transform.position);
-						float angle = i * angleRate;
+						float angle = i * deltaAngle;
 						Vector3 velocity = Vector3(0, 1, 0);
 						velocity.x = cos(angle);
-						velocity.y = sin(angle);
+						velocity.z = sin(angle);
 						velocity *= fireworks.velocityScale;
 						particle.addComponent<ParticleComponent>(velocity);
 						particle.addComponent<ForceAccumulatorComponent>();
-						particle.addComponent<GravityForceComponent>(0.1f);
+						particle.addComponent<GravityForceComponent>();
+						float colorAlpha = (float)i / (float)fireworks.numberOfParticles;
 						particle.addComponent<FireworksComponent>(
-							fireworks.numParticles,
+							fireworks.numberOfParticles,
 							fireworks.generation - 1,
-							fireworks.spawnTime,
-							fireworks.velocityScale);
+							fireworks.spawnTime + RANDOM_FLOAT(-0.3f, 0.3f),
+							fireworks.velocityScale,
+							Color(colorAlpha, 0, 1 - colorAlpha)
+							);
+
 					}
 				}
-				//Kill old particle
 				e.kill();
 			}
 
+
 			if (DEBUG_LOG_LEVEL > 0)
 			{
-				getWorld().data.renderUtil->DrawSphere(transform.position);
+				getWorld().data.renderUtil->DrawSphere(transform.position, 1.0f, fireworks.color);
 			}
 		}
 	}

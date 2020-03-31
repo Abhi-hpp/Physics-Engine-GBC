@@ -1,7 +1,7 @@
 #pragma once
 #include "ECSConfig.h"
-#include "FixedSpringComponent.h"
 #include "TransformComponent.h"
+#include "FixedSpringComponent.h"
 
 namespace Reality
 {

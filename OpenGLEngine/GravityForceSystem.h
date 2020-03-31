@@ -10,6 +10,6 @@ namespace Reality
 	public:
 		GravityForceSystem();
 		void Update(float deltaTime);
-		Vector3 worldGravity = Vector3(0, -9.8, 0);
+		Vector3 worldGravity = Vector3(0.0f, -9.8f, 0.0f);
 	};
 }

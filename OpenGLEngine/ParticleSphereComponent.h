@@ -5,7 +5,8 @@ namespace Reality
 {
 	struct ParticleSphereComponent
 	{
-		ParticleSphereComponent(float _radius = 1.0f) : radius(_radius)
+		ParticleSphereComponent(float _radius = 1.0f)
+			: radius(_radius)
 		{
 
 		}

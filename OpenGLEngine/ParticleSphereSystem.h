@@ -13,5 +13,6 @@ namespace Reality
 	private:
 		bool createBox = false;
 		ECSEntity boundingBox;
+		void CheckCollision(ECSEntity sphereEntityA, ECSEntity sphereEntityB);
 	};
 }
