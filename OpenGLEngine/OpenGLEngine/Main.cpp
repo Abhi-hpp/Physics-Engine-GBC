@@ -39,7 +39,15 @@ void SetupLights(ECSWorld& world);
 void MakeABunchaObjectsV2(ECSWorld& world);
 void MakeRigidBodyTest(ECSWorld& world);
 void MakeAFlightSimulator(ECSWorld& world);
-void MakeABoatSimulator(ECSWorld& world);
+void MakeBoatSimulator(ECSWorld& world);
+
+void CreateShipSail(Reality::ECSWorld& world, Mix::Entity& shipEntity);
+
+void CreateRudder(Reality::ECSWorld& world, Mix::Entity& shipEntity);
+
+void CreateBuoyancies(Reality::ECSWorld& world, Mix::Entity& waterSurface, Mix::Entity& shipEntity);
+
+void CreateShip(Mix::Entity& shipEntity);
 
 int main()
 {
@@ -58,7 +66,7 @@ int main()
 	e.addComponent<FPSControlComponent>();
 
 	SetupLights(world);
-	MakeABoatSimulator(world);
+	MakeBoatSimulator(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -326,41 +334,61 @@ void MakeAFlightSimulator(ECSWorld & world)
 
 }
 
-void MakeABoatSimulator(ECSWorld & world)
+void MakeBoatSimulator(ECSWorld & world)
 {
-	auto water = world.createEntity();
-	water.addComponent<TransformComponentV2>(Vector3(0, 0, -30), Vector3(50, 50, 50));
+	auto waterSurface = world.createEntity();
+	waterSurface.addComponent<TransformComponentV2>(Vector3(0.0f, 0.0f, -30.0f), Vector3(50.0f, 50.0f, 50.0f));
 
-	auto ship = world.createEntity();
-	ship.addComponent<TransformComponentV2>(Vector3(0, -3, -30), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 0, 0));
-	ship.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90, -180, 0), Vector3(0, 0, 0));
-	ship.addComponent<RigidbodyComponent>();
-	ship.addComponent<ForceAndTorqueAccumulatorComponent>();
-	ship.addComponent<DragComponent>(0.5, 0.5);
-	ship.addComponent<FollowCameraComponent>();
+	auto shipEntity = world.createEntity();
+	CreateShip(shipEntity);
 
-	auto hullBuoyancyA = world.createEntity();
-	hullBuoyancyA.addComponent<TransformComponentV2>();
-	hullBuoyancyA.addComponent<ForceAndTorqueAccumulatorComponent>();
-	hullBuoyancyA.addComponent<BuoyancyForceGeneratorComponent>(5, 2, 3, water, Vector3(0, 0, -130), ship);
-	
-	auto hullBuoyancyB = world.createEntity();
-	hullBuoyancyB.addComponent<TransformComponentV2>();
-	hullBuoyancyB.addComponent<ForceAndTorqueAccumulatorComponent>();
-	hullBuoyancyB.addComponent<BuoyancyForceGeneratorComponent>(5, 2, 3, water, Vector3(0, 0, 150), ship);
+	CreateBuoyancies(world, waterSurface, shipEntity);
 
+	CreateRudder(world, shipEntity);
+
+	CreateShipSail(world, shipEntity);
+}
+
+void CreateShipSail(Reality::ECSWorld& world, Mix::Entity& shipEntity)
+{
+	auto shipSail = world.createEntity();
+	shipSail.addComponent<WindThrusterComponent>(shipEntity, Vector3(0.0f, 0.0f, -1.0f), 1.0f, Vector3(0.0f, -20.0f, -55.0f));
+}
+
+void CreateRudder(Reality::ECSWorld& world, Mix::Entity& shipEntity)
+{
 	auto rudder = world.createEntity();
 	rudder.addComponent<TransformComponentV2>();
-	rudder.addComponent<AeroSurfaceComponent>(ship, Vector3(0, 0, 0), Vector3(0, 30, 220));
+	rudder.addComponent<AeroSurfaceComponent>(shipEntity, Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 30.0f, 220.0f));
 	std::vector<int> rudderPositiveKeys = { GLFW_KEY_A };
 	std::vector<int> rudderNegetiveKeys = { GLFW_KEY_D };
 	rudder.addComponent<AeroControlComponent>(
-		Vector3(-0.04f, 0, 0),
-		Vector3(0.04f, 0, 0),
+		Vector3(-0.04f, 0.0f, 0.0f),
+		Vector3(0.04f, 0.0f, 0.0f),
 		rudderPositiveKeys, rudderNegetiveKeys);
+}
 
-	auto sail = world.createEntity();
-	sail.addComponent<WindThrusterComponent>(ship, Vector3(0, 0, -1), 1, Vector3(0,-20,-55));
+void CreateBuoyancies(Reality::ECSWorld& world, Mix::Entity& waterSurface, Mix::Entity& shipEntity)
+{
+	auto buoyancyA = world.createEntity();
+	buoyancyA.addComponent<TransformComponentV2>();
+	buoyancyA.addComponent<ForceAndTorqueAccumulatorComponent>();
+	buoyancyA.addComponent<BuoyancyForceGeneratorComponent>(5.0f, 2.0f, 3.0f, waterSurface, Vector3(0.0f, 0.0f, -130.0f), shipEntity);
+
+	auto buoyancyB = world.createEntity();
+	buoyancyB.addComponent<TransformComponentV2>();
+	buoyancyB.addComponent<ForceAndTorqueAccumulatorComponent>();
+	buoyancyB.addComponent<BuoyancyForceGeneratorComponent>(5.0f, 2.0f, 3.0f, waterSurface, Vector3(0.0f, 0.0f, 150.0f), shipEntity);
+}
+
+void CreateShip(Mix::Entity& shipEntity)
+{
+	shipEntity.addComponent<TransformComponentV2>(Vector3(0.0f, -3.0f, -30.0f), Vector3(0.1f, 0.1f, 0.1f), Vector3(0.0f, 0.0f, 0.0f));
+	shipEntity.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90.0f, -180.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
+	shipEntity.addComponent<RigidbodyComponent>();
+	shipEntity.addComponent<ForceAndTorqueAccumulatorComponent>();
+	shipEntity.addComponent<DragComponent>(0.5f, 0.5f);
+	shipEntity.addComponent<FollowCameraComponent>();
 }
 
 void SetupLights(ECSWorld& world)
