@@ -482,18 +482,15 @@ void MakeFlight(ECSWorld& world)
 
 	for (int i = -40; i <= 40; i++)
 	{
-		// auto buildingR = world.createEntity();
-		// buildingR.addComponent<TransformComponentV2>(Vector3(100.0f, 0.0f, 50.0f * i));
-		// buildingR.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(100.0f, 500.0f));
-
-		// auto buildingL = world.createEntity();
-		// buildingL.addComponent<TransformComponentV2>(Vector3(-100.0f, 0.0f, 50.0f * i));
-		// buildingL.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(100.0f, 500.0f));
-
 		auto WaterSurface = world.createEntity();
 		WaterSurface.addComponent<TransformComponentV2>(Vector3(0.0f, 440.0f, 50.0f * i));
 		WaterSurface.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(100.0f, 500.0f));
-
+	}
+	for (int i = -40; i <= 40; i++)
+	{
+		auto WaterSurface = world.createEntity();
+		WaterSurface.addComponent<TransformComponentV2>(Vector3(50.0f, 440.0f, 50.0f * i));
+		WaterSurface.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(100.0f, 500.0f));
 	}
 }
 
