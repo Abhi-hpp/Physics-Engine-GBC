@@ -3,8 +3,6 @@
 #include "ForceAccumulatorSystem.h"
 #include "TransformComponent.h"
 #include "PenetrationDeltaMoveComponent.h"
-#include "TrianglePlaneComponent.h"
-#include <iostream>
 
 namespace Reality
 {
@@ -50,18 +48,9 @@ namespace Reality
 	{
 		Vector3 velocityA = contact.entityA.hasComponent<ParticleComponent>() ?
 			contact.entityA.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
-		Vector3 velocityB = Vector3(0, 0, 0);
-		if (contact.entityB.hasComponent<TrianglePlaneComponent>())
-		{
-			auto plane = contact.entityB.getComponent<TrianglePlaneComponent>();
-			velocityB = plane.p1.hasComponent<ParticleComponent>() ?
-				plane.p1.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
-		}
-		else
-		{
-			velocityB = contact.entityB.hasComponent<ParticleComponent>() ?
-				contact.entityB.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
-		}
+
+		Vector3 velocityB = contact.entityB.hasComponent<ParticleComponent>() ?
+			contact.entityB.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
 
 		Vector3 separationVelocity = velocityA - velocityB;
 
@@ -77,22 +66,11 @@ namespace Reality
 			Vector3 deltaMove = contact.entityA.getComponent<PenetrationDeltaMoveComponent>().deltaMove;
 			actualPenetration -= glm::dot(deltaMove, contact.normal);
 		}
-		if (contact.entityB.hasComponent<TrianglePlaneComponent>())
+
+		if (contact.entityB.hasComponent<PenetrationDeltaMoveComponent>())
 		{
-			auto plane = contact.entityB.getComponent<TrianglePlaneComponent>();
-			if (plane.p1.hasComponent<PenetrationDeltaMoveComponent>())
-			{
-				Vector3 deltaMove = plane.p1.getComponent<PenetrationDeltaMoveComponent>().deltaMove;
-				actualPenetration += glm::dot(deltaMove, contact.normal);
-			}
-		}
-		else
-		{
-			if (contact.entityB.hasComponent<PenetrationDeltaMoveComponent>())
-			{
-				Vector3 deltaMove = contact.entityB.getComponent<PenetrationDeltaMoveComponent>().deltaMove;
-				actualPenetration += glm::dot(deltaMove, contact.normal);
-			}
+			Vector3 deltaMove = contact.entityB.getComponent<PenetrationDeltaMoveComponent>().deltaMove;
+			actualPenetration += glm::dot(deltaMove, contact.normal);
 		}
 
 		return actualPenetration;
@@ -114,20 +92,9 @@ namespace Reality
 		{
 			relativeAccelaration += contact.entityA.getComponent<ParticleComponent>().acceleration;
 		}
-		if (contact.entityB.hasComponent<TrianglePlaneComponent>())
+		if (contact.entityB.hasComponent<ParticleComponent>())
 		{
-			auto plane = contact.entityB.getComponent<TrianglePlaneComponent>();
-			if (plane.p1.hasComponent<ParticleComponent>())
-			{
-				relativeAccelaration -= plane.p1.getComponent<ParticleComponent>().acceleration;
-			}
-		}
-		else
-		{
-			if (contact.entityB.hasComponent<ParticleComponent>())
-			{
-				relativeAccelaration -= contact.entityB.getComponent<ParticleComponent>().acceleration;
-			}
+			relativeAccelaration -= contact.entityB.getComponent<ParticleComponent>().acceleration;
 		}
 
 		float accCausedSepVelocity = glm::dot(relativeAccelaration, contact.normal) * deltaTime;
@@ -147,18 +114,8 @@ namespace Reality
 		float invMA = contact.entityA.hasComponent<ForceAccumulatorComponent>() ?
 			contact.entityA.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
 
-		float invMB = 0;
-		if (contact.entityB.hasComponent<TrianglePlaneComponent>())
-		{
-			auto plane = contact.entityB.getComponent<TrianglePlaneComponent>();
-			invMB = plane.p1.hasComponent<ForceAccumulatorComponent>() ?
-				plane.p1.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
-		}
-		else
-		{
-			invMB = contact.entityB.hasComponent<ForceAccumulatorComponent>() ?
-				contact.entityB.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
-		}
+		float invMB = contact.entityB.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityB.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
 
 		float totalInverseMass = invMA + invMB;
 
@@ -174,29 +131,10 @@ namespace Reality
 		{
 			contact.entityA.getComponent<ParticleComponent>().velocity += impulsePerIMass * invMA;
 		}
-		if (contact.entityB.hasComponent<TrianglePlaneComponent>())
-		{
-			auto plane = contact.entityB.getComponent<TrianglePlaneComponent>();
 
-			if (plane.p1.hasComponent<ParticleComponent>())
-			{
-				plane.p1.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invMB;
-			}
-			if (plane.p2.hasComponent<ParticleComponent>())
-			{
-				plane.p2.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invMB;
-			}
-			if (plane.p3.hasComponent<ParticleComponent>())
-			{
-				plane.p3.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invMB;
-			}
-		}
-		else
+		if (contact.entityB.hasComponent<ParticleComponent>())
 		{
-			if (contact.entityB.hasComponent<ParticleComponent>())
-			{
-				contact.entityB.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invMB;
-			}
+			contact.entityB.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invMB;
 		}
 	}
 	void ParticleContactResolutionSystem::ResolveInterPenetration(ParticleContactEvent & contact)
@@ -211,20 +149,8 @@ namespace Reality
 		float invMassA = contact.entityA.hasComponent<ForceAccumulatorComponent>() ?
 			contact.entityA.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
 
-		float invMassB = 0;
-			
-		if (contact.entityB.hasComponent<TrianglePlaneComponent>())
-		{
-			auto plane = contact.entityB.getComponent<TrianglePlaneComponent>();
-			invMassB = plane.p1.hasComponent<ForceAccumulatorComponent>() ?
-				plane.p1.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
-		}
-		else
-		{
-
-			invMassB = contact.entityB.hasComponent<ForceAccumulatorComponent>() ?
-				contact.entityB.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
-		}
+		float invMassB = contact.entityB.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityB.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
 
 		float totalInverseMass = invMassA + invMassB;
 
@@ -245,47 +171,13 @@ namespace Reality
 			}
 		}
 
-		if (contact.entityB.hasComponent<TrianglePlaneComponent>())
+		if (contact.entityB.hasComponent<TransformComponent>())
 		{
-			auto plane = contact.entityB.getComponent<TrianglePlaneComponent>();
-			if (plane.p1.hasComponent<TransformComponent>())
+			Vector3 deltaMove = movePerUnitIMass * invMassB;
+			contact.entityB.getComponent<TransformComponent>().position -= movePerUnitIMass * invMassB;
+			if (contact.entityB.hasComponent<PenetrationDeltaMoveComponent>())
 			{
-				Vector3 deltaMove = movePerUnitIMass * invMassB;
-				plane.p1.getComponent<TransformComponent>().position -= movePerUnitIMass * invMassB;
-				if (plane.p1.hasComponent<PenetrationDeltaMoveComponent>())
-				{
-					plane.p1.getComponent<PenetrationDeltaMoveComponent>().deltaMove -= deltaMove;
-				}
-			}
-			if (plane.p2.hasComponent<TransformComponent>())
-			{
-				Vector3 deltaMove = movePerUnitIMass * invMassB;
-				plane.p2.getComponent<TransformComponent>().position -= movePerUnitIMass * invMassB;
-				if (plane.p2.hasComponent<PenetrationDeltaMoveComponent>())
-				{
-					plane.p2.getComponent<PenetrationDeltaMoveComponent>().deltaMove -= deltaMove;
-				}
-			}
-			if (plane.p3.hasComponent<TransformComponent>())
-			{
-				Vector3 deltaMove = movePerUnitIMass * invMassB;
-				plane.p3.getComponent<TransformComponent>().position -= movePerUnitIMass * invMassB;
-				if (plane.p3.hasComponent<PenetrationDeltaMoveComponent>())
-				{
-					plane.p3.getComponent<PenetrationDeltaMoveComponent>().deltaMove -= deltaMove;
-				}
-			}
-		}
-		else
-		{
-			if (contact.entityB.hasComponent<TransformComponent>())
-			{
-				Vector3 deltaMove = movePerUnitIMass * invMassB;
-				contact.entityB.getComponent<TransformComponent>().position -= movePerUnitIMass * invMassB;
-				if (contact.entityB.hasComponent<PenetrationDeltaMoveComponent>())
-				{
-					contact.entityB.getComponent<PenetrationDeltaMoveComponent>().deltaMove -= deltaMove;
-				}
+				contact.entityB.getComponent<PenetrationDeltaMoveComponent>().deltaMove -= deltaMove;
 			}
 		}
 

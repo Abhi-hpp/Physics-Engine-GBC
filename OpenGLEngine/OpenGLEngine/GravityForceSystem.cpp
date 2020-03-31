@@ -4,7 +4,7 @@ namespace Reality
 {
 	GravityForceSystem::GravityForceSystem()
 	{
-		requireComponent<ForceAccumulatorComponent>();
+		requireComponent<ForceAndTorqueAccumulatorComponent>();
 		requireComponent<GravityForceComponent>();
 	}
 
@@ -12,7 +12,7 @@ namespace Reality
 	{
 		for (auto e : getEntities())
 		{
-			auto& forceAcc = e.getComponent<ForceAccumulatorComponent>();
+			auto& forceAcc = e.getComponent<ForceAndTorqueAccumulatorComponent>();
 			auto& gravity = e.getComponent<GravityForceComponent>();
 
 			if (forceAcc.inverseMass > 0)
