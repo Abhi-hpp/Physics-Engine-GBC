@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <typeindex>
 #include <memory>
+#include <stdexcept>
 
 namespace Mix
 {
@@ -126,7 +127,7 @@ template <typename T>
 T& SystemManager::getSystem()
 {
     if (!hasSystem<T>()) {
-        //throw std::runtime_error(std::string("Failed to get system: ") + typeid(T).name());
+        throw std::runtime_error(std::string("Failed to get system: ") + typeid(T).name());
     }
 
     auto it = systems.find(std::type_index(typeid(T)));

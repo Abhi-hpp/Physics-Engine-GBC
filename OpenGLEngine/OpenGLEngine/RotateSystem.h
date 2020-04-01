@@ -10,5 +10,7 @@ namespace Reality
 	public:
 		RotateSystem();
 		void Update(float deltaTime);
+	private:
+		float timer = 0;
 	};
 }
