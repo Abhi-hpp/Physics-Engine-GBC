@@ -13,15 +13,6 @@ namespace Reality {
 		{
 
 		}
-		float GetWaterHeight()
-		{
-			return waterHeight;
-		}
-		float GetLiquidDensity()
-		{
-			return liquidDensity;
-		}
-	private:
 
 		// when sumbmerged to maxDepth buoyancy force is at maximum
 		float maxDepth;

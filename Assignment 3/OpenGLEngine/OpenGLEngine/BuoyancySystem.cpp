@@ -19,18 +19,17 @@ namespace Reality
 
 			srand(time(NULL));
 
-			float depth = buoyancyComp.GetWaterHeight() - transform.GetPosition().y;
+			float depth = buoyancyComp.waterHeight - transform.GetPosition().y;
 
 
-			// if boat under waterheight apply force at random rate
-			if (transform.GetPosition().y <= buoyancyComp.GetWaterHeight())
+			if (transform.GetPosition().y <= buoyancyComp.volume)
 			{
 				
 					
 					rigidBody.AddForce(
 						Vector3(0, (depth 
 							* (rigidBody.gravityScale / rigidBody.inverseMass)) 
-							* buoyancyComp.GetLiquidDensity(), 0)
+							* buoyancyComp.liquidDensity, 0)
 					);
 
 
