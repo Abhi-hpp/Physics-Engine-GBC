@@ -22,17 +22,20 @@ namespace Reality
 				auto& transform = thruster.targetEntity.getComponent<TransformComponentV2>();
 				auto& forceAndTorque = thruster.targetEntity.getComponent<ForceAndTorqueAccumulatorComponent>();
 
-				Vector3 worldThrustDirection = transform.LocalToWorldDirection(thruster.localThrustDirection);
-				forceAndTorque.AddForce(worldThrustDirection * thruster.thrust);
-
-				thruster.timer += deltaTime;
-
-				if (thruster.timer > 0.3f)
+				if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, GLFW_KEY_W) == GLFW_PRESS)
 				{
-					auto smokeTrail = getWorld().createEntity();
-					smokeTrail.addComponent<TransformComponentV2>(transform.GetPosition() - worldThrustDirection * 10.0f);
-					smokeTrail.addComponent<LifeTimeComponent>();
-					thruster.timer = 0;
+					Vector3 worldThrustDirection = transform.LocalToWorldDirection(thruster.localThrustDirection);
+					forceAndTorque.AddForce(worldThrustDirection * thruster.thrust);
+
+					thruster.timer += deltaTime;
+
+					if (thruster.timer > 0.3f)
+					{
+						auto smokeTrail = getWorld().createEntity();
+						smokeTrail.addComponent<TransformComponentV2>(transform.GetPosition() - worldThrustDirection * 10.0f);
+						smokeTrail.addComponent<LifeTimeComponent>();
+						thruster.timer = 0;
+					}
 				}
 			}
 		}

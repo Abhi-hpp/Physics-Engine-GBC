@@ -22,32 +22,32 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{BF971B9A-9ACC-4B50-8E62-4CC32E780AA5}</ProjectGuid>
     <RootNamespace>OpenGLEngine</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -121,6 +121,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\Github\Physics-Engine-GBC\OpenGLEngine\OpenGLEngine\BuoyancySystem.cpp" />
     <ClCompile Include="AddTorqueFromCameraSystem.cpp">
       <SubType>
       </SubType>
@@ -247,6 +248,9 @@
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\Github\Physics-Engine-GBC\OpenGLEngine\OpenGLEngine\BuoyancyComponent.h" />
+    <ClInclude Include="..\..\..\..\Github\Physics-Engine-GBC\OpenGLEngine\OpenGLEngine\BuoyancySystem.h" />
+    <ClInclude Include="..\..\..\..\Github\Physics-Engine-GBC\OpenGLEngine\OpenGLEngine\ForceAndTorqueAccumulatorComponent.h" />
     <ClInclude Include="AddTorqueFromCameraComponent.h">
       <SubType>
       </SubType>
@@ -343,10 +347,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="ForceAccumulatorSystem.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="ForceAndTorqueAccumulatorComponent.h">
       <SubType>
       </SubType>
     </ClInclude>

@@ -125,9 +125,9 @@ void SystemManager::removeSystem()
 template <typename T>
 T& SystemManager::getSystem()
 {
-    if (!hasSystem<T>()) {
+   /* if (!hasSystem<T>()) {
         throw std::runtime_error(std::string("Failed to get system: ") + typeid(T).name());
-    }
+    }*/
 
     auto it = systems.find(std::type_index(typeid(T)));
     return *(std::static_pointer_cast<T>(it->second));

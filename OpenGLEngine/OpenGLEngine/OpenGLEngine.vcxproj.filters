@@ -61,9 +61,6 @@
     <Filter Include="Physics\Particles\ForceGenerators\FixedSpring">
       <UniqueIdentifier>{4c54bdb5-bf1a-46eb-97aa-4ad2f029416e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Physics\Particles\PairedSpring">
-      <UniqueIdentifier>{26df7371-0611-42cd-b6e5-2556995c23d7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="TestCS\ParticleSphereDemo">
       <UniqueIdentifier>{8f440b87-7f9c-4d7f-993c-ec5fa08dde39}</UniqueIdentifier>
     </Filter>
@@ -72,6 +69,12 @@
     </Filter>
     <Filter Include="TestCS\FlightSimulator">
       <UniqueIdentifier>{fee04adf-2290-4e0b-9dd6-1b2c67f5a98f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\Buoancy">
+      <UniqueIdentifier>{e59d8479-41fd-44e5-91d5-014515c3f2dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics\Particles\ForceGenerators\PairedSpring">
+      <UniqueIdentifier>{26df7371-0611-42cd-b6e5-2556995c23d7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +166,7 @@
       <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
     </ClCompile>
     <ClCompile Include="PairedSpringSystem.cpp">
-      <Filter>Physics\Particles\PairedSpring</Filter>
+      <Filter>Physics\Particles\ForceGenerators\PairedSpring</Filter>
     </ClCompile>
     <ClCompile Include="ParticleContactResolutionSystem.cpp">
       <Filter>Physics\Particles</Filter>
@@ -212,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="FollowCameraSystem.cpp">
       <Filter>TestCS\FlightSimulator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\Github\Physics-Engine-GBC\OpenGLEngine\OpenGLEngine\BuoyancySystem.cpp">
+      <Filter>Physics\Particles\ForceGenerators\Buoancy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -360,10 +366,10 @@
       <Filter>Physics\Particles\ForceGenerators\FixedSpring</Filter>
     </ClInclude>
     <ClInclude Include="PairedSpringComponent.h">
-      <Filter>Physics\Particles\PairedSpring</Filter>
+      <Filter>Physics\Particles\ForceGenerators\PairedSpring</Filter>
     </ClInclude>
     <ClInclude Include="PairedSpringSystem.h">
-      <Filter>Physics\Particles\PairedSpring</Filter>
+      <Filter>Physics\Particles\ForceGenerators\PairedSpring</Filter>
     </ClInclude>
     <ClInclude Include="ParticleContactEvent.h">
       <Filter>Physics\Particles</Filter>
@@ -419,9 +425,6 @@
     <ClInclude Include="RigidbodySystem.h">
       <Filter>Physics\Rigidbody</Filter>
     </ClInclude>
-    <ClInclude Include="ForceAndTorqueAccumulatorComponent.h">
-      <Filter>Physics\Rigidbody</Filter>
-    </ClInclude>
     <ClInclude Include="ForceAndTorqueAccumulatorSystem.h">
       <Filter>Physics\Rigidbody</Filter>
     </ClInclude>
@@ -460,6 +463,15 @@
     </ClInclude>
     <ClInclude Include="FollowCameraSystem.h">
       <Filter>TestCS\FlightSimulator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Github\Physics-Engine-GBC\OpenGLEngine\OpenGLEngine\BuoyancyComponent.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoancy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Github\Physics-Engine-GBC\OpenGLEngine\OpenGLEngine\BuoyancySystem.h">
+      <Filter>Physics\Particles\ForceGenerators\Buoancy</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Github\Physics-Engine-GBC\OpenGLEngine\OpenGLEngine\ForceAndTorqueAccumulatorComponent.h">
+      <Filter>Physics\Rigidbody</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
