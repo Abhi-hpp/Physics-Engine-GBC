@@ -95,7 +95,7 @@ namespace Reality
 			}
 			else
 			{
-				std::cout << "Specular Texture not loaded " << specularMaps[i]->path << std::endl;
+				//std::cout << "Specular Texture not loaded " << specularMaps[i]->path << std::endl;
 			}
 		}
 		//// set textures

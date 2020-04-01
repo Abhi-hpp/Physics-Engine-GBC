@@ -121,8 +121,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddTorqueFromCameraSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="AeroControlSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="AeroSurfaceSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="AssetLoader.cpp" />
+    <ClCompile Include="BuoyancySystem.cpp" />
+    <ClCompile Include="CableSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="DragForceSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="DragSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="DynamicDirectionalLightSystem.cpp">
       <SubType>
       </SubType>
@@ -139,7 +164,16 @@
       <SubType>
       </SubType>
     </ClCompile>
+    <ClCompile Include="FixedSpringSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="FollowCameraSystem.cpp" />
     <ClCompile Include="ForceAccumulatorSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ForceAndTorqueAccumulatorSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
@@ -150,6 +184,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="InputEventSystem.cpp" />
+    <ClCompile Include="LifeTimeSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -159,25 +197,111 @@
     <ClCompile Include="Mix\System.cpp" />
     <ClCompile Include="Mix\World.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="PairedSpringSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ParticleContactResolutionSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="ParticleSphereSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ParticleSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="RenderingSystem.cpp" />
+    <ClCompile Include="RenderingSystemV2.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RenderUtil.cpp" />
+    <ClCompile Include="ResetPenetrationDeltaMoveSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RigidbodySystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RodSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="RotateSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+    <ClCompile Include="RotateSystemV2.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="ThrusterSystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AddTorqueFromCameraComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AddTorqueFromCameraSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroControlComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroControlSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroSurfaceComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="AeroSurfaceSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="AssetLoader.h" />
+    <ClInclude Include="BuoyancyComponent.h" />
+    <ClInclude Include="BuoyancySystem.h" />
+    <ClInclude Include="CableComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="CableSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="DirectionalLightComponent.h" />
+    <ClInclude Include="DragComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DragForceComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DragForceSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="DragSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="DynamicDirectionalLightSystem.h">
       <SubType>
       </SubType>
@@ -207,11 +331,29 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="FixedSpringComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FixedSpringSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="FollowCameraComponent.h" />
+    <ClInclude Include="FollowCameraSystem.h" />
     <ClInclude Include="ForceAccumulatorComponent.h">
       <SubType>
       </SubType>
     </ClInclude>
     <ClInclude Include="ForceAccumulatorSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ForceAndTorqueAccumulatorSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -226,6 +368,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="InputEventSystem.h" />
+    <ClInclude Include="LifeTimeComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="LifeTimeSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshComponent.h" />
     <ClInclude Include="Mix\Component.h" />
@@ -237,7 +387,31 @@
     <ClInclude Include="Mix\World.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="MouseMoveEvent.h" />
+    <ClInclude Include="PairedSpringComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="PairedSpringSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ParticleComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleContactEvent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleContactResolutionSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ParticleSphereSystem.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -245,10 +419,42 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="PenetrationDeltaMoveComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RenderingSystem.h" />
+    <ClInclude Include="RenderingSystemV2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RenderUtil.h" />
     <ClInclude Include="Material.h" />
+    <ClInclude Include="ResetPenetrationDeltaMoveSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RigidbodyComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RigidbodySystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RodSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="RotateComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="RotateComponentV2.h">
       <SubType>
       </SubType>
     </ClInclude>
@@ -256,11 +462,27 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="RotateSystemV2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Shadinclude.hpp" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="ThrusterComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="ThrusterSystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="TransformComponentV2.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="Window.h" />
     <ClInclude Include="WorldData.h" />
   </ItemGroup>
