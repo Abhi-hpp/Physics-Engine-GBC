@@ -134,6 +134,10 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="AssetLoader.cpp" />
+    <ClCompile Include="BuoyancySystem.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="CableSystem.cpp">
       <SubType>
       </SubType>
@@ -272,6 +276,14 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="AssetLoader.h" />
+    <ClInclude Include="BuoyancyComponent.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+    <ClInclude Include="BuoyancySystem.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="CableComponent.h">
       <SubType>
       </SubType>

@@ -1,6 +1,6 @@
 #pragma once
 #include "ECSConfig.h"
-#include "TransformComponent.h"
+#include "TransformComponentV2.h"
 #include "ParticleComponent.h"
 
 namespace Reality

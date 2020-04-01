@@ -22,6 +22,10 @@ namespace Reality
 		{
 			forceAccumulator = Vector3(0, 0, 0);
 		}
+		inline void ResetForceAccumulatorY()
+		{
+			forceAccumulator.y = 0;
+		}
 		inline const Vector3& GetAccumulatedForce()
 		{
 			return forceAccumulator;

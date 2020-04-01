@@ -14,5 +14,7 @@ namespace Reality
 	private:
 		const Vector3& CalculateWorldAerodynamicForce(const Vector3& localAeroForce,
 			TransformComponentV2& transform);
+		bool insindeWater = false;
+		bool stopMoving = false;
 	};
 }

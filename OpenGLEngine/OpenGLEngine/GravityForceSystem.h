@@ -1,6 +1,7 @@
 #pragma once
 #include "ECSConfig.h"
 #include "ForceAccumulatorComponent.h"
+#include "ForceAndTorqueAccumulatorComponent.h"
 #include "GravityForceComponent.h"
 
 namespace Reality
