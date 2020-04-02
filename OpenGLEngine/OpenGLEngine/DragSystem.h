@@ -1,14 +1,14 @@
 #pragma once
 #include "ECSConfig.h"
-#include "TransformComponentV2.h"
 #include "RigidbodyComponent.h"
+#include "DragComponent.h"
 
 namespace Reality
 {
-	class RigidbodySystem : public ECSSystem
+	class DragSystem : public ECSSystem
 	{
 	public:
-		RigidbodySystem();
+		DragSystem();
 		void Update(float deltaTime);
 	};
 }
