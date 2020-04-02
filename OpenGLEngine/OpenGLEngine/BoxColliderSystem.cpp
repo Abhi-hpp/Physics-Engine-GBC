@@ -1,5 +1,6 @@
 #include "BoxColliderSystem.h"
-#include "RigidBodyComponent.h"
+#include "RigidbodyComponent.h"
+#include "ForceAndTorqueAccumulatorComponent.h"
 #include "RigidBodySystem.h"
 
 namespace Reality
@@ -21,9 +22,9 @@ namespace Reality
 		{
 			auto &boxCollider = e.getComponent<BoxColliderComponent>();
 
-			if (boxCollider.body.isAlive() && boxCollider.body.hasComponent<RigidBodyComponent>())
+			if (boxCollider.body.isAlive() && boxCollider.body.hasComponent<RigidbodyComponent>())
 			{
-				auto &body = boxCollider.body.getComponent<RigidBodyComponent>();
+				auto &body = boxCollider.body.getComponent<RigidbodyComponent>();
 
 				// Update RP3D Ids
 				// Calculate local rp3d transform
@@ -33,7 +34,7 @@ namespace Reality
 				rp3d::Quaternion initOrientation = rp3d::Quaternion(boxCollider.orientation.x, boxCollider.orientation.y, boxCollider.orientation.z, boxCollider.orientation.w);
 				rp3d::Transform rp3dtransform(initPosition, initOrientation);
 
-				auto rp3dBody = getWorld().getSystemManager().getSystem<RigidBodySystem>().rp3dBodies[body.rp3dId];
+				auto rp3dBody = getWorld().getSystemManager().getSystem<RigidbodySystem>().rp3dBodies[body.rp3dId];
 				// If new rigidbody, create an entry
 				if (boxCollider.rp3dId < 0)
 				{
@@ -43,9 +44,14 @@ namespace Reality
 					rp3d::ProxyShape * proxyShape = rp3dBody->addCollisionShape(shape, rp3dtransform);
 					proxyShape->setUserData(&boxCollider);
 					rp3dShapesTemp.push_back(proxyShape);
-					body.inertiaTensor[0][0] += (1.0f / 12.0f) * (pow(2 * boxCollider.size.y, 2) + pow(2 * boxCollider.size.z, 2)) / body.inverseMass;
-					body.inertiaTensor[1][1] += (1.0f / 12.0f) * (pow(2 * boxCollider.size.z, 2) + pow(2 * boxCollider.size.x, 2)) / body.inverseMass;
-					body.inertiaTensor[2][2] += (1.0f / 12.0f) * (pow(2 * boxCollider.size.x, 2) + pow(2 * boxCollider.size.y, 2)) / body.inverseMass;
+					if (boxCollider.body.hasComponent<ForceAndTorqueAccumulatorComponent>())
+					{
+						auto& forceAndTorque = boxCollider.body.getComponent<ForceAndTorqueAccumulatorComponent>();
+						forceAndTorque.inertiaTensor[0][0] += (1.0f / 12.0f) * (pow(2 * boxCollider.size.y, 2) + pow(2 * boxCollider.size.z, 2)) / forceAndTorque.inverseMass;
+						forceAndTorque.inertiaTensor[1][1] += (1.0f / 12.0f) * (pow(2 * boxCollider.size.z, 2) + pow(2 * boxCollider.size.x, 2)) / forceAndTorque.inverseMass;
+						forceAndTorque.inertiaTensor[2][2] += (1.0f / 12.0f) * (pow(2 * boxCollider.size.x, 2) + pow(2 * boxCollider.size.y, 2)) / forceAndTorque.inverseMass;
+					}
+					
 					boxCollider.rp3dId = id;
 				}
 				else if (boxCollider.body.isAlive())

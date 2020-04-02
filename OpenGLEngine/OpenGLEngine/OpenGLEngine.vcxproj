@@ -134,11 +134,13 @@
       </SubType>
     </ClCompile>
     <ClCompile Include="AssetLoader.cpp" />
+    <ClCompile Include="BoxColliderSystem.cpp" />
     <ClCompile Include="CableSystem.cpp">
       <SubType>
       </SubType>
     </ClCompile>
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="ContactGenerationSystem.cpp" />
     <ClCompile Include="ContactResolutionSystem.cpp">
       <SubType>
       </SubType>
@@ -280,10 +282,8 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="AssetLoader.h" />
-    <ClInclude Include="BodyData.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
+    <ClInclude Include="BoxColliderComponent.h" />
+    <ClInclude Include="BoxColliderSystem.h" />
     <ClInclude Include="CableComponent.h">
       <SubType>
       </SubType>
@@ -298,6 +298,8 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="ContactGenerationSystem.h" />
+    <ClInclude Include="ContactInfoReciever.h" />
     <ClInclude Include="ContactResolutionSystem.h">
       <SubType>
       </SubType>
@@ -455,6 +457,7 @@
       <SubType>
       </SubType>
     </ClInclude>
+    <ClInclude Include="RigidBodyData.h" />
     <ClInclude Include="RigidbodySystem.h">
       <SubType>
       </SubType>
@@ -480,10 +483,6 @@
       </SubType>
     </ClInclude>
     <ClInclude Include="RotateSystemV2.h">
-      <SubType>
-      </SubType>
-    </ClInclude>
-    <ClInclude Include="RP3DCollisionCallback.h">
       <SubType>
       </SubType>
     </ClInclude>

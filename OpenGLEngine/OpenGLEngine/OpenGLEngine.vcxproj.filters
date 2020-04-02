@@ -219,6 +219,12 @@
     <ClCompile Include="ContactResolutionSystem.cpp">
       <Filter>Physics\Rigidbody</Filter>
     </ClCompile>
+    <ClCompile Include="BoxColliderSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="ContactGenerationSystem.cpp">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
@@ -479,10 +485,19 @@
     <ClInclude Include="ContactResolutionSystem.h">
       <Filter>Physics\Rigidbody</Filter>
     </ClInclude>
-    <ClInclude Include="RP3DCollisionCallback.h">
+    <ClInclude Include="BoxColliderComponent.h">
       <Filter>Physics\Rigidbody</Filter>
     </ClInclude>
-    <ClInclude Include="BodyData.h">
+    <ClInclude Include="BoxColliderSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactGenerationSystem.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="ContactInfoReciever.h">
+      <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidBodyData.h">
       <Filter>Physics\Rigidbody</Filter>
     </ClInclude>
   </ItemGroup>
