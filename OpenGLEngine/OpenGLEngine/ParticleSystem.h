@@ -12,4 +12,3 @@ namespace Reality
 		void Update(float deltaTime);
 	};
 }
-

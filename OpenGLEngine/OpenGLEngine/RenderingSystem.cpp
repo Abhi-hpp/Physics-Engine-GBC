@@ -25,7 +25,7 @@ namespace Reality
 		}
 		for (auto e : getEntities()) 
 		{
-			const auto transform = e.getComponent<TransformComponent>();
+			auto &transform = e.getComponent<TransformComponent>();
 			auto &mesh = e.getComponent<ModelComponent>();
 
 			if (getWorld().data.assetLoader->ModelsLoaded())
@@ -41,10 +41,18 @@ namespace Reality
 				getWorld().data.renderUtil->DrawModel(mesh.modelId, transform.position, transform.scale, transform.eulerAngles, drawModes[drawMode]);
 			}
 
-			// Draw
-			//getWorld().data.renderUtil->DrawCube(transform.position, Vector3(10,10,10), transform.eulerAngles);
-			//getWorld().data.renderUtil->DrawCube(transform.position + Vector3(0, transform.scale.y , 0) * 7.5f, transform.scale * 15.0f, transform.eulerAngles);
-			//getWorld().data.renderUtil->DrawLine(transform.position - Vector3(1, 1, 1), transform.position + Vector3(1, 1, 1));
+			if (DEBUG_LOG_LEVEL > 0)
+			{
+				// X
+				getWorld().data.renderUtil->DrawLine(transform.position,
+					transform.position + transform.Right() * 10.0f, Color::Red);
+				// Y
+				getWorld().data.renderUtil->DrawLine(transform.position,
+					transform.position + transform.Up() * 10.0f, Color::Green);
+				// Z
+				getWorld().data.renderUtil->DrawLine(transform.position,
+					transform.position + transform.Forward() * 10.0f, Color::Blue);
+			}
 		}
 	}
 }

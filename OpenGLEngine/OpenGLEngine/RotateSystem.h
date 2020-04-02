@@ -3,11 +3,14 @@
 #include "TransformComponent.h"
 #include "RotateComponent.h"
 
-using namespace Reality;
-class RotateSystem : public ECSSystem
+namespace Reality
 {
-public:
-	RotateSystem();
-	void Update(float deltaTime);
-};
-
+	class RotateSystem : public ECSSystem
+	{
+	public:
+		RotateSystem();
+		void Update(float deltaTime);
+	private:
+		float timer = 0;
+	};
+}

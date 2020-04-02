@@ -1,7 +1,7 @@
 #pragma once
 #include "ECSConfig.h"
 #include "SphereColliderComponent.h"
-#include "TransformComponentV2.h"
+#include "RigidbodyComponent.h"
 #include <React3D/reactphysics3d.h>
 
 namespace Reality
@@ -13,6 +13,5 @@ namespace Reality
 		void Update(float deltaTime);
 	private:
 		rp3d::CollisionWorld& rp3dWorld;
-		std::vector<rp3d::ProxyShape*> rp3dShapes;
 	};
 }
