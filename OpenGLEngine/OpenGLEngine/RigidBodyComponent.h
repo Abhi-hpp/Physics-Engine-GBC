@@ -15,6 +15,6 @@ namespace Reality
 		Vector3 velocity;
 		Vector3 angularAcceleration;
 		Vector3 angularVelocity;
-		int rp3dId;
+		int rp3dId = -1;
 	};
 }

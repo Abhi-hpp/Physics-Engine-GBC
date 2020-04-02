@@ -113,7 +113,11 @@ namespace Reality
 		Vector3 rotationA = rotationPerMoveA * angularMoveA;
 
 		glm::quat rotationQuatA = glm::quat(0, rotationA.x, rotationA.y, rotationA.z);
-		transformA.SetOrientation(glm::normalize(transformA.GetOrientation() + 0.5f * rotationQuatA * transformA.GetOrientation()));
+		glm::quat finalOrientationA = transformA.GetOrientation() + 0.5f * rotationQuatA * transformA.GetOrientation();
+		if (glm::length(finalOrientationA) > 0)
+		{
+			transformA.SetOrientation(glm::normalize(finalOrientationA));
+		}
 
 		// B
 		Vector3 impulsiveTorqueB = glm::cross(relativePositionB, contact.normal);
@@ -123,7 +127,11 @@ namespace Reality
 		Vector3 rotationB = rotationPerMoveB * angularMoveB;
 
 		glm::quat rotationQuatB = glm::quat(0, rotationB.x, rotationB.y, rotationB.z);
-		transformB.SetOrientation(glm::normalize(transformB.GetOrientation() + 0.5f * rotationQuatB * transformB.GetOrientation()));
+		glm::quat finalOrientationB = transformB.GetOrientation() + 0.5f * rotationQuatB * transformB.GetOrientation();
+		if (glm::length(finalOrientationB) > 0)
+		{
+			transformB.SetOrientation(glm::normalize(finalOrientationB));
+		}
 		contact.normal *= -1;
 
 	}

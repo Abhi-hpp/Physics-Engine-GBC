@@ -22,6 +22,6 @@ namespace Reality
 				glm::radians(eulerAngles.y), glm::radians(eulerAngles.z));
 			orientation = glm::quat(rotationInRads);
 		}
-		int rp3dId;
+		int rp3dId = -1;
 	};
 }

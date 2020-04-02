@@ -11,6 +11,6 @@ namespace Reality
 		ECSEntity body;
 		Vector3 offset;
 		float radius;
-		int rp3dId;
+		int rp3dId = -1;
 	};
 }

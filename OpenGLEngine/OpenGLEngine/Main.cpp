@@ -20,7 +20,10 @@
 #include "ForceAccumulatorSystem.h"
 #include "ParticleSystem.h"
 #include "RigidbodySystem.h"
+#include "BoxColliderSystem.h"
 #include "SphereColliderSystem.h"
+#include "ContactGenerationSystem.h"
+#include "ContactResolutionSystem.h"
 #include "ForceAndTorqueAccumulatorSystem.h"
 #include "DragSystem.h"
 #include "AddTorqueFromCameraSystem.h"
@@ -50,6 +53,7 @@ void MakeARopeBridge(ECSWorld& world);
 void MakeABunchaObjectsV2(ECSWorld& world);
 void MakeRigidBodyTest(ECSWorld& world);
 void MakeAFlightSimulator(ECSWorld& world);
+void TestCollision(ECSWorld& world);
 
 int main()
 {
@@ -77,7 +81,8 @@ int main()
 	//MakeARopeBridge(world);
 	//MakeABunchaObjectsV2(world);
 	//MakeRigidBodyTest(world);
-	MakeAFlightSimulator(world);
+	//MakeAFlightSimulator(world);
+	TestCollision(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<RenderingSystem>();
@@ -101,7 +106,10 @@ int main()
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<RigidbodySystem>(rp3dCollisionWorld);
+	world.getSystemManager().addSystem<BoxColliderSystem>(rp3dCollisionWorld);
 	world.getSystemManager().addSystem<SphereColliderSystem>(rp3dCollisionWorld);
+	world.getSystemManager().addSystem<ContactGenerationSystem>(rp3dCollisionWorld);
+	world.getSystemManager().addSystem<ContactResolutionSystem>(rp3dCollisionWorld);
 	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
 	world.getSystemManager().addSystem<DragSystem>();
 	world.getSystemManager().addSystem<AddTorqueFromCameraSystem>();
@@ -197,7 +205,12 @@ int main()
 		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
 		/// Rigidbody
 		world.getSystemManager().getSystem<RigidbodySystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BoxColliderSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<SphereColliderSystem>().Update(fixedDeltaTime);
+
+		// Rigidbody Contact Resolution
+		world.getSystemManager().getSystem<ContactGenerationSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<ContactResolutionSystem>().Update(fixedDeltaTime);
 
 		// Rendering Update
 		///*** HACK: For the last DrawCall not working on some systems
@@ -634,6 +647,74 @@ void MakeABunchaCablesAndRods(ECSWorld & world)
 	//	auto rod = world.createEntity();
 	//	rod.addComponent<RodComponent>(e1, e2, RANDOM_FLOAT(6, 10));
 	//}
+}
+
+void TestContacts(ECSWorld& world)
+{
+	//for (int i = 0; i < 30; i++)
+	//{
+	//	auto e = world.createEntity();
+	//	e.addComponent<TransformComponentV2>(Vector3(RANDOM_FLOAT(-200.0f, 200.0f), RANDOM_FLOAT(-200.0f, 200.0f), RANDOM_FLOAT(-200.0f, 200.0f)),
+	//		Vector3(1, 1, 1),
+	//		Vector3(RANDOM_FLOAT(-180.0f, 180.0f), RANDOM_FLOAT(-180.0f, 180.0f), RANDOM_FLOAT(-180.0f, 180.0f)));
+	//	e.addComponent<RigidbodyComponent>();
+	//	//e.addComponent<MoveInBoundsComponent>(Vector3(RANDOM_FLOAT(-10.0f, 10.0f), RANDOM_FLOAT(-10.0f, 10.0f), RANDOM_FLOAT(-10.0f, 10.0f)),
+	//		//Vector3(200, 200, 200));
+	//	auto col = world.createEntity();
+	//	if ((RANDOM_FLOAT(0.0f, 1.0f) >= 0.5f))
+	//	{
+	//		col.addComponent<SphereColliderComponent>(e, RANDOM_FLOAT(10.0f, 50.0f));
+	//	}
+	//	else
+	//	{
+	//		col.addComponent<BoxColliderComponent>(e, Vector3(RANDOM_FLOAT(30.0f, 70.0f), RANDOM_FLOAT(30.0f, 70.0f), RANDOM_FLOAT(30.0f, 70.0f)));
+	//	}
+	//}
+	/*for (int i = 0; i < 2; i++)
+	{
+		auto e = world.createEntity();
+		e.addComponent<TransformComponentV2>(Vector3(50 * ( i % 2 == 0 ? -1 : 1), 0, 0));
+		e.addComponent<RigidBodyComponent>();
+		e.addComponent<MoveInBoundsComponent>(Vector3(10 * (i % 2 == 0 ? 1 : -1), 0, 0), Vector3(100, 100, 100));
+		auto col = world.createEntity();
+		col.addComponent<SphereColliderComponent>(e, 30);
+	}*/
+}
+
+void TestCollision(ECSWorld& world)
+{
+	// Floor 1
+	auto floor1 = world.createEntity();
+	floor1.addComponent<TransformComponentV2>(Vector3(0, -50, 0), Vector3(1, 1, 1), Vector3(0, 0, 0));
+	floor1.addComponent<RigidbodyComponent>(Vector3(0, 0, 0), Vector3(0, 0, 0));
+	floor1.addComponent<ForceAndTorqueAccumulatorComponent>(100000.0f, 0);
+	auto floorCol1 = world.createEntity();
+	floorCol1.addComponent<BoxColliderComponent>(floor1, Vector3(1000, 10, 1000));
+
+	// Floor 2
+	/*auto floor2 = world.createEntity();
+	floor2.addComponent<TransformComponentV2>(Vector3(80, -50, 0), Vector3(1, 1, 1), Vector3(0, 0, 30));
+	floor2.addComponent<RigidBodyComponent>(10000.0f, 0.0f, 0.0f, Vector3(0, 0, 0), Vector3(0, 0, 0), 0);
+	auto floorCol2 = world.createEntity();
+	floorCol2.addComponent<BoxColliderComponent>(floor2, Vector3(300, 10, 300));*/
+
+	//// Object 1
+	//auto object1 = world.createEntity();
+	//object1.addComponent<TransformComponentV2>(Vector3(-30, 50, 0));
+	//object1.addComponent<RigidBodyComponent>();
+	//auto objectCol1 = world.createEntity();
+	//objectCol1.addComponent<SphereColliderComponent>(object1, 10);
+
+	// Object 2
+	for (int i = 0; i < 40; i++)
+	{
+		auto object2 = world.createEntity();
+		object2.addComponent<TransformComponentV2>(Vector3(RANDOM_FLOAT(-50.0f, 50.0f), 50, RANDOM_FLOAT(-50.0f, 50.0f)), Vector3(1, 1, 1), Vector3(RANDOM_FLOAT(0, 180), RANDOM_FLOAT(0, 180), RANDOM_FLOAT(0, 180)));
+		object2.addComponent<RigidbodyComponent>(Vector3(0, 0, 0), Vector3(0, 0, 0));
+		object2.addComponent<ForceAndTorqueAccumulatorComponent>(10.0f, 0.0f);
+		auto objectCol2 = world.createEntity();
+		objectCol2.addComponent<BoxColliderComponent>(object2, Vector3(10, 10, 10));
+	}
 }
 
 void SetupLights(ECSWorld& world)

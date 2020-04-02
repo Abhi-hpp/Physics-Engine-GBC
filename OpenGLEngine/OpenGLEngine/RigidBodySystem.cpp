@@ -51,7 +51,7 @@ namespace Reality
 			id++;
 
 			// Update velocity from accelarartion
-			rigidbody.velocity += rigidbody.acceleration * deltaTime;
+			rigidbody.velocity += (rigidbody.acceleration) * deltaTime;
 			rigidbody.angularVelocity += rigidbody.angularAcceleration * deltaTime;
 
 			transform.SetPosition(transform.GetPosition() + rigidbody.velocity * deltaTime);
