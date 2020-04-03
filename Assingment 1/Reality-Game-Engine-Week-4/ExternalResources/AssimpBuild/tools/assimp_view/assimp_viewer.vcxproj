@@ -1,0 +1,429 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|Win32">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|Win32">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2D0F8F3C-90BA-30A7-85CB-D83397DBA8C1}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>assimp_viewer</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\tools\assimp_view\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">assimp_viewer.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">assimp_viewerd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\tools\assimp_view\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">assimp_viewer.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">assimp_viewer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\tools\assimp_view\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">assimp_viewer.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">assimp_viewer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\tools\assimp_view\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">assimp_viewer.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">assimp_viewer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;EBUG:FULL;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;EBUG:FULL;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_if_different D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/code/Debug/assimp-vc141-mtd.dll D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\Debug\assimp-vc141-mtd.lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d9.lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx9.lib;comctl32.lib;winmm.lib;..\..\contrib\zlib\Debug\zlibstaticd.lib;..\..\contrib\irrXML\Debug\IrrXMLd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild;D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/$(Configuration);/lib;/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/Debug/assimp_viewerd.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/Debug/assimp_viewerd.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_if_different D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/code/Release/assimp-vc141-mt.dll D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/Release
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\Release\assimp-vc141-mt.lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d9.lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx9.lib;comctl32.lib;winmm.lib;..\..\contrib\zlib\Release\zlibstatic.lib;..\..\contrib\irrXML\Release\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild;D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/$(Configuration);/lib;/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/Release/assimp_viewer.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/Release/assimp_viewer.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_if_different D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/code/MinSizeRel/assimp-vc141-mt.dll D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\MinSizeRel\assimp-vc141-mt.lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d9.lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx9.lib;comctl32.lib;winmm.lib;..\..\contrib\zlib\MinSizeRel\zlibstatic.lib;..\..\contrib\irrXML\MinSizeRel\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild;D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/$(Configuration);/lib;/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/MinSizeRel/assimp_viewer.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/MinSizeRel/assimp_viewer.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;ASSIMP_BUILD_NO_C4D_IMPORTER;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\.;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\contrib\zlib;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\code\..\include;D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -E copy_if_different D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/code/RelWithDebInfo/assimp-vc141-mt.dll D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\RelWithDebInfo\assimp-vc141-mt.lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86\d3d9.lib;C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Lib\x86\d3dx9.lib;comctl32.lib;winmm.lib;..\..\contrib\zlib\RelWithDebInfo\zlibstatic.lib;..\..\contrib\irrXML\RelWithDebInfo\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild;D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/$(Configuration);/lib;/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/RelWithDebInfo/assimp_viewer.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/RelWithDebInfo/assimp_viewer.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/Work/Github/OpenGLEngine/ExternalResources/assimp-master/tools/assimp_view/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -SD:/Work/Github/OpenGLEngine/ExternalResources/assimp-master -BD:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild --check-stamp-file D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\cmake-modules\FindDirectX.cmake;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\cmake-modules\FindPkgMacros.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\tools\assimp_view\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/Work/Github/OpenGLEngine/ExternalResources/assimp-master/tools/assimp_view/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -SD:/Work/Github/OpenGLEngine/ExternalResources/assimp-master -BD:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild --check-stamp-file D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\cmake-modules\FindDirectX.cmake;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\cmake-modules\FindPkgMacros.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\tools\assimp_view\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/Work/Github/OpenGLEngine/ExternalResources/assimp-master/tools/assimp_view/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -SD:/Work/Github/OpenGLEngine/ExternalResources/assimp-master -BD:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild --check-stamp-file D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\cmake-modules\FindDirectX.cmake;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\cmake-modules\FindPkgMacros.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\tools\assimp_view\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/Work/Github/OpenGLEngine/ExternalResources/assimp-master/tools/assimp_view/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
+"C:\Program Files (x86)\CMake\bin\cmake.exe" -SD:/Work/Github/OpenGLEngine/ExternalResources/assimp-master -BD:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild --check-stamp-file D:/Work/Github/OpenGLEngine/ExternalResources/AssimpBuild/tools/assimp_view/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\cmake-modules\FindDirectX.cmake;D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\cmake-modules\FindPkgMacros.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\tools\assimp_view\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\AnimEvaluator.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\Background.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\Display.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\HelpDialog.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\Input.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\LogDisplay.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\LogWindow.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\Material.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\MeshRenderer.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\MessageProc.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\Normals.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\SceneAnimator.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\Shaders.cpp" />
+    <ClInclude Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\assimp_view.h" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\assimp_view.cpp" />
+    <ClCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\stdafx.cpp" />
+    <ResourceCompile Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\assimp_view.rc" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\banner.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\banner_pure.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\base_anim.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\base_display.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\base_inter.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\base_rendering.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\base_stats.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\fx.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\n.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\root.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\tx.bmp" />
+    <None Include="D:\Work\Github\OpenGLEngine\ExternalResources\assimp-master\tools\assimp_view\txi.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\ZERO_CHECK.vcxproj">
+      <Project>{4C0BEDE1-F0A6-34C5-AB93-2F511A16DA5A}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\irrXML\IrrXML.vcxproj">
+      <Project>{98C5FD4C-9D90-3ED1-AACE-A1A22947A0B9}</Project>
+      <Name>IrrXML</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\code\assimp.vcxproj">
+      <Project>{A960A434-F3AF-32D3-ADDC-97AC3F9F3878}</Project>
+      <Name>assimp</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\Work\Github\OpenGLEngine\ExternalResources\AssimpBuild\contrib\zlib\zlibstatic.vcxproj">
+      <Project>{8EDAEDA9-CAA3-3287-AC07-E3EDFD159E17}</Project>
+      <Name>zlibstatic</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
