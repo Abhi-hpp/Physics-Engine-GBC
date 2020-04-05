@@ -21,6 +21,7 @@
 #include "ContactResolutionSystem.h"
 #include "SphereColliderSystem.h"
 #include "BoxColliderSystem.h"
+#include "RopeBridgeSystem.h"
 #include "MoveInBoundsSystem.h"
 #include "FPSControlSystem.h"
 #include "DynamicDirectionalLightSystem.h"
@@ -53,6 +54,7 @@ void MakeCablesAndRods(ECSWorld& world);
 void MakeFlight(ECSWorld& world);
 void TestContacts(ECSWorld& world);
 void TestCollision(ECSWorld& world);
+void MakeBridge(ECSWorld& world);
 void SetupLights(ECSWorld& world);
 
 int main()
@@ -81,10 +83,11 @@ int main()
 	//MakeABunchaSpheres(world);
 	//MakeABunchaSprings(world);
 	//MakeACable(world);
-	//akeCablesAndRods(world);
+	//MakeCablesAndRods(world);
 	//MakeFlight(world);
 	//TestContacts(world);
-	TestCollision(world);
+	//TestCollision(world);
+	MakeBridge(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<UpdateTransformMatricesSystem>();
@@ -117,6 +120,7 @@ int main()
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
+	world.getSystemManager().addSystem<RopeBridgeSystem>();
 
 	// Rigidbody Physics
 	rp3d::CollisionWorld rp3dWorld;
@@ -176,14 +180,14 @@ int main()
 		world.getSystemManager().getSystem<MoveInBoundsSystem>().Update(deltaTime);
 
 		//Flight Sim
-		world.getSystemManager().getSystem<FlightSimulatorSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<FollowCameraSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<CameraLookSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<InfiniteSpawnTargetSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<InfiniteSpawnSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<AeroControlSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<SetAerodynamicTensorSystem>().Update(deltaTime);
-		world.getSystemManager().getSystem<LifeTimeSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<FlightSimulatorSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<FollowCameraSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<CameraLookSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<InfiniteSpawnTargetSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<InfiniteSpawnSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<AeroControlSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<SetAerodynamicTensorSystem>().Update(deltaTime);
+		//world.getSystemManager().getSystem<LifeTimeSystem>().Update(deltaTime);
 
 		// Update Transform
 		world.getSystemManager().getSystem<UpdateTransformMatricesSystem>().Update(deltaTime);
@@ -209,6 +213,7 @@ int main()
 		world.getSystemManager().getSystem<CableComponentSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ParticleContactResolutionSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<RopeBridgeSystem>().Update(fixedDeltaTime);
 
 		world.getSystemManager().getSystem<ContactGenerationSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ContactResolutionSystem>().Update(fixedDeltaTime);
@@ -379,15 +384,15 @@ void MakeABunchaSpheres(ECSWorld& world)
 void MakeACable(ECSWorld& world)
 {
 	auto e1 = world.createEntity();
-	e1.addComponent<TransformComponent>(Vector3(0, 40, 0));
-	//e1.addComponent<ParticleComponent>(1, Vector3(0,0,0), 0);
+	//e1.addComponent<TransformComponent>(Vector3(0, 40, 0));
+	e1.addComponent<ParticleComponent>(1, Vector3(0,0,0), 0);
 
 	auto e2 = world.createEntity();
-	e2.addComponent<TransformComponent>(Vector3(0, 30, 0));
+	//e2.addComponent<TransformComponent>(Vector3(0, 10, 0));
 	e2.addComponent<ParticleComponent>(1);
 	
 	auto e = world.createEntity();
-	e.addComponent<CableComponent>(e1, e2, 20);
+	e.addComponent<CableComponent>(e1, e2, 2000, 0.5f);
 }
 
 void MakeCablesAndRods(ECSWorld& world)
@@ -509,7 +514,7 @@ void MakeFlight(ECSWorld& world)
 
 void TestContacts(ECSWorld& world)
 {
-	for (int i = 0; i < 30; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		auto e = world.createEntity();
 		e.addComponent<TransformComponentV2>(Vector3(RANDOM_FLOAT(-200.0f, 200.0f), RANDOM_FLOAT(-200.0f, 200.0f), RANDOM_FLOAT(-200.0f, 200.0f)),
@@ -571,6 +576,61 @@ void TestCollision(ECSWorld& world)
 		auto objectCol2 = world.createEntity();
 		objectCol2.addComponent<BoxColliderComponent>(object2, Vector3(10, 10, 10));
 	}
+}
+
+void MakeBridge(ECSWorld & world)
+{
+	auto e1 = world.createEntity();
+	e1.addComponent<TransformComponent>(Vector3(0, 80, 0));
+	auto e2 = world.createEntity();
+	e2.addComponent<TransformComponent>(Vector3(0, 60, 0));
+	auto e3 = world.createEntity();
+	e3.addComponent<TransformComponent>(Vector3(20, 80, 0));
+	auto e4 = world.createEntity();
+	e4.addComponent<TransformComponent>(Vector3(20, 60, 0));
+
+	auto e5 = world.createEntity();
+	e5.addComponent<TransformComponent>(Vector3(0, 80, 20));
+	auto e6 = world.createEntity();
+	e6.addComponent<TransformComponent>(Vector3(0, 55, 20));
+	auto e7 = world.createEntity();
+	e7.addComponent<TransformComponent>(Vector3(20, 80, 20));
+	auto e8 = world.createEntity();
+	e8.addComponent<TransformComponent>(Vector3(20, 55, 20));
+
+	auto e9 = world.createEntity();
+	e9.addComponent<TransformComponent>(Vector3(0, 80, 40));
+	auto e10 = world.createEntity();
+	e10.addComponent<TransformComponent>(Vector3(0, 53, 40));
+	auto e11 = world.createEntity();
+	e11.addComponent<TransformComponent>(Vector3(20, 80, 40));
+	auto e12 = world.createEntity();
+	e12.addComponent<TransformComponent>(Vector3(20, 53, 40));
+
+	auto e13 = world.createEntity();
+	e13.addComponent<TransformComponent>(Vector3(0, 80, 60));
+	auto e14 = world.createEntity();
+	e14.addComponent<TransformComponent>(Vector3(0, 55, 60));
+	auto e15 = world.createEntity();
+	e15.addComponent<TransformComponent>(Vector3(20, 80, 60));
+	auto e16 = world.createEntity();
+	e16.addComponent<TransformComponent>(Vector3(20, 55, 60));
+
+	auto e17 = world.createEntity();
+	e17.addComponent<TransformComponent>(Vector3(0, 80, 80));
+	auto e18 = world.createEntity();
+	e18.addComponent<TransformComponent>(Vector3(0, 60, 80));
+	auto e19 = world.createEntity();
+	e19.addComponent<TransformComponent>(Vector3(20, 80, 80));
+	auto e20 = world.createEntity();
+	e20.addComponent<TransformComponent>(Vector3(20, 60, 80));
+
+	auto ball = world.createEntity();
+	ball.addComponent<ParticleComponent>();
+	ball.addComponent<TransformComponent>(Vector3(10, 80, 40));
+
+	auto e = world.createEntity();
+	e.addComponent<RopeBridgeComponent>(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15, e16, e17, e18, e19, e20, ball);
 }
 
 void SetupLights(ECSWorld& world)
