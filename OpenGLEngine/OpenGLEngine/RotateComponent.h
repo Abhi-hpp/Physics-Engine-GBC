@@ -1,9 +1,15 @@
 #pragma once
-struct RotateComponent
+#include "ECSConfig.h"
+
+namespace Reality
 {
-	float xRot;
-	float yRot;
-	float zRot;
-	RotateComponent(float x = 0, float y = 0, float z = 0)
-		: xRot(x), yRot(y), zRot(z) {}
-};
+	struct RotateComponent
+	{
+		RotateComponent(Vector3 _rotationVelocity = Vector3(0, 0, 0))
+			: rotationVelocity(_rotationVelocity)
+		{
+			
+		}
+		Vector3 rotationVelocity;
+	};
+}
