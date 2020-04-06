@@ -1,5 +1,0 @@
-# CMake generation dependency list for this directory.
-C:/Program Files (x86)/CMake/share/cmake-3.15/Modules/FindPackageHandleStandardArgs.cmake
-C:/Program Files (x86)/CMake/share/cmake-3.15/Modules/FindPackageMessage.cmake
-D:/Work/Github/OpenGLEngine/ExternalResources/assimp-master/cmake-modules/FindRT.cmake
-D:/Work/Github/OpenGLEngine/ExternalResources/assimp-master/code/CMakeLists.txt
