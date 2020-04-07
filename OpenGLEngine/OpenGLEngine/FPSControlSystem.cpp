@@ -30,6 +30,11 @@ namespace Reality
 				camera.ProcessKeyboard(LEFT, fpsControl.sidewaysSpeed * deltaTime);
 			if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
 				camera.ProcessKeyboard(RIGHT, fpsControl.sidewaysSpeed * deltaTime);
+			if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+			{
+				getWorld().spaceIsPressed += 1;
+				std::cout << "Space" << std::endl;
+			}
 
 			// Look
 			auto mouseMoveEvents = getWorld().getEventManager().getEvents<MouseMoveEvent>();
