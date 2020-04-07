@@ -4,49 +4,12 @@ namespace Reality
 {
 	AeroControlSystem::AeroControlSystem()
 	{
-<<<<<<< Updated upstream
-		requireComponent<AeroMinMaxComponent>();
-=======
 		requireComponent<AeroSurfaceComponent>();
->>>>>>> Stashed changes
 		requireComponent<AeroControlComponent>();
 	}
 
 	void AeroControlSystem::Update(float deltaTime)
 	{
-<<<<<<< Updated upstream
-		pKey = false;
-		nKey = false;
-		for (auto e : getEntities())
-		{
-			auto& aero = e.getComponent<AeroMinMaxComponent>();
-			auto& control = e.getComponent<AeroControlComponent>();
-
-			for (auto key : control.positiveKeys)
-			{
-				if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, key) == GLFW_PRESS)
-				{
-					aero.controlSetting += control.rate * deltaTime;
-					pKey = true;
-				}
-			}
-			
-			for (auto key : control.negetiveKeys)
-			{
-				if (glfwGetKey(getWorld().data.renderUtil->window->glfwWindow, key) == GLFW_PRESS)
-				{
-					aero.controlSetting -= control.rate * deltaTime;
-					nKey = true;
-				}
-			}
-
-			if (!pKey && !nKey)
-			{
-				aero.controlSetting = 0;
-			}
-
-			aero.controlSetting = glm::clamp(aero.controlSetting, -1.0f, 1.0f);
-=======
 		for (auto e : getEntities())
 		{
 			auto& surface = e.getComponent<AeroSurfaceComponent>();
@@ -89,7 +52,6 @@ namespace Reality
 
 			float t = (control.controlSetting + 1) * 0.5f;
 			surface.aerodynamicForce = t * control.aeroMinusOne + (1 - t) * control.aeroPlusOne;			
->>>>>>> Stashed changes
 		}
 	}
 }

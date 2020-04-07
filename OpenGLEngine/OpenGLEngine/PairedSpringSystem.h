@@ -4,11 +4,10 @@
 
 namespace Reality
 {
-	class PairedSpringForceGeneratorSystem : public ECSSystem
+	class PairedSpringSystem : public ECSSystem
 	{
 	public:
-		PairedSpringForceGeneratorSystem();
+		PairedSpringSystem();
 		void Update(float deltaTime);
 	};
 }
-

@@ -2,24 +2,16 @@
 #include "LifeTimeComponent.h"
 #include "TransformComponentV2.h"
 
-RotateSystem::RotateSystem()
+namespace Reality
 {
-	requireComponent<TransformComponent>();
-	requireComponent<RotateComponent>();
-}
-
-void RotateSystem::Update(float deltaTime)
-{
-	for (auto e : getEntities())
+	RotateSystem::RotateSystem()
 	{
-<<<<<<< Updated upstream
-		auto &rotate = e.getComponent<RotateComponent>();
-		auto &transform = e.getComponent<TransformComponent>();
+		requireComponent<TransformComponent>();
+		requireComponent<RotateComponent>();
+	}
 
-		transform.eulerAngles.x += rotate.xRot * deltaTime;
-		transform.eulerAngles.y += rotate.yRot * deltaTime;
-		transform.eulerAngles.z += rotate.zRot * deltaTime;
-=======
+	void RotateSystem::Update(float deltaTime)
+	{
 		timer += deltaTime;
 		for (auto e : getEntities())
 		{
@@ -49,6 +41,5 @@ void RotateSystem::Update(float deltaTime)
 		}
 
 		//getWorld().data.renderUtil->RenderText("Euler Angles", 350, 200, 1, Color::Orange);
->>>>>>> Stashed changes
 	}
 }

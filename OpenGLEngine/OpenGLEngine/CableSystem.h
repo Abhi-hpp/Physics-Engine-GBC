@@ -1,13 +1,13 @@
 #pragma once
 #include "ECSConfig.h"
-#include "CameraLookComponent.h"
+#include "CableComponent.h"
 
 namespace Reality
 {
-	class CameraLookSystem : public ECSSystem
+	class CableSystem : public ECSSystem
 	{
 	public:
-		CameraLookSystem();
+		CableSystem();
 		void Update(float deltaTime);
 	};
 }

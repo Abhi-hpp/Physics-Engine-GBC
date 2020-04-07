@@ -1,15 +1,15 @@
 #pragma once
 #include "ECSConfig.h"
 #include "ParticleComponent.h"
+#include "ForceAccumulatorComponent.h"
+#include "DragForceComponent.h"
 
 namespace Reality
 {
-	class GravityForceGeneratorSystem : public ECSSystem
+	class DragForceSystem : public ECSSystem
 	{
 	public:
-		Vector3 gravity = Vector3(0, -9.8f, 0);
-		GravityForceGeneratorSystem();
+		DragForceSystem();
 		void Update(float deltaTime);
 	};
 }
-
