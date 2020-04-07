@@ -3,6 +3,7 @@
 #include "RenderingSystem.h"
 #include "RenderingSystemV2.h"
 #include "InputEventSystem.h"
+<<<<<<< Updated upstream
 #include "RotateSystem.h"
 #include "ParticleSystem.h"
 #include "ParticleSpawnerSystem.h"
@@ -23,6 +24,33 @@
 #include "BoxColliderSystem.h"
 #include "MoveInBoundsSystem.h"
 #include "FPSControlSystem.h"
+=======
+#include "FPSControlSystem.h"
+#include "FollowCameraSystem.h"
+#include "RotateSystem.h"
+#include "RotateSystemV2.h"
+#include "LifeTimeSystem.h"
+#include "FireworksSystem.h"
+#include "GravityForceSystem.h"
+#include "DragForceSystem.h"
+#include "FixedSpringSystem.h"
+#include "PairedSpringSystem.h"
+#include "ParticleSphereSystem.h"
+#include "CableSystem.h"
+#include "RodSystem.h"
+#include "ParticleContactResolutionSystem.h"
+#include "ResetPenetrationDeltaMoveSystem.h"
+#include "ForceAccumulatorSystem.h"
+#include "ParticleSystem.h"
+#include "RigidbodySystem.h"
+#include "ForceAndTorqueAccumulatorSystem.h"
+#include "DragSystem.h"
+#include "AddTorqueFromCameraSystem.h"
+#include "AeroControlSystem.h"
+#include "AeroSurfaceSystem.h"
+#include "ThrusterSystem.h"
+#include "BuoyancySystem.h"
+>>>>>>> Stashed changes
 #include "DynamicDirectionalLightSystem.h"
 #include "DynamicPointLightSystem.h"
 #include "DynamicSpotLightSystem.h"
@@ -45,6 +73,7 @@ using namespace Reality;
 
 void LoadShaders(ECSWorld& world);
 void LoadModels(ECSWorld& world);
+<<<<<<< Updated upstream
 void MakeABunchaObjects(ECSWorld& world);
 void MakeABunchaSprings(ECSWorld& world);
 void MakeABunchaSpheres(ECSWorld& world);
@@ -54,6 +83,11 @@ void MakeFlight(ECSWorld& world);
 void TestContacts(ECSWorld& world);
 void TestCollision(ECSWorld& world);
 void SetupLights(ECSWorld& world);
+=======
+void SetupLights(ECSWorld& world);
+void MakeAFlightSimulator(ECSWorld& world);
+void Boat(ECSWorld& world);
+>>>>>>> Stashed changes
 
 int main()
 {
@@ -62,8 +96,13 @@ int main()
 	// Init and Load
 	world.data.InitRendering();
 	//LoadAssets(world);
+<<<<<<< Updated upstream
 	
 	world.data.renderUtil->camera.Position = Vector3(0, 15.0f, 100.0f);
+=======
+
+	world.data.renderUtil->camera.Position = Vector3(0, 0.0f, 50.0f);
+>>>>>>> Stashed changes
 	world.data.renderUtil->SetFOV(60);
 	// Create entities
 
@@ -77,6 +116,7 @@ int main()
 	//wall.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
 
 	SetupLights(world);
+<<<<<<< Updated upstream
 	//MakeABunchaObjects(world);
 	//MakeABunchaSpheres(world);
 	//MakeABunchaSprings(world);
@@ -85,12 +125,17 @@ int main()
 	//MakeFlight(world);
 	//TestContacts(world);
 	TestCollision(world);
+=======
+	//MakeAFlightSimulator(world);
+	Boat(world);
+>>>>>>> Stashed changes
 
 	// Create Systems
 	world.getSystemManager().addSystem<UpdateTransformMatricesSystem>();
 	world.getSystemManager().addSystem<RenderingSystem>();
 	world.getSystemManager().addSystem<RenderingSystemV2>();
 	world.getSystemManager().addSystem<InputEventSystem>();
+<<<<<<< Updated upstream
 	world.getSystemManager().addSystem<RotateSystem>();
 	world.getSystemManager().addSystem<ParticleSystem>();
 	world.getSystemManager().addSystem<ParticleSpawnerSystem>();
@@ -99,9 +144,24 @@ int main()
 	world.getSystemManager().addSystem<PairedSpringForceGeneratorSystem>();
 	world.getSystemManager().addSystem<SphereContactGeneratorSystem>();
 	world.getSystemManager().addSystem<CableComponentSystem>();
+=======
+	world.getSystemManager().addSystem<FPSControlSystem>();
+	world.getSystemManager().addSystem<FollowCameraSystem>();
+	world.getSystemManager().addSystem<RotateSystem>();
+	world.getSystemManager().addSystem<RotateSystemV2>();
+	world.getSystemManager().addSystem<LifeTimeSystem>();
+	world.getSystemManager().addSystem<FireworksSystem>();
+	world.getSystemManager().addSystem<GravityForceSystem>();
+	world.getSystemManager().addSystem<DragForceSystem>();
+	world.getSystemManager().addSystem<FixedSpringSystem>();
+	world.getSystemManager().addSystem<PairedSpringSystem>();
+	world.getSystemManager().addSystem<ParticleSphereSystem>();
+	world.getSystemManager().addSystem<CableSystem>();
+>>>>>>> Stashed changes
 	world.getSystemManager().addSystem<RodSystem>();
 	world.getSystemManager().addSystem<ParticleContactResolutionSystem>();
 	world.getSystemManager().addSystem<ForceAccumulatorSystem>();
+<<<<<<< Updated upstream
 	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
 	world.getSystemManager().addSystem<FlightSimulatorSystem>();
 	world.getSystemManager().addSystem<FPSControlSystem>();
@@ -114,6 +174,17 @@ int main()
 	world.getSystemManager().addSystem<AeroSystem>();
 	world.getSystemManager().addSystem<LifeTimeSystem>();
 	world.getSystemManager().addSystem<MoveInBoundsSystem>();
+=======
+	world.getSystemManager().addSystem<ParticleSystem>();
+	world.getSystemManager().addSystem<RigidbodySystem>();
+	world.getSystemManager().addSystem<ForceAndTorqueAccumulatorSystem>();
+	world.getSystemManager().addSystem<DragSystem>();
+	world.getSystemManager().addSystem<BuoyancySystem>();
+	world.getSystemManager().addSystem<AddTorqueFromCameraSystem>();
+	world.getSystemManager().addSystem<AeroControlSystem>();
+	world.getSystemManager().addSystem<AeroSurfaceSystem>();
+	world.getSystemManager().addSystem<ThrusterSystem>();
+>>>>>>> Stashed changes
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
@@ -159,7 +230,7 @@ int main()
 		{
 			shadersLoaded = world.data.assetLoader->ShadersLoaded();
 		}
-		if(shadersLoaded && !modelsLoadStarted)
+		if (shadersLoaded && !modelsLoadStarted)
 		{
 			LoadModels(world);
 			modelsLoadStarted = true;
@@ -171,7 +242,9 @@ int main()
 
 		// Game Logic Update
 		world.getSystemManager().getSystem<FPSControlSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<FollowCameraSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
+<<<<<<< Updated upstream
 		world.getSystemManager().getSystem<ParticleSpawnerSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<MoveInBoundsSystem>().Update(deltaTime);
 
@@ -184,10 +257,21 @@ int main()
 		world.getSystemManager().getSystem<AeroControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<SetAerodynamicTensorSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<LifeTimeSystem>().Update(deltaTime);
+=======
+		world.getSystemManager().getSystem<RotateSystemV2>().Update(deltaTime);
+		world.getSystemManager().getSystem<LifeTimeSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<FireworksSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<ParticleSphereSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<CableSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<RodSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<AddTorqueFromCameraSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<AeroControlSystem>().Update(deltaTime);
+>>>>>>> Stashed changes
 
 		// Update Transform
 		world.getSystemManager().getSystem<UpdateTransformMatricesSystem>().Update(deltaTime);
 		// Physics
+<<<<<<< Updated upstream
 		float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
 		//float fixedDeltaTime = 1 / 60.0f;
 		world.getSystemManager().getSystem<AeroSystem>().Update(fixedDeltaTime);
@@ -208,10 +292,41 @@ int main()
 		world.getSystemManager().getSystem<SphereContactGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<CableComponentSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<RodSystem>().Update(fixedDeltaTime);
+=======
+		//float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
+		float fixedDeltaTime = 1 / 60.0f;
+		// Force Generator
+		/// Particle
+		world.getSystemManager().getSystem<GravityForceSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<DragForceSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<FixedSpringSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<PairedSpringSystem>().Update(fixedDeltaTime);
+		/// Rigidbody
+		world.getSystemManager().getSystem<DragSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<AeroSurfaceSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<ThrusterSystem>().Update(fixedDeltaTime);
+		world.getSystemManager().getSystem<BuoyancySystem>().Update(fixedDeltaTime);
+
+		// Force Accumulator
+		/// Particle
+		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
+		/// Rigidbody
+		world.getSystemManager().getSystem<ForceAndTorqueAccumulatorSystem>().Update(fixedDeltaTime);
+
+		// Contact Resolution
+>>>>>>> Stashed changes
 		world.getSystemManager().getSystem<ParticleContactResolutionSystem>().Update(fixedDeltaTime);
 
+<<<<<<< Updated upstream
 		world.getSystemManager().getSystem<ContactGenerationSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ContactResolutionSystem>().Update(fixedDeltaTime);
+=======
+		// Integrator
+		/// Particle
+		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
+		/// Rigidbody
+		world.getSystemManager().getSystem<RigidbodySystem>().Update(fixedDeltaTime);
+>>>>>>> Stashed changes
 
 		// Rendering Update
 		world.getSystemManager().getSystem<DynamicDirectionalLightSystem>().Update(deltaTime);
@@ -237,11 +352,11 @@ int main()
 			std::string renderString = logic < 10 ? " " + std::to_string(render) : std::to_string(render);
 			int debug = (int)round(debugDelta * 100.0f / deltaTime);
 			std::string debugString = logic < 10 ? " " + std::to_string(debug) : std::to_string(debug);
-			
+
 			world.data.renderUtil->RenderText("Logic : " + logicString + "%" +
 				//+ " | Physics : " + std::to_string((int)round(physicsDelta * 100.0f / deltaTime)) + "%" +
-				+ " | Rendering : " + renderString + "%" +
-				+ " | Debug : " + debugString + "%"
+				+" | Rendering : " + renderString + "%" +
+				+" | Debug : " + debugString + "%"
 				, 1680.0f, 1040.0f, 0.25f, Color(0, 1, 1, 1));
 		}
 		if (DEBUG_LOG_LEVEL > 2)
@@ -276,16 +391,21 @@ void LoadShaders(ECSWorld& world)
 void LoadModels(ECSWorld& world)
 {
 	world.data.assetLoader->StartModelLoading({
+<<<<<<< Updated upstream
 		//ModelData("Resources/Models/snowy-mountain-terrain/SnowyMountainMesh.obj"),
 		//ModelData("Resources/Models/Sponza-master/sponza.obj"),
 		//ModelData("Resources/Models/nanosuit/nanosuit.obj"),*/
 		ModelData("Resources/Models/supermarine-spitfire/spitfire.fbx",
 			{{"spitfire_d.png"}})
+=======
+		ModelData("Resources/Models/Boat.fbx")
+>>>>>>> Stashed changes
 		});
 }
 
-void MakeABunchaObjects(ECSWorld& world)
+void MakeAFlightSimulator(ECSWorld & world)
 {
+<<<<<<< Updated upstream
 	auto e = world.createEntity();
 	e.addComponent<TransformComponent>(Vector3(4, 10.0f, 48), Vector3(0.10f, 0.1f, 0.1f), Vector3(-90, 180, 0));
 	// Add mesh
@@ -571,13 +691,108 @@ void TestCollision(ECSWorld& world)
 		auto objectCol2 = world.createEntity();
 		objectCol2.addComponent<BoxColliderComponent>(object2, Vector3(10, 10, 10));
 	}
+=======
+	auto ground = world.createEntity();
+	ground.addComponent<TransformComponentV2>(Vector3(0, -1000, 0), Vector3(10, 10, 10), Vector3(0, 90, 0));
+	ground.addComponent<ModelComponent>("Resources/Models/Sponza-master/sponza.obj");
+
+	auto flight = world.createEntity();
+	flight.addComponent<TransformComponentV2>(Vector3(0, 0, -50), Vector3(0.1f, 0.1f, 0.1f), Vector3(0, 180, 0));
+	flight.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(-90, 0, 0), Vector3(0, -50, 0));
+	flight.addComponent<RigidbodyComponent>();
+	flight.addComponent<ForceAndTorqueAccumulatorComponent>();
+	flight.addComponent<DragComponent>(0.3, 0.5);
+	flight.addComponent<FollowCameraComponent>();
+
+	auto engine = world.createEntity();
+	engine.addComponent<ThrusterComponent>(flight);
+
+	auto leftWing = world.createEntity();
+	leftWing.addComponent<TransformComponentV2>();
+	leftWing.addComponent<AeroSurfaceComponent>(flight, Vector3(0, 0, 0), Vector3(100, 50, -50));
+	std::vector<int> leftWingPositiveKeys = { GLFW_KEY_S, GLFW_KEY_Q };
+	std::vector<int> leftWingNegetiveKeys = { GLFW_KEY_W, GLFW_KEY_E };
+	leftWing.addComponent<AeroControlComponent>(
+		Vector3(0, 0.1f, 0),
+		Vector3(0, -0.1f, 0),
+		leftWingPositiveKeys, leftWingNegetiveKeys);
+
+	auto rightWing = world.createEntity();
+	rightWing.addComponent<TransformComponentV2>();
+	rightWing.addComponent<AeroSurfaceComponent>(flight, Vector3(0, 0, 0), Vector3(-100, 50, -50));
+	std::vector<int> rightWingPositiveKeys = { GLFW_KEY_S, GLFW_KEY_E };
+	std::vector<int> rightWingNegetiveKeys = { GLFW_KEY_W, GLFW_KEY_Q };
+	rightWing.addComponent<AeroControlComponent>(
+		Vector3(0, 0.1f, 0),
+		Vector3(0, -0.1f, 0),
+		rightWingPositiveKeys, rightWingNegetiveKeys);
+
+	auto rudder = world.createEntity();
+	rudder.addComponent<TransformComponentV2>();
+	rudder.addComponent<AeroSurfaceComponent>(flight, Vector3(0, 0, 0), Vector3(0, 0, -150));
+	std::vector<int> rudderWingPositiveKeys = { GLFW_KEY_D };
+	std::vector<int> rudderWingNegetiveKeys = { GLFW_KEY_A };
+	rudder.addComponent<AeroControlComponent>(
+		Vector3(-0.04f, 0, 0),
+		Vector3(0.04f, 0, 0),
+		rudderWingPositiveKeys, rudderWingNegetiveKeys);
+}
+
+void Boat(ECSWorld & world)
+{
+	auto boat = world.createEntity();
+	boat.addComponent<TransformComponentV2>(Vector3(0, 0, 0), Vector3(0.15f, 0.15f, 0.15f), Vector3(0, 0, 0));
+	boat.addComponent<ModelComponent>("Resources/Models/Boat.fbx", Vector3(-90, 90, 0));
+	boat.addComponent<RigidbodyComponent>();
+	boat.addComponent<ForceAndTorqueAccumulatorComponent>(10.0f, 1.0f);
+	boat.addComponent<GravityForceComponent>();
+	boat.addComponent<DragComponent>();
+	boat.addComponent<FollowCameraComponent>();
+
+	auto engine = world.createEntity();
+	std::vector<int> thrustPositiveKeys = { GLFW_KEY_W };
+	std::vector<int> thrustNegetiveKeys = { GLFW_KEY_S };
+	engine.addComponent<ThrusterComponent>(boat, thrustPositiveKeys, thrustNegetiveKeys);
+
+	auto frontLeft = world.createEntity();
+	frontLeft.addComponent<TransformComponentV2>();
+	auto frontRight = world.createEntity();
+	frontRight.addComponent<TransformComponentV2>();
+	auto backLeft = world.createEntity();
+	backLeft.addComponent<TransformComponentV2>();
+	auto backRight = world.createEntity();
+	backRight.addComponent<TransformComponentV2>();
+
+	std::vector<int> PositiveKeys = { GLFW_KEY_A };
+	std::vector<int> NegativeKeys = { GLFW_KEY_D };
+
+	frontLeft.addComponent<BuoyancyComponent>(boat, Vector3(-140.0f, -5, 140.0f), PositiveKeys);
+	frontRight.addComponent<BuoyancyComponent>(boat, Vector3(140.0f, -5, 140.0f), NegativeKeys);
+	backLeft.addComponent<BuoyancyComponent>(boat, Vector3(-140.0f, 5, -140.0f), PositiveKeys);
+	backRight.addComponent<BuoyancyComponent>(boat, Vector3(140.0f, 5, -140.0f), NegativeKeys);
+
+	auto rudder = world.createEntity();
+	rudder.addComponent<TransformComponentV2>();
+	rudder.addComponent<AeroSurfaceComponent>(boat, Vector3(0, 0, 0), Vector3(0, 0, -150));
+	std::vector<int> rudderWingPositiveKeys = { GLFW_KEY_D };
+	std::vector<int> rudderWingNegetiveKeys = { GLFW_KEY_A };
+	rudder.addComponent<AeroControlComponent>(
+		Vector3(-0.04f, 0, 0),
+		Vector3(0.04f, 0, 0),
+		rudderWingPositiveKeys, rudderWingNegetiveKeys);
+
+>>>>>>> Stashed changes
 }
 
 void SetupLights(ECSWorld& world)
 {
 	auto l = world.createEntity();
 	l.addComponent<TransformComponent>(Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(90, 0, 0));
+<<<<<<< Updated upstream
 	l.addComponent<DynamicDirectionalLightComponent>(Color(0.00, 0.0, 0), Color::White, Color::Orange);
+=======
+	l.addComponent<DynamicDirectionalLightComponent>(Color(1, 1, 1), Color(0.0, 0.1, 0.1), Color(0.0, 0.1, 0.1));
+>>>>>>> Stashed changes
 
 	// Lanterns
 	auto pl1 = world.createEntity();
@@ -606,8 +821,12 @@ void SetupLights(ECSWorld& world)
 	hook.addComponent<FixedSpringComponent>(5, 1, pl2);
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f, 14 - 1, 49.0f + 1));
+<<<<<<< Updated upstream
 	hook.addComponent<FixedSpringComponent>(5, 1, pl2);
 	
+=======
+
+>>>>>>> Stashed changes
 	auto pl3 = world.createEntity();
 	pl3.addComponent<TransformComponent>(Vector3(22, 14, -62.0f));
 	pl3.addComponent<DynamicPointLightComponent>(100.0f, Color(0, 0.1f, 0), Color(0.0f, 1.0f, 0.0f), Color(0.0f, 1.0f, 0.0f));
@@ -627,14 +846,22 @@ void SetupLights(ECSWorld& world)
 	pl4.addComponent<DynamicPointLightComponent>(100.0f, Color(0.1, 0.05, 0), Color(1.0f, 0.55f, 0.0f), Color(1.0f, 0.55f, 0.0f));
 	pl4.addComponent<ParticleComponent>();
 	hook = world.createEntity();
+<<<<<<< Updated upstream
 	hook.addComponent<TransformComponent>(Vector3(-14.5f - 1, 14, -61.5f -1));
 	hook.addComponent<FixedSpringComponent>(5, 1, pl4);
+=======
+	hook.addComponent<TransformComponent>(Vector3(-14.5f - 1, 14, -61.5f - 1));
+>>>>>>> Stashed changes
 	hook = world.createEntity();
 	hook.addComponent<TransformComponent>(Vector3(-14.5f - 0.25f, 14 - 0.5f, -61.5f + 1));
 	hook.addComponent<FixedSpringComponent>(5, 1, pl4);
 	hook = world.createEntity();
+<<<<<<< Updated upstream
 	hook.addComponent<TransformComponent>(Vector3(-14.5f + 0.5f, 14+ 1, -61.5f + 1));
 	hook.addComponent<FixedSpringComponent>(5, 1, pl4);
+=======
+	hook.addComponent<TransformComponent>(Vector3(-14.5f + 0.5f, 14 + 1, -61.5f + 1));
+>>>>>>> Stashed changes
 
 	// Spears
 	std::vector<Color> cols = { Color(1,0,0), Color(0,1,0), Color(0,0,1), Color(0.7f,0.55f,0) };

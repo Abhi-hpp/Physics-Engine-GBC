@@ -3,6 +3,7 @@
 
 namespace Reality
 {
+<<<<<<< Updated upstream
 	struct RigidBodyComponent
 	{
 		RigidBodyComponent(float mass = 1.0f, float _linearDamping = 0.4f, float _angularDamping = 0.3f, Vector3 _velocity = Vector3(0, 0, 0), Vector3 _angularVelocity = Vector3(0, 0, 0), float _gravityScale = 1)
@@ -72,5 +73,19 @@ namespace Reality
 	private:
 		Vector3 forceAccumulator;
 		Vector3 torqueAccumulator;
+=======
+	struct RigidbodyComponent
+	{
+		RigidbodyComponent(Vector3 _velocity = Vector3(0, 0, 0), Vector3 _angularVelocity = Vector3(0, 0, 0))
+			:velocity(_velocity), acceleration(Vector3(0, 0, 0)),
+			angularVelocity(_angularVelocity), angularAcceleration(Vector3(0, 0, 0))
+		{
+
+		}
+		Vector3 acceleration;
+		Vector3 velocity;
+		Vector3 angularAcceleration;
+		Vector3 angularVelocity;
+>>>>>>> Stashed changes
 	};
 }

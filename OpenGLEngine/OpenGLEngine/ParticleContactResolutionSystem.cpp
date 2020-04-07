@@ -1,6 +1,10 @@
 #include "ParticleContactResolutionSystem.h"
 #include "ParticleComponent.h"
 #include "TransformComponent.h"
+<<<<<<< Updated upstream
+=======
+#include "PenetrationDeltaMoveComponent.h"
+>>>>>>> Stashed changes
 
 namespace Reality
 {
@@ -11,19 +15,38 @@ namespace Reality
 
 	float ParticleContactResolutionSystem::CalculateSeparatingVelocity(ParticleContactComponent& contact)
 	{
+<<<<<<< Updated upstream
 		Vector3 velocityA = contact.entityA.hasComponent<ParticleComponent>() ? contact.entityA.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
 		Vector3 velocityB = contact.entityB.hasComponent<ParticleComponent>() ? contact.entityB.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
 		Vector3 relativeVel = velocityA - velocityB;
 		return glm::dot(relativeVel, contact.normal);
+=======
+		Vector3 velocityA = contact.entityA.hasComponent<ParticleComponent>() ?
+			contact.entityA.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
+
+		Vector3 velocityB = contact.entityB.hasComponent<ParticleComponent>() ?
+			contact.entityB.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
+
+		Vector3 separationVelocity = velocityA - velocityB;
+
+		return glm::dot(separationVelocity, contact.normal);
+>>>>>>> Stashed changes
 	}
 
 	void ParticleContactResolutionSystem::ResolveVelocity(ParticleContactComponent& contact, float deltaTime)
 	{
 		float separatingVelocity = CalculateSeparatingVelocity(contact);
 
+<<<<<<< Updated upstream
 		if (separatingVelocity > 0)
 		{
 			return;
+=======
+		if (contact.entityB.hasComponent<PenetrationDeltaMoveComponent>())
+		{
+			Vector3 deltaMove = contact.entityB.getComponent<PenetrationDeltaMoveComponent>().deltaMove;
+			actualPenetration += glm::dot(deltaMove, contact.normal);
+>>>>>>> Stashed changes
 		}
 
 		bool isAvalid = contact.entityA.hasComponent<ParticleComponent>();
@@ -40,11 +63,20 @@ namespace Reality
 		{
 			accCausedVelocity += contact.entityA.getComponent<ParticleComponent>().accelaration;
 		}
+<<<<<<< Updated upstream
 		if (isBvalid)
 		{
 			accCausedVelocity -= contact.entityB.getComponent<ParticleComponent>().accelaration;
 		}
 		float accCausedSepVelocity = glm::dot(accCausedVelocity, contact.normal) * deltaTime;
+=======
+		if (contact.entityB.hasComponent<ParticleComponent>())
+		{
+			relativeAccelaration -= contact.entityB.getComponent<ParticleComponent>().acceleration;
+		}
+
+		float accCausedSepVelocity = glm::dot(relativeAccelaration, contact.normal) * deltaTime;
+>>>>>>> Stashed changes
 
 		// If we have a closing velocity due to accelaration build up, 
 		// remove it from new separating velocity
@@ -57,9 +89,21 @@ namespace Reality
 			}
 		}
 
+<<<<<<< Updated upstream
 		float deltaVelocity = newSeparatingVelocity - separatingVelocity;
 
 		float totalInverseMass = invM1 + invM2;
+=======
+		float deltaVelocity = finalVelocity - initialVelocity;
+
+		float invMA = contact.entityA.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityA.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
+
+		float invMB = contact.entityB.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityB.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
+
+		float totalInverseMass = invMA + invMB;
+>>>>>>> Stashed changes
 
 		if (totalInverseMass <= 0)
 		{
@@ -70,6 +114,7 @@ namespace Reality
 
 		Vector3 impulsePerIMass = contact.normal * impulse;
 
+<<<<<<< Updated upstream
 		if (isAvalid)
 		{
 			contact.entityA.getComponent<ParticleComponent>().velocity += impulsePerIMass * invM1;
@@ -77,6 +122,11 @@ namespace Reality
 		if (isBvalid)
 		{
 			contact.entityB.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invM2;
+=======
+		if (contact.entityB.hasComponent<ParticleComponent>())
+		{
+			contact.entityB.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invMB;
+>>>>>>> Stashed changes
 		}
 	}
 
@@ -92,6 +142,7 @@ namespace Reality
 		float invM1 = isAvalid ? contact.entityA.getComponent<ParticleComponent>().inverseMass : 0;
 		float invM2 = isBvalid ? contact.entityB.getComponent<ParticleComponent>().inverseMass : 0;
 
+<<<<<<< Updated upstream
 		float totalInverseMass = invM1 + invM2;
 
 		if (totalInverseMass <= 0)
@@ -105,6 +156,10 @@ namespace Reality
 		{
 			contact.entityA.getComponent<TransformComponent>().position -= movePerMass * invM1;
 		}
+=======
+		float invMassB = contact.entityB.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityB.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
+>>>>>>> Stashed changes
 
 		if (isBvalid)
 		{
@@ -126,6 +181,7 @@ namespace Reality
 			float deltaPenetration = glm::dot(deltaMove, contact.normal);
 			contact.penetration -= deltaPenetration;
 		}
+<<<<<<< Updated upstream
 		if (bestContact.entityB == contact.entityB || bestContact.entityA == contact.entityB)
 		{
 			float mult = bestContact.entityA == contact.entityB ? -1 : 1;
@@ -181,6 +237,18 @@ namespace Reality
 		}
 
 
+=======
+
+		if (contact.entityB.hasComponent<TransformComponent>())
+		{
+			Vector3 deltaMove = movePerUnitIMass * invMassB;
+			contact.entityB.getComponent<TransformComponent>().position -= movePerUnitIMass * invMassB;
+			if (contact.entityB.hasComponent<PenetrationDeltaMoveComponent>())
+			{
+				contact.entityB.getComponent<PenetrationDeltaMoveComponent>().deltaMove -= deltaMove;
+			}
+		}
+>>>>>>> Stashed changes
 
 	}
 }
