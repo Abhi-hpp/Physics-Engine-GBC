@@ -1,0 +1,31 @@
+﻿  Main.cpp
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(93,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(94,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(191,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(194,21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(273,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(275,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(307,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(308,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(459,70): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(459,92): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(459,114): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(464,70): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(494,73): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         with
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         [
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:             _Ty=int
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         ]
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message : see reference to function template instantiation 'void Mix::EntityManager::addComponent<T,_Ty,_Ty>(Mix::Entity,_Ty &&,_Ty &&)' being compiled
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         with
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         [
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :             T=Reality::DragForceComponent,
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :             _Ty=int
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         ]
+C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\OpenGLEngine\Main.cpp(112): message : see reference to function template instantiation 'void Mix::Entity::addComponent<Reality::DragForceComponent,int,int>(int &&,int &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(669): message : see reference to class template instantiation 'std::chrono::duration<double,std::ratio<1,1>>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(177): message : see reference to class template instantiation 'std::chrono::duration<__int64,std::nano>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(647): message : see reference to class template instantiation 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>' being compiled
+  OpenGLEngine.vcxproj -> C:\Users\Blair\Downloads\PhysicsSemester4-Blair_1\Assignment1_Physics\OpenGLEngine\Debug\OpenGLEngine.exe
