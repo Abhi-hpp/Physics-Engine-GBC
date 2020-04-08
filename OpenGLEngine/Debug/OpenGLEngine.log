@@ -1,0 +1,265 @@
+﻿  AeroControlSystem.cpp
+  AeroSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  AssetLoader.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.cpp(36,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.cpp(65,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.cpp(107,21): warning C4018: '<': signed/unsigned mismatch
+  BoatSimulatorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.cpp(118,24): warning C4018: '>': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\BoatSimulatorSystem.cpp(79,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  BoxColliderSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\BoatSimulatorSystem.cpp(80,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(256,104): warning C4244: 'return': conversion from 'double' to 'reactphysics3d::decimal', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(264,19): warning C4244: 'return': conversion from 'reactphysics3d::decimal' to 'int', possible loss of data
+  BuoyancySystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\BoxColliderSystem.cpp(76,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  CableComponentSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\BuoyancySystem.cpp(20,14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  CameraLookSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  Color.cpp
+  ContactGenerationSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(256,104): warning C4244: 'return': conversion from 'double' to 'reactphysics3d::decimal', possible loss of data
+  ContactResolutionSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(264,19): warning C4244: 'return': conversion from 'reactphysics3d::decimal' to 'int', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(256,104): warning C4244: 'return': conversion from 'double' to 'reactphysics3d::decimal', possible loss of data
+  DynamicDirectionalLightSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(264,19): warning C4244: 'return': conversion from 'reactphysics3d::decimal' to 'int', possible loss of data
+  DynamicPointLightSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  DynamicSpotLightSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  FixedSpringForceGeneratorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  FlightSimulatorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\FlightSimulatorSystem.cpp(43,16): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  FollowCameraSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\FlightSimulatorSystem.cpp(44,17): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  ForceAccumulatorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  ForceAndTorqueAccumulatorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  FPSControlSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  GravityForceGeneratorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  InfiniteSpawnSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  InfiniteSpawnTargetSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  InputEventSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\InputEventSystem.cpp(23,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\InputEventSystem.cpp(24,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Event.h(68,31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\InputEventSystem.cpp(25): message : see reference to function template instantiation 'void Mix::EventManager::emitEvent<Reality::MouseMoveEvent,double&,double&,float&,float>(double &,double &,float &,float &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(669): message : see reference to class template instantiation 'std::chrono::duration<double,std::ratio<1,1>>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(177): message : see reference to class template instantiation 'std::chrono::duration<__int64,std::nano>' being compiled
+  LifeTimeSystem.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(647): message : see reference to class template instantiation 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>' being compiled
+  Main.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(256,104): warning C4244: 'return': conversion from 'double' to 'reactphysics3d::decimal', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(264,19): warning C4244: 'return': conversion from 'reactphysics3d::decimal' to 'int', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(142,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(143,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(156,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(159,21): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(248,36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(250,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(289,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(290,25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(609,70): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(651,73): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         with
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         [
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:             _Ty=int
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         ]
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message : see reference to function template instantiation 'void Mix::EntityManager::addComponent<T,_Ty,_Ty,_Ty>(Mix::Entity,_Ty &&,_Ty &&,_Ty &&)' being compiled
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         with
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         [
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :             T=RotateComponent,
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :             _Ty=int
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         ]
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(327): message : see reference to function template instantiation 'void Mix::Entity::addComponent<RotateComponent,int,int,int>(int &&,int &&,int &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(669): message : see reference to class template instantiation 'std::chrono::duration<double,std::ratio<1,1>>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(177): message : see reference to class template instantiation 'std::chrono::duration<__int64,std::nano>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(647): message : see reference to class template instantiation 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>' being compiled
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         with
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         [
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:             _Ty=double
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         ]
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message : see reference to function template instantiation 'void Mix::EntityManager::addComponent<T,Reality::ECSEntity&,Reality::ECSEntity&,_Ty>(Mix::Entity,Reality::ECSEntity &,Reality::ECSEntity &,_Ty &&)' being compiled
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         with
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         [
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :             T=Reality::RodComponent,
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :             _Ty=double
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         ]
+  Material.cpp
+  Mesh.cpp
+  Component.cpp
+  Entity.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Main.cpp(465): message : see reference to function template instantiation 'void Mix::Entity::addComponent<Reality::RodComponent,Mix::Entity&,Mix::Entity&,double>(Mix::Entity &,Mix::Entity &,double &&)' being compiled
+  Event.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  System.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  World.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  Model.cpp
+  MoveInBoundsSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  PairedSpringForceGeneratorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  ParticleContactResolutionSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\ParticleContactResolutionSystem.cpp(124,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\ParticleContactResolutionSystem.cpp(131,15): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+  ParticleSpawnerSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\ParticleContactResolutionSystem.cpp(151,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  ParticleSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\ParticleSpawnerSystem.cpp(26,23): warning C4018: '<': signed/unsigned mismatch
+  RenderingSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
+  Compiling...
+  RenderingSystemV2.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  RenderUtil.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(109,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(124,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(129,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(144,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(436,25): warning C4838: conversion from 'FT_Pos' to 'GLuint' requires a narrowing conversion
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(460,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(512,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(517,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(531,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(536,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(550,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(572,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(595,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(600,14): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  RigidbodyGravityForceGeneratorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RenderUtil.cpp(623,42): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  RigidBodySystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(256,104): warning C4244: 'return': conversion from 'double' to 'reactphysics3d::decimal', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(264,19): warning C4244: 'return': conversion from 'reactphysics3d::decimal' to 'int', possible loss of data
+  RodSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RigidBodySystem.cpp(67,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         with
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         [
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:             _Ty=int
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(226,35): warning C4244:         ]
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message : see reference to function template instantiation 'void Mix::EntityManager::addComponent<T,Reality::ECSEntity&,Reality::ECSEntity&,_Ty,Reality::Vector3&,float>(Mix::Entity,Reality::ECSEntity &,Reality::ECSEntity &,_Ty &&,Reality::Vector3 &,float &&)' being compiled
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         with
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         [
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :             T=Reality::ParticleContactComponent,
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :             _Ty=int
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\Mix\Entity.h(186): message :         ]
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\RodSystem.cpp(40): message : see reference to function template instantiation 'void Mix::Entity::addComponent<Reality::ParticleContactComponent,Reality::ECSEntity&,Reality::ECSEntity&,int,Reality::Vector3&,float>(Reality::ECSEntity &,Reality::ECSEntity &,int &&,Reality::Vector3 &,float &&)' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(669): message : see reference to class template instantiation 'std::chrono::duration<double,std::ratio<1,1>>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(177): message : see reference to class template instantiation 'std::chrono::duration<__int64,std::nano>' being compiled
+  RotateSystem.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(647): message : see reference to class template instantiation 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>' being compiled
+  SetAerodynamicTensorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  Shader.cpp
+  SphereColliderSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(256,104): warning C4244: 'return': conversion from 'double' to 'reactphysics3d::decimal', possible loss of data
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Include\React3D\collision\shapes\HeightFieldShape.h(264,19): warning C4244: 'return': conversion from 'reactphysics3d::decimal' to 'int', possible loss of data
+  SphereContactGeneratorSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\SphereColliderSystem.cpp(72,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\SphereContactGeneratorSystem.cpp(23,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\SphereContactGeneratorSystem.cpp(32,11): warning C4018: '<': signed/unsigned mismatch
+  Texture.cpp
+  UpdateTransformMatricesSystem.cpp
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\SphereContactGeneratorSystem.cpp(34,28): warning C4018: '<': signed/unsigned mismatch
+  Window.cpp
+  Generating Code...
+C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\OpenGLEngine\AssetLoader.h(36,104): warning C4018: '<': signed/unsigned mismatch
+  glad.c
+glfw3.lib(context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(context.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(init.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(init.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(input.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(input.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(monitor.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(monitor.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(vulkan.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(vulkan.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(window.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(window.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_init.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_init.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_joystick.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_joystick.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_monitor.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_monitor.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_time.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_time.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_thread.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_thread.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(win32_window.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(win32_window.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(wgl_context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(wgl_context.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(egl_context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(egl_context.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+glfw3.lib(osmesa_context.obj) : warning LNK4099: PDB 'glfw.pdb' was not found with 'glfw3.lib(osmesa_context.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\glfw.pdb'; linking object as if no debug info
+reactphysics3d.lib(Body.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(Body.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(CollisionBody.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(CollisionBody.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(ContactManifoldInfo.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(ContactManifoldInfo.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(BroadPhaseAlgorithm.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(BroadPhaseAlgorithm.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(DynamicAABBTree.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(DynamicAABBTree.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(DefaultCollisionDispatch.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(DefaultCollisionDispatch.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(VoronoiSimplex.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(VoronoiSimplex.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(GJKAlgorithm.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(GJKAlgorithm.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(SATAlgorithm.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(SATAlgorithm.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(SphereVsSphereAlgorithm.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(SphereVsSphereAlgorithm.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(CapsuleVsCapsuleAlgorithm.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(CapsuleVsCapsuleAlgorithm.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(SphereVsCapsuleAlgorithm.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(SphereVsCapsuleAlgorithm.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(SphereVsConvexPolyhedronAlgorithm.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(SphereVsConvexPolyhedronAlgorithm.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(CapsuleVsConvexPolyhedronAlgorithm.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(CapsuleVsConvexPolyhedronAlgorithm.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(ConvexPolyhedronVsConvexPolyhedronAlgorithm.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(ConvexPolyhedronVsConvexPolyhedronAlgorithm.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(AABB.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(AABB.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(ConvexShape.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(ConvexShape.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(ConvexPolyhedronShape.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(ConvexPolyhedronShape.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(BoxShape.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(BoxShape.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(CollisionShape.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(CollisionShape.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(SphereShape.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(SphereShape.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(TriangleShape.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(TriangleShape.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(RaycastInfo.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(RaycastInfo.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(ProxyShape.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(ProxyShape.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(HalfEdgeStructure.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(HalfEdgeStructure.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(CollisionDetection.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(CollisionDetection.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(NarrowPhaseInfo.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(NarrowPhaseInfo.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(ContactManifold.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(ContactManifold.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(ContactManifoldSet.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(ContactManifoldSet.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(MiddlePhaseTriangleCallback.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(MiddlePhaseTriangleCallback.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(ContactPoint.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(ContactPoint.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(CollisionWorld.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(CollisionWorld.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(OverlappingPair.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(OverlappingPair.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(CollisionCallback.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(CollisionCallback.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(mathematics_functions.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(mathematics_functions.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(Quaternion.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(Quaternion.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(Vector3.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(Vector3.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(DefaultPoolAllocator.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(DefaultPoolAllocator.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(DefaultSingleFrameAllocator.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(DefaultSingleFrameAllocator.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+reactphysics3d.lib(MemoryManager.obj) : warning LNK4099: PDB 'reactphysics3d.pdb' was not found with 'reactphysics3d.lib(MemoryManager.obj)' or at 'C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\reactphysics3d.pdb'; linking object as if no debug info
+  OpenGLEngine.vcxproj -> C:\Users\Blair\Desktop\This Semester\Physics Engines\ass3-Shoemakers\ass3-Shoemakers\ass3-Shoemakers\OpenGLEngine\Debug\OpenGLEngine.exe
