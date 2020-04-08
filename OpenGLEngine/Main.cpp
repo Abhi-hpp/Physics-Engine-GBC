@@ -481,16 +481,17 @@ void MakeAssignmentThree(ECSWorld& world)
 	e.addComponent<TransformComponentV2>(Vector3(0.0f, 1900, 0.0f), Vector3(0.10f, 0.1f, 0.1f));
 
 
-
+	const Vector3 leftBuoy = Vector3(0, -1, -100);
+	const Vector3 rightBuoy = Vector3(0, 1, 100);
 	// Add mesh
-	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(0, 0, 20), Vector3(-90, 0, 0));
+	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(0, 10, 20), Vector3(-90, -90, 0));
 	e.addComponent<RigidBodyComponent>(20.0f, 0.2f, 0.5f);
 	e.addComponent<FollowCameraComponent>(Vector3(0.0f, 15.0f, 70.0f));
 	e.addComponent<CameraLookComponent>();
 	e.addComponent<InfiniteSpawnTargetComponent>();
 	e.addComponent<BoatSimulatorComponent>();
-	e.addComponent<Buoyancy>();
-
+	e.addComponent<Buoyancy>(leftBuoy);
+	e.addComponent<Buoyancy>(rightBuoy);
 
 
 	for (int i = -40; i <= 40; i++)

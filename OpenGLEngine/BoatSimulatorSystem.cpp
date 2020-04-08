@@ -19,10 +19,17 @@ namespace Reality
 			auto& rigidbody = e.getComponent<RigidBodyComponent>();
 			auto& eTransform = e.getComponent<TransformComponentV2>();
 			auto& boat = e.getComponent<BoatSimulatorComponent>();
+			
+			float xx, yy, zz;
+			xx = eTransform.GetPosition().x; yy = eTransform.GetPosition().y; zz = eTransform.GetPosition().z;
+
+			getWorld().data.renderUtil->DrawLine(Vector3(xx-1, yy+4, zz + 6), Vector3(xx-1, yy + 35, zz + 6), Color(1, 0.5f, 0.2f, 1));
+			getWorld().data.renderUtil->DrawLine(Vector3(xx+1, yy+4, zz + 6), Vector3(xx+1, yy + 35, zz + 6), Color(1, 0.5f, 0.2f, 1));
 
 
+			getWorld().data.renderUtil->DrawCube(Vector3(xx,yy+35,zz+6),Vector3(45,26,2));
 
-
+			
 			if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
 			{
 				rigidbody.AddForce(eTransform.LocalToWorldDirection(boat.propulsion+Vector3(0, i * 15, 0)));
@@ -72,7 +79,7 @@ namespace Reality
 			}
 		}
 
-
+	
 
 		if (getEntities().size() > 0)
 		{

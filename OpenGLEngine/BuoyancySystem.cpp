@@ -20,8 +20,7 @@ namespace Reality
 			srand(time(NULL));
 
 			float depth = BuoyancyComp.GetWaterHeight() - transform.GetPosition().y;
-
-
+			
 			// if boat under waterheight apply force at random rate
 			if (transform.GetPosition().y <= BuoyancyComp.GetWaterHeight())
 			{
@@ -36,6 +35,10 @@ namespace Reality
 					// 	Vector3((rand() % 200), (rand() % 200), (rand() % 200)),
 					// 	Vector3(0, 0, 0)
 					// );
+					float xx, yy, zz;
+					xx = transform.GetPosition().x; yy = transform.GetPosition().y; zz = transform.GetPosition().z;
+					getWorld().data.renderUtil->DrawCube(Vector3(xx, yy+3, zz + 16), Vector3(3, 3, 3), Vector3(0, 0, 0), Color(1, 1, 1, 1));
+					getWorld().data.renderUtil->DrawCube(Vector3(xx, yy+3, zz - 16), Vector3(3, 3, 3), Vector3(0, 0, 0), Color(1, 1, 1, 1));
 
 			}
 			
