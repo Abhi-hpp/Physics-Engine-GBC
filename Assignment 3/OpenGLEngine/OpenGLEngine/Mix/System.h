@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <typeindex>
 #include <memory>
+#include <stdexcept>
 
 namespace Mix
 {

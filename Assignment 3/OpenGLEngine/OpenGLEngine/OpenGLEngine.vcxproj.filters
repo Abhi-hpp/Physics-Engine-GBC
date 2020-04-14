@@ -49,6 +49,12 @@
     <Filter Include="Physics\Rigidbody">
       <UniqueIdentifier>{3f5a8043-c367-47f5-bbe1-005323d21b00}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Physics\Buoyancy">
+      <UniqueIdentifier>{85b18c96-ff25-4ea4-a933-cb0770752959}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TestCS\BoatSim">
+      <UniqueIdentifier>{3bddcf67-a10e-46a1-8a51-b6cb3e959972}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -206,6 +212,12 @@
     </ClCompile>
     <ClCompile Include="RigidbodyGravityForceGeneratorSystem.cpp">
       <Filter>Physics\Rigidbody</Filter>
+    </ClCompile>
+    <ClCompile Include="BuoyancySystem.cpp">
+      <Filter>Physics\Buoyancy</Filter>
+    </ClCompile>
+    <ClCompile Include="BoatSimulatorSystem.cpp">
+      <Filter>TestCS\BoatSim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -481,6 +493,18 @@
     </ClInclude>
     <ClInclude Include="RigidbodyGravityForceGeneratorSystem.h">
       <Filter>Physics\Rigidbody</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancySystem.h">
+      <Filter>Physics\Buoyancy</Filter>
+    </ClInclude>
+    <ClInclude Include="BoatSimulatorComponent.h">
+      <Filter>TestCS\BoatSim</Filter>
+    </ClInclude>
+    <ClInclude Include="BoatSimulatorSystem.h">
+      <Filter>TestCS\BoatSim</Filter>
+    </ClInclude>
+    <ClInclude Include="BuoyancyComponent.h">
+      <Filter>Physics\Buoyancy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
