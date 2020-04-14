@@ -35,6 +35,11 @@
 #include "AeroSystem.h"
 #include "CameraLookSystem.h"
 #include "LifeTimeSystem.h"
+#include "BuoyancyComponent.h"
+#include "BuoyancySystem.h"
+#include "BoatSimulatorSystem.h"
+#include "BoatSimulatorComponent.h"
+
 #include <string>
 #include <stdlib.h>     
 #include <time.h>      
@@ -50,7 +55,7 @@ void MakeABunchaSprings(ECSWorld& world);
 void MakeABunchaSpheres(ECSWorld& world);
 void MakeACable(ECSWorld& world);
 void MakeCablesAndRods(ECSWorld& world);
-void MakeFlight(ECSWorld& world);
+void BoatSimulator(ECSWorld& world);
 void TestContacts(ECSWorld& world);
 void TestCollision(ECSWorld& world);
 void SetupLights(ECSWorld& world);
@@ -82,9 +87,9 @@ int main()
 	//MakeABunchaSprings(world);
 	//MakeACable(world);
 	//akeCablesAndRods(world);
-	//MakeFlight(world);
+	BoatSimulator(world);
 	//TestContacts(world);
-	TestCollision(world);
+	// TestCollision(world);
 
 	// Create Systems
 	world.getSystemManager().addSystem<UpdateTransformMatricesSystem>();
@@ -117,6 +122,8 @@ int main()
 	world.getSystemManager().addSystem<DynamicDirectionalLightSystem>();
 	world.getSystemManager().addSystem<DynamicPointLightSystem>();
 	world.getSystemManager().addSystem<DynamicSpotLightSystem>();
+	world.getSystemManager().addSystem<BuoyancySystem>();
+	world.getSystemManager().addSystem<BoatSimulatorSystem>();
 
 	// Rigidbody Physics
 	rp3d::CollisionWorld rp3dWorld;
@@ -174,7 +181,7 @@ int main()
 		world.getSystemManager().getSystem<RotateSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<ParticleSpawnerSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<MoveInBoundsSystem>().Update(deltaTime);
-
+		
 		//Flight Sim
 		world.getSystemManager().getSystem<FlightSimulatorSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<FollowCameraSystem>().Update(deltaTime);
@@ -184,26 +191,38 @@ int main()
 		world.getSystemManager().getSystem<AeroControlSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<SetAerodynamicTensorSystem>().Update(deltaTime);
 		world.getSystemManager().getSystem<LifeTimeSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<BoatSimulatorSystem>().Update(deltaTime);
+		world.getSystemManager().getSystem<BuoyancySystem>().Update(deltaTime);
 
 		// Update Transform
 		world.getSystemManager().getSystem<UpdateTransformMatricesSystem>().Update(deltaTime);
+
+
 		// Physics
-		float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
+		//float fixedDeltaTime = glfwGetKey(world.data.renderUtil->window->glfwWindow, GLFW_KEY_SPACE) == GLFW_PRESS ? 1 / 60.0f : 0;		
+		float fixedDeltaTime = 1 / 60.0f;
+
+
 		//float fixedDeltaTime = 1 / 60.0f;
 		world.getSystemManager().getSystem<AeroSystem>().Update(fixedDeltaTime);
-		world.getSystemManager().getSystem<AeroSystem>().Update(fixedDeltaTime);
+
+
 		// Particle Force Generators
 		world.getSystemManager().getSystem<GravityForceGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<FixedSpringForceGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<PairedSpringForceGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ForceAccumulatorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ParticleSystem>().Update(fixedDeltaTime);
+
+
 		// Rigiidbody Force Generators and collisions
 		world.getSystemManager().getSystem<RigidbodyGravityForceGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<ForceAndTorqueAccumulatorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<RigidBodySystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<SphereColliderSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<BoxColliderSystem>().Update(fixedDeltaTime);
+		
+
 		// Physics Solvers
 		world.getSystemManager().getSystem<SphereContactGeneratorSystem>().Update(fixedDeltaTime);
 		world.getSystemManager().getSystem<CableComponentSystem>().Update(fixedDeltaTime);
@@ -279,9 +298,11 @@ void LoadModels(ECSWorld& world)
 		//ModelData("Resources/Models/snowy-mountain-terrain/SnowyMountainMesh.obj"),
 		//ModelData("Resources/Models/Sponza-master/sponza.obj"),
 		//ModelData("Resources/Models/nanosuit/nanosuit.obj"),*/
-		ModelData("Resources/Models/supermarine-spitfire/spitfire.fbx",
-			{{"spitfire_d.png"}})
-		});
+		ModelData(
+			"Resources/Models/supermarine-spitfire/spitfire.fbx",
+			{{"spitfire_d.png"}}
+		)
+	});
 }
 
 void MakeABunchaObjects(ECSWorld& world)
@@ -442,69 +463,26 @@ void MakeCablesAndRods(ECSWorld& world)
 	eRodDiagonal2.addComponent<RodComponent>(e2, e4, 20);
 }
 
-void MakeFlight(ECSWorld& world)
+void BoatSimulator(ECSWorld& world)
 {
 	auto e = world.createEntity();
-	glm::vec3 rotationInRads = glm::vec3(glm::radians(-90.0f),
-		glm::radians(180.0f), glm::radians(0.0f));
-	Quaternion orientation = glm::quat(rotationInRads);
-	e.addComponent<TransformComponentV2>(Vector3(0, 350.0f, 0), Vector3(0.10f, 0.1f, 0.1f));
-	// Add mesh
+	e.addComponent<TransformComponentV2>(Vector3(0.0f, 480.0f, 0.0f), Vector3(0.10f, 0.1f, 0.1f));
+
+
 	e.addComponent<ModelComponent>("Resources/Models/supermarine-spitfire/spitfire.fbx", Vector3(0, -50, 20), Vector3(-90, 0, 0));
-	e.addComponent<RigidBodyComponent>(10.0f ,0.3f, 0.5f);
-	e.addComponent<FlighSimulatorComponent>();
-	e.addComponent<FollowCameraComponent>(Vector3(0.0f, 15.0f, 40.0f));
+	e.addComponent<RigidBodyComponent>(10.0f ,0.2f, 0.5f);
+	e.addComponent<FollowCameraComponent>(Vector3(0.0f, 15.0f, 20.0f));
 	e.addComponent<CameraLookComponent>();
 	e.addComponent<InfiniteSpawnTargetComponent>();
+	e.addComponent<BoatSimulatorComponent>();
+	e.addComponent<BuoyancyComponent>();
 
-	std::vector<int> p1 { GLFW_KEY_E };
-	std::vector<int> n1 { GLFW_KEY_Q };
-	//Right Wing
-	auto RW = world.createEntity();
-	RW.addComponent<AeroControlComponent>(p1, n1);
-	RW.addComponent<AeroMinMaxComponent>(Mat3(0, 0, 0, 0, 0.000f, 0, 0, -0.0005f, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-		Mat3(0, 0, 0, 0, -0.000f, 0, 0, 0.0005f, 0));
-	RW.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(100.0f, 0, 50.0f));
-
-	//Left Wing
-	auto LW = world.createEntity();
-	LW.addComponent<AeroControlComponent>(n1, p1);
-	LW.addComponent<AeroMinMaxComponent>(Mat3(0, 0, 0, 0, 0.000f, 0, 0, -0.0005f, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-		Mat3(0, 0, 0, 0, -0.000f, 0, 0, 0.0005f, 0));
-	LW.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(-100.0f, 0, 50.0f));
-
-	//Rudder 
-	std::vector<int> pR = { GLFW_KEY_A };
-	std::vector<int> nR = { GLFW_KEY_D };
-	auto R = world.createEntity();
-	R.addComponent<AeroControlComponent>(pR, nR);
-	R.addComponent<AeroMinMaxComponent>(Mat3(0, 0, 0, 0, 0, 0, 0.002f, 0, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0.00f, 0, 0),
-		Mat3(0, 0, 0, 0, 0, 0, -0.002f, 0, 0));
-	R.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(0, 0, -200.0f));
-
-	//Back Wing
-	std::vector<int> p2{ GLFW_KEY_W };
-	std::vector<int> n2{ GLFW_KEY_S };
-	auto RW2 = world.createEntity();
-	RW2.addComponent<AeroControlComponent>(p2, n2);
-	RW2.addComponent<AeroMinMaxComponent>(Mat3(0, 0, 0, 0, 0, 0, 0, -0.0015f, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0, 0, 0),
-		Mat3(0, 0, 0, 0, 0, 0, 0, 0.0015f, 0));
-	RW2.addComponent<AeroComponent>(e, Mat3(1.0f), Vector3(0.0f, 0, -200.0f));
-
-	for (int i = -40; i <= 40; i++)
-	{
-		auto buildingR = world.createEntity();
-		buildingR.addComponent<TransformComponentV2>(Vector3(100.0f, 0.0f, 50.0f * i));
-		buildingR.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(100.0f, 500.0f));
-
-		auto buildingL = world.createEntity();
-		buildingL.addComponent<TransformComponentV2>(Vector3(-100.0f, 0.0f, 50.0f * i));
-		buildingL.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(100.0f, 500.0f));
+	for (int i = -10; i < 10; i++) {
+		auto water = world.createEntity();
+		water.addComponent<TransformComponentV2>(Vector3(0.0f, 440.0f, 10.0f + 10 * i));
+		water.addComponent<InfiniteSpawnComponent>(RANDOM_FLOAT(1.0f, 5.0f));
 	}
+
 }
 
 void TestContacts(ECSWorld& world)
