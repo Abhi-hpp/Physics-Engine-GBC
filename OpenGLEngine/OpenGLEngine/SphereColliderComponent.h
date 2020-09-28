@@ -1,16 +1,18 @@
 #pragma once
 #include "ECSConfig.h"
+#include <React3D/reactphysics3d.h>
 
 namespace Reality
 {
 	struct SphereColliderComponent
 	{
-		SphereColliderComponent(ECSEntity _body = ECSEntity(), float _radius = 1.0f, Vector3 _offset = Vector3(0, 0, 0))
-			: body(_body), offset(_offset), radius(_radius), rp3dId(-1)
-		{}
-		ECSEntity body;
-		Vector3 offset;
+		SphereColliderComponent(ECSEntity _rigidbodyEntity = ECSEntity(), float _radius = 1.0f)
+		{
+
+		}
+		ECSEntity rigidbodyEntity;
 		float radius;
-		int rp3dId;
+		rp3d::ProxyShape* proxyShape;
+		bool initialized = false;
 	};
 }

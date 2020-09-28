@@ -1,77 +1,47 @@
-#include "RigidBodySystem.h"
-#include "RigidBodyData.h"
+#include "RigidbodySystem.h"
+#include "BodyData.h"
 
 namespace Reality
 {
-	RigidBodySystem::RigidBodySystem(rp3d::CollisionWorld& _rp3dWorld)
+	RigidbodySystem::RigidbodySystem(rp3d::CollisionWorld& _rp3dWorld)
 		:rp3dWorld(_rp3dWorld)
 	{
 		requireComponent<TransformComponentV2>();
-		requireComponent<RigidBodyComponent>();
+		requireComponent<RigidbodyComponent>();
 	}
 
-	void RigidBodySystem::Update(float deltaTime)
+	void RigidbodySystem::Update(float deltaTime)
 	{
-		std::vector<rp3d::CollisionBody*> rp3dBodiesTemp;
-		std::vector<int> aliveIds;
-		aliveIds.resize(rp3dBodies.size());
-		int id = 0;
-
 		for (auto e : getEntities())
 		{
-			auto &rigidbody = e.getComponent<RigidBodyComponent>();
-			auto &transform = e.getComponent<TransformComponentV2>();
+			auto& transform = e.getComponent<TransformComponentV2>();
+			auto& rigidbody = e.getComponent<RigidbodyComponent>();
 
-			// Update RP3D Ids
-			// Calculate rp3d transform
-			rp3d::Vector3 initPosition(transform.GetPosition().x,
-				transform.GetPosition().y,
-				transform.GetPosition().z);
-			Quaternion quat = transform.GetOrientation();
-			rp3d::Quaternion initOrientation = rp3d::Quaternion(
-				quat.x, quat.y, quat.z, quat.w);
-			rp3d::Transform rp3dtransform(initPosition, initOrientation);
-			// If new rigidbody, create an entry
-			if (rigidbody.rp3dId < 0)
+			// Initialize rigidbody for rp3d
+			if (!rigidbody.initialized)
 			{
-				rp3d::CollisionBody * body = rp3dWorld.createCollisionBody(rp3dtransform);
-				RigidBodyData* data = new RigidBodyData(e);
-				body->setUserData(data);
-				rp3dBodiesTemp.push_back(body);
-				rigidbody.rp3dId = id;
+				reactphysics3d::Vector3 position = reactphysics3d::Vector3(
+					transform.GetPosition().x,
+					transform.GetPosition().y,
+					transform.GetPosition().z);
+				reactphysics3d::Quaternion quat = reactphysics3d::Quaternion(
+					transform.GetOrientation().x,
+					transform.GetOrientation().y,
+					transform.GetOrientation().z,
+					transform.GetOrientation().w
+				);
+				reactphysics3d::Transform rp3dTransform = reactphysics3d::Transform(position, quat);
+				rigidbody.rp3dCollisionBody = rp3dWorld.createCollisionBody(rp3dTransform);
+				rigidbody.rp3dCollisionBody->setUserData(new BodyData(e));
+				rigidbody.initialized = true;
 			}
-			else
-			{
-				rp3d::CollisionBody * body = rp3dBodies[rigidbody.rp3dId];
-				body->setTransform(rp3dtransform);
-				aliveIds[rigidbody.rp3dId] = 1;
-				rp3dBodiesTemp.push_back(body);
-				rigidbody.rp3dId = id;
-			}
-			id++;
 
-			// Update velocity from accelarartion
-			rigidbody.velocity += rigidbody.accelaration * deltaTime;
-			rigidbody.angularVelocity += rigidbody.angularAccelaration * deltaTime;
-
-			// Damping
-			rigidbody.velocity *= pow(1.0f - rigidbody.linearDamping, deltaTime);
-			rigidbody.angularVelocity *= pow(1.0f - rigidbody.angularDamping, deltaTime);
-			
+			rigidbody.velocity += rigidbody.acceleration * deltaTime;
 			transform.SetPosition(transform.GetPosition() + rigidbody.velocity * deltaTime);
-			glm::quat angularVelocityQuat = glm::quat(0, rigidbody.angularVelocity.x, rigidbody.angularVelocity.y, rigidbody.angularVelocity.z);
-			getWorld().data.renderUtil->DrawLine(transform.GetPosition(), transform.GetPosition() + rigidbody.angularVelocity, Color::Blue);
-			transform.SetOrientation(glm::normalize(transform.GetOrientation() + 0.5f * angularVelocityQuat * transform.GetOrientation() * deltaTime));
-		}
 
-		for (int i = 0; i < aliveIds.size(); i++)
-		{
-			if (aliveIds[i] == 0)
-			{
-				rp3dWorld.destroyCollisionBody(rp3dBodies[i]);
-			}
+			rigidbody.angularVelocity += rigidbody.angularAcceleration * deltaTime;
+			Quaternion deltaRot = Quaternion(0, rigidbody.angularVelocity * deltaTime);
+			transform.SetOrientation(glm::normalize(transform.GetOrientation() + 0.5f * deltaRot * transform.GetOrientation()));
 		}
-
-		rp3dBodies = rp3dBodiesTemp;
 	}
 }
