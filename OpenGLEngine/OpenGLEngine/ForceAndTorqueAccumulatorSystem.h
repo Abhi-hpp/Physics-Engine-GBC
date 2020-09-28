@@ -1,6 +1,7 @@
 #pragma once
 #include "ECSConfig.h"
-#include "RigidBodyComponent.h"
+#include "RigidbodyComponent.h"
+#include "ForceAndTorqueAccumulatorComponent.h"
 #include "TransformComponentV2.h"
 
 namespace Reality
