@@ -1,65 +1,123 @@
 #include "ParticleContactResolutionSystem.h"
 #include "ParticleComponent.h"
+#include "ForceAccumulatorSystem.h"
 #include "TransformComponent.h"
+#include "PenetrationDeltaMoveComponent.h"
 
 namespace Reality
 {
 	ParticleContactResolutionSystem::ParticleContactResolutionSystem()
 	{
-		requireComponent<ParticleContactComponent>();
+
 	}
 
-	float ParticleContactResolutionSystem::CalculateSeparatingVelocity(ParticleContactComponent& contact)
+	void ParticleContactResolutionSystem::Update(float deltaTime)
 	{
-		Vector3 velocityA = contact.entityA.hasComponent<ParticleComponent>() ? contact.entityA.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
-		Vector3 velocityB = contact.entityB.hasComponent<ParticleComponent>() ? contact.entityB.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
-		Vector3 relativeVel = velocityA - velocityB;
-		return glm::dot(relativeVel, contact.normal);
+		auto contactEvents = getWorld().getEventManager().getEvents<ParticleContactEvent>();
+		if (contactEvents.size() > 0)
+		{
+			for (int i = 0; i < velocityIterations; i++)
+			{
+				// Sort from highest incoming OR most negetive separting velocity to least
+				std::sort(contactEvents.begin(), contactEvents.end(), 
+					[this](auto a, auto b)
+					{
+						return CalculateSeparationVelocity(a) < CalculateSeparationVelocity(b);
+					});
+				ResolveVelocity(contactEvents[0], deltaTime);
+			}
+			for (int i = 0; i < positionIterations; i++)
+			{
+				// Sort from highest penetration to the least
+				std::sort(contactEvents.begin(), contactEvents.end(),
+					[this](auto a, auto b)
+					{
+						return CalculateActualPenetration(a) > CalculateActualPenetration(b);
+					});
+				ResolveInterPenetration(contactEvents[0]);
+			}
+		}
+		//for (auto& contact : contactEvents)
+		//{
+		//	ResolveVelocity(contact, deltaTime);
+		//	ResolveInterPenetration(contact);
+		//}
 	}
 
-	void ParticleContactResolutionSystem::ResolveVelocity(ParticleContactComponent& contact, float deltaTime)
+	float ParticleContactResolutionSystem::CalculateSeparationVelocity(ParticleContactEvent & contact)
 	{
-		float separatingVelocity = CalculateSeparatingVelocity(contact);
+		Vector3 velocityA = contact.entityA.hasComponent<ParticleComponent>() ?
+			contact.entityA.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
 
-		if (separatingVelocity > 0)
+		Vector3 velocityB = contact.entityB.hasComponent<ParticleComponent>() ?
+			contact.entityB.getComponent<ParticleComponent>().velocity : Vector3(0, 0, 0);
+
+		Vector3 separationVelocity = velocityA - velocityB;
+
+		return glm::dot(separationVelocity, contact.normal);
+	}
+
+	float ParticleContactResolutionSystem::CalculateActualPenetration(ParticleContactEvent & contact)
+	{
+		float actualPenetration = contact.penetration;
+
+		if (contact.entityA.hasComponent<PenetrationDeltaMoveComponent>())
+		{
+			Vector3 deltaMove = contact.entityA.getComponent<PenetrationDeltaMoveComponent>().deltaMove;
+			actualPenetration -= glm::dot(deltaMove, contact.normal);
+		}
+
+		if (contact.entityB.hasComponent<PenetrationDeltaMoveComponent>())
+		{
+			Vector3 deltaMove = contact.entityB.getComponent<PenetrationDeltaMoveComponent>().deltaMove;
+			actualPenetration += glm::dot(deltaMove, contact.normal);
+		}
+
+		return actualPenetration;
+	}
+
+	void ParticleContactResolutionSystem::ResolveVelocity(ParticleContactEvent & contact, float deltaTime)
+	{
+		float initialVelocity = CalculateSeparationVelocity(contact);
+
+		if (initialVelocity > 0)
 		{
 			return;
 		}
 
-		bool isAvalid = contact.entityA.hasComponent<ParticleComponent>();
-		bool isBvalid = contact.entityB.hasComponent<ParticleComponent>();
-		float invM1 = isAvalid ? contact.entityA.getComponent<ParticleComponent>().inverseMass : 0;
-		float invM2 = isBvalid ? contact.entityB.getComponent<ParticleComponent>().inverseMass : 0;
+		float finalVelocity = -initialVelocity * contact.restitution;
 
-
-		float newSeparatingVelocity = -separatingVelocity * contact.restitution;
-
-		// Check the velocity build up due to accelaration only
-		Vector3 accCausedVelocity = Vector3(0, 0, 0);
-		if (isAvalid)
+		Vector3 relativeAccelaration = Vector3(0, 0, 0);
+		if (contact.entityA.hasComponent<ParticleComponent>())
 		{
-			accCausedVelocity += contact.entityA.getComponent<ParticleComponent>().accelaration;
+			relativeAccelaration += contact.entityA.getComponent<ParticleComponent>().acceleration;
 		}
-		if (isBvalid)
+		if (contact.entityB.hasComponent<ParticleComponent>())
 		{
-			accCausedVelocity -= contact.entityB.getComponent<ParticleComponent>().accelaration;
+			relativeAccelaration -= contact.entityB.getComponent<ParticleComponent>().acceleration;
 		}
-		float accCausedSepVelocity = glm::dot(accCausedVelocity, contact.normal) * deltaTime;
 
-		// If we have a closing velocity due to accelaration build up, 
-		// remove it from new separating velocity
+		float accCausedSepVelocity = glm::dot(relativeAccelaration, contact.normal) * deltaTime;
+
 		if (accCausedSepVelocity < 0)
 		{
-			newSeparatingVelocity += contact.restitution * accCausedSepVelocity;
-			if (newSeparatingVelocity < 0)
+			finalVelocity += contact.restitution * accCausedSepVelocity;
+
+			if (finalVelocity < 0)
 			{
-				newSeparatingVelocity = 0;
+				finalVelocity = 0;
 			}
 		}
 
-		float deltaVelocity = newSeparatingVelocity - separatingVelocity;
+		float deltaVelocity = finalVelocity - initialVelocity;
 
-		float totalInverseMass = invM1 + invM2;
+		float invMA = contact.entityA.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityA.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
+
+		float invMB = contact.entityB.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityB.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
+
+		float totalInverseMass = invMA + invMB;
 
 		if (totalInverseMass <= 0)
 		{
@@ -67,120 +125,61 @@ namespace Reality
 		}
 
 		float impulse = deltaVelocity / totalInverseMass;
+		Vector3 impulsePerIMass = impulse * contact.normal;
 
-		Vector3 impulsePerIMass = contact.normal * impulse;
-
-		if (isAvalid)
+		if (contact.entityA.hasComponent<ParticleComponent>())
 		{
-			contact.entityA.getComponent<ParticleComponent>().velocity += impulsePerIMass * invM1;
+			contact.entityA.getComponent<ParticleComponent>().velocity += impulsePerIMass * invMA;
 		}
-		if (isBvalid)
+
+		if (contact.entityB.hasComponent<ParticleComponent>())
 		{
-			contact.entityB.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invM2;
+			contact.entityB.getComponent<ParticleComponent>().velocity -= impulsePerIMass * invMB;
 		}
 	}
-
-	void ParticleContactResolutionSystem::ResolveInterpenetration(ParticleContactComponent& contact)
+	void ParticleContactResolutionSystem::ResolveInterPenetration(ParticleContactEvent & contact)
 	{
-		if (contact.penetration <= 0)
+		float actualPenetration = CalculateActualPenetration(contact);
+
+		if (actualPenetration < 0)
 		{
 			return;
 		}
 
- 		bool isAvalid = contact.entityA.hasComponent<ParticleComponent>();
-		bool isBvalid = contact.entityB.hasComponent<ParticleComponent>();
-		float invM1 = isAvalid ? contact.entityA.getComponent<ParticleComponent>().inverseMass : 0;
-		float invM2 = isBvalid ? contact.entityB.getComponent<ParticleComponent>().inverseMass : 0;
+		float invMassA = contact.entityA.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityA.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
 
-		float totalInverseMass = invM1 + invM2;
+		float invMassB = contact.entityB.hasComponent<ForceAccumulatorComponent>() ?
+			contact.entityB.getComponent<ForceAccumulatorComponent>().inverseMass : 0;
+
+		float totalInverseMass = invMassA + invMassB;
 
 		if (totalInverseMass <= 0)
 		{
 			return;
 		}
 
-		Vector3 movePerMass = contact.normal * (-contact.penetration / totalInverseMass);
-		contact.deltaMovePerMass = movePerMass;
-		if (isAvalid)
-		{
-			contact.entityA.getComponent<TransformComponent>().position -= movePerMass * invM1;
-		}
+		Vector3 movePerUnitIMass = contact.normal * (actualPenetration / totalInverseMass);
 
-		if (isBvalid)
+		if (contact.entityA.hasComponent<TransformComponent>())
 		{
-			contact.entityB.getComponent<TransformComponent>().position += movePerMass * invM2;
-		}
-		//contact.penetration = 0;
-	}
-
-	void ParticleContactResolutionSystem::UpdateInterpenetration(ParticleContactComponent & bestContact, ParticleContactComponent & contact)
-	{
-		bool isAvalid = contact.entityA.hasComponent<ParticleComponent>();
-		bool isBvalid = contact.entityB.hasComponent<ParticleComponent>();
-		float invM1 = isAvalid ? contact.entityA.getComponent<ParticleComponent>().inverseMass : 0;
-		float invM2 = isBvalid ? contact.entityB.getComponent<ParticleComponent>().inverseMass : 0;
-		if (bestContact.entityA == contact.entityA || bestContact.entityB == contact.entityA)
-		{
-			float mult = bestContact.entityA == contact.entityA ? -1 : 1;
-			Vector3 deltaMove = mult * bestContact.deltaMovePerMass * invM1;
-			float deltaPenetration = glm::dot(deltaMove, contact.normal);
-			contact.penetration -= deltaPenetration;
-		}
-		if (bestContact.entityB == contact.entityB || bestContact.entityA == contact.entityB)
-		{
-			float mult = bestContact.entityA == contact.entityB ? -1 : 1;
-			Vector3 deltaMove = mult * bestContact.deltaMovePerMass * invM2;
-			float deltaPenetration = glm::dot(deltaMove, contact.normal);
-			contact.penetration += deltaPenetration;
-		}
-	}
-
-	void ParticleContactResolutionSystem::Update(float deltaTime)
-	{
-		iterationsUsed = 0;
-		iterations = getEntities().size() * 2;
-
-		if (getEntities().size() > 0)
-		{
-			unsigned int bestContactIndex = 0;
-			unsigned int lastBest = 0;
-			while (iterationsUsed < iterations)
+			Vector3 deltaMove = movePerUnitIMass * invMassA;
+			contact.entityA.getComponent<TransformComponent>().position += deltaMove;
+			if (contact.entityA.hasComponent<PenetrationDeltaMoveComponent>())
 			{
-				// Find the contact with the largest closing velocity
-				float max = 0;
-				for (int i = 0; i < getEntities().size(); i++)
-				{
-					auto e = getEntities()[i];
-					auto &contact = e.getComponent<ParticleContactComponent>();
-					if (iterationsUsed > 0)
-					{
-						UpdateInterpenetration(getEntities()[lastBest].getComponent<ParticleContactComponent>(), contact);
-					}
-					float sepVel = CalculateSeparatingVelocity(contact);
-					if (sepVel < max)
-					{
-						max = sepVel;
-						bestContactIndex = i;
-					}
-				}
-				if (max >= 0)
-				{
-					break;
-				}
-				auto& bestContact = getEntities()[bestContactIndex].getComponent<ParticleContactComponent>();
-				ResolveVelocity(bestContact, deltaTime);
-				ResolveInterpenetration(bestContact);
-				lastBest = bestContactIndex;
-				iterationsUsed++;
-			}
-
-			for (auto e : getEntities())
-			{
-				e.kill();
+				contact.entityA.getComponent<PenetrationDeltaMoveComponent>().deltaMove += deltaMove;
 			}
 		}
 
-
+		if (contact.entityB.hasComponent<TransformComponent>())
+		{
+			Vector3 deltaMove = movePerUnitIMass * invMassB;
+			contact.entityB.getComponent<TransformComponent>().position -= movePerUnitIMass * invMassB;
+			if (contact.entityB.hasComponent<PenetrationDeltaMoveComponent>())
+			{
+				contact.entityB.getComponent<PenetrationDeltaMoveComponent>().deltaMove -= deltaMove;
+			}
+		}
 
 	}
 }
