@@ -1,6 +1,6 @@
 #include "RodSystem.h"
 #include "TransformComponent.h"
-#include "ParticleContactComponent.h"
+#include "ParticleContactEvent.h"
 
 namespace Reality
 {
@@ -14,49 +14,50 @@ namespace Reality
 		for (auto e : getEntities())
 		{
 			auto& rod = e.getComponent<RodComponent>();
-			float currentLength = glm::length(rod.entityA.getComponent<TransformComponent>().position -
-				rod.entityB.getComponent<TransformComponent>().position);
 
-			getWorld().data.renderUtil->DrawSphere(rod.entityA.getComponent<TransformComponent>().position, 1, Color::Purple);
-			getWorld().data.renderUtil->DrawSphere(rod.entityB.getComponent<TransformComponent>().position, 1, Color::Purple);
-
-			if (currentLength == rod.length)
+			if (rod.entityA.hasComponent<TransformComponent>() &&
+				rod.entityB.hasComponent<TransformComponent>())
 			{
-				continue;
+				auto& transformA = rod.entityA.getComponent<TransformComponent>();
+				auto& transformB = rod.entityB.getComponent<TransformComponent>();
+
+				Vector3 relativePos = transformA.position - transformB.position;
+				float length = glm::length(relativePos);
+
+				if (length > rod.rodLength)
+				{
+					Vector3 normal = -glm::normalize(relativePos);
+					float penetration = length - rod.rodLength;
+
+					getWorld().getEventManager().emitEvent<ParticleContactEvent>(
+						rod.entityA,
+						rod.entityB,
+						0,
+						normal,
+						penetration
+						);
+				}
+
+				if (length < rod.rodLength)
+				{
+					Vector3 normal = glm::normalize(relativePos);
+					float penetration = rod.rodLength - length;
+
+					getWorld().getEventManager().emitEvent<ParticleContactEvent>(
+						rod.entityA,
+						rod.entityB,
+						0,
+						normal,
+						penetration
+						);
+				}
+
+				getWorld().data.renderUtil->DrawLine(
+					transformA.position,
+					transformB.position,
+					Color::Beige
+				);
 			}
-
-			Vector3 normal = glm::normalize(rod.entityB.getComponent<TransformComponent>().position -
-				rod.entityA.getComponent<TransformComponent>().position);
-
-
-			if (currentLength > rod.length)
-			{
-				auto contactEntity = getWorld().createEntity();
-				contactEntity.addComponent<ParticleContactComponent>(
-					rod.entityA,
-					rod.entityB,
-					0,
-					normal,
-					currentLength - rod.length);
-				getWorld().data.renderUtil->DrawLine(rod.entityA.getComponent<TransformComponent>().position,
-					rod.entityB.getComponent<TransformComponent>().position,
-					Color::Yellow);
-			}
-			else
-			{
-				auto contactEntity = getWorld().createEntity();
-				contactEntity.addComponent<ParticleContactComponent>(
-					rod.entityA,
-					rod.entityB,
-					0,
-					-normal,
-					rod.length - currentLength);
-				getWorld().data.renderUtil->DrawLine(rod.entityA.getComponent<TransformComponent>().position,
-					rod.entityB.getComponent<TransformComponent>().position,
-					Color::Yellow);
-			}
-
-			
 		}
 	}
 }
