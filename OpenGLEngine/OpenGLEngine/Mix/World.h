@@ -10,6 +10,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include "Entity.h"
 
 namespace Mix
 {

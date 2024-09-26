@@ -1,20 +1,23 @@
 #include "RotateSystem.h"
 
-RotateSystem::RotateSystem()
+namespace Reality
 {
-	requireComponent<TransformComponent>();
-	requireComponent<RotateComponent>();
-}
-
-void RotateSystem::Update(float deltaTime)
-{
-	for (auto e : getEntities())
+	RotateSystem::RotateSystem()
 	{
-		auto &rotate = e.getComponent<RotateComponent>();
-		auto &transform = e.getComponent<TransformComponent>();
+		requireComponent<TransformComponent>();
+		requireComponent<RotateComponent>();
+	}
 
-		transform.eulerAngles.x += rotate.xRot * deltaTime;
-		transform.eulerAngles.y += rotate.yRot * deltaTime;
-		transform.eulerAngles.z += rotate.zRot * deltaTime;
+	void RotateSystem::Update(float deltaTime)
+	{
+		for (auto e : getEntities())
+		{
+			//e.getComponent<TransformComponent>().eulerAngles += e.getComponent<RotateComponent>().angularVelocity;
+
+			auto& transform = e.getComponent <TransformComponent>();
+			auto& rotate = e.getComponent<RotateComponent>();
+
+			transform.eulerAngles += rotate.angularVelocity * deltaTime;
+		}
 	}
 }

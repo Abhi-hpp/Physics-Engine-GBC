@@ -12,6 +12,8 @@ namespace Reality
 		double mouseX;
 		double mouseY;
 		bool firstMouse = true;
+
+		bool pressedSpace = false;
 	};
 }
 

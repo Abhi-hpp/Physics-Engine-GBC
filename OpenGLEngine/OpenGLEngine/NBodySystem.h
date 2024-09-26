@@ -1,14 +1,16 @@
 #pragma once
 #include "ECSConfig.h"
-#include "ParticleComponent.h"
+#include "NBodyComponent.h"
+#include "TransformComponent.h"
 #include "ForceAccumulatorComponent.h"
 
 namespace Reality
 {
-	class ForceAccumulatorSystem : public ECSSystem
+	class NBodySystem : public ECSSystem
 	{
 	public:
-		ForceAccumulatorSystem();
+		NBodySystem();
 		void Update(float deltaTime);
+		float gravity = 9.8f;
 	};
 }
