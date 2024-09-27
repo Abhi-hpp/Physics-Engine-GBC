@@ -3,12 +3,12 @@
 
 namespace Reality
 {
-	struct RotateComponent
+	struct RotateComponentV2
 	{
-		RotateComponent(Vector3 _rotationVelocity = Vector3(0, 0, 0))
+		RotateComponentV2(Vector3 _rotationVelocity = Vector3(0, 0, 0))
 			: rotationVelocity(_rotationVelocity)
 		{
-			
+
 		}
 		Vector3 rotationVelocity;
 	};
